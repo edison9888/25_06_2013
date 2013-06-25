@@ -1,0 +1,22 @@
+//
+//  NotifyiConstants.h
+//  NotiyiiPhoneApplicationProject
+//
+//  Created by Rapidvalue on 9/14/12.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+static int VCount = 21, TCount = 28, NCount = 52;
+#define VCOUNT 21
+
+
+@interface NotifyiConstants : NSObject
+{
+    
+    
+}
++(BOOL)emailValidation:(NSString *)email;
+
+@end

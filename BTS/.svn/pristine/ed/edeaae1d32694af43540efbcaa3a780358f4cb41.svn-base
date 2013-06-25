@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OTS_SA_R5_D060]]></id>
+	<title><![CDATA[<Introtext style="font-family:Helvetica; font-size:14pt; font-weight:bold; color:#cc0033; margin:10px -5px 10px 5px; width:738px; padding:5px 0 5px 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Context for the Solution </Introtext>]]></title>
+	<title2><![CDATA[]]></title2>
+	<instructions><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:11pt; line-height:18pt; text-align:justify; font-weight:bold; color:#333; display:block; margin:0 10px 10px">Which follow-up question do you ask Dr. Chu?</welcomeText >]]></instructions>
+	<choices>
+		<choice>
+			<id><![CDATA[1]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>A</b>. How do you see currently available therapies and treatments fitting into how you treat your patients with hyponatremia?</welcomeText>]]></choiceText>
+			<KPIs totalScore="-10">
+				<KPI marks="10"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="-10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="-10"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R5_D060_A010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[2]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>B</b>.As a prescriber, I’m sure you sometimes encounter roadblocks with different insurance plans, Medicare, and Medicaid.  What strategies do you have in place to overcome those roadblocks?</welcomeText>]]></choiceText>
+			<KPIs totalScore="-10">
+				<KPI marks="0"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="-10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R5_D060_B010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[3]]></id>
+			<isCorrect><![CDATA[YES]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>C</b>. Do you foresee any other barriers in achieving your goals for patient safety and patient experience?</span></welcomeText>]]></choiceText>
+			<KPIs totalScore="50">
+				<KPI marks="10"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="30"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R5_D060_C010]]></branchTo>
+		</choice>
+
+		<choice>
+			<id><![CDATA[4]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>D</b>. Is there a specific patient metric that you want to reach?</span></welcomeText>]]></choiceText>
+			<KPIs totalScore="0">
+				<KPI marks="0"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="0"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R5_D060_D010]]></branchTo>
+		</choice>
+		
+		
+	</choices>
+	
+</pageContent>

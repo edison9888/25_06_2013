@@ -1,0 +1,733 @@
+//
+//  DashBoardsViewController.m
+//  GreenVolts
+//
+//  Created by YML on 8/26/11.
+//  Copyright 2011 YML. All rights reserved.
+//
+
+#import "PortfolioViewController.h"
+#import "SiteListTileView.h"
+#import "SiteViewController.h"
+#import "Site.h"
+#import "Section.h"
+#import "SectionViewController.h"
+#import "Array.h"
+#import "ArrayViewController.h"
+#import "String.h"
+#import "StringViewController.h"
+#import "LoginManager.h"
+#import "SBJson.h"
+#import "DataPrefetcher.h"
+#import "DateTimeConverter.h"
+#import "SiteDisplayTableViewCell.h"
+#import "GreenVoltsAppDelegate.h"
+@interface PortfolioViewController(PVT)<LoginManagerDelegate,ConnectionDelegate>
+-(void)LoadSiteTiles;
+-(void)jsonParser;
+-(void)connectToServer;
+-(void)checkForCorrectDateWithRespectToObect:(NSObject*)object;
+@end
+
+
+@implementation PortfolioViewController
+
+-(id)init
+{
+  if((self = [super init]))
+  {     
+    pTitleLabel=nil;
+    
+    mConnection=[[Connection alloc]init];
+    
+    mURLConnection=nil;
+    mResponseData=nil;
+    m_ActivityIndicatorView=nil;
+    
+    isReloading=NO;
+    isServerConnectionActive=NO;
+    availableSites=nil;
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloaddata) name:@"RELOAD_DATA" object:nil];
+    noOfSiteTilesPresent=0;
+  }
+  return self;
+}
+
+- (void)dealloc 
+{
+  if(mURLConnection) 
+	{
+		[mURLConnection cancel];
+		mURLConnection=nil;
+	}
+  if(mResponseData)
+	{
+		mResponseData=nil;
+	}  
+  if(mDataPrefetcher)
+  {
+    mDataPrefetcher.delegate=nil;
+    [mDataPrefetcher CancelConnection];
+    mDataPrefetcher=nil;
+  }
+  if(m_ActivityIndicatorView){[m_ActivityIndicatorView removeFromSuperview];m_ActivityIndicatorView=nil;}
+  if(pTitleLabel){[pTitleLabel removeFromSuperview];pTitleLabel=nil;}
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+-(void)loadView
+{
+  self.view=[[UIView alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
+  self.view.backgroundColor=[UIColor colorWithRed:(10.2/100.0) green:(13.3/100.0) blue:(13.7/100.0) alpha:1.0];
+  self.navigationController.navigationBar.tintColor=[UIColor blackColor];
+  
+  if(pTitleLabel==nil)
+  {
+    pTitleLabel=[[UILabel alloc]initWithFrame:CGRectMake(40, 8, 237, 30)];
+    pTitleLabel.backgroundColor=[UIColor clearColor];
+    pTitleLabel.font=[UIFont fontWithName:@"HelveticaNeue-Bold" size:18];
+    pTitleLabel.textColor=[UIColor whiteColor];
+    pTitleLabel.textAlignment=UITextAlignmentCenter;
+      
+#ifdef DEMO_BUILD
+      pTitleLabel.text=@"Site Portfolio";
+#else
+      pTitleLabel.text=@"My Portfolio";
+#endif
+      
+    pTitleLabel.lineBreakMode=UILineBreakModeTailTruncation;
+    [self.navigationController.navigationBar addSubview:pTitleLabel];
+  }  
+  mTableView=[[UITableView alloc]initWithFrame:CGRectMake(0,5, 320,360) style:UITableViewStylePlain];
+  mTableView.dataSource=self;
+  mTableView.delegate=self;
+  mTableView.backgroundColor=[UIColor clearColor];
+  mTableView.separatorColor=[UIColor clearColor];
+  [self.view addSubview:mTableView];
+}
+
+
+-(void)fetchSessionToken
+{
+  if(m_ActivityIndicatorView){[m_ActivityIndicatorView removeFromSuperview];m_ActivityIndicatorView=nil;}
+  m_ActivityIndicatorView=[[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(145, 180, 30, 30)];
+  [m_ActivityIndicatorView startAnimating];
+  m_ActivityIndicatorView.activityIndicatorViewStyle=UIActivityIndicatorViewStyleWhite;
+  [self.view addSubview:m_ActivityIndicatorView];  
+  if(!mConnection)
+  {
+    mConnection=[[Connection alloc]init];
+  }
+  mConnection.m_delegate=self;
+  [mConnection connectToServer];
+}
+
+#pragma mark ConnectionDelegate Methods
+
+-(void)ConnectionFailed
+{
+  UIAlertView *pAlert=[[UIAlertView alloc]initWithTitle:@"" message:@"Make sure your device has an active network connection and try again" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:NULL];
+  [pAlert show];
+  pAlert=nil;
+  
+  mConnection.m_delegate=nil;
+  mConnection=nil;
+}
+
+-(void)InvalidUserNameError:(int)errorIndex
+{
+  mConnection.m_delegate=nil;
+  mConnection=nil;
+  
+  if(errorIndex==0)
+  {
+    UIAlertView *pAlert=[[UIAlertView alloc]initWithTitle:@"" message:@"Cannot connect to backend systems" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:NULL];
+    [pAlert show];
+    pAlert=nil;              
+  }
+  else if(errorIndex==1)
+  {
+    [[LoginManager sharedLoginManagerWithDelegate:self] ShowLoginPage];
+  }
+}
+
+-(void)Success
+{
+  mConnection.m_delegate=nil;
+  mConnection=nil;
+  
+  [self connectToServer];
+}
+
+
+-(void)viewWillAppear:(BOOL)animated
+{
+  [self connectToServer];
+  for(int i=0;i<[self.navigationController.navigationBar.subviews count];i++)
+  {
+    UIView *pView=[[self.navigationController.navigationBar subviews]objectAtIndex:i];
+    if([pView isKindOfClass:[UILabel class]])
+    {
+      UILabel *pLabel=(UILabel *)pView;
+      [pLabel setFrame:CGRectMake(40, 8, 237, 30)];
+#ifdef DEMO_BUILD
+        pTitleLabel.text=@"Site Portfolio";
+#else
+        pTitleLabel.text=@"My Portfolio";
+#endif     
+    }
+    
+    if([pView isKindOfClass:[UIButton class]])
+    {
+      [pView removeFromSuperview];
+    }
+  }
+  [[NSUserDefaults standardUserDefaults]setBool:NO forKey:@"ControlEnabled"];
+  [[NSUserDefaults standardUserDefaults]setBool:NO forKey:@"AlertEnabled"];
+    
+    
+#ifdef DEMO_BUILD
+    NSObject *appDelegate = [[UIApplication sharedApplication] delegate];
+    
+    if(appDelegate)
+    {
+        if([appDelegate respondsToSelector:@selector(disableTabbarControlAtBottomFully)])
+        {
+            [appDelegate performSelector:@selector(disableTabbarControlAtBottomFully) withObject:nil];
+        }
+    }
+#endif
+    
+}
+
+-(void) viewWillDisappear:(BOOL)animated
+{
+#ifdef DEMO_BUILD
+    NSObject *appDelegate = [[UIApplication sharedApplication] delegate];
+    
+    if(appDelegate)
+    {
+        if([appDelegate respondsToSelector:@selector(disableTabbarControlAtBottomFully)])
+        {
+            [appDelegate performSelector:@selector(enableTabbarControlAtBottomAsPerEntity) withObject:nil];
+        }
+    }
+#endif
+    
+}
+
+
+#pragma mark URLConnectionManager Methods
+
+-(void)connectToServer
+{
+  isReloading=YES;
+  if(m_ActivityIndicatorView)
+  {
+    [m_ActivityIndicatorView removeFromSuperview];
+    m_ActivityIndicatorView=nil;
+  }
+  
+  m_ActivityIndicatorView=[[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(145, 180, 30, 30)];
+  [m_ActivityIndicatorView startAnimating];
+  m_ActivityIndicatorView.activityIndicatorViewStyle=UIActivityIndicatorViewStyleWhite;
+  [self.view addSubview:m_ActivityIndicatorView];
+  
+  if(mURLConnection) 
+  {
+    [mURLConnection cancel];
+    mURLConnection=nil;
+  }
+  if(mResponseData)
+  {
+    mResponseData=nil;
+  }
+  
+  NSString *pSessionToken=[[NSUserDefaults standardUserDefaults]objectForKey:@"SESSION_TOKEN"];
+  
+  //printf("connectToServer in PortfolioVC:%s\n",[[request description]UTF8String]);
+  mURLConnection=[NSURLConnection connectionWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/GreenVolts-ISIS-BL-Web-Models-iPhone-iPhone_DS.svc/JSON/GetPortfolioSitesforUser?sessionToken=%@",kserverAddress,pSessionToken]]] delegate:self];
+  isServerConnectionActive=YES;
+}
+
+-(void)reloaddata
+{
+  if(self.navigationController.topViewController==self)
+  {
+    [self connectToServer];
+  }
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response 
+{
+	if(mResponseData)
+  {
+    mResponseData=nil;
+  }
+  mResponseData = [NSMutableData data];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+   
+  [mResponseData appendData:data];
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error 
+{
+  //  Error Codes: 
+  //  10001 – cannot connect to backend systems
+  //  10002 – invalid username or password (displays an error message on top of the screen)
+  if(m_ActivityIndicatorView)
+  {
+    [m_ActivityIndicatorView removeFromSuperview];
+    m_ActivityIndicatorView=nil;
+  }
+  
+  UIAlertView *pAlert=[[UIAlertView alloc]initWithTitle:@"" message:@"Make sure your device has an active network connection and try again" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:NULL];
+  [pAlert show];
+  pAlert=nil;        
+  
+  if(mURLConnection) 
+	{
+		[mURLConnection cancel];
+		mURLConnection=nil;
+	}
+	if(mResponseData)
+	{
+		mResponseData=nil;
+	}
+  if(isReloading)
+    isReloading=NO;
+  isServerConnectionActive=NO;
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+  if(m_ActivityIndicatorView)
+  {
+    [m_ActivityIndicatorView removeFromSuperview];
+    m_ActivityIndicatorView=nil;
+  }
+  
+	if(mURLConnection) 
+	{
+		[mURLConnection cancel];
+		mURLConnection=nil;
+	}
+  isReloading=NO;
+  [self jsonParser];
+}	
+-(void)didReceiveMemoryWarning
+{
+}
+- (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace
+{
+  return [protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
+{
+  if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust])
+    [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
+}
+
+-(void)jsonParser
+{
+  NSString *responseString=[[NSString alloc]initWithData:mResponseData encoding:NSUTF8StringEncoding];
+  
+  mResponseData=nil;
+  
+  //printf("\nResponse received in PortfolioVC:\n%s\n",[responseString UTF8String]);
+  
+  NSDictionary *data=[responseString JSONValue];
+  
+  NSDictionary *userResult= [data objectForKey:@"GetPortfolioSitesforUserResult"]; 
+  
+  NSArray *rootResult = [userResult objectForKey:@"RootResults"];
+  
+  NSDictionary *rootResultDict=[rootResult objectAtIndex:0];
+  
+  NSObject *error=[rootResultDict objectForKey:@"Err"];
+  
+  if([error isKindOfClass:[NSNull class]])
+  {
+    NSMutableArray *sites=[NSMutableArray array];
+    for(int i=0;i<[rootResult count];i++)
+    {
+      NSDictionary *siteDictinary=[rootResult objectAtIndex:i];
+      Site *pSite=[[Site alloc]init];
+      pSite.SectionCount=[[siteDictinary valueForKey:@"SectionCount"] intValue];
+      
+      NSObject *pAlarmCount=[siteDictinary objectForKey:@"AlarmCount"];
+      if(![pAlarmCount isKindOfClass:[NSNull class]])
+        pSite.AlarmCount=[[siteDictinary objectForKey:@"AlarmCount"] intValue];
+      
+      NSObject *pArrayCount=[siteDictinary objectForKey:@"ArrayCount"];
+      if(![pArrayCount isKindOfClass:[NSNull class]])
+        pSite.ArrayCount=[[siteDictinary objectForKey:@"ArrayCount"] intValue];
+      
+      NSObject *pCameraID=[siteDictinary objectForKey:@"CameraID"];
+      if(![pCameraID isKindOfClass:[NSNull class]])
+        pSite.CameraID=[[siteDictinary objectForKey:@"CameraID"] intValue];
+      
+      NSObject *pSiteId=[siteDictinary objectForKey:@"ID"];
+      if(![pSiteId isKindOfClass:[NSNull class]])
+        pSite.m_SiteId=[siteDictinary objectForKey:@"ID"];      
+      
+      NSObject *pCurrentDNI=[siteDictinary objectForKey:@"CurrentDNI"];
+      if(![pCurrentDNI isKindOfClass:[NSNull class]])
+        pSite.m_CurrentDNI=[siteDictinary objectForKey:@"CurrentDNI"];
+      
+      NSObject *pCurrentPower=[siteDictinary objectForKey:@"CurrentPower"];
+      if(![pCurrentPower isKindOfClass:[NSNull class]])
+        pSite.m_CurrentPower=[siteDictinary objectForKey:@"CurrentPower"];
+      
+      NSObject *pLocalDateTime=[siteDictinary objectForKey:@"LocalDateTime"];
+      if(![pLocalDateTime isKindOfClass:[NSNull class]])
+        pSite.m_LocalDateTime=[siteDictinary objectForKey:@"LocalDateTime"];
+      
+      NSObject *pLocation=[siteDictinary objectForKey:@"Location"];
+      if(![pLocation isKindOfClass:[NSNull class]])
+        pSite.m_Location=[siteDictinary objectForKey:@"Location"];
+      
+      NSObject *pName=[siteDictinary objectForKey:@"Name"];
+      if(![pName isKindOfClass:[NSNull class]])
+        pSite.m_Name=[siteDictinary objectForKey:@"Name"];
+      
+      NSObject *pTemperature=[siteDictinary objectForKey:@"Temperature"];
+      if(![pTemperature isKindOfClass:[NSNull class]])
+        pSite.m_Temperature=[[siteDictinary objectForKey:@"Temperature"] stringValue];
+      
+      NSString *pWindDirection=(NSString *)[siteDictinary objectForKey:@"WindDirection"];
+      if(![pWindDirection isEqualToString:@""])
+        pSite.m_WindDirection=[siteDictinary objectForKey:@"WindDirection"];
+      
+      NSObject *pWindSpeed=[siteDictinary objectForKey:@"WindSpeed"];
+      if(![pWindSpeed isKindOfClass:[NSNull class]])
+        pSite.m_WindSpeed=[siteDictinary objectForKey:@"WindSpeed"];
+      
+      NSObject *pTodayEnergy=[siteDictinary objectForKey:@"TodayEnergy"];
+      if(![pTodayEnergy isKindOfClass:[NSNull class]])
+        pSite.m_TodayEnergy=[siteDictinary objectForKey:@"TodayEnergy"];
+      
+      NSObject *pUTCDateTime=[siteDictinary objectForKey:@"UTCDateTime"];
+      if(![pUTCDateTime isKindOfClass:[NSNull class]])
+        pSite.m_UTCDateTime=[siteDictinary objectForKey:@"UTCDateTime"];
+      
+      NSObject *pUTCOffset=[siteDictinary objectForKey:@"UTCOffset"];
+      if(![pUTCOffset isKindOfClass:[NSNull class]])
+        pSite.m_UTCOffset=[siteDictinary objectForKey:@"UTCOffset"];
+      
+      NSObject *pWeatherStatus=[siteDictinary objectForKey:@"WeatherStatus"];
+      if(![pWeatherStatus isKindOfClass:[NSNull class]])
+        pSite.m_WeatherStatus=[siteDictinary objectForKey:@"WeatherStatus"];
+      
+      NSObject *pWeatherIcon=[siteDictinary objectForKey:@"WeatherIcon"];
+      if(![pWeatherIcon isKindOfClass:[NSNull class]])
+        pSite.m_WeatherIcon=[siteDictinary objectForKey:@"WeatherIcon"];
+      
+      NSObject *pYTDEnergy=[siteDictinary objectForKey:@"YTDEnergy"];
+      if(![pYTDEnergy isKindOfClass:[NSNull class]])
+        pSite.m_YTDEnergy=[siteDictinary objectForKey:@"YTDEnergy"];
+      
+      if(pSite.ArrayCount>0)
+        [sites addObject:pSite];
+      pSite=nil;
+    }
+    if(isReloading)
+      isReloading=NO;
+    availableSites=nil;
+    availableSites=[NSArray arrayWithArray:sites];
+    sites=nil;
+    isServerConnectionActive=NO;
+    [self LoadSiteTiles];
+  }
+  else 
+  {
+    NSNumber *errorId=[rootResultDict objectForKey:@"ErrID"];
+    
+    if([errorId intValue]==10002 || [errorId intValue]==10026 || [errorId intValue]==10028 || [errorId intValue]==10029)
+    {
+      [[LoginManager sharedLoginManagerWithDelegate:self] ShowLoginPage];
+    }
+    if([errorId intValue]!=10003)
+    {
+      UIAlertView *pAlert=[[UIAlertView alloc]initWithTitle:@"" message:[rootResultDict objectForKey:@"Err"] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:NULL];
+      [pAlert show];
+      pAlert=nil;    
+    }
+    if([errorId intValue]==10003)
+    {
+      [self fetchSessionToken];
+    }
+  }
+}
+
+#pragma mark LoginManagerDelegate methods
+-(void)loginManager:(LoginManager*)manager loggedInSuccesfullyWithSessionToken:(NSString*)sessionToken
+{
+  [self connectToServer];  
+}
+
+-(void)LoadSiteTiles
+{
+  if(!availableSites)
+    return;
+  [mTableView reloadData];
+}
+
+#pragma mark SiteListTileViewDelegate delegate methods
+-(void)TileClicked:(UIButton *)button
+{
+  if(isServerConnectionActive)
+    return;
+  if(!availableSites)
+    return;
+  if(mConnection)
+  {
+    mConnection.m_delegate=nil;
+    mConnection=nil;
+  }
+  
+  if(mURLConnection) 
+	{
+		[mURLConnection cancel];
+		mURLConnection=nil;
+	}
+  
+  [[NSUserDefaults standardUserDefaults]setBool:NO forKey:@"DATECHANGED"];
+  [[NSUserDefaults standardUserDefaults]setObject:@"Portfolio" forKey:@"BACK_BUTTON"];
+  
+  if(mDataPrefetcher)
+  {
+    mDataPrefetcher.delegate=nil;
+    [mDataPrefetcher CancelConnection];
+    mDataPrefetcher=nil;
+  }
+  
+  mDataPrefetcher=[[DataPrefetcher alloc]init];
+  mDataPrefetcher.delegate=self;
+  Site *pSite=[availableSites objectAtIndex:button.tag];
+  [mDataPrefetcher GetClassToBeJumpedFrom:pSite];
+  
+  if(m_ActivityIndicatorView){[m_ActivityIndicatorView removeFromSuperview];m_ActivityIndicatorView=nil;}
+  
+  m_ActivityIndicatorView=[[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(145, 180, 30, 30)];
+  [m_ActivityIndicatorView startAnimating];
+  m_ActivityIndicatorView.activityIndicatorViewStyle=UIActivityIndicatorViewStyleWhite;
+  [self.view addSubview:m_ActivityIndicatorView];  
+  
+}
+-(void)dataPrefetcher:(DataPrefetcher*)dataPrefetcher decidedToJumpToObject:(NSObject*)object
+{
+  if(m_ActivityIndicatorView)
+  {
+    [m_ActivityIndicatorView removeFromSuperview];
+    m_ActivityIndicatorView=nil;
+  }
+  
+  if(mDataPrefetcher)
+  {
+    mDataPrefetcher.delegate=nil;
+    [mDataPrefetcher CancelConnection];
+    mDataPrefetcher=nil;
+  }
+  
+  [self checkForCorrectDateWithRespectToObect:object];
+    
+    //switching to three tabbars on site,section & array level
+    
+     GreenVoltsAppDelegate *appDelegate = (GreenVoltsAppDelegate *)[[UIApplication sharedApplication] delegate];
+    [appDelegate creatingThreeTabBarControllers];
+  
+  if([object isKindOfClass:[Site class]])
+  {
+    SiteViewController *mSiteViewController=[[SiteViewController alloc]initWithSite:(Site*)object];
+    [self.navigationController pushViewController:mSiteViewController animated:YES];
+  }
+  else if([object isKindOfClass:[Section class]])
+  {
+    SectionViewController *mSectionViewController=[[SectionViewController alloc]initWithSection:(Section*)object];
+    [self.navigationController pushViewController:mSectionViewController animated:YES];
+  }
+  else if([object isKindOfClass:[Array class]])
+  {
+    ArrayViewController *mArrayViewController=[[ArrayViewController alloc]initWithArray:(Array*)object];
+    [self.navigationController pushViewController:mArrayViewController animated:YES];
+  }
+  else if([object isKindOfClass:[String class]])
+  {
+    StringViewController *mStringViewController=[[StringViewController alloc]initWithString:(String*)object];
+    [self.navigationController pushViewController:mStringViewController animated:YES];
+  }
+}
+
+-(void)dataPrefetcherFoundMissingToken:(DataPrefetcher *)dataPrefetcher
+{
+  if(mDataPrefetcher)
+  {
+    mDataPrefetcher.delegate=nil;
+    [mDataPrefetcher CancelConnection];
+    mDataPrefetcher=nil;
+  }
+  
+  [self fetchSessionToken];
+}
+
+-(void)dataPrefetcherFoundInternetError:(DataPrefetcher *)dataPrefetcher
+{
+  if(mDataPrefetcher)
+  {
+    mDataPrefetcher.delegate=nil;
+    [mDataPrefetcher CancelConnection];
+    mDataPrefetcher=nil;
+  }
+  
+  if(m_ActivityIndicatorView){[m_ActivityIndicatorView removeFromSuperview];m_ActivityIndicatorView=nil;}
+  
+  UIAlertView *pAlert=[[UIAlertView alloc]initWithTitle:@"" message:@"Make sure your device has an active network connection and try again" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:NULL];
+  [pAlert show];
+  pAlert=nil;        
+  
+  if(mURLConnection) 
+	{
+		[mURLConnection cancel];
+		mURLConnection=nil;
+	}
+	if(mResponseData)
+	{
+		mResponseData=nil;
+	}
+  if(isReloading)
+    isReloading=NO;
+}
+
+#pragma mark -- Helper Methods
+-(void)checkForCorrectDateWithRespectToObect:(NSObject*)object
+{ 
+  NSDate *currentStartDate=[[NSUserDefaults standardUserDefaults] objectForKey:kCurrentSelectedDateKey];
+  
+  if([object isKindOfClass:[Site class]])
+  {
+    Site *site=(Site *)object;
+    NSDate *siteDate=[DateTimeConverter getActualDateFrom:site.m_LocalDateTime];
+    if([currentStartDate timeIntervalSinceDate:siteDate]>0)
+    {
+      currentStartDate=siteDate;
+      [[NSUserDefaults standardUserDefaults] setObject:currentStartDate forKey:kCurrentSelectedDateKey];
+      [[NSUserDefaults standardUserDefaults] setObject:[currentStartDate dateByAddingTimeInterval:-(24*60*60)*14] forKey:kDailyStartDateKey];
+      [[NSUserDefaults standardUserDefaults] setObject:[currentStartDate dateByAddingTimeInterval:-(24*60*60)*21] forKey:kWeeklyStartDateKey];
+      [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+    
+  }
+  else if([object isKindOfClass:[Section class]])
+  {
+    Section *section=(Section *)object;
+    NSDate *sectionDate=[DateTimeConverter getActualDateFrom:section.m_LocalDateTime];
+    if([currentStartDate timeIntervalSinceDate:sectionDate]>0)
+    {
+      currentStartDate=sectionDate;
+      [[NSUserDefaults standardUserDefaults] setObject:currentStartDate forKey:kCurrentSelectedDateKey];
+      [[NSUserDefaults standardUserDefaults] setObject:[currentStartDate dateByAddingTimeInterval:-(24*60*60)*14] forKey:kDailyStartDateKey];
+      [[NSUserDefaults standardUserDefaults] setObject:[currentStartDate dateByAddingTimeInterval:-(24*60*60)*21] forKey:kWeeklyStartDateKey];      
+      [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+  }
+  else if([object isKindOfClass:[Array class]])
+  {
+    Array *array=(Array *)object;
+    NSDate *arrayDate=[DateTimeConverter getActualDateFrom:array.m_LocalDateTime];
+    if([currentStartDate timeIntervalSinceDate:arrayDate]>0)
+    {
+      currentStartDate=arrayDate;
+      [[NSUserDefaults standardUserDefaults] setObject:currentStartDate forKey:kCurrentSelectedDateKey];
+      [[NSUserDefaults standardUserDefaults] setObject:[currentStartDate dateByAddingTimeInterval:-(24*60*60)*14] forKey:kDailyStartDateKey];
+      [[NSUserDefaults standardUserDefaults] setObject:[currentStartDate dateByAddingTimeInterval:-(24*60*60)*21] forKey:kWeeklyStartDateKey];
+      [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+  }
+  else if([object isKindOfClass:[String class]])
+  {
+    String *string=(String *)object;
+    NSDate *stringDate=[DateTimeConverter getActualDateFrom:string.m_LocalDateTime];
+    if([currentStartDate timeIntervalSinceDate:stringDate]>0)
+    {
+      currentStartDate=stringDate;
+      [[NSUserDefaults standardUserDefaults] setObject:currentStartDate forKey:kCurrentSelectedDateKey];
+      [[NSUserDefaults standardUserDefaults] setObject:[currentStartDate dateByAddingTimeInterval:-(24*60*60)*14] forKey:kDailyStartDateKey];
+      [[NSUserDefaults standardUserDefaults] setObject:[currentStartDate dateByAddingTimeInterval:-(24*60*60)*21] forKey:kWeeklyStartDateKey];
+      [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+  }  
+}
+
+#pragma mark -- UITableViewDelegate
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  return 170;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  if(isServerConnectionActive)
+    return;
+  if(!availableSites)
+    return;
+  if(mConnection)
+  {
+    mConnection.m_delegate=nil;
+    mConnection=nil;
+  }
+  
+  if(mURLConnection) 
+	{
+		[mURLConnection cancel];
+		mURLConnection=nil;
+	}
+  
+  [[NSUserDefaults standardUserDefaults]setBool:NO forKey:@"DATECHANGED"];
+  [[NSUserDefaults standardUserDefaults]setObject:@"Portfolio" forKey:@"BACK_BUTTON"];
+  
+  if(mDataPrefetcher)
+  {
+    mDataPrefetcher.delegate=nil;
+    [mDataPrefetcher CancelConnection];
+    mDataPrefetcher=nil;
+  }
+  
+  mDataPrefetcher=[[DataPrefetcher alloc]init];
+  mDataPrefetcher.delegate=self;
+  Site *pSite=[availableSites objectAtIndex:indexPath.row];
+  [mDataPrefetcher GetClassToBeJumpedFrom:pSite];
+  
+  if(m_ActivityIndicatorView){[m_ActivityIndicatorView removeFromSuperview];m_ActivityIndicatorView=nil;}
+  
+  m_ActivityIndicatorView=[[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(145, 180, 30, 30)];
+  [m_ActivityIndicatorView startAnimating];
+  m_ActivityIndicatorView.activityIndicatorViewStyle=UIActivityIndicatorViewStyleWhite;
+  [self.view addSubview:m_ActivityIndicatorView];
+}
+#pragma mark -- UITableViewDataSource
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+  if(!availableSites)
+    return 0;
+  return [availableSites count];
+}
+
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  SiteDisplayTableViewCell *cell=nil;
+  static NSString *cellIdentifier=@"CellIdentifier";
+  cell=(SiteDisplayTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+  if(cell==nil)
+  {
+    cell=[[SiteDisplayTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    cell.selectionStyle=UITableViewCellSelectionStyleNone;
+  }
+  [cell displayDataFor:[availableSites objectAtIndex:indexPath.row]];
+  return cell;
+}
+@end

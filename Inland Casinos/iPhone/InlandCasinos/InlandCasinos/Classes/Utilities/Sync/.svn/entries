@@ -1,0 +1,46 @@
+10
+
+dir
+133
+https://subversion.assembla.com/svn/pe-com-enterprise-media/trunk/iPhone/InlandCasinos/InlandCasinos/Classes/Utilities/Sync
+https://subversion.assembla.com/svn/pe-com-enterprise-media
+
+
+
+2011-08-24T14:05:06.366163Z
+117
+nithing
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+3d29c451-5705-4f41-89ec-f9666ed09546
+
+Database
+dir
+
+Download
+dir
+
+Downloader
+dir
+
+Parser
+dir
+
+Server Handler
+dir
+
+SplashSreenViewController
+dir
+

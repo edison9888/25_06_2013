@@ -1,0 +1,325 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"/>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/inbox.css" />
+    <!--[if lte IE 7]>
+        <link rel="stylesheet" href="../css/ie7.css" />
+    <![endif]-->
+    <!--[if IE 8]>
+        <link rel="stylesheet" href="../css/ie8.css" />
+    <![endif]-->
+    <!--[if IE 9]>
+        <link rel="stylesheet" href="../css/ie9.css" />
+    <![endif]-->
+    <title>Notifyi</title>
+</head>
+<body>
+    <div id="header-holder">
+        <div id="header">
+            <div id="faq-holder">
+                <span>&nbsp;</span>
+                <!--<img id="faq" src="../images/faq.png" />-->
+                <div class="clear"></div>
+            </div>
+            <div id="middle-header">
+                <img id="logo" src ="../images/notifyi_logo.png" />
+                <div id="description">
+                    <img src="../images/physician_header.png" />
+                </div>
+                <div id="user">
+                    <span>Welcome Nidhi Shah</span>
+                    <span> &nbsp;| &nbsp;</span>
+                    <span>Help</span>
+                    <span> &nbsp;| &nbsp;</span>
+                    <span>Log Out</span>
+                </div>
+                <div class="clear"></div>
+                <!--[if lte IE 7]>
+                    <div class="clear">&nbsp;</div>
+                <![endif]-->
+            </div>
+            <div id="personal">
+                <!--<a href="my_account.html"><span id="account" class="personal-options">My Account</span></a>-->
+                <a href="my_practice.html"><span id="practice" class="personal-options">My Practice</span></a>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div id="menu">
+        <div id="main-menu">
+            <a href="profile.html"><div id="profile" class="menu-options profile-menu-option"><img class="menu-images" src="../images/menu_my_profile.png" />My Profile</div></a>
+            <a href="inbox.html"><div id="inbox-menu" class="menu-options inbox-menu-option"><img class="menu-images" src="../images/rollovers/active_inbox.png" />Inbox <span class="indicators">(12)</span></div></a>
+            <a href="your_take.html"><div id="yourtake" class="menu-options your-take-menu-option"><img class="menu-images" src="../images/menu_your_take.png" />Touch Base <span class="indicators">(15)</span></div></a>
+            <a href="directory.html"><div id="directory" class="menu-options directory-menu-option"><img class="menu-images" src="../images/menu_directory.png" />Directory</div></a>
+            <a href="bulletin_board.html"><div id="board" class="menu-options bulletin-board-menu-option"><img class="menu-images" src="../images/menu_bulletin_board.png" />Bulletin Board</div></a>
+            <div id="send-message" class="menu-options"><a href="compose_message.html"><img id="send-message-button" class="menu-images" src="../images/send_message.png" /></a></div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="clear">&nbsp;</div>
+    <!--[if lte IE 7]>
+        <div class="clear-visible">&nbsp;</div>
+    <![endif]-->
+    
+    <div id="content">
+        <div id="title">
+            <img id="inbox-icon" src ="../images/inbox_big.png" /><span>Inbox</span>
+            <hr />
+        </div>
+        <div id="inbox-content">
+            <!-- Form is submitted to dummy page for processing page changes, during searching, archiving, or deleting -->
+            <form action="dummy.html" method="post">
+                <div id="folders">
+                    <div id="folders-header">Folders</div>
+                    <input type="hidden" name="folder" value="inbox" />
+                    <div id="folder-options">
+                        <!-- Apply links to title spans for other message folders -->
+                        <div id="inbox" class="selected">
+                            <span class="img-holder"><img src="../images/inbox_icon.png" /></span>
+                            <a href="inbox.html" class="title">Inbox</a>
+                            <p class="clear"></p>
+                        </div>
+                        <div id="sent">
+                            <span class="img-holder"><img src="../images/sent_icon.png" /></span>
+                            <a href="inbox_sent_messages.html" class="title">Sent</a>
+                            <p class="clear"></p>
+                        </div>
+                        <div id="archive">
+                            <span class="img-holder"><img src="../images/archive_icon.png" /></span>
+                            <a href="#" class="title">Draft</a>
+                            <p class="clear"></p>
+                        </div>
+                        <div id="draft">
+                            <span class="img-holder"><img src="../images/draft_icon.png" /></span>
+                            <a href="#" class="title">All</a>
+                            <p class="clear"></p>
+                        </div>
+                        <div id="trash">
+                            <span class="img-holder"><img src="../images/trash_icon.png" /></span>
+                            <a href="#" class="title">Trash</a>
+                            <p class="clear"></p>
+                        </div>
+                    </div>
+                </div>
+                <div id="inner-inbox">
+                    <div id="inbox-header">Inbox Messages</div>
+                    <div id="inbox-holder">
+                        <div id="search">
+                            <div id="upper-options">
+                                <!-- Search options -->
+                                <span id="search-img"><img src="../images/magnifying_glass.png" /></span>
+                                <span id="search-text">Search</span>
+                                <input type="text" name="search"/>
+                                <span id="search-button">
+                                    <input type="image" name="search-button" id="searchbutton" src="../images/search_button.png" />
+                                </span>
+                                <div class="clear"></div>
+                            </div>
+                            <!--<div id="lower-options">
+                                <span id="temp">&nbsp;</span>
+                                <span class="checkbox-holder">
+                                    <input type="hidden" name="mail-direct" value="0" />
+                                    <img class="checkbox-image" src="../images/checkbox.png" />
+                                </span>
+                                <span class="checkbox-label">Show mail directly to you</span>
+                                <span class="checkbox-holder">
+                                    <input type="hidden" name="mail-coverage" value="0" />
+                                    <img class="checkbox-image" src="../images/checkbox.png" />
+                                </span>
+                                <span class="checkbox-label">Show mail from coverage</span>
+                                <div class="clear"></div>
+                            </div>-->
+                        </div>
+                       <!--
+                        <div id="inbox-options">
+                            <span id="select-all">Select All</span>
+                            <span id="archive-holder" class="option-holder">
+                                <input type="image" name="archive-button" id="archive-button" src="../images/archive_button.png" />
+                            </span>
+                            <span id="delete-holder" class="option-holder">
+                                <input type="image" name="delete-button" id="delete-button" src="../images/delete_button.png" />
+                            </span>
+                            <div class="clear"></div>
+                        </div>-->
+                        <table id="inner-inbox">
+                            <tr id="inner-header">
+                                <th id="inbox-check">
+                                    <img class="check-all" src="../images/checkbox.png" />
+                                </th>
+                                <th id="from">From</th>
+                                <th id="patient">Patient</th>
+                                <th id="subject">Subject</th>
+                                <th id="date">Date</th>
+                            </tr>
+                            <!-- ID's of hidden fields should be changed depending on the inbox entry number -->
+                            <tr class="unread inbox-entry">
+                                <td class="td-check">
+                                    <input type="hidden" class="check-entry" value="0" id="inbox1" />
+                                    <img class="checkbox-image message-checkbox" src="../images/checkbox.png" />
+                                </td>
+                                <td>Amanda Armandoveroe</td>
+                                <td>Mary Jones Jacobs (DOB: 12/15/1974)</td>
+                                <td>Free Form</td>
+                                <td>12/21 11:15 AM</td>
+                            </tr>
+                            <tr class="unread inbox-entry">
+                                <td class="td-check">
+                                    <input type="hidden" class="check-entry" value="0" id="inbox2" />
+                                    <img class="checkbox-image message-checkbox" src="../images/checkbox.png" />
+                                </td>
+                                <td>Amanda Armandoveroe</td>
+                                <td>Mary Jones Jacobs (DOB: 12/15/1974)</td>
+                                <td>Free Form</td>
+                                <td>12/21 11:15 AM</td>
+                            </tr>
+                            <tr class="inbox-entry">
+                                <td class="td-check">
+                                    <input type="hidden" class="check-entry" value="0" id="inbox3" />
+                                    <img class="checkbox-image message-checkbox" src="../images/checkbox.png" />
+                                </td>
+                                <td>Amanda Armandoveroe</td>
+                                <td>Mary Jones Jacobs (DOB: 12/15/1974)</td>
+                                <td>Free Form</td>
+                                <td>12/21 11:15 AM</td>
+                            </tr>
+                            <tr class="inbox-entry">
+                                <td class="td-check">
+                                    <input type="hidden" class="check-entry" value="0" id="inbox4" />
+                                    <img class="checkbox-image message-checkbox" src="../images/checkbox.png" />
+                                </td>
+                                <td>Amanda Armandoveroe</td>
+                                <td>Mary Jones Jacobs (DOB: 12/15/1974)</td>
+                                <td>Free Form</td>
+                                <td>12/21 11:15 AM</td>
+                            </tr>
+                            <tr class="inbox-entry">
+                                <td class="td-check">
+                                    <input type="hidden" class="check-entry" value="0" id="inbox5" />
+                                    <img class="checkbox-image message-checkbox" src="../images/checkbox.png" />
+                                </td>
+                                <td>Amanda Armandoveroe</td>
+                                <td>Mary Jones Jacobs (DOB: 12/15/1974)</td>
+                                <td>Free Form</td>
+                                <td>12/21 11:15 AM</td>
+                            </tr>
+                            <tr class="inbox-entry">
+                                <td class="td-check">
+                                    <input type="hidden" class="check-entry" value="0" id="inbox5" />
+                                    <img class="checkbox-image message-checkbox" src="../images/checkbox.png" />
+                                </td>
+                                <td>Amanda Armandoveroe</td>
+                                <td>Mary Jones Jacobs (DOB: 12/15/1974)</td>
+                                <td>Free Form</td>
+                                <td>12/21 11:15 AM</td>
+                            </tr>
+                            <tr class="inbox-entry">
+                                <td class="td-check">
+                                    <input type="hidden" class="check-entry" value="0" id="inbox5" />
+                                    <img class="checkbox-image message-checkbox" src="../images/checkbox.png" />
+                                </td>
+                                <td>Amanda Armandoveroe</td>
+                                <td>Mary Jones Jacobs (DOB: 12/15/1974)</td>
+                                <td>Free Form</td>
+                                <td>12/21 11:15 AM</td>
+                            </tr>
+                            <tr class="inbox-entry">
+                                <td class="td-check">
+                                    <input type="hidden" class="check-entry" value="0" id="inbox5" />
+                                    <img class="checkbox-image message-checkbox" src="../images/checkbox.png" />
+                                </td>
+                                <td>Amanda Armandoveroe</td>
+                                <td>Mary Jones Jacobs (DOB: 12/15/1974)</td>
+                                <td>Free Form</td>
+                                <td>12/21 11:15 AM</td>
+                            </tr>
+                            <tr class="inbox-entry">
+                                <td class="td-check">
+                                    <input type="hidden" class="check-entry" value="0" id="inbox5" />
+                                    <img class="checkbox-image message-checkbox" src="../images/checkbox.png" />
+                                </td>
+                                <td>Amanda Armandoveroe</td>
+                                <td>Mary Jones Jacobs (DOB: 12/15/1974)</td>
+                                <td>Free Form</td>
+                                <td>12/21 11:15 AM</td>
+                            </tr>
+                            <tr class="inbox-entry">
+                                <td class="td-check">
+                                    <input type="hidden" class="check-entry" value="0" id="inbox5" />
+                                    <img class="checkbox-image message-checkbox" src="../images/checkbox.png" />
+                                </td>
+                                <td>Amanda Armandoveroe</td>
+                                <td>Mary Jones Jacobs (DOB: 12/15/1974)</td>
+                                <td>Free Form</td>
+                                <td>12/21 11:15 AM</td>
+                            </tr>
+                            <tr class="inbox-entry">
+                                <td class="td-check">
+                                    <input type="hidden" class="check-entry" value="0" id="inbox5" />
+                                    <img class="checkbox-image message-checkbox" src="../images/checkbox.png" />
+                                </td>
+                                <td>Amanda Armandoveroe</td>
+                                <td>Mary Jones Jacobs (DOB: 12/15/1974)</td>
+                                <td>Free Form</td>
+                                <td>12/21 11:15 AM</td>
+                            </tr>
+                            <tr class="inbox-entry">
+                                <td class="td-check">
+                                    <input type="hidden" class="check-entry" value="0" id="inbox5" />
+                                    <img class="checkbox-image message-checkbox" src="../images/checkbox.png" />
+                                </td>
+                                <td>Amanda Armandoveroe</td>
+                                <td>Mary Jones Jacobs (DOB: 12/15/1974)</td>
+                                <td>Free Form</td>
+                                <td>12/21 11:15 AM</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div id="pages">
+                        <!-- Update this hidden field depending on the clicked page button -->
+                        <input type="hidden" name="page" value="1" />
+                        <span id="page-description">Showing 1 to 10 of 50 entries</span>
+                        <span id="page-links">
+                            <input type="image" id="prev" src="../images/left_arrow.png" title="previous" />
+                            <input type="image" id="next" src="../images/right_arrow.png" title="next" />
+                        </span>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </form>
+        </div>
+    </div>
+    
+    
+    <div id="footer">
+        <img id="footer-logo" src="../images/notifyi_logo_footer.png" />
+        <span id="copyright">Copyright &copy;2012 Notifyi. All Rights Reserved.</span>
+        <span id="links">
+            <span>Terms of Use</span>
+            <span> &nbsp;| &nbsp;</span>
+            <span>Privacy Policy</span>
+            <span> &nbsp;| &nbsp;</span>
+            <span>Contact Us</span>
+        </span>
+        <div class="clear"></div>
+    </div>
+    
+    <!-- Preloading images for rollover effects for faster source change -->
+    <div id="preload">
+        <img src="../images/rollovers/send_message_rollover.png" />
+        <img src="../images/rollovers/search_rollover.png" />
+        <img src="../images/rollovers/archive_rollover.png" />
+        <img src="../images/rollovers/delete_rollover.png" />
+    </div>
+    
+    <script type="text/javascript" src="../js/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="../js/inbox.js"></script>
+    <script type="text/javascript" src="../js/jquery.placeholder.js"></script>
+    <script type="text/javascript" src="../js/base.js"></script>
+    <!--[if lte IE 7]>
+        <script type="text/javascript" src="../js/inbox-ie7.js"></script>
+    <![endif]-->
+</body>
+</html>

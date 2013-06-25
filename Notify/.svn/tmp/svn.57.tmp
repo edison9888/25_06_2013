@@ -1,0 +1,97 @@
+//
+//  MyApplication.m
+//  NotiyiiPhoneApplicationProject
+
+
+#import "MyApplication.h"
+#import "AppDelegate.h"
+#import "LoginViewController.h"
+
+//private methods
+@interface MyApplication()
+
+- (void)resetTimers;
+- (void)autoDimTimerExceeded;
+- (void)autoLockTimerExceeded;
+
+@end
+
+
+@implementation MyApplication
+
+- (void)sendEvent:(UIEvent *)event {
+    [super sendEvent:event];
+	
+			// Only want to reset the timer on a Began touch or an Ended touch, to reduce the number of timer resets.
+    NSSet *allTouches = [event allTouches];
+    if ([allTouches count] > 0) {
+			// allTouches count only ever seems to be 1, so anyObject works here.
+        UITouchPhase phase = ((UITouch *)[allTouches anyObject]).phase;
+        if (phase == UITouchPhaseBegan || phase == UITouchPhaseEnded)
+        {
+            [self resetTimers];
+        }
+    }
+}
+
+- (void)resetTimers {
+	
+    if (autoDimTimer) {
+        [autoDimTimer invalidate];
+    }
+    if(autoLockTimer) {
+        [autoLockTimer invalidate];
+    }
+	
+	double autoDimTime = 10.0;
+    double autoLockTime = 10.0;
+    
+    autoDimTimer = [NSTimer scheduledTimerWithTimeInterval:autoDimTime
+												  target:self 
+												selector:@selector(autoDimTimerExceeded)
+												userInfo:nil 
+												 repeats:NO] ;
+    autoLockTimer = [NSTimer scheduledTimerWithTimeInterval:autoLockTime
+												  target:self
+												selector:@selector(autoLockTimerExceeded)
+												userInfo:nil
+												 repeats:NO] ;
+}
+
+- (void)autoDimTimerExceeded {
+
+    autoDimTimer=nil;
+    
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"logged_in"])
+    {
+        NSString *alertMessage = @"Your session has expired. Please login again.";
+        
+        UIAlertView *timeOutAlertView = [[UIAlertView alloc] initWithTitle:nil message:alertMessage delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil,nil];
+        [timeOutAlertView show];
+    }
+    else {
+        NSLog(@"Not Logged in");
+    }
+}
+
+
+- (void)autoLockTimerExceeded {
+		
+    autoLockTimer=nil;
+
+}
+
+#pragma mark- Alertview delegates
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex 
+{
+    AppDelegate *app= (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [app logOutButtonTouched];
+}
+
+- (void)dealloc {
+    [autoDimTimer invalidate];
+    [autoLockTimer invalidate];
+}
+
+
+@end

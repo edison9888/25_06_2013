@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OTS_SA_R5_D030_B020]]></id>
+	<title><![CDATA[]]></title>
+    <descriptionText><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Identifying Areas of Value Creation</Introtext><welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">This is an Execute Next Steps question, not an Options question. By going directly to execution issues, you are losing the opportunity to build up the value of your product by connecting it to Dr. Chu’s desired outcomes.<BR><BR>
+        The best question is, “You’ve raised an interesting point about the ‘personal touch,’ which, if lacking, would hurt patient experience.  What are some ways you see to help ensure the personal touch remains, considering Maycomb’s focus on cost-effective, efficient care?”<BR><BR>
+        This is an Options question that moves from the previous answer to discussing options.<BR><BR>
+        <B>It will help you to know the answer to this question to continue.  Here is how Dr. Chu would have answered:</B><BR><BR>
+        “I think there are a couple of things I can do.  Patient education is key.  The hospital experience can be overwhelming for many patients, so I need to spend sufficient time with them to ensure they understand their condition and how to continue care after discharge.  With so many patients, it can be a challenge to spend adequate time with each one, but this is critical.<BR><BR>  
+        
+        Another aspect to consider is prompt discharge.  Keeping patients longer than necessary makes them feel unimportant and forgotten.  Since discharge is their last memory of the hospital, we want to ensure it’s a smooth process in order to keep our satisfaction rates up.” </welcomeText>]]></descriptionText>
+    <character><![CDATA[Char_Mack]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>	
+	<branchTo><![CDATA[OTS_SA_R5_D040]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

@@ -1,0 +1,76 @@
+//
+//  MaintenancePlanViewController.m
+//  GreenVolts
+//
+//  Created by Rapidvalue on 8/22/12.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//
+
+#import "MaintenancePlanCell.h"
+
+@interface MaintenancePlanCell ()
+@property (strong, nonatomic) IBOutlet UILabel *TitleLabel;
+
+@end
+
+@implementation MaintenancePlanCell
+@synthesize TitleLabel,location,activity;
+@synthesize locationlabel,activitylabel;
+@synthesize accessoryButton;
+
+#pragma mark-initialization
+
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        // Initialization code
+    }
+    return self;
+}
+
+-(void) awakeFromNib
+{
+    self.TitleLabel.text  = @"";
+    self.TitleLabel.textColor=[UIColor whiteColor];
+    self.location.text= @"";
+    self.activity.text = @"";
+}
+
+#pragma mark- Display Methods
+- (void)displayDetails:(MaintenancePlan *)result rowValue:(int)row
+{
+    self.accessoryButton.tag = row;
+    [self unHideAllUIElements];
+    
+    self.TitleLabel.text  = @"Location";
+    self.TitleLabel.textColor=[UIColor whiteColor];
+    self.location.text=result.location;
+    self.activity.text=result.maintenanceAction;
+    //self.contentView.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"navpopover_cell_backround (2)"]];
+}
+
+-(void) hideAllUIElements
+{
+    self.TitleLabel.hidden = YES;
+    self.location.hidden = YES;
+    self.locationlabel.hidden = YES;
+    self.activitylabel.hidden = YES;
+    self.activity.hidden = YES;
+    self.accessoryButton.hidden = YES;
+}
+
+-(void) unHideAllUIElements
+{
+    self.TitleLabel.hidden = NO;
+    self.location.hidden = NO;
+    self.locationlabel.hidden = NO;
+    self.activitylabel.hidden = NO;
+    self.activity.hidden = NO;
+    self.accessoryButton.hidden = NO;
+    
+}
+
+
+
+@end

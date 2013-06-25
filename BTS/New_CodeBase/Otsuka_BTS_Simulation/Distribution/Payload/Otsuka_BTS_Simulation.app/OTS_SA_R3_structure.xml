@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<round_structure>
+	<title><![CDATA[Round 3]]></title>
+	<intro totalPages="2">
+		<page bgnd="BgImg_intro" template="TextOnlyTemplate"><![CDATA[OTS_SA_R3_INTRO_1]]></page>
+		<page bgnd="BgImg_intro" template="TextOnlyTemplate"><![CDATA[OTS_SA_R3_INTRO_2]]></page>
+		
+	</intro>
+	<decision totalPages="3">
+	    
+		<page bgnd="BgImg_ConfRoom" template="MultipleSelectMCQ"><![CDATA[OTS_SA_R3_D010]]></page>
+		<page bgnd="BgImg_ConfRoom" template="ImageTextTemplate"><![CDATA[OTS_SA_R3_D010_A010]]></page>
+		<page bgnd="BgImg_ConfRoom" template="ImageTextTemplate"><![CDATA[OTS_SA_R3_D010_B010]]></page>
+		<page bgnd="BgImg_ConfRoom" template="ImageTextTemplate"><![CDATA[OTS_SA_R3_D010_C010]]></page>
+		<page bgnd="BgImg_DrBernnett" template="ImageTextTemplate"><![CDATA[OTS_SA_R3_D020_I010]]></page>
+		</decision>
+
+		<decision totalPages="3">
+	    
+		 <page bgnd="BgImg_ConfRoom" template="SingleSelectMCQ"><![CDATA[OTS_SA_R3_D020]]></page>
+		<page bgnd="BgImg_ConfRoom" template="ImageTextTemplate"><![CDATA[OTS_SA_R3_D020_A010]]></page>
+        <page bgnd="BgImg_ConfRoom" template="ImageTextTemplate"><![CDATA[OTS_SA_R3_D020_B010]]></page>
+		<page bgnd="BgImg_DrBernnett" template="ImageTextTemplate"><![CDATA[OTS_SA_R3_D030_I010]]></page>
+    	</decision>
+
+
+		<decision totalPages="3">
+	    
+		<page bgnd="BgImg_Psychiatry" template="SingleSelectMCQ"><![CDATA[OTS_SA_R3_D030]]></page>
+		<page bgnd="BgImg_Psychiatry" template="ImageTextTemplate"><![CDATA[OTS_SA_R3_D030_A010]]></page>
+        <page bgnd="BgImg_Psychiatry" template="ImageTextTemplate"><![CDATA[OTS_SA_R3_D030_B010]]></page>
+		 <page bgnd="BgImg_ConfRoom" template="ImageTextTemplate"><![CDATA[OTS_SA_R3_D040_I010]]></page>
+		</decision>
+
+		<decision totalPages="4">
+	    
+		<page bgnd="BgImg_ConfRoom" template="SingleSelectMCQ"><![CDATA[OTS_SA_R3_D040]]></page>
+		<page bgnd="BgImg_ConfRoom" template="ImageTextTemplate" increasePageCountBy="2"><![CDATA[OTS_SA_R3_D040_A010]]></page>
+        <page bgnd="BgImg_ConfRoom" template="ImageTextTemplate"><![CDATA[OTS_SA_R3_D040_B010]]></page>
+		<page bgnd="BgImg_ConfRoom" template="ImageTextTemplate"><![CDATA[OTS_SA_R3_D040_C010]]></page>
+		<page bgnd="BgImg_ConfRoom" template="ImageTextTemplate" increasePageCountBy="2"><![CDATA[OTS_SA_R3_D040_D010]]></page>
+		<page bgnd="BgImg_ConfRoom" template="ImageTextTemplate"><![CDATA[OTS_SA_R3_D040_E010]]></page>
+		<page bgnd="BgImg_DrBernnett" template="ImageTextTemplate"><![CDATA[OTS_SA_R3_D050_I010]]></page>
+		</decision>
+
+		<decision totalPages="3">
+		<page bgnd="BgImg_DrBernnett" template="SingleSelectMCQ"><![CDATA[OTS_SA_R3_D050]]></page>
+		<page bgnd="BgImg_DrBernnett" template="ImageTextTemplate" increasePageCountBy="2"><![CDATA[OTS_SA_R3_D050_A010]]></page>
+        <page bgnd="BgImg_DrBernnett" template="ImageTextTemplate"><![CDATA[OTS_SA_R3_D050_B010]]></page>
+		<page bgnd="BgImg_DrBernnett" template="ImageTextTemplate" increasePageCountBy="2"><![CDATA[OTS_SA_R3_D050_C010]]></page>
+		<page bgnd="BgImg_DrBernnett" template="ImageTextTemplate"><![CDATA[OTS_SA_R3_D050_D010]]></page>
+		<page bgnd="BgImg_DrBernnett" template="ImageTextTemplate"><![CDATA[OTS_SA_R3_D050_E010]]></page>
+		</decision>
+
+		<decision totalPages="3">
+		<page bgnd="BgImg_DrBernnett" template="SingleSelectMCQ"><![CDATA[OTS_SA_R3_D060]]></page>
+    	<page bgnd="BgImg_DrBernnett" template="ImageTextTemplate"><![CDATA[OTS_SA_R3_D060_A010]]></page>
+        <page bgnd="BgImg_DrBernnett" template="ImageTextTemplate"><![CDATA[OTS_SA_R3_D060_B010]]></page>
+		<page bgnd="BgImg_Psychiatry" template="ImageTextTemplate"><![CDATA[OTS_SA_R3_D060_C010]]></page>
+    	<page bgnd="BgImg_ConfRoom" template="ImageTextTemplate"><![CDATA[OTS_SA_R3_D060_E010]]></page>
+		</decision>
+
+		
+
+<simEnd totalPages="1">
+		<page bgnd="BgImg_ConfRoom" template="TextOnlyTemplate"><![CDATA[OTS_SA_R3_SIMEND]]></page>
+	</simEnd>
+</round_structure>

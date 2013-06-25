@@ -1,0 +1,585 @@
+//
+//  TouchBaseViewController.m
+//  SendMessage
+//
+//  Created by Amal T on 13/09/12.
+//  Copyright (c) 2012 RapidValue. All rights reserved.
+//
+
+#import "StartDiscussionViewController.h"
+#import "SendMessageViewController.h"
+#import "DirectoryViewController.h"
+#import "TouchBase.h"
+#import "DataManager.h"
+#import <QuartzCore/Quartzcore.h>
+#import "GeneralClass.h"
+#import "Directory.h"
+#import "DiscussionParticipants.h"
+
+@interface StartDiscussionViewController ()
+{
+    CGPoint scrlvos;
+    int globalReplyFag;
+    int moveTxtViewToWriteFlag;
+    BOOL shouldMoveCursor;
+    UIToolbar *keyboardToolbar;
+    DataManager *dataManager;
+    NSMutableArray *recipientNameArray;
+    BOOL isInvalidTo;
+    NSString * toFieldName;
+    NSMutableArray * toValueIds;
+}
+
+@property(weak,nonatomic)IBOutlet UILabel *touchBaseLbl;
+@property(weak,nonatomic)IBOutlet UIButton *backBtn;
+@property(weak,nonatomic)IBOutlet UIButton *sendBtn;
+@property(weak,nonatomic)IBOutlet UITextField *toTextField;
+@property(weak,nonatomic)IBOutlet UITextField *subjectTextField;
+@property(weak, nonatomic)IBOutlet UITextView *sendMsgBodyTextView;
+@property(strong, nonatomic)IBOutlet UIScrollView *startDiscsnScrolView;
+
+-(void)fontCustomization;
+-(void)normalViewOfStartDiscussionController;
+-(void)registerForKeyboardNotifications;
+-(void)initializingCustomKeyboardToolBar;
+-(void)dissmissKeyboard;
+-(void)setDelegate;
+-(void)keyboardWillShow:(NSNotification*)aNotification;
+-(void)keyboardWillHide:(NSNotification*)aNotification;
+-(BOOL)saveSendDetails;
+-(BOOL)saveInboxMessageDetail:(TouchBase *)touchBase messageType:(int)messageID;
+-(NSMutableArray *)fetchToFieldValues;
+
+-(IBAction)backButtonTouched:(id)sender;
+-(IBAction)searchParticipantsButtonTouched:(id)sender;
+-(IBAction)backGroundButtonTouched:(id)sender;
+
+@end
+
+@implementation StartDiscussionViewController
+
+@synthesize touchBaseLbl;
+@synthesize backBtn;
+@synthesize sendBtn;
+@synthesize toTextField;
+@synthesize subjectTextField;
+@synthesize sendMsgBodyTextView;
+@synthesize startDiscsnScrolView;
+@synthesize recipientAddressObjects;
+@synthesize selectedPhysicianId;
+@synthesize toRecipientSelectedIdArray;
+
+#pragma mark- Init
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
+
+#pragma mark- Initial Load
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self setDelegate];
+    [self fontCustomization];
+    [self normalViewOfStartDiscussionController];
+    [self registerForKeyboardNotifications];
+    [self initializingCustomKeyboardToolBar];
+    recipientAddressObjects = [[NSMutableArray alloc]init];
+    toRecipientSelectedIdArray = [[NSMutableArray alloc]init];
+    if(selectedPhysicianId)
+    {
+        NSLog(@"CAMES THROUGH DIRCTORY SELECTION %@",selectedPhysicianId);
+        Directory *directory = [DataManager fetchDirectoryObjectForEntity:@"Directory" selectBy:[selectedPhysicianId intValue]];
+        toTextField.text = directory.physicianName;
+        if(recipientAddressObjects)
+        {
+            recipientAddressObjects = nil;
+        }
+        recipientAddressObjects = [[NSMutableArray alloc]init];
+        [recipientAddressObjects addObject:directory.physicianId];
+    }
+    
+}
+-(void) viewDidAppear:(BOOL)animated {
+    
+    isInvalidTo = 0;
+}
+
+#pragma mark- Button Actions
+/*******************************************************************************
+ * back button touch action.
+ ********************************************************************************/
+-(IBAction)backButtonTouched:(id)sender
+{
+	[self normalViewOfStartDiscussionController];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+/*******************************************************************************
+ * To search participants for discussion.
+ ********************************************************************************/
+-(IBAction)searchParticipantsButtonTouched:(id)sender
+{
+    if(toRecipientSelectedIdArray)
+    {
+        [toRecipientSelectedIdArray removeAllObjects];
+    }
+    toRecipientSelectedIdArray = [self fetchToFieldValues];
+    NSLog(@"recipientSelectedIdArray === %@",toRecipientSelectedIdArray);
+    
+    DirectoryViewController *detailViewController=[[DirectoryViewController alloc] initWithNibName:@"DirectoryViewController" bundle:nil];
+    [detailViewController beginWithAddParticipants:1];
+    detailViewController.selectedPhysicianIdArray = toRecipientSelectedIdArray;
+    detailViewController.delegate = self;
+    [self.navigationController pushViewController:detailViewController animated:YES];
+    detailViewController = nil;
+}
+
+/*******************************************************************************
+ * Background button touch action.
+ ********************************************************************************/
+-(IBAction)backGroundButtonTouched:(id)sender
+{
+    [self normalViewOfStartDiscussionController];
+    [startDiscsnScrolView setContentOffset:CGPointMake(self.view.frame.origin.x,self.view.frame.origin.y) animated:YES];
+}
+
+/*******************************************************************************
+ * SendDiscussion button touch action.
+ ********************************************************************************/
+- (IBAction)sendDiscussionBtnTouched:(id)sender
+{
+    NSString * toTextValue = toTextField.text;
+    NSString * subjectTextValue = subjectTextField.text;
+    
+    //To
+    if(toRecipientSelectedIdArray)
+    {
+        [toRecipientSelectedIdArray removeAllObjects];
+    }
+    toRecipientSelectedIdArray = [self fetchToFieldValues];
+    NSLog(@"COUNT %d",[toRecipientSelectedIdArray count]);
+
+    NSString * body = sendMsgBodyTextView.text;
+    body = [body stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+
+    if( [toTextValue isEqualToString:@""]||toTextValue==nil || [NSNull null]==(NSNull*)toTextValue )
+    {
+        [GeneralClass showAlertView:nil msg:NSLocalizedString(@"NO RECIPIENT", nil) title:nil cancelTitle:nil otherTitle:@"OK"];
+    }
+   else if (([NSNull null]==(NSNull*)subjectTextValue || [subjectTextValue isEqualToString:@""]) && [body length] == 0)
+    {
+        [GeneralClass showAlertView:nil
+                                msg:@"Please Enter Subject for Discussion"
+                              title:nil
+                        cancelTitle:@"Ok"
+                         otherTitle:nil];
+    }
+
+    else
+    {
+        if (isInvalidTo)
+        {
+            NSLog(@"physician's name : %@",toFieldName);
+            NSString * messageName = [NSString stringWithFormat:@"The email address %@ is not recognized. Please try again.",toFieldName];
+            [GeneralClass showAlertView:nil
+                                    msg:messageName
+                                  title:@"Error"
+                            cancelTitle:@"Ok"
+                             otherTitle:nil];
+            isInvalidTo = 0;
+        }
+        else
+        {
+            BOOL sendBool = [self saveSendDetails];
+            if(sendBool)
+            {
+                NSLog(@"SEND SUCCESS");
+                [GeneralClass showAlertView:nil msg:@"Successfully Sent" title:@"Discussion" cancelTitle:nil otherTitle:@"Ok"];
+                [self backButtonTouched:nil];
+            }
+            else
+            {
+                NSLog(@"SEND FAILED");
+            }
+
+        }
+    }
+}
+
+#pragma mark- Contact Address Select Delegate
+/*******************************************************************************
+ *  Function Name: displayDiscussionDetails.
+ *  Purpose: It's a delegate for the directory selection.
+ *  Parametrs: selected contacts as array.
+ *  Return Values:nil
+ ********************************************************************************/
+- (void)selectedContacts:(NSMutableArray *)contacts
+{
+    NSLog(@"contacts === %@",contacts);
+    if (contacts)
+    {
+        if(recipientAddressObjects)
+        {
+            recipientAddressObjects = nil;
+        }
+        recipientAddressObjects = [[NSMutableArray alloc]init];
+        
+        recipientAddressObjects = contacts;
+        if(recipientNameArray)
+        {
+            recipientNameArray = nil;
+        }
+        recipientNameArray = [[NSMutableArray alloc]init];
+        NSLog(@"contacts count === %d",[contacts count]);
+        NSLog(@"newlyAddedRecipientNames ::  %@",recipientAddressObjects);
+        
+        for (int i = 0; i < [recipientAddressObjects count]; i++)
+        {
+            Directory *directory = [DataManager fetchDirectoryObjectForEntity:@"Directory" selectBy:[[recipientAddressObjects objectAtIndex:i] intValue]];
+            if(directory.physicianName)
+            {
+                [recipientNameArray addObject:directory.physicianName];
+                
+//                DiscussionParticipants *discussionParticipantsObj = [DataManager createEntityObject:@"DiscussionParticipants"];
+//                discussionParticipantsObj.participantId = directory.physicianId;
+//                discussionParticipantsObj.participantName = directory.physicianName;
+//                
+//                TouchBase *newTouchBaseObj = [DataManager createEntityObject:@"TouchBase"];
+//                [newTouchBaseObj addParticipantsIDObject:discussionParticipantsObj];
+//                
+//                [DataManager saveContext];
+            }
+        }
+        NSString *recipeientString = [recipientNameArray componentsJoinedByString:@", "];
+        toTextField.text = recipeientString;
+    }
+    
+}
+/*******************************************************************************
+ *  Function Name: saveSendDetails.
+ *  Purpose: To save the discussion to touchbase entity.
+ *  Parametrs: nil.
+ *  Return Values: nil
+ ********************************************************************************/
+-(BOOL)saveSendDetails
+{
+    BOOL isSaved = 0;
+<<<<<<< .mine
+=======
+    if(toRecipientSelectedIdArray)
+    {
+        toRecipientSelectedIdArray = nil;
+    }
+    toRecipientSelectedIdArray = [self fetchToFieldValues];
+>>>>>>> .r386
+
+    //DataBase insertion
+    TouchBase *newTouchBaseObj = [DataManager createEntityObject:@"TouchBase"];
+    
+    int tofieldCount = [toRecipientSelectedIdArray count];
+    for (int i = 0; i< tofieldCount; i++)
+    {
+        
+        DiscussionParticipants *discussionParticipantsObj = [DataManager createEntityObject:@"DiscussionParticipants"];
+        
+        Directory *directory = [toRecipientSelectedIdArray objectAtIndex:i];
+
+        discussionParticipantsObj.participantId = directory.physicianId;
+        discussionParticipantsObj.participantName = directory.physicianName;
+        
+        [newTouchBaseObj addParticipantsIDObject:discussionParticipantsObj];
+        
+    }
+    isSaved = [self saveInboxMessageDetail:newTouchBaseObj messageType:sentMsgID];
+    return isSaved;
+}
+
+- (BOOL)saveInboxMessageDetail:(TouchBase *)touchBase messageType:(int)messageID
+{
+    if(dataManager)
+    {
+        dataManager = nil;
+    }
+    dataManager=[[DataManager alloc]init];
+    
+    //touchBase.discussionId = @"1";
+    touchBase.subject = subjectTextField.text;
+    touchBase.discussionDate = [NSDate date];
+    touchBase.textDiscussion = sendMsgBodyTextView.text;
+    
+    BOOL isSaved = [DataManager saveContext];
+    if(isSaved)
+    {
+        NSLog(@"INSERTION SUCCESS");
+        isSaved = YES;
+    }
+    else
+    {
+        NSLog(@"INSERTION FAILED");
+        isSaved = NO;
+    }
+    return isSaved;
+    
+}
+#pragma mark- UITextField delegates
+/*******************************************************************************
+ *  UITextField delegates
+ ********************************************************************************/
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if ([textField isEqual:toTextField])
+    {
+        [toTextField resignFirstResponder];
+        [subjectTextField becomeFirstResponder];
+    }
+    else if ([textField isEqual:subjectTextField])
+    {
+        [subjectTextField resignFirstResponder];
+        [sendMsgBodyTextView  becomeFirstResponder];
+    }
+    
+    else if([textField isEqual:sendMsgBodyTextView])
+    {
+        [sendMsgBodyTextView resignFirstResponder];
+    }
+    [startDiscsnScrolView setContentOffset:scrlvos animated:YES];
+   	return TRUE;
+}
+
+#pragma mark- UITextView delegates
+/*******************************************************************************
+ *  UITextView delegates
+ ********************************************************************************/
+-(void)textViewDidBeginEditing:(UITextView *)textView
+{
+    NSLog(@"NORMAL CASE");
+    scrlvos = startDiscsnScrolView.contentOffset;
+    CGPoint pt;
+    CGRect rc = [textView bounds];
+    rc = [textView convertRect:rc toView:startDiscsnScrolView];
+    pt = rc.origin;
+    pt.x = 0;
+    pt.y += 0;
+    [startDiscsnScrolView setContentOffset:pt animated:YES];
+    textView.frame = CGRectMake(13.0,104.0, 295.0, 161.0);
+}
+-(BOOL)textViewShouldEndEditing:(UITextView *)textView
+{
+    [startDiscsnScrolView setContentOffset:CGPointMake(self.view.frame.origin.x,self.view.frame.origin.y) animated:YES];
+    return YES;
+}
+-(void)textViewDidChange:(UITextView *)textView
+{
+    scrlvos = startDiscsnScrolView.contentOffset;
+    CGPoint pt;
+    CGRect rc = [textView bounds];
+    rc = [textView convertRect:rc toView:startDiscsnScrolView];
+    pt = rc.origin;
+    pt.x = 0;
+    pt.y += 0;
+    [startDiscsnScrolView setContentOffset:pt animated:YES];
+}
+
+#pragma mark- Methods
+/*******************************************************************************
+ *  Function Name: fontCustomization.
+ *  Purpose: To set font for controllers.
+ *  Parametrs: nil.
+ *  Return Values: nil.
+ ********************************************************************************/
+- (void)fontCustomization
+{
+    touchBaseLbl.font = [GeneralClass getFont:titleFont and:boldFont];
+    backBtn.titleLabel.font = [GeneralClass getFont:buttonFont and:regularFont];
+    sendBtn.titleLabel.font = [GeneralClass getFont:buttonFont and:regularFont];;
+    toTextField.font = [GeneralClass getFont:customRegular and:regularFont];
+    subjectTextField.font = [GeneralClass getFont:customRegular and:regularFont];
+    sendMsgBodyTextView.layer.cornerRadius = 6;
+    sendMsgBodyTextView.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    sendMsgBodyTextView.layer.borderWidth = 1.0f;
+}
+
+/*******************************************************************************
+ *  Function Name: setDelegate.
+ *  Purpose: To set delegate for textview,scrolview and textfield.
+ *  Parametrs: nil.
+ *  Return Values: nil
+ ********************************************************************************/
+-(void)setDelegate
+{
+    sendMsgBodyTextView.delegate = self;
+    startDiscsnScrolView.delegate = self;
+    toTextField.delegate = self;
+    subjectTextField.delegate = self;
+}
+
+/*******************************************************************************
+ *  Function Name: normalViewOfStartDiscussionController.
+ *  Purpose: Initial View of StartDiscussionController.
+ *  Parametrs: nil.
+ *  Return Values: nil
+ ********************************************************************************/
+-(void)normalViewOfStartDiscussionController
+{
+    [toTextField resignFirstResponder];
+    [subjectTextField resignFirstResponder];
+    [sendMsgBodyTextView resignFirstResponder];
+    self.sendMsgBodyTextView.frame = CGRectMake(13.0,104.0, 295.0, 248.0);
+}
+
+/*******************************************************************************
+ *  Function Name: registerForKeyboardNotifications.
+ *  Purpose: To register a Keyboard notification for initializing Custom keyboard ToolBar.
+ *  Parametrs: nil.
+ *  Return Values: nil
+ ********************************************************************************/
+- (void)registerForKeyboardNotifications
+{
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(keyboardWillShow:)
+												 name:UIKeyboardWillShowNotification object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(keyboardWillHide:)
+												 name:UIKeyboardWillHideNotification object:nil];
+}
+
+/*******************************************************************************
+ *  Function Name: initializingCustomKeyboardToolBar.
+ *  Purpose: To Add a Toolbar on top of Keyboard.
+ *  Parametrs: nil.
+ *  Return Values: nil
+ ********************************************************************************/
+-(void)initializingCustomKeyboardToolBar
+{
+    if(keyboardToolbar == nil)
+    {
+		keyboardToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0,416,320,40)];
+		keyboardToolbar.barStyle = UIBarStyleDefault;
+        UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithTitle:@"Done"
+                                                                 style:UIBarButtonItemStyleDone
+                                                                target:self
+                                                                action:@selector(dissmissKeyboard)];
+        UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                                       target:nil
+                                                                                       action:nil];
+        NSArray *items = [[NSArray alloc] initWithObjects:flexibleSpace,done, nil];
+        [keyboardToolbar setItems:items];
+        
+	}
+}
+
+/*******************************************************************************
+ *  Function Name: keyboardWillShow.
+ *  Purpose: To Show Custom keyboard ToolBar.
+ *  Parametrs: notification object.
+ *  Return Values: nil
+ ********************************************************************************/
+- (void)keyboardWillShow:(NSNotification*)aNotification
+{
+	[UIView beginAnimations:nil context:nil];
+	[UIView setAnimationDuration:0.3];
+	CGRect rect = keyboardToolbar.frame;
+	rect.origin.y = 204;
+	keyboardToolbar.frame = rect;
+	[self.view addSubview:keyboardToolbar];
+	[UIView commitAnimations];
+}
+
+/*******************************************************************************
+ *  Function Name: keyboardWillHide.
+ *  Purpose: To Hide Custom keyboard ToolBar.
+ *  Parametrs: notification object.
+ *  Return Values: nil
+ ********************************************************************************/
+- (void)keyboardWillHide:(NSNotification*)aNotification
+{
+	[UIView beginAnimations:nil context:nil];
+	[UIView setAnimationDuration:0.3];
+	CGRect rect = keyboardToolbar.frame;
+	rect.origin.y = 416;
+	keyboardToolbar.frame = rect;
+    [keyboardToolbar removeFromSuperview];
+	[UIView commitAnimations];
+}
+
+/*******************************************************************************
+ *  Function Name: dissmissKeyboard.
+ *  Purpose: To Dismiss keyboard.
+ *  Parametrs: notification object.
+ *  Return Values: nil
+ ********************************************************************************/
+-(void)dissmissKeyboard
+{
+    [self normalViewOfStartDiscussionController];
+}
+
+/*******************************************************************************
+ *  Function Name: fetchToFieldValues.
+ *  Purpose: To Collect Tofield values.
+ *  Parametrs: nil.
+ *  Return Values: ToField values as Array.
+ ********************************************************************************/
+- (NSMutableArray *)fetchToFieldValues
+{
+    isInvalidTo = 0;
+    toValueIds = [[NSMutableArray alloc]init];
+    NSString * toTextValue = toTextField.text;
+    
+    if( [NSNull null]==(NSNull*)toTextValue || [toTextValue isEqualToString:@""] )
+    {
+        NSLog(@"To Field Null");
+    }
+    else
+    {
+        NSArray * toValues = [toTextValue componentsSeparatedByString:@","];
+        int arrayCount = [toValues count];
+        for(int i = 0; i < arrayCount; i++)
+        {
+            NSString * physician = [toValues objectAtIndex:i];
+            physician = [physician stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+            Directory * directoryObject = [DataManager fetchDirectoryObjectsForEntity:@"Directory" selectByName:physician];
+            if(directoryObject.physicianId)
+            {
+                [toValueIds addObject:directoryObject];
+            }
+            else
+            {
+                toFieldName = physician;
+                isInvalidTo = 1;
+            }
+        }
+    }
+    return toValueIds;
+}
+
+#pragma mark- Memory
+- (void)viewDidUnload
+{
+    [self setTouchBaseLbl:nil];
+    [self setBackBtn:nil];
+    [self setSendBtn:nil];
+    [self setToTextField:nil];
+    [self setSubjectTextField:nil];
+    [self setSendMsgBodyTextView:nil];
+    [self setStartDiscsnScrolView:nil];
+    toRecipientSelectedIdArray = nil;
+    toValueIds = nil;
+    [super viewDidUnload];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+#pragma mark- Orientation
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+@end

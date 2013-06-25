@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OC_SA_R1_D050_I010]]></id>
+    <emailHeader><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; border-bottom:1px solid #333; display:block;">Voicemail</Introtext>]]></emailHeader>
+    <emailTypeImage><![CDATA[voice]]></emailTypeImage>    
+	<title><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:14pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>Moving Forward</b></welcomeText>]]></title>
+    <emailContent><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">I’m really glad to hear that the speaker program was well attended and that you will be meeting with Dr. Hayes. This is a great opportunity for you to demonstrate the value of expanding the prescribing of your product. I’d like to hear what your strategy will be for this meeting. Let me know if you need to bounce any ideas off of me.<BR><BR>Talk to you soon -<BR><BR>Annie</welcomeText>]]></emailContent>
+    <from><![CDATA[Annie DeMarco]]></from>
+    <character><![CDATA[Char_Annie_email]]></character>
+	<branchTo><![CDATA[OC_SA_R1_D050]]></branchTo>
+	<to><![CDATA[]]></to>
+</pageContent>
+
+
+
+
+
+
+
+

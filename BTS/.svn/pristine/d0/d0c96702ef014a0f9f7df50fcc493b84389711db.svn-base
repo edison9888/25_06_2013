@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OTS_SA_R3_D020_I010]]></id>
+	<title><![CDATA[]]></title>
+    <descriptionText><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Checking In</Introtext><welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">You meet with Will Bennett and raise the issue of the co-pay cards that were discussed the last time you met.  You inquire whether Sunnydale has used the cards yet, and if so, whether you’ve received any patient feedback.<BR><BR>Dr. Bennett replies that he has given out a few of the co-pay cards, but so far it’s a little early to know the results.<BR><BR>You respond that you are glad Dr. Bennett was able to try them, and agree to check back in a week.</welcomeText>]]></descriptionText>
+    <character><![CDATA[Char_DrBennett]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>
+	<branchTo><![CDATA[OTS_SA_R3_D020]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

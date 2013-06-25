@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OTS_SA_R2_D030_B010]]></id>
+	<title><![CDATA[]]></title>
+    <descriptionText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">I don’t think very many operational changes will be necessary.  It’s more a question of how we’ll get the referrals we need to see those different patient types.</welcomeText>]]></descriptionText>
+    <character><![CDATA[Char_DrHayes01]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>
+	<branchTo><![CDATA[OTS_SA_R2_D030_B020]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

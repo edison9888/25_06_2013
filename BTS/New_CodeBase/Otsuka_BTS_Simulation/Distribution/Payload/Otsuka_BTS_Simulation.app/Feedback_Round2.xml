@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<decisions>
+    <decision template="SingleSelectMCQ">
+       <pageContent>
+    <id><![CDATA[OTS_SA_R2_D010]]></id>
+	<title><![CDATA[<Introtext style="font-family:Helvetica; font-size:14pt; font-weight:bold; color:#cc0033; margin:10px -5px 10px 5px; padding:5px 0 5px 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Aligning with Customer Needs</Introtext>]]></title>
+	<title2><![CDATA[Meeting with Dr. Hayes – Aligning with the Customer’s Needs]]></title2>
+	<instructions><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:11pt; line-height:18pt; text-align:justify; font-weight:bold; color:#333; display:block; margin:0 10px 10px">Which question will you ask Dr. Hayes first?</welcomeText>]]></instructions>
+	<choices>
+		<choice>
+			<id><![CDATA[1]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>A</b>. During my previous talks with Dr. Bennett, we’ve discussed therapy and treatment options for depression. Can you tell me more about the opportunities for treating depression that you see?</welcomeText>]]></choiceText>
+			<KPIs totalScore="10">
+				<KPI marks="10"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="-10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="10"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R2_D010_A010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[2]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>B</b>. With the ongoing healthcare reform and increasing regulations, what issues do you see potentially affecting your practice?</welcomeText>]]></choiceText>
+			<KPIs totalScore="-10">
+				<KPI marks="0"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="-10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R2_D010_B010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[3]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>C</b>. It sounds like protecting your practice’s reputation, as well as expanding your practice, are two of your priorities. What are your next steps to address those priorities?</welcomeText>]]></choiceText>
+			<KPIs totalScore="-20">
+				<KPI marks="0"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="-10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="-10"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R2_D010_C010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[4]]></id>
+			<isCorrect><![CDATA[YES]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>D</b>. From previous conversations with Dr. Bennett, I’ve learned that you want to continue building your practice’s reputation and patient base. In order to achieve those goals, what are the short- and long-term patient outcomes you want to see?</welcomeText>]]></choiceText>
+			<KPIs totalScore="50">
+				<KPI marks="30"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="10"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R2_D010_D010]]></branchTo>
+		</choice>
+		
+	</choices>
+</pageContent>
+    </decision>
+    <decision template="SingleSelectMCQ">
+       
+	   <pageContent>
+    <id><![CDATA[OTS_SA_R2_D020]]></id>
+	<title><![CDATA[<Introtext style="font-family:Helvetica; font-size:14pt; font-weight:bold; color:#cc0033; margin:10px -5px 10px 5px; padding:5px 0 5px 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Further Aligning with Customer Needs</Introtext>]]></title>
+	<title2><![CDATA[Meeting with Dr. Hayes – Further Aligning with the Customer’s Needs]]></title2>
+	<instructions><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:11pt; line-height:18pt; text-align:justify; font-weight:bold; color:#333; display:block; margin:0 10px 10px">What do you ask Dr. Hayes at this point?</welcomeText >]]></instructions>
+	<choices>
+		<choice>
+			<id><![CDATA[1]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>A</b>. You mentioned that building your practice’s reputation is part of your short-term goals. What challenges do you think you will face as you begin seeing additional patients?</welcomeText>]]></choiceText>
+			<KPIs totalScore="10">
+				<KPI marks="0"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R2_D020_A010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[2]]></id>
+			<isCorrect><![CDATA[YES]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>B</b>. Clearly, patient outcomes are key to receiving referrals from satisfied patients – and, ultimately, driving your short-term goals. Since compliance seems to be an issue, how do you track that? </welcomeText>]]></choiceText>
+			<KPIs totalScore="50">
+				<KPI marks="20"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="20"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="10"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R2_D020_B010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[3]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>C</b>. As part of your long-term goals, how will you determine which additional areas of specialty you should focus on?</welcomeText>]]></choiceText>
+			<KPIs totalScore="-20">
+				<KPI marks="-10"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="-10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R2_D020_C010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[4]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>D</b>. What is your timeline for assessing patient satisfaction?</welcomeText>]]></choiceText>
+			<KPIs totalScore="-10">
+				<KPI marks="-20"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R2_D020_D010]]></branchTo>
+		</choice>
+		
+	</choices>
+</pageContent>
+
+
+    </decision>
+    <decision template="SingleSelectMCQ">
+        
+<pageContent>
+    <id><![CDATA[OTS_SA_R2_D030]]></id>
+	<title><![CDATA[<Introtext style="font-family:Helvetica; font-size:14pt; font-weight:bold; color:#cc0033; margin:10px -5px 10px 5px; padding:5px 0 5px 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Beginning to Identify Areas of Value Creation</Introtext>]]></title>
+	<title2><![CDATA[Meeting with Dr. Hayes – Beginning to Identify Areas of Value Creation]]></title2>
+	<instructions><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:11pt; line-height:18pt; text-align:justify; font-weight:bold; color:#333; display:block; margin:0 10px 10px">What do you ask Dr. Hayes next?</welcomeText>]]></instructions>
+	<choices>
+		<choice>
+			<id><![CDATA[1]]></id>
+			<isCorrect><![CDATA[YES]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>A</b>. Ensuring that patients receive the appropriate and best medication helps to increase patient satisfaction.  What strategies will you use to ensure minimal disruptions to your staff and patients, when needing to deal with issues like formularies?</welcomeText>]]></choiceText>
+			<KPIs totalScore="50">
+				<KPI marks="20"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="20"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R2_D030_A010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[2]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>B</b>. Operationally, what changes do you think you may need to make within your practice as you begin seeing more patients with different types of psychiatric disorders?</welcomeText>]]></choiceText>
+			<KPIs totalScore="-20">
+				<KPI marks="-10"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="-10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R2_D030_B010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[3]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>C</b>. As a physician treating disillusioned patients, what actions do you need to take in order to gain patients’ trust?</welcomeText>]]></choiceText>
+			<KPIs totalScore="-10">
+				<KPI marks="0"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="-10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R2_D030_C010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[4]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>D</b>. What challenges stand in the way of making the right prescribing decision the first time around?</welcomeText>]]></choiceText>
+			<KPIs totalScore="-10">
+				<KPI marks="0"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="-10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R2_D030_D010]]></branchTo>
+		</choice>
+		
+	</choices>
+</pageContent>
+    </decision>
+    <decision template="SingleSelectMCQ">
+       
+
+<pageContent>
+    <id><![CDATA[OTS_SA_R2_D040]]></id>
+	<title><![CDATA[<Introtext style="font-family:Helvetica; font-size:14pt; font-weight:bold; color:#cc0033; margin:10px -5px 10px 5px; padding:5px 0 5px 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Exploring Areas of Value Creation</Introtext>]]></title>
+	<title2><![CDATA[Meeting with Dr. Hayes – Exploring Areas of Value Creation]]></title2>
+	<instructions><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:11pt; line-height:18pt; text-align:justify; font-weight:bold; color:#333; display:block; margin:0 10px 10px">Which question will you ask Dr. Hayes to move the conversation forward?</welcomeText>]]></instructions>
+	<choices>
+		<choice>
+			<id><![CDATA[1]]></id>
+			<isCorrect><![CDATA[YES]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>A</b>. You mentioned that expanding your areas of specialty was part of your long-term goals.  How do you plan to build that part of your practice and become recognized in these new areas?</welcomeText>]]></choiceText>
+			<KPIs totalScore="50">
+				<KPI marks="20"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="20"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R2_D040_A010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[2]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>B</b>. Ensuring that you achieve high levels of patient satisfaction can be very hard.  What challenges do you foresee?</welcomeText>]]></choiceText>
+			<KPIs totalScore="0">
+				<KPI marks="0"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="-10"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R2_D040_B010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[3]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>C</b>. Given the strategies you’ve just described, what barriers do you face in achieving the outcomes you’re working toward?</welcomeText>]]></choiceText>
+			<KPIs totalScore="-10">
+				<KPI marks="0"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="-10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R2_D040_C010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[4]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>D</b>. Whom could I talk to in your office about educational events your practice may want to consider attending?</welcomeText>]]></choiceText>
+			<KPIs totalScore="-20">
+				<KPI marks="0"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="-10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="-10"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R2_D040_D010]]></branchTo>
+		</choice>
+		
+	</choices>
+</pageContent>
+
+    </decision>
+    
+<decision template="SingleSelectMCQ">
+
+
+<pageContent>
+    <id><![CDATA[OTS_SA_R2_D050]]></id>
+	<title><![CDATA[<Introtext style="font-family:Helvetica; font-size:14pt; font-weight:bold; color:#cc0033; margin:10px -5px 10px 5px; padding:5px 0 5px 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Understanding the Context for the Solution and Maximizing Value</Introtext>]]></title>
+	<title2><![CDATA[Meeting with Dr. Hayes – Understanding the Context for the Solution and Maximizing Value]]></title2>
+	<instructions><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:11pt; line-height:18pt; text-align:justify; font-weight:bold; color:#333; display:block; margin:0 10px 10px">What do you ask Dr. Hayes at this point?</welcomeText>]]></instructions>
+	<choices>
+		<choice>
+			<id><![CDATA[1]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>A</b>. How do you see currently available therapies and treatments fitting into how you treat your patients?</welcomeText>]]></choiceText>
+			<KPIs totalScore="10">
+				<KPI marks="10"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="-10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="10"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R2_D050_A010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[2]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>B</b>. You’ve talked about a number of initiatives, some of which will take time. What is your timeline for expanding into these areas?</welcomeText>]]></choiceText>
+			<KPIs totalScore="20">
+				<KPI marks="10"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="20"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="-10"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R2_D050_B010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[3]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>C</b>. We have talked about your desired outcomes for the practice.  How have they changed from last year?</welcomeText>]]></choiceText>
+			<KPIs totalScore="-10">
+				<KPI marks="20"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="-10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R2_D050_C010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[4]]></id>
+			<isCorrect><![CDATA[YES]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>D</b>. New treatment areas will definitely provide an opportunity for your practice. However, with the ongoing healthcare reform and increasing regulations, what difficulties do you feel that you will have implementing your ideas?</welcomeText>]]></choiceText>
+			<KPIs totalScore="50">
+				<KPI marks="20"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="20"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R2_D050_D010]]></branchTo>
+		</choice>
+		
+	</choices>
+</pageContent>
+
+    </decision>
+    <decision template="SingleSelectMCQ">
+        
+<pageContent>
+    <id><![CDATA[OTS_SA_R2_D060]]></id>
+	<title><![CDATA[<Introtext style="font-family:Helvetica; font-size:14pt; font-weight:bold; color:#cc0033; margin:10px -5px 10px 5px; padding:5px 0 5px 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Further Understanding the Context for the Solution and Maximizing Value</Introtext>]]></title>
+	<title2><![CDATA[Meeting with Dr. Hayes – Further Understanding the Context for the Solution and Maximizing Value]]></title2>
+	<instructions><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:11pt; line-height:18pt; text-align:justify; font-weight:bold; color:#333; display:block; margin:0 10px 10px">Which follow-up question do you ask Dr. Hayes?</welcomeText>]]></instructions>
+	<choices>
+		<choice>
+			<id><![CDATA[1]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>A</b>. What have you considered for your front office staff, so they would be better prepared to address and overcome the roadblocks you described?</welcomeText>]]></choiceText>
+			<KPIs totalScore="-20">
+				<KPI marks="10"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="-10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="-10"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R2_D060_A010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[2]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>B</b>. What strategies do you have in place, if any, that would help reduce the frustrations of the roadblocks you encounter with different insurance plans, Medicare, and Medicaid?</welcomeText>]]></choiceText>
+			<KPIs totalScore="-10">
+				<KPI marks="0"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="-10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R2_D060_B010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[3]]></id>
+			<isCorrect><![CDATA[YES]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>C</b>. What other obstacles do you face as you drive toward your goals for patient outcomes?</welcomeText>]]></choiceText>
+			<KPIs totalScore="50">
+				<KPI marks="10"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="30"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R2_D060_C010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[4]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>D</b>. Who in your office is responsible for researching the potential roadblocks that may be faced, prior to starting a treatment?</welcomeText>]]></choiceText>
+			<KPIs totalScore="0">
+				<KPI marks="0"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="0"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R2_D060_D010]]></branchTo>
+		</choice>
+		
+	</choices>
+</pageContent>
+
+    </decision>
+    <decision template="SingleSelectMCQ">
+       
+<pageContent>
+    <id><![CDATA[OTS_SA_R2_D070]]></id>
+	<title><![CDATA[<Introtext style="font-family:Helvetica; font-size:14pt; font-weight:bold; color:#cc0033; margin:10px -5px 10px 5px; padding:5px 0 5px 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Collecting Information and Determining Next Steps</Introtext>]]></title>
+	<title2><![CDATA[Meeting with Dr. Hayes – Collecting Information and Determining Next Steps]]></title2>
+	<instructions><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:11pt; line-height:18pt; text-align:justify; font-weight:bold; color:#333; display:block; margin:0 10px 10px">Which question will you ask Dr. Hayes now to move the conversation to the next stage?</welcomeText>]]></instructions>
+	<choices>
+		<choice>
+			<id><![CDATA[1]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>A</b>. Would you be interested in learning more about the co-pay cards that Otsuka makes available to patients?</welcomeText>]]></choiceText>
+			<KPIs totalScore="10">
+				<KPI marks="0"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="20"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="-10"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R2_D070_A010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[2]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>B</b>. What are your overall goals regarding efficiency?</welcomeText>]]></choiceText>
+			<KPIs totalScore="-20">
+				<KPI marks="10"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="-30"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R2_D070_B010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[3]]></id>
+			<isCorrect><![CDATA[YES]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>C</b>. If the administrative details can be overcome, what factors or criteria are most important to you when you consider trialing a product that you have never used before?</welcomeText>]]></choiceText>
+			<KPIs totalScore="50">
+				<KPI marks="10"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="20"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="20"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R2_D070_C010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[4]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>D</b>. Have you considered ways of using patient education to help reduce call backs and improve the efficiency of your practice?</welcomeText>]]></choiceText>
+			<KPIs totalScore="-10">
+				<KPI marks="10"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="-30"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="10"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R2_D070_D010]]></branchTo>
+		</choice>
+		
+	</choices>
+</pageContent>
+
+    </decision>    
+	
+	<decision template="SingleSelectMCQ">
+       
+
+<pageContent>
+    <id><![CDATA[OTS_SA_R2_D080]]></id>
+	<title><![CDATA[<Introtext style="font-family:Helvetica; font-size:14pt; font-weight:bold; color:#cc0033; margin:10px -5px 10px 5px; padding:5px 0 5px 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Collecting Information and Determining Next Steps</Introtext>]]></title>
+	<title2><![CDATA[Meeting with Dr. Hayes – Collecting Information and Determining Next Steps]]></title2>
+	<instructions><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:11pt; line-height:18pt; text-align:justify; font-weight:bold; color:#333; display:block; margin:0 10px 10px">Which question will you ask Dr. Hayes next?</welcomeText>]]></instructions>
+	<choices>
+		<choice>
+			<id><![CDATA[1]]></id>
+			<isCorrect><![CDATA[YES]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>A</b>. I understand the challenges that you’re facing in your practice.  How do you suggest that we discuss, with your entire staff, both the challenges and the ways that we can help you with them?</welcomeText>]]></choiceText>
+			<KPIs totalScore="50">
+				<KPI marks="10"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="30"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="10"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R2_D080_A010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[2]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>B</b>. It’s clear that patient satisfaction will be critical in order to achieve the growth you’re targeting, as higher satisfaction will lead to more referrals.  What are the specific patient satisfaction goals you’re trying to achieve?</welcomeText>]]></choiceText>
+			<KPIs totalScore="-20">
+				<KPI marks="10"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="-30"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R2_D080_B010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[3]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>C</b>. Successfully treating your patients seems to be the foundation for your patient outcome goals.  What are your thoughts regarding how expanding the base of products you prescribe could help achieve better patient outcomes?</welcomeText>]]></choiceText>
+			<KPIs totalScore="-10">
+				<KPI marks="10"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="-20"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R2_D080_C010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[4]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>D</b>. Will you prescribe my product for your next depressed patient?</choiceText>]]></choiceText>
+			<KPIs totalScore="10">
+				<KPI marks="0"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R2_D080_D010]]></branchTo>
+		</choice>
+		
+	</choices>
+</pageContent>
+
+    </decision>
+</decisions>

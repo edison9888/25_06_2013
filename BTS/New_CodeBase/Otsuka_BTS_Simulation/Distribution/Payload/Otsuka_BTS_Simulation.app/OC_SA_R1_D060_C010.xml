@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OC_SA_R1_D060_C010]]></id>
+	<title><![CDATA[]]></title>
+    <descriptionText><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Use Your Network</Introtext><welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">Have you considered asking Dennis if he can come with you to the meeting? It sounds as if his long-term relationship with Sunnydale Psychiatry, and his knowledge about the competition, could help better position you to move the customer forward.</welcomeText>]]></descriptionText>
+    <character><![CDATA[Char_Annie]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>
+	<branchTo><![CDATA[OC_SA_R1_D060_E010]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OC_SA_R1_D040_I010]]></id>
+	<title><![CDATA[Switching Gears]]></title>
+    <descriptionText><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Switching Gears</Introtext><welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">"After talking more about this, I think trialing Samsca is great, but Dr. Cardonza really ought to get involved at this point.  He has strong viewpoints about achieving our desired patient goals, and he doesn’t want to do it in a way that could expose us to additional risk or uncertainty.  Unfortunately, he might think a product like yours has the potential to do both.  He wants to keep our patients’ wellness out front.  Historically, we’ve had success, for the most part, using more traditional methods of managing hyponatremia, such as fluid restriction. If we’re looking to trial a particular product, I’d feel better if Dr. Cardonza was also comfortable with that decision.  He won’t be easily persuaded to change his prescribing habits, but I can talk to him about it."</welcomeText>]]></descriptionText>
+    <character><![CDATA[Liz_happy]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>
+	<branchTo><![CDATA[OC_SA_R1_D040]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

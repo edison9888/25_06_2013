@@ -1,0 +1,694 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"/>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/profile.css" />
+    <!--[if lte IE 7]>
+        <link rel="stylesheet" href="../css/ie7.css" />
+    <![endif]-->
+    <!--[if IE 8]>
+        <link rel="stylesheet" href="../css/ie8.css" />
+    <![endif]-->
+    <!--[if IE 9]>
+        <link rel="stylesheet" href="../css/ie9.css" />
+    <![endif]-->
+    <title>Notifyi</title>
+</head>
+<body>
+    <div id="header-holder">
+        <div id="header">
+            <div id="faq-holder">
+                <span>&nbsp;</span>
+                <!--<img id="faq" src="../images/faq.png" />-->
+                <div class="clear"></div>
+            </div>
+            <div id="middle-header">
+                <img id="logo" src ="../images/notifyi_logo.png" />
+                <div id="description">
+                    <img src="../images/physician_header.png" />
+                </div>
+                <div id="user">
+                    <span>Welcome Nidhi Shah</span>
+                    <span> &nbsp;| &nbsp;</span>
+                    <span>Help</span>
+                    <span> &nbsp;| &nbsp;</span>
+                    <span>Log Out</span>
+                </div>
+                <div class="clear"></div>
+                <!--[if lte IE 7]>
+                    <div class="clear">&nbsp;</div>
+                <![endif]-->
+            </div>
+            <div id="personal">
+                <!--<a href="my_account.html"><span id="account" class="personal-options">My Account</span></a>-->
+                <a href="my_practice.html"><span id="practice" class="personal-options">My Practice</span></a>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div id="menu">
+        <div id="main-menu">
+            <a href="profile.html"><div id="profile" class="menu-options profile-menu-option"><img class="menu-images" src="../images/rollovers/active_profile.png" />My Profile</div></a>
+            <a href="inbox.html"><div id="inbox" class="menu-options inbox-menu-option"><img class="menu-images" src="../images/menu_inbox.png" />Inbox <span class="indicators">(12)</span></div></a>
+            <a href="your_take.html"><div id="yourtake" class="menu-options your-take-menu-option"><img class="menu-images" src="../images/menu_your_take.png" />Touch Base <span class="indicators">(15)</span></div></a>
+            <a href="directory.html"><div id="directory" class="menu-options directory-menu-option"><img class="menu-images" src="../images/menu_directory.png" />Directory</div></a>
+            <a href="bulletin_board.html"><div id="board" class="menu-options bulletin-board-menu-option"><img class="menu-images" src="../images/menu_bulletin_board.png" />Bulletin Board</div></a>
+            <div id="send-message" class="menu-options"><a href="compose_message.html"><img id="send-message-button" class="menu-images" src="../images/send_message.png" /></a></div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="clear">&nbsp;</div>
+    <!--[if lte IE 7]>
+        <div class="clear-visible">&nbsp;</div>
+    <![endif]-->
+    
+    <div id="content">
+        <!-- Profile Info section -->
+        <div id="info-box">
+            <!-- Form is submitted to a dummy page for expected processing -->
+            <form action="dummy.html" method="post" id="profile-main-form">
+                <div id="pic-specialty" class="profile-info">
+                    <!-- Profile pic -->
+                    <div id="pic-wrapper">
+                        <img src="../images/profile_pic.png" />
+                        <span id="edit-pic">Edit Picture</span>
+                        <input type="file" name="profile-pic" id="profile-pic" />
+                    </div>
+                    <!-- User Specialties -->
+                    <div id="user-info">
+                        <!-- Spans will turn to input field or select boxes when editing -->
+                        <span id="user-name" class="info-text">Nidhi Shah, MD</span>
+                        <input class="profile-input" id="user-name" name="user-name" value="Nidhi Shah, MD" />
+                        <span id="specialty-header" class="info-header">Specialty</span>
+                        <span class="info-text">Internal Medicine</span>
+                        <select class="profile-input specialty-select" id="specialty1" name="specialty1">
+                            <option>Internal Medicine</option>
+                            <option>Ambulatory Medicine</option>
+                            <option>Emergency Medicine</option>
+                        </select>
+                        <span class="info-text">Ambulatory Medicine</span>
+                        <select class="profile-input specialty-select" id="specialty2" name="specialty2">
+                            <option>Internal Medicine</option>
+                            <option selected="selected">Ambulatory Medicine</option>
+                            <option>Emergency Medicine</option>
+                        </select>
+                        <span class="info-text">Emergency Medicine</span>
+                        <select class="profile-input specialty-select" id="specialty3" name="specialty3">
+                            <option>Internal Medicine</option>
+                            <option>Ambulatory Medicine</option>
+                            <option selected="selected">Emergency Medicine</option>
+                        </select>
+                        <span class="info-text">Internal Medicine</span>
+                        <select class="profile-input specialty-select" id="specialty4" name="specialty4">
+                            <option>Internal Medicine</option>
+                            <option>Ambulatory Medicine</option>
+                            <option>Emergency Medicine</option>
+                        </select>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <!-- User Hospital/s and Practice/s -->
+                <div id="hospital-practice" class="profile-info with-border">
+                    <span id="hospitals-header" class="info-header">Hospitals</span>
+                    <!-- Span when not editing, add appropriate spans depending on the form submitted -->
+                    <span class="info-text">Yale-New Haven Hospital</span>
+                    <!-- Will turn to input fields when editing -->
+                    <input class="profile-input col2-input" name="hospital1" type="text" value="Yale-New Haven Hospital" />
+                    <input class="profile-input col2-input" name="hospital2" type="text" />
+                    <input class="profile-input col2-input" name="hospital3" type="text" />
+                    <br />
+                    <span id="practice-header" class="info-header">Practice</span>
+                    <!-- Span when not editing, add appropriate spans depending on the form submitted -->
+                    <span class="info-text">Hospitalists Service, Yale-New Haven Hospital</span>
+                    <!-- Will turn to input fields when editing -->
+                    <input class="profile-input col2-input" name="practice1" type="text" value="Hospitalists Service, Yale-New Haven Hospital" />
+                    <input class="profile-input col2-input" name="practice2" type="text" />
+                    <input class="profile-input col2-input" name="practice3" type="text" />
+                </div>
+                <!-- User Contact info -->
+                <div id="contact-info" class="profile-info">
+                    <!-- Location Map -->
+                    <div id="map-wrapper">
+                        <img src="../images/map.png" />
+                    </div>
+                    <!-- Contact Info -->
+                    <div id="contact-info" class="contact-info-profile">
+                        <!-- All spans when not editing, add appropriate spans depending on the form submitted -->
+                        <span id="contact-header" class="info-header">Contact Info</span>
+                        <span class="info-text">20 York Street, CB 2041</span>
+                        <span class="info-text">New Haven, CT 6510</span>
+                        <span class="info-text">(P) 203-688-4748</span>
+                        <span class="info-text">(F) 203-688-4740</span>
+                        <span class="info-text" id="external-link">www.externallink.com</span>
+                        <!-- Will turn to input fields when editing -->
+                        <input class="profile-input col3-input" name="address1" type="text" value="20 York Street, CB 2041" placeholder="Address 1" />
+                        <input class="profile-input col3-input" name="address2" type="text" value="New Haven, CT 6510" placeholder="Address 2" />
+                        <input class="profile-input col3-input" name="city" type="text" placeholder="City" />
+                        <select name="state" class="profile-input state-select" id="state-select">
+                            <option>CT1</option>
+                            <option>CT2</option>
+                            <option>CT3</option>
+                        </select>
+                        <input class="profile-input col3-input" name="zip" type="text" placeholder="Zip" />
+                        <div class="clear"></div>
+                        <input class="profile-input col3-input" name="phone1" type="text" value="(P) 203-688-4748" placeholder="Phone 1" />
+                        <input class="profile-input col3-input" name="fax1" type="text" value="(F) 203-688-4740" placeholder="Fax 1" />
+                        <div class="clear"></div>
+                        <input class="profile-input col3-input" name="phone2" type="text" placeholder="Phone 2" />
+                        <input class="profile-input col3-input" name="fax2" type="text" placeholder="Fax 2" />
+                        <div class="clear"></div>
+                        <input class="profile-input col3-input" name="link" type="text" value="www.externallink.com" placeholder="Website" />
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <span>&nbsp;</span>
+                <!-- Edit the profile -->
+                <span id="edit-wrapper">
+                    <img id="profile-info-edit" src="../images/edit_button_gray.png" />
+                </span>
+                <div class="clear"></div>
+                <!-- Initially hidden action buttons for editing profile -->
+                <div id="action-buttons2">
+                    <input type="image" class="save" id="save-button2" src="../images/save_button_default.png" />
+                    <img class="cancel" id="cancel-button2" src="../images/cancel_button_default.png" />
+                </div>
+                <div class="clear"></div>
+            </form>
+        </div>
+        
+        <div class="clear"></div>
+        
+        <div id="info-sub-box">
+            <!-- Status guide -->
+            <div id="status" class="info-sub">
+                <span>Status</span>
+            </div>
+            <div id="fax" class="info-sub left-border">
+                <span class="type-wrapper"><img src="../images/profile_fax_icon.png" /></span>
+                <span class="status-type">Fax: </span>
+                <span class="active-status">Active</span>
+            </div>
+            <div id="inner-inbox" class="info-sub left-border">
+                <span class="type-wrapper"><img src="../images/profile_inbox_icon.png" /></span>
+                <span class="status-type">Inbox: </span>
+                <span class="active-status">Active</span>
+            </div>
+            <div id="coverage" class="info-sub left-border">
+                <span class="type-wrapper"><img src="../images/profile_coverage_icon.png" /></span>
+                <span class="status-type">Coverage: </span>
+                <span class="inactive-status">Inactive</span>
+            </div>
+            <div class="clear"></div>
+        </div>
+        
+        <div id="left-panel-container">
+            <div class="content-panel">
+                <!-- Message Alert Settings section -->
+                <div id="message-alert-settings" >
+                    <img id="message-alert-settings-icon" src="../images/message alert settings.png" />
+                    <div id="message-alert-settings-header">Message Alert Settings</div>
+                    <img id="message-edit-icon" class="edit-icon" src="../images/edit_button_gray.png" />
+                    <!-- Dummy data -->
+                    <div id="alert-content">
+                        <hr class="divider" />
+                        <span class="alert-headers main-alert-header">Office Hours: 9:00 am to 6:00 pm</span>
+                        <hr class="divider" />
+                        <img class="alert-icon" src="../images/email_icon.png" />
+                        <span class="alert-headers">Email: Yes</span>
+                        <span class="send-text">Sending To:</span>
+                        <!--[if lte IE 7]>
+                            <div class="clear"></div>
+                        <![endif]-->
+                        <div class="alert-message-text-left">Admission, Discharge</div>
+                        <div id="alert-message-text-right">midhi_shah01@yahoo.com</div>
+                        <!--[if lte IE 7]>
+                            <div class="clear"></div>
+                        <![endif]-->
+                        <hr class="divider" />
+                        <img class="alert-icon" src="../images/text_message_icon.png" />
+                        <span class="alert-headers">Text Message: Yes</span>
+                        <span class="send-text">Sending To:</span>
+                        <!--[if lte IE 7]>
+                            <div class="clear"></div>
+                        <![endif]-->
+                        <div class="alert-message-text-left">Admission, Discharge, Medical Record Request, Consult Request, Other</div>
+                        <div id="text-message-text-right">203-887-7379</div>
+                        <!--[if lte IE 7]>
+                            <div class="clear"></div>
+                        <![endif]-->
+                        <hr class="divider" />
+                        <img class="alert-icon" src="../images/pager_icon.png" />
+                        <span class="alert-headers">Pager: No</span>
+                        <!--[if lte IE 7]>
+                            <div class="clear"></div>
+                        <![endif]-->
+                    </div>
+                </div>
+            </div>
+            <div class="content-panel">
+                <!-- Communication Preferences section -->
+                <div id="communication-preferences">
+                    <!-- Form is submitted to a dummy page for expected processing -->
+                    <form action="dummy.html" method="post">
+                        <img id="communication-preferences-icon" src="../images/communication_preferences.png" />
+                        <div id="communication-preferences-header">Communication Preferences</div>
+                        <img id="preferences-edit-icon"class="edit-icon" src="../images/edit_button_gray.png" />
+                        <div id="preferences-content">
+                            <hr class="divider" />
+                            <div id="general-comments-header">
+                                <span>General Comments</span>
+                            </div>
+                            <!-- Initially readonly general comment -->
+                            <div id="general-comment">
+                                <p id="general-comment-content">
+                                	I will not be able to contact anybody directly the rest of this dummy copy to explain any additional comments for this area. Doctors can write anything they want pertaining to their schedule.
+                                	I will not be able to contact anybody directly the rest of this dummy copy to explain any additional comments for this area. Doctors can write anything they want pertaining to their schedule.
+                                	I will not be able to contact anybody directly the rest of this dummy copy to explain any additional comments for this area. Doctors can write anything they want pertaining to their schedule.
+                                	
+                                </p>
+                                <!-- This textarea appears when Edit is clicked -->
+                                <textarea id="general-comment-input" name="general_comment">I will not be able to contact anybody directly the rest of this dummy copy to explain any additional comments for this area. Doctors can write anything they want pertaining to their schedule. I will not be able to contact anybody directly the rest of this dummy copy to explain any additional comments for this area. Doctors can write anything they want pertaining to their schedule. I will not be able to contact anybody directly the rest of this dummy copy to explain any additional comments for this area. Doctors can write anything they want pertaining to their schedule.      
+                                </textarea>
+                            </div>
+                        </div>
+                        <!-- Action buttons for this section are also initially hidden -->
+                        <div id="action-buttons">
+                            <img class="cancel" id="cancel-button" src="../images/cancel_button_default.png" />
+                            <input type="image" class="save" id="save-button" src="../images/save_button_default.png" />
+                        </div>
+                        <div class="clear"></div>
+                    </form>
+                </div>
+            </div>
+            <div class="content-panel">
+                <!-- Personal Message Board section -->
+                <div id="personal-message-board">
+                    <img id="personal-message-board-icon" src="../images/personal_message_board.png" />
+                    <div id="personal-board-header">Personal Message Board</div>
+                    <div id="personal-board-content">
+                        <hr class="divider divider-selected" />
+                        <!-- Form is submitted to a dummy page for expected processing -->
+                        <form method="post" action="dummy.html">
+                            <input type="text" name='post-message' id="post-message" placeholder="Post a message" />
+                            <div id="post-icon-holder">
+                                <input type="image" name="post-message-button" id="post-message-button" src="../images/post_icon.png" />
+                            </div>
+                        </form>
+                        <div class="clear"></div>
+                        <!-- Dummy Data -->
+                        <div class="personal-board-entry">
+                            <div class="personal-board-entry-header"><span>02/08 2:24 PM</span></div>
+                            <div class="personal-board-entry-content">
+                                <img src="../images/profile_pic_small.png" /><span class="entry-user-name">Nidhi Shah</span><span class="entry-content">&nbsp;&nbsp;Dummy copy for practice postings. This is just dummy copy for a practice post on the message board.</span>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="inner-triangle"></div>
+                            <div class="outer-triangle"></div>
+                        </div>
+                        <div class="personal-board-entry">
+                            <div class="personal-board-entry-header"><span>02/08 2:24 PM</span></div>
+                            <div class="personal-board-entry-content">
+                                <img src="../images/profile_pic_small.png" /><span class="entry-user-name">Nidhi Shah</span><span class="entry-content">&nbsp;&nbsp;Dummy copy for practice postings. This is just dummy copy for a practice post on the message board.</span>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="inner-triangle"></div>
+                            <div class="outer-triangle"></div>
+                        </div>
+                        <hr id="last-divider" />
+                        <!-- Change this section to a link or however it should behave (probably ajax) -->
+                        <div id="personal-view-more"><span>&raquo; View More</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-panel">
+                <!-- My Practice Message Board section -->
+                <div id="my-practice-message-board">
+                    <img id="my-practice-message-board-icon" src="../images/my_practice_message_board.png" />
+                    <div id="practice-board-header">My Practice Message Board</div>
+                    <div id="practice-board-content">
+                        <hr class="divider divider-selected" />
+                        <!-- Dummy data -->
+                        <div class="practice-board-entry">
+                            <div class="practice-board-entry-header"><span>02/08 2:24 PM</span></div>
+                            <div class="practice-board-entry-content">
+                                <img src="../images/profile_pic_small.png" /><span class="entry-user-name">Nidhi Shah</span><span class="entry-content">&nbsp;&nbsp;Dummy copy for practice postings. This is just dummy copy for a practice post on the message board.</span>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="inner-triangle"></div>
+                            <div class="outer-triangle"></div>
+                        </div>
+                        <div class="practice-board-entry">
+                            <div class="practice-board-entry-header"><span>02/08 2:24 PM</span></div>
+                            <div class="practice-board-entry-content">
+                                <img src="../images/profile_pic_small.png" /><span class="entry-user-name">Nidhi Shah</span><span class="entry-content">&nbsp;&nbsp;Dummy copy for practice postings. This is just dummy copy for a practice post on the message board.</span>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="inner-triangle"></div>
+                            <div class="outer-triangle"></div>
+                        </div>
+                        <hr id="last-divider" />
+                        <!-- Change this section to a link or however it should behave (probably ajax) -->
+                        <div id="practice-view-more"><span>&raquo; View More</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-panel">
+                <!-- My Account Settings section-->
+                <div id="my-account-settings">
+                    <img id="my-account-settings-icon" src="../images/my_account_settings_icon.png" />
+                    <div id="account-settings-header">My Account Settings</div>
+                    <div id="account-settings-content">
+                        <hr class="divider divider-selected" />
+                        <span class="account-settings-subheader">User Information</span>
+                        <br />
+                        <br />
+                        <p>Please update your login information below. This is the information that the Notifyi team will use if they need to
+                        <br>contact you. This is not the Account Profile that will be displayed in the directory or shown to other Notifyi users.</p>
+                        <form method="post" action="dummy.html">
+                            <table>
+                                <tr>
+                                    <td><p>Username</p></td><td><p>Contact Email</p></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" name="username" /></td>
+                                    <td><input type="text" name="email" /></td>
+                                </tr>
+                            </table>
+                            <br />
+                            <input class="save-button" type="image" name="submit" src="../images/save_button_default.png" />
+                            <!-- Cancel button removes all entered values -->
+                            <img id="user-cancel" class="cancel-button" src="../images/cancel_button_default.png" />
+                        </form>
+                        <hr class="divider divider-selected" />
+                        <span class="account-settings-subheader">Reset Password</span>
+                        <br />
+                        <br />
+                        <p>Password Requirements: At least 8 characters long</p>
+                        <form method="post" action="dummy.html">
+                            <p>Old Password</p>
+                            <input type="password" name="old_password" />
+                            <p>New Password</p>
+                            <input type="password" name="new_password" />
+                            <p>Confirm Password</p>
+                            <input type="password" name="confirm_password" />
+                            <br />
+                            <br />
+                            <input class="save-button" type="image" name="submit" src="../images/save_button_default.png" />
+                            <!-- Cancel button removes all entered values -->
+                            <img id="password-cancel" class="cancel-button" src="../images/cancel_button_default.png" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="right-panel-container">
+            <div id="right-panel">
+                <!-- Form is submitted to a dummy page for expected processing -->
+                <form action="dummy.html" method="post" id="professional-profile-form">
+                    <div id="black-bar"></div>
+                    <!-- Professional Profile section -->
+                    <div id="right-panel-header">
+                        <span class="right-pro-header">Professional Profile</span>
+                        <img id="professional-profile-edit" class="pro-edit" src="../images/edit_button_gray.png" />
+                        <div class="clear"></div>
+                    </div>
+                    <div id="right-panel-triangle"></div>
+                    <!-- Dummy data -->
+                    <div class="right-panel-contents">
+                        <span class="contents-title">Medical School</span>
+                        <span class="contents-description">New York University - 2000</span>
+                        <input class="sidebar-input" type="text" name="medschool-1" value="New York University" />
+                        <input class="sidebar-input extra" type="text" name="medschool-year-1" value="2000" />
+                        <div class="clear"></div>
+                        <!-- Add js scripts for this button -->
+                        <span class="add-another">+ Add Another</span>
+                    </div>
+                    <div class="right-panel-contents">
+                        <span class="contents-title">Residency</span>
+                        <span class="contents-description">Yale New Haven Hospital - 2012</span>
+                        <input class="sidebar-input" name="residency-1" type="text" value="Yale-New Haven Hospital" />
+                        <input class="sidebar-input extra" name="residency-year-1" type="text" value="2012" />
+                        <div class="clear"></div>
+                        <!-- Add js scripts for this button -->
+                        <span class="add-another">+ Add Another</span>
+                    </div>
+                    <div class="right-panel-contents">
+                        <span class="contents-title">Fellowship</span>
+                        <span class="contents-description">General Internal Medicine - Brigham &amp; Women's Hospital - 2005</span>
+                        <input class="sidebar-input" name="fellowship-1" type="text" value="General Internal Medicine - Brigham &amp; Women's Hospital - 2005" />
+                        <input class="sidebar-input extra" name="fellowship-year-1" type="text" value="2005" />
+                        <div class="clear"></div>
+                        <!-- Add js scripts for this button -->
+                        <span class="add-another">+ Add Another</span>
+                    </div>
+                    <div class="right-panel-contents">
+                        <span class="contents-title pro-description">Board Certifications</span>
+                        <span class="contents-description">Internal Medicine - 2004</span>
+                        <input class="sidebar-input " name="certifications-1" type="text" value="Internal Medicine" />
+                        <input class="sidebar-input extra" name="certifications-year-1" type="text" value="2004" />
+                        <div class="clear"></div>
+                        <!-- Add js scripts for this button -->
+                        <span class="add-another">+ Add Another</span>
+                    </div>
+                    <div class="right-panel-contents">
+                        <span class="contents-title">State Licenses</span>
+                        <span class="contents-description">CT - 1000</span>
+                        <select class="sidebar-input sidebar-select" name="state-1">
+                            <option>CT</option>
+                            <option>CT</option>
+                            <option>CT</option>
+                        </select>
+                        <input class="sidebar-input sidebar-license" name="license-1" type="text" value="1000" placeholder="License #" />
+                        <div class="clear"></div>
+                        <!-- Add js scripts for this button -->
+                        <span class="add-another">+ Add Another</span>
+                    </div>
+                    <!-- Action buttons are hidden by default -->
+                    <div class="right-panel-contents">
+                        <div id="action-buttons3">
+                            <input type="image" class="save" id="save-button3" src="../images/save_button_default.png" />
+                            <img class="cancel" id="cancel-button3" src="../images/cancel_button_default.png" />
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </form>
+            </div>
+            <div id="right-panel">
+                <!-- Form is submitted to a dummy page for expected processing -->
+                <form action="dummy.html" method="post" id="account-settings-form">
+                    <div id="black-bar"></div>
+                    <!-- Account Settings section -->
+                    <div id="right-panel-header">
+                        <span class="right-pro-header">Signature</span>
+                        <img id="account-settings-edit" class="pro-edit" src="../images/edit_button_gray.png" />
+                        <div class="clear"></div>
+                    </div>
+                    <div id="right-panel-triangle"></div>
+                    <!-- Dummy data -->
+                    <div class="right-panel-contents">
+                        <span class="contents-title">Your Notifyi Message Signature</span>
+                        <p id="accounts-description">
+Nidhi Shah, MD, MPH <br />
+Attending Physician <br />
+Hospitalist Service <br />
+Yale-New Haven Hospital <br />
+Phone 203-688-4748 <br />
+Coverage Pager 2023-766-7633</p>
+                        <textarea id="sidebar-textarea" name="signature" rows="8">
+Nidhi Shah, MD, MPH
+Attending Physician
+Hospitalist Service
+Yale-New Haven Hospital
+Phone 203-688-4748
+Coverage Pager 2023-766-7633</textarea>
+                    </div>
+                    <div class="right-panel-contents">
+                        <div id="action-buttons4">
+                            <input type="image" class="save" id="save-button4" src="../images/save_button_default.png" />
+                            <img class="cancel" id="cancel-button4" src="../images/cancel_button_default.png" />
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="clear"></div>
+        
+    </div>
+    
+    
+    <div id="footer">
+        <img id="footer-logo" src="../images/notifyi_logo_footer.png" />
+        <span id="copyright">Copyright &copy;2012 Notifyi. All Rights Reserved.</span>
+        <span id="links">
+            <span>Terms of Use</span>
+            <span> &nbsp;| &nbsp;</span>
+            <span>Privacy Policy</span>
+            <span> &nbsp;| &nbsp;</span>
+            <span>Contact Us</span>
+        </span>
+        <div class="clear"></div>
+    </div>
+    
+    <!-- This dialog box will appear when editing the Message Alert Settings -->
+    <div id="message-alert-dialog">
+        <img id="alert-icon" src="../images/alert_icon.png" />
+        <div id="set-alert-header">
+            <span id="set-alert-header-text">Messaging Alerts During Office Hours</span>
+            <br/>
+            <br/>
+            <span id="set-alert-main-text">Please enter your messaging preferences below. 
+            You can customize these by Notifyi message type.</span>
+            <br/>
+            <br/>
+            <span id="set-alert-reminder-text">For text messages and pages you can select the time of the day that 
+            the system should send your messages. This lets you avoid extra message overnight or at unwanted times.</span>
+            <br/>
+            <br/>
+        
+        </div>
+        <div class="clear"></div>
+        <form action="dummy.html" method="post"> 
+            <div id="message-alert-header">
+                <div id="space-holder"><span>&nbsp;</span></div>
+                <div id="message-type-header"><span>Message Type</span></div>
+                <div class="clear"></div>
+            </div>
+            <table id="alert-table">
+                <tr>
+                    <td class="no-border"></td>
+                    <td class="table-sub-header">Admission</td>
+                    <td class="table-sub-header">Discharge</td>
+                    <td class="table-sub-header">Medical Record Request</td>
+                    <td class="table-sub-header">Consult Request</td>
+                    <td class="table-sub-header">Other</td>
+                    <td class="table-other-header">Delivery Details</td>
+                </tr>
+                <tr>
+                    <!-- Email checkboxes -->
+                    <td id="email-mode-select" class="mode-select">
+                        <span class="mode-select-text">Email</span>
+                        <br/>
+                        <img id="email-mode-select-icon" src="../images/email_icon_2.png">
+                    </td>
+                    <td class="checkbox-cell"><span class="unchecked-box"><input type=checkbox name="admission-email-choice" class="checkbox-style" value="email-admission" /></span></td>
+                    <td class="checkbox-cell"><span class="unchecked-box"><input type=checkbox name="discharge-email-choice" class="checkbox-style" value="email-discharge" /></span></td>
+                    <td class="checkbox-cell"><span class="unchecked-box"><input type=checkbox name="medical-email-choice" class="checkbox-style" value="email-record" /></span></td>
+                    <td class="checkbox-cell"><span class="unchecked-box"><input type=checkbox name="consult-email-choice" class="checkbox-style" value="email-consult" /></span></td>
+                    <td class="checkbox-cell"><span class="unchecked-box"><input type=checkbox name="other-email-choice" class="checkbox-style" value="email-other" /></span></td>
+                    <td class="extra-input">
+                        <label class= "alert-table-label">Email Address</label> <br/>
+                        <input type="text" id="email-address" />
+                    </td>
+                </tr>
+                <!-- Text Message checkboxes -->
+                <tr>
+                    <td id="cell-mode-select" class="mode-select">
+                        <span class="mode-select-text">Text <br/> Message</span>
+                        <br/>
+                        <img id="cell-mode-select-icon" src="../images/text_message_icon_2.png">
+                    </td>
+                    <td class="checkbox-cell"><span class="unchecked-box"><input type=checkbox name="admission-cell-choice" class="checkbox-style" value="cell-admission" /></span></td>
+                    <td class="checkbox-cell"><span class="unchecked-box"><input type=checkbox name="discharge-cell-choice" class="checkbox-style" value="cell-discharge" /></span></td>
+                    <td class="checkbox-cell"><span class="unchecked-box"><input type=checkbox name="medical-cell-choice" class="checkbox-style" value="cell-record" /></span></td>
+                    <td class="checkbox-cell"><span class="unchecked-box"><input type=checkbox name="consult-cell-choice" class="checkbox-style" value="cell-consult" /></span></td>
+                    <td class="checkbox-cell"><span class="unchecked-box"><input type=checkbox name="other-cell-choice" class="checkbox-style" value="cell-other" /></span></td>
+                    <td class="extra-input">
+                        <label class= "alert-table-label">Phone Number</label> <br/>
+                        <input type="text" id="phone-number" /><br/>
+                        <label class= "alert-table-label">Notify me about new messages:</label> <br/>
+                        <span id="new-message-background">
+                            <select id="new-message-select" name="new-message-select">
+                                <option>New Message 1</option>
+                                <option>New Message 2</option>
+                                <option>New Message 3</option>
+                            </select>
+                        </span>
+                    </td>
+                </tr>
+                <!-- Pager checkboxes -->
+                <tr>
+                    <td id="pager-mode-select" class="mode-select">
+                        <span class="mode-select-text">Pager</span>
+                        <br/>
+                        <img id="pager-mode-select-icon" src="../images/pager_icon.png">
+                    </td>
+                    <td class="checkbox-cell"><span class="unchecked-box"><input type=checkbox name="admission-pager-choice" class="checkbox-style" value="pager-admission" /></span></td>
+                    <td class="checkbox-cell"><span class="unchecked-box"><input type=checkbox name="discussion-pager-choice" class="checkbox-style" value="pager-discharge" /></span></td>
+                    <td class="checkbox-cell"><span class="unchecked-box"><input type=checkbox name="medical-pager-choice" class="checkbox-style" value="pager-record" /></span></td>
+                    <td class="checkbox-cell"><span class="unchecked-box"><input type=checkbox name="consult-pager-choice" class="checkbox-style" value="pager-consult" /></span></td>
+                    <td class="checkbox-cell"><span class="unchecked-box"><input type=checkbox name="other-pager-choice" class="checkbox-style" value="pager-other" /></span></td>
+                    <td class="extra-input">
+                        <label class= "alert-table-label">Pager Number</label> <br/>
+                        <input type="text" id="pager-number" /><br/>
+                    </td>
+                </tr>
+            </table>
+            
+            <br/>
+            <!-- Office Hours -->
+            <div id="hours-heading">
+                <span class="office-hours-headings" > Set Office Hours:</span>
+            </div>
+            <div id="hours-start">
+                <span class="office-hours-headings" > Start Time</span>
+                <br/>
+                <span id="hours-start-background">
+                    <select id="hours-start-select" name="hours-start-select">
+                        <option>Start 1</option>
+                        <option>Start 2</option>
+                        <option>Start 3</option>
+                    </select>
+                </span>
+            </div>
+            <div id="hours-end">
+                <span class="office-hours-headings" > End Time</span>
+                <br/>
+                <span id="hours-end-background">
+                    <select id="hours-end-select" name="hours-end-select">
+                        <option>End 1</option>
+                        <option>End 2</option>
+                        <option>End 3</option>
+                    </select>
+                </span>
+            </div>
+            <div class="clear"></div>
+            <br/>
+            <span id="set-alert-message-reminder-text">*Please Note: Messaging alerts are only sent during your
+             office hours and on call times</span>
+            <!-- Dialog box closes when cancel button is clicked -->
+            <img id="cancel-icon" class="cancel" src="../images/cancel_button_default.png">
+            <!-- Form is submitted when save button is clicked -->
+            <input type="image" class="save" name="save" id="save-icon" src="../images/save_button_default.png">
+        </form>
+    </div>
+    
+    <!-- Pre-loading images for rollover effects -->
+    <div id="preload">
+        <img id="post-rollover" src="../images/post_rollover.png" />
+        <img id="post-rollover" src="../images/rollovers/save_button_rollover.png" />
+        <img id="post-rollover" src="../images/rollovers/cancel_button_rollover.png" />
+        <img src="../images/checked_box.png" />
+    </div>
+    
+    <script type="text/javascript" src="../js/change_select.js"></script>
+    <script type="text/javascript" src="../js/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="../js/jquery-ui-1.8.18.custom.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.placeholder.js"></script>
+    <script type="text/javascript" src="../js/jquery.simulate.js"></script>
+    <script type="text/javascript" src="../js/jquery.autoresize.js"></script>
+    <script type="text/javascript" src="../js/base.js"></script>
+    <script type="text/javascript" src="../js/profile.js"></script>
+    <script type="text/javascript" src="../js/my_account.js"></script>
+    
+    <!--[if IE 8]>
+        <script type="text/javascript" src="../js/profile-ie8.js"></script>
+    <![endif]-->
+    <!--[if lte IE 7]>
+        <script type="text/javascript" src="../js/ie7.js"></script>
+    <![endif]-->
+</body>
+</html>

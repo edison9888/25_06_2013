@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<round_structure>
+	<title><![CDATA[Round 2]]></title>
+	<intro totalPages="3">
+		<page bgnd="" template="SingleSelectMCQ"><![CDATA[OTS_SA_R2_D010]]></page>
+		<page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_Intro1]]></page>
+		<page bgnd="" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_Intro2]]></page>
+		<page template="ImageTextTemplate"><![CDATA[OTS_SA_R2_Intro3]]></page>
+	</intro>
+	<decision totalPages="1">
+		<page bgnd="" template="SingleSelectMCQ"><![CDATA[OTS_SA_R2_D010]]></page>
+	</decision>
+	<simEnd totalPages="1">
+		<page bgnd="" template="TextOnlyTemplate"><![CDATA[OTS_SA_R2_SIMEND]]></page>
+	</simEnd>
+</round_structure>

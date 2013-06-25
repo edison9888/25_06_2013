@@ -1,0 +1,28 @@
+//
+// Prefix header for all source files of the 'GreenVolts' target in the 'GreenVolts' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+    #import <UIKit/UIKit.h>
+   #import "GVConstants.h"
+//Production
+//#define kserverAddress @"https://www.isisgreenvolts.com"
+
+//Developer
+//#define kserverAddress @"https://dev04.greenvolts.com/isisclient/"
+
+//QA
+//#define kserverAddress @"https://gvfreqaap1.greenvolts.com/isisclient"
+
+//Demo
+#define kserverAddress @"https://demo.isisgreenvolts.com"
+#define AUTO_LOGIN YES
+#define DEMO_BUILD YES
+
+#define totalEnergyTitle @"Total Energy"
+
+#define kCurrentSelectedDateKey @"CurrentSelectedDate"
+#define kDailyStartDateKey @"DailyStartDate"
+#define kWeeklyStartDateKey @"WeeklyStartDate"
+#endif

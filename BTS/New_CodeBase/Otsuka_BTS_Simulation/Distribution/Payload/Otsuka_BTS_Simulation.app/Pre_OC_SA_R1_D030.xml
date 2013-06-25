@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[Pre_OC_SA_R1_D030]]></id>
+	<title><![CDATA[Anticipating Outcomes]]></title>
+    <descriptionText><![CDATA[<Introtext style="font-family:Helvetica; font-size:14pt; font-weight:bold; color:#cc0033; margin:10px -5px 10px 5px; width:418px; padding:5px 0 5px 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Anticipating Outcomes</Introtext><welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">The speaker program was well attended. Both Dr. Bennett and Dr. Roberts from Sunnydale Psychiatry attend the event.  You are able to spend some time speaking with Dr. Bennett, and he is able to learn about the patient types consistent with approved indications who would be candidates for your product, some of which he had never considered before.  When you chat with Dr. Bennett after the program, he seems inclined to expand his prescribing of these products, but he wants more information on insurance coverage, as well as the co-pay cards.</welcomeText><lasttext style="font-family:Helvetica; font-size:11pt; color:#000; background-color:#c0c0c0; margin:10px; padding:2px 0 2px 5px; display:block;"><i>Click the <b><I>Continue</I></b> button to proceed.</i></lasttext>]]></descriptionText>
+    <character><![CDATA[Char_Mack]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>
+	<branchTo><![CDATA[OC_SA_R1_D030]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

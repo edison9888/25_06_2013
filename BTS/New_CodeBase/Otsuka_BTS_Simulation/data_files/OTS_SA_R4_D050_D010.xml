@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OTS_SA_R4_D050_D010]]></id>
+	<title><![CDATA[Missed Opportunity]]></title>
+    <descriptionText><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Missed Opportunity</Introtext><welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">“In this phase of the prescribing cycle you should provide a way for your customer to evaluate the impact of your solution, even if it measures just initial or short-term goals, e.g., cardiology having access to Samsca and the long-term goal having Samsca as an option for treating dilutional hyponatremia. Remember: If you don’t help your customer to evaluate your product’s success, your competitors will do it for you, and their conclusions will be different!”</welcomeText>]]></descriptionText>
+    <character><![CDATA[Mac_skeptical]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>
+	<branchTo><![CDATA[OTS_SA_R4_D060_I010]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OTS_SA_R2_D010_C010]]></id>
+	<title><![CDATA[]]></title>
+    <descriptionText><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Meeting with Dr. Cardonza – Aligning with the Customer’s Needs</Introtext><welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>Dr. Cardonza</b><br>"We’ll need to maintain or improve the treatment goals for patients with hyponatremia we achieve – clinical results, patient satisfaction, and our performance against quality indicators, such as JCAHO."</welcomeText>]]></descriptionText>
+    <character><![CDATA[Anton_1]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>
+	<branchTo><![CDATA[OTS_SA_R2_D010_C020]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

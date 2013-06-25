@@ -1,0 +1,195 @@
+//
+//  InboxViewController.m
+//  NotiyiiPhoneApplicationProject
+//
+//  Created by Veena on 10/09/12.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//
+
+#import "InboxViewController.h"
+#import "GeneralClass.h"
+#import "SendMessageViewController.h"
+#import "DataManager.h"
+#import "InboxDetailsViewController.h"
+#import "MsgRecipient.h"
+
+@interface InboxViewController ()
+{
+    NSArray *inboxDataManagerArray;
+    DataManager *dataManager;
+}
+@end
+
+@implementation InboxViewController
+
+@synthesize inboxLabel;
+@synthesize inboxTableView;
+@synthesize inboxSearchBar;
+@synthesize inbox;
+@synthesize inboxTableViewCell;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        self.title = @"Inbox";
+        self.tabBarItem.image = [UIImage imageNamed:@"tabBar_Inbox"];
+        inboxSearchBar.delegate = self;                
+    }
+    return self;
+}
+
+#pragma mark- ViewDidLoad
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    //background color setting for UISearchBar
+    GeneralClass *generalClass = [[GeneralClass alloc]init];
+    [generalClass searchBarBackGroundColorSetting:self.inboxSearchBar];
+    generalClass = nil;
+    self.inboxLabel.font = [UIFont fontWithName:@"Eurostile LT" size:17.0 ];
+}
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    self.navigationController.navigationBarHidden = YES;
+    [self variableInitialization];
+}
+
+#pragma mark- Initialization and reload
+-(void)variableInitialization
+{
+    /*
+    //DataBase insertion
+    
+    for (int i =0; i < 3 ; i++)
+    {
+        self.inbox = [DataManager createEntityObject:@"Inbox"];
+        self.inbox.patientFirstName = @"John";
+        self.inbox. patientLastName = @"Von";
+        self.inbox. subject = @"Sub 1";
+        self.inbox.textMessageBody = @"hgd hg ghd dw";
+        
+        for (int j =0; j < 3 ; j++)
+        {
+            NSNumber *p = [NSNumber numberWithInt:j];
+            MsgRecipient *msgRecipient = [DataManager createEntityObject:@"MsgRecipient"];
+            msgRecipient.recipientName = @"Veena";
+            msgRecipient.recipientId = p; 
+            [self.inbox addRecipientmessageIDObject:msgRecipient];
+        }
+    }
+    BOOL isSaved = [DataManager saveContext];
+    */
+    
+    
+    if(dataManager)
+    {
+        dataManager = nil;
+    }
+    dataManager=[[DataManager alloc]init];
+    
+    if(inboxDataManagerArray)
+    {
+        inboxDataManagerArray = nil;
+    }
+    inboxDataManagerArray = [dataManager getWholeInboxDetails];
+    
+    [self.inboxTableView reloadData];
+    
+}
+#pragma mark- Button Actions
+- (IBAction)composeButtonClicked:(id)sender 
+{
+    [inboxSearchBar resignFirstResponder];
+    SendMessageViewController *detailViewController=[[SendMessageViewController alloc] initWithNibName:@"SendMessageViewController" bundle:nil];
+    [self.navigationController pushViewController:detailViewController animated:YES];
+    detailViewController = nil;
+}
+
+- (IBAction)refreshButtonClicked:(id)sender 
+{
+    [self variableInitialization];
+}
+
+#pragma mark- BackGroundTouch Actions
+- (void) touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event 
+{
+	NSLog(@"Background touched");
+	[inboxSearchBar resignFirstResponder];
+}
+
+#pragma mark - Table view data source
+- (CGFloat) tableView:(UITableView *)tableView1 heightForRowAtIndexPath:(NSIndexPath *)indexPath 
+{
+    return 82.5;	
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [inboxDataManagerArray count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"Cell";
+    
+    InboxTableViewCell *inboxCell = (InboxTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    if (inboxCell == nil) 
+    {
+        [[NSBundle mainBundle] loadNibNamed:@"InboxTableViewCell" owner:self options:nil];
+        inboxCell = inboxTableViewCell;
+        self.inboxTableViewCell = nil;
+    }
+    if([inboxDataManagerArray count] > 0)
+    {  
+        [inboxCell displayDetails:[inboxDataManagerArray objectAtIndex:indexPath.row]];  
+    }
+    inboxCell.selectionStyle = UITableViewCellSelectionStyleNone; 
+    return inboxCell;
+    
+}
+
+
+#pragma mark - Table view delegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [inboxSearchBar resignFirstResponder];
+    InboxDetailsViewController *inboxDetailsViewController=[[InboxDetailsViewController alloc] initWithNibName:@"InboxDetailsViewController" bundle:nil];
+    inboxDetailsViewController.inbox = [inboxDataManagerArray objectAtIndex:indexPath.row];
+    [self.navigationController pushViewController:inboxDetailsViewController animated:YES];
+    inboxDetailsViewController = nil;
+}
+
+
+#pragma mark - viewDidUnload
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
+    // Release any retained subviews of the main view.
+    // e.g. self.myOutlet = nil;
+}
+
+#pragma mark - dealloc
+-(void)dealloc
+{
+    NSLog(@"Inside Inbox dealloc");
+    inboxTableView = nil;
+    inboxSearchBar = nil;
+    inbox = nil;
+    inboxTableViewCell = nil;
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+@end

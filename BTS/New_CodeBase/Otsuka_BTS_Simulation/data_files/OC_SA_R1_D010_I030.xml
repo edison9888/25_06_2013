@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OC_SA_R1_D010_I030]]></id>
+    <emailHeader><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; border-bottom:1px solid #333; display:block;">E-mail</Introtext>]]></emailHeader>
+    <emailTypeImage><![CDATA[mail]]></emailTypeImage>    
+	<title><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:14pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>Business Plan Follow Up</b></welcomeText>]]></title>
+    <emailContent><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">“Really glad you have identified the cardiology department within Maycomb Community Hospital as a key business driver.  It sounds like there is a real opportunity to assist cardiologists in identifying appropriate patients for treatment.  As part of the process of accomplishing this goal, you’ll want to start by identifying their current priorities.  What do you think they are?"<BR><BR>Thanks,<BR>Annie</welcomeText>]]></emailContent>
+    <from><![CDATA[Annie DeMarco]]></from>
+    <character><![CDATA[Annie]]></character>
+	<branchTo><![CDATA[OC_SA_R1_D010]]></branchTo>
+	<to><![CDATA[]]></to>
+</pageContent>
+
+
+
+
+
+
+
+

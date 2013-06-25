@@ -1,0 +1,225 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"/>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/directory.css" />
+    <!--[if lte IE 7]>
+        <link rel="stylesheet" href="../css/ie7.css" />
+    <![endif]-->
+    <!--[if IE 8]>
+        <link rel="stylesheet" href="../css/ie8.css" />
+    <![endif]-->
+    <!--[if IE 9]>
+        <link rel="stylesheet" href="../css/ie9.css" />
+    <![endif]-->
+    <title>Notifyi</title>
+</head>
+<body>
+    <div id="header-holder">
+        <div id="header">
+            <div id="faq-holder">
+                <span>&nbsp;</span>
+                <!--<img id="faq" src="../images/faq.png" />-->
+                <div class="clear"></div>
+            </div>
+            <div id="middle-header">
+                <img id="logo" src ="../images/notifyi_logo.png" />
+                <div id="description">
+                    <img src="../images/physician_header.png" />
+                </div>
+                <div id="user">
+                    <span>Welcome Nidhi Shah</span>
+                    <span> &nbsp;| &nbsp;</span>
+                    <span>Help</span>
+                    <span> &nbsp;| &nbsp;</span>
+                    <span>Log Out</span>
+                </div>
+                <div class="clear"></div>
+                <!--[if lte IE 7]>
+                    <div class="clear">&nbsp;</div>
+                <![endif]-->
+            </div>
+            <div id="personal">
+                <!--<a href="my_account.html"><span id="account" class="personal-options">My Account</span></a>-->
+                <a href="my_practice.html"><span id="practice" class="personal-options">My Practice</span></a>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div id="menu">
+        <div id="main-menu">
+            <a href="profile.html"><div id="profile" class="menu-options profile-menu-option"><img class="menu-images" src="../images/menu_my_profile.png" />My Profile</div></a>
+            <a href="inbox.html"><div id="inbox" class="menu-options inbox-menu-option"><img class="menu-images" src="../images/menu_inbox.png" />Inbox <span class="indicators">(12)</span></div></a>
+            <a href="your_take.html"><div id="yourtake" class="menu-options your-take-menu-option"><img class="menu-images" src="../images/menu_your_take.png" />Touch Base <span class="indicators">(15)</span></div></a>
+            <a href="directory.html"><div id="directory" class="menu-options directory-menu-option"><img class="menu-images" src="../images/rollovers/active_directory.png" />Directory</div></a>
+            <a href="bulletin_board.html"><div id="board" class="menu-options bulletin-board-menu-option"><img class="menu-images" src="../images/menu_bulletin_board.png" />Bulletin Board</div></a>
+            <div id="send-message" class="menu-options"><a href="compose_message.html"><img id="send-message-button" class="menu-images" src="../images/send_message.png" /></a></div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="clear">&nbsp;</div>
+    <!--[if lte IE 7]>
+        <div class="clear-visible">&nbsp;</div>
+    <![endif]-->
+    
+    <div id="content">
+        <div id="title">
+            <img id="directory-icon" src ="../images/directory_icon.png" /><span>Directory</span>
+            <hr />
+        </div>
+        
+        <div>
+            <div id="bulletin-board-body">
+                <div id="header1">
+                    <span>Status:</span>
+                    <span class="legend" id="legend_fax"><img id="fax_icon" src="../images/fax_icon.png" />Fax</span>
+                    <span class="legend" id="legend_inbox"><img id="inbox_icon" src="../images/inbox_blue_icon.png" />Inbox</span>
+                    <span class="legend" id="legend_coverage"><img id="coverage_icon" src="../images/coverage_icon_coloured.png" />Coverage</span>
+                </div>
+                <div id="down-arrow"></div>
+            </div>
+            
+            <div id="body1">
+                <form action="dummy.html" method="get">
+                    <table id="body1-table">
+                        <tr id="filter-by">
+                            <td></td>
+                            <!-- When clear is clicked, removes all contents of the search input fields -->
+                            <td>Filter By <span id="white-clear">(clear)</span></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <!-- Input field filters -->
+                        <tr id="filter">
+                            <td><img src="../images/input_arrow.png" /></td>
+                            <td><input id="name-input" type="text" name="name" placeholder="Name" /></td>
+                            <td><input id="practice-input" type="text" name="practice" placeholder="Practice" /></td>
+                            <td><input id="specialty-input" type="text" name="specialty" placeholder="Specialty" /></td>
+                            <td><input id="city-input" type="text" name="city" placeholder="City" /></td>
+                            <td><input id="state-input" type="text" name="state" placeholder="State" /></td>
+                            <td><input id="phone-input" type="text" name="phone" placeholder="Phone" /></td>
+                        </tr>
+                        <tr id="headers">
+                            <td class="col1">Status</td>
+                            <td class="col2">Name</td>
+                            <td class="col3">Practice</td>
+                            <td class="col4">Specialty</td>
+                            <td class="col5">City</td>
+                            <td class="col6">State</td>
+                            <td class="col7">Phone</td>
+                        </tr>
+                        <!-- Dummy data, add 'odd' or 'even' classes to td entries for IE -->
+                        <tr class="entry odd">
+                            <td class="col1"><img id="fax_icon" src="../images/fax_icon.png" /><img id="inbox_icon" src="../images/inbox_blue_icon.png" /><img id="coverage_icon" src="../images/coverage_icon_coloured.png" /></td>
+                            <td class="col2">Adelsberg, Michael P.A.</td>
+                            <td class="col3">Connecticut Medical Group</td>
+                            <td class="col4">Internal Medicine</td>
+                            <td class="col5">Guilford</td>
+                            <td class="col6">CT</td>
+                            <td class="col7">212-683-8993</td>
+                        </tr>
+                        <tr class="entry even" id="clickable-profile">
+                            <td class="col1"><img id="inbox_icon" src="../images/inbox_blue_icon.png" /><img id="coverage_icon" src="../images/coverage_icon_coloured.png" /></td>
+                            <td class="col2">Anderson, Catherine M.D.</td>
+                            <td class="col3">Guliford Internal Medicine Group</td>
+                            <td class="col4">Dermatology, Critical Care Medicine</td>
+                            <td class="col5">Guilford</td>
+                            <td class="col6">CT</td>
+                            <td class="col7">212-683-8993</td>
+                        </tr>
+                        <tr class="entry odd">
+                            <td class="col1"><img id="coverage_icon" src="../images/coverage_icon_coloured.png" /></td>
+                            <td class="col2">Apgar, Marina M.D.</td>
+                            <td class="col3">Hostpitalist Service, Yale-New Haven Hospital</td>
+                            <td class="col4">Specialty</td>
+                            <td class="col5">New Haven</td>
+                            <td class="col6">CT</td>
+                            <td class="col7">212-683-8993</td>
+                        </tr>
+                        <tr class="entry even">
+                            <td class="col1"></td>
+                            <td class="col2">Arnold, Steven J. M.D.</td>
+                            <td class="col3">Fair Haven Community Health Centre</td>
+                            <td class="col4">Specialty</td>
+                            <td class="col5">Hamden</td>
+                            <td class="col6">CT</td>
+                            <td class="col7">212-683-8992</td>
+                        </tr>
+                    </table>
+                    <div id="directory-footer">
+                        <!-- Update this hidden input field depending on the clicked page button -->
+                        <input type="hidden" name="page" value="1" />
+                        <div id="footer-description">Showing 1 to 25 of 250 entries</div>
+                        <div id="right-arrow">
+                            <input type="image" title="previous" name="previous" src="../images/right_arrow.png" />
+                        </div>
+                        <div id="left-arrow">
+                            <input type="image" title="next" name="next" src="../images/left_arrow.png" />
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="clear"></div>
+    
+    
+    <div id="footer">
+        <img id="footer-logo" src="../images/notifyi_logo_footer.png" />
+        <span id="copyright">Copyright &copy;2012 Notifyi. All Rights Reserved.</span>
+        <span id="links">
+            <span>Terms of Use</span>
+            <span> &nbsp;| &nbsp;</span>
+            <span>Privacy Policy</span>
+            <span> &nbsp;| &nbsp;</span>
+            <span>Contact Us</span>
+        </span>
+        <div class="clear"></div>
+    </div>
+    
+    <!-- Preloading images for rollover effects -->
+    <div id="preload">
+        <img src="../images/rollovers/send_message_rollover.png" />
+    </div>
+    
+    <!-- This section contains the popup for User Profile -->
+    <div id="profile-dialog">
+        <div id="profile-background">
+            <span id="profile-header">Catherine Anderson, MD</span>
+            <br/><br/>
+            <div id="profile-content">
+                <img id="profile-picture" src="../images/catherine.png" />
+                <div id="profile-info">
+                    <span class="profile-info-header">SPECIALTY</span> <br/>
+                    <span class="profile-info-text">Internal Medicine</span> <br/><br/>
+                    <span class="profile-info-header">HOSPITALS</span> <br/>
+                    <span class="profile-info-text">Yale-New Haven Hospital<br/> East New Haven Memorial Hospital</span> <br/><br/>
+                    <span class="profile-info-header">PRACTICE</span> <br/>
+                    <span class="profile-info-text">Hospitalists Service, Yale-New Haven Hospital</span> <br/><br/>
+                    <!-- Links for these images are placed in the js for expected modifications -->
+                    <img id="send-profile-message" class="img-links" src="../images/send_message_2.png" />
+                    <img id="goto-profile" class="img-links" src="../images/goto_profile.png" />
+
+                    <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script type="text/javascript" src="../js/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.placeholder.js"></script>
+    <script type="text/javascript" src="../js/jquery-ui-1.8.18.custom.min.js"></script>
+    <script type="text/javascript" src="../js/base.js"></script>
+    <script type="text/javascript" src="../js/directory.js"></script>
+    <!--[if IE 8]>
+        <script type="text/javascript" src="../js/directory-ie7.js"></script>
+    <![endif]-->
+</body>
+</html>

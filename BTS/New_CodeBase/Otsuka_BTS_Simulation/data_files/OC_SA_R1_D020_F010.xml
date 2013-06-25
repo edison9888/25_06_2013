@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OC_SA_R1_D020_F010]]></id>
+	<title><![CDATA[Use Trends Effectively]]></title>
+    <descriptionText><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Use Trends Effectively</Introtext><welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">“It’s important to use trends in a conversation with Dr. Gomez in a way that incorporates your understanding of the cardiology department’s desired treatment goals. This opens the door for you to show you are interested in learning the department’s goals. As a prescriber, it is important for her to know which patients with dilutional hyponatremia are appropriate for treatment with Samsca."</welcomeText>]]></descriptionText>
+    <character><![CDATA[Mac_skeptical]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>
+	<branchTo><![CDATA[OC_SA_R1_D030_I010]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

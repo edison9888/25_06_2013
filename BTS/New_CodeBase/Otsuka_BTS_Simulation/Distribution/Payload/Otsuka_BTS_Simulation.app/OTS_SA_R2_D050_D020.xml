@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OTS_SA_R2_D050_D020]]></id>
+	<title><![CDATA[]]></title>
+    <descriptionText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">Great job.<BR><BR>This Problems question helps you by getting Dr. Hayes to focus on the barriers he may encounter when treating patients.  The question appropriately links to the previous discussion, and it lets Dr. Hayes tell you about his concerns instead of you potentially trying to solve a problem he has not yet articulated.</welcomeText>]]></descriptionText>
+    <character><![CDATA[Char_Mack01]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>
+	<branchTo><![CDATA[OTS_SA_R2_D060]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

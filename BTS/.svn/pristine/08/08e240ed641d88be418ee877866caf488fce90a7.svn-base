@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OTS_SA_R2_D010_B020]]></id>
+	<title><![CDATA[]]></title>
+    <descriptionText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">This is a Problems question, not a Results question.  It focuses too widely on problems that may be encountered with healthcare reform, which is a very broad topic, rather than on the opportunity to uncover the practice’s desired patient outcomes.<br><br>The first question you ask Dr. Hayes should be one that opens the conversation regarding practice knowledge and patient outcomes that the practice is trying to achieve.<BR><BR>The best question is,"From previous conversations with Dr. Bennett, I’ve learned that you want to continue building your practice’s reputation and patient base.  In order to achieve those goals, what are the short- and long-term patient outcomes you want to see?". This Results question begins to create a foundation for aligning Otsuka with the practice’s patient outcomes, which is the best beginning point for becoming a trusted advisor. Whenever you begin the prescribing process with a consideration of the practice’s patient goals, it enhances your ability to advance the prescribing cycle.<br><br><b>You need to know the answer to this question to continue.  Here is how Dr. Hayes would have answered that question:</b><br><br>"Short-term, we’re focused on increasing the number of patients we see and providing the best care possible. This could come in a variety of ways, such as increasing the types of insurance we accept; however, we’d really like to see it come through satisfied patients. Ensuring that they are paying the right amount of money for their medications will allow them to be more compliant. Long-term, we want to expand our areas of specialty.  Although we treat all types of psychiatric disorders here at Sunnydale, we’re primarily known as a depression clinic.  That’s great for us, because we get a lot of referrals, but we’d like to build our reputation for treatment of other disorders as well."</welcomeText>]]></descriptionText>
+    <character><![CDATA[Char_Mack]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>
+	<branchTo><![CDATA[OTS_SA_R2_D020]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

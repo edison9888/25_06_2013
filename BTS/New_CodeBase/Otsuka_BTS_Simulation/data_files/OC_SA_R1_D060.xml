@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OC_SA_R1_D060]]></id>
+	<title><![CDATA[<Introtext style="font-family:Helvetica; font-size:14pt; font-weight:bold; color:#cc0033; margin:10px -5px 10px 5px; padding:5px 0 5px 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Networking for Results</Introtext>]]></title>
+	<title2><![CDATA[Networking for Results]]></title2>
+	<instructions><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:11pt; line-height:18pt; text-align:justify; font-weight:bold; color:#333; display:block; margin:0 10px 10px">How do you react to this new information?</welcomeText>]]></instructions>
+	<choices>
+		<choice>
+			<id><![CDATA[1]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>A</b>. Confirm that you’ll meet with Dr. Gomez and Dr. Cardonza on Monday. You feel good about your growing relationship with Dr. Gomez, and you know that you can demonstrate a strong case for using your product. </welcomeText>]]></choiceText>
+			<KPIs totalScore="5">
+				<KPI marks="0"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="5"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OC_SA_R1_D060_A010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[2]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>B</b>. Prepare to speak about the patient assistance program in your meeting.  If Dr. Cardonza is concerned about cost, you want to be sure he is fully informed about this option.</welcomeText>]]></choiceText>
+			<KPIs totalScore="10">
+				<KPI marks="5"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="5"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OC_SA_R1_D060_A010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[3]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>C</b>. Plan a meeting with Annie, your District Manager, to get some ideas on how to best position the cost of Samsca. She has always been extremely helpful in the past in coming up with ways to deal with these situations. </welcomeText>]]></choiceText>
+			<KPIs totalScore="10">
+				<KPI marks="0"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OC_SA_R1_D060_C010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[4]]></id>
+			<isCorrect><![CDATA[YES]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>D</b>. Build an initial strategy for the meeting with Dr. Cardonza.  Then, schedule some time with Annie, your district manager, to receive her feedback and refine your strategy. This is an important meeting, and you don’t want to risk being unprepared.</welcomeText>]]></choiceText>
+			<KPIs totalScore="25">
+				<KPI marks="5"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="10"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OC_SA_R1_D060_D010]]></branchTo>
+		</choice>
+	</choices>
+    <summary><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">It is important to leverage your resources and to plan your strategy carefully when going into a discussion about your product’s disease state. Meeting with Annie beforehand to refine  your strategy for the meeting will ensure that you are prepared for your meeting with Dr. Cardonza (Choice D). Choice A is too risky when you have Annie available to help you further prepare. Choice B only focuses exclusively on the patient assistance program, which isn’t the only factor to consider. Choice C only leverages pricing information from Annie, which again should not be the sole focus of your meeting.   Refining your strategy with Annie is the best way to demonstrate your role as a trusted advisor and to accelerate the prescribing cycle. Choice D is the best choice.</welcomeText>]]></summary>
+</pageContent>

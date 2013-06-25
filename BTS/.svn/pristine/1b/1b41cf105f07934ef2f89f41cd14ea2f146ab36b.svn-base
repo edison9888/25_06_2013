@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OC_SA_R1_D030]]></id>
+	<title><![CDATA[<Introtext style="font-family:Helvetica; font-size:14pt; font-weight:bold; color:#cc0033; margin:10px -5px 10px 5px; padding:5px 0 5px 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Anticipating Feedback</Introtext>]]></title>
+	<title2><![CDATA[Anticipating Feedback]]></title2>
+	<instructions><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:11pt; line-height:18pt; text-align:justify; font-weight:bold; color:#333; display:block; margin:0 10px 10px">What is your next step?</welcomeText>]]></instructions>
+	<choices>
+		<choice>
+			<id><![CDATA[1]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>A</b>. Provide Dr. Gomez with information on Medicare and Medicaid coverage, as well as some of the major insurance carriers in the area.  Also, provide her with information on the patient assistance program.  </welcomeText>]]></choiceText>
+			<KPIs totalScore="0">
+				<KPI marks="5"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="-5"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OC_SA_R1_D030_A010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[2]]></id>
+			<isCorrect><![CDATA[YES]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>B</b>. Probe Dr. Gomez further about the factors she is taking into consideration. It’s important that you fully understand the criteria that Dr. Gomez is using to evaluate whether she will begin prescribing Samsca.  Assist by using any of your approved resources to help her, including information on insurance coverage.</welcomeText>]]></choiceText>
+			<KPIs totalScore="25">
+				<KPI marks="10"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="5"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="10"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OC_SA_R1_D030_B010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[3]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>C</b>. Find out what concerns Dr. Gomez has about prescribing Samsca. It’s important to anticipate the objections that she may have. Gather the data within your approved resources for Dr. Gomez that will address all of her concerns. </welcomeText>]]></choiceText>
+			<KPIs totalScore="10">
+				<KPI marks="5"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="0"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="5"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OC_SA_R1_D030_C010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[4]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>D</b>. Tell Dr. Gomez that you’ll put together a presentation which takes into consideration all of her concerns about beginning to prescribe Samsca. Use approved resources, including patient success stories, as well as information on insurance coverage and the patient assistance program. </welcomeText>]]></choiceText>
+			<KPIs totalScore="5">
+				<KPI marks="0"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="0"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="5"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OC_SA_R1_D030_C010]]></branchTo>
+		</choice>
+	</choices>
+    <summary><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">Because Dr. Gomez is still in the evaluating options phase of the prescribing cycle, jumping ahead to deciding to trial is premature. In Choices A and D, you are attempting to help her decide which medication to trial by using marketing materials,  but you aren’t even sure yet what criteria Dr. Gomez is using to evaluate her options. If you chose Choice C, you are also jumping ahead to handle objections before finding out more information on what is driving those concerns. You should first make sure you fully understand all of the factors that Dr. Gomez is taking into consideration as she evaluates her options. This will help to ensure that you don’t become misaligned and run into problems later in the prescribing cycle. Choice B is the best choice. </welcomeText>]]></summary>
+</pageContent>

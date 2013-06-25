@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OC_SA_R1_D030_D010]]></id>
+	<title><![CDATA[]]></title>
+    <descriptionText><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Wrong Time</Introtext><welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">Dr. Bennett is still in the evaluating options phase of the prescribing cycle. Before moving forward to the deciding to trial phase of the prescribing cycle, first ensure that you understand all of the factors the customer is considering as they evaluate their options. This will help move Dr. Bennett to the next phase of the prescribing cycle.</welcomeText>]]></descriptionText>
+    <character><![CDATA[Char_Mack]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>
+	<branchTo><![CDATA[OC_SA_R1_D040_I010]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

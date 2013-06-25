@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OTS_SA_R3_D030_I010]]></id>
+	<title><![CDATA[Measuring Results]]></title>
+    <descriptionText><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Measuring Results</Introtext><welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">When you arrive at the Maycomb cardiology department to meet with Dr. Gomez, you catch up and then start the meeting by confirming the priorities for the department: Achieving Patient Treatment Goals and Maintaining/Improving their Professional Reputation. Dr. Gomez agrees that these are the department’s top two concerns.  Regarding the patient treatment goals, she emphasizes all the aspects of the patient treatment goals – clinical results, patient satisfaction, and quality metrics. “Just consider the patient I have now,” she said.  “Even if I get her sodium levels under control, that doesn’t mean she’ll be happy with the methods I used.”</welcomeText>]]></descriptionText>
+    <character><![CDATA[Liz_happy]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>
+	<branchTo><![CDATA[OTS_SA_R3_D030]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

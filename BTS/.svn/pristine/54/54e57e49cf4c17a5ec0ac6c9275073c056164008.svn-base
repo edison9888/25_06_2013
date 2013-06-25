@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OC_SA_R1_D010_AEH010]]></id>
+    <emailHeader><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; border-bottom:1px solid #333; display:block;">E-mail</Introtext>]]></emailHeader>
+    <emailTypeImage><![CDATA[mail]]></emailTypeImage>    
+	<title><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:14pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>You Got it!</b></welcomeText>]]></title><emailContent><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">“Really nice work. Your research on Maycomb, as well as what you have heard in the community, revealed that Taking Advantage of Medical Advances, Protecting their Professional Reputation, and Achieving Positive Patient Results are all top priorities for the cardiology department at Maycomb."<BR><BR>Thanks, <BR>Annie</welcomeText>]]></emailContent>
+    <from><![CDATA[Annie DeMarco]]></from>
+    <character><![CDATA[Annie]]></character>
+	<branchTo><![CDATA[OC_SA_R1_D020_I010]]></branchTo>
+	<to><![CDATA[]]></to>
+    <previousemailContent><![CDATA[]]></previousemailContent>
+</pageContent>
+
+
+
+
+
+
+
+

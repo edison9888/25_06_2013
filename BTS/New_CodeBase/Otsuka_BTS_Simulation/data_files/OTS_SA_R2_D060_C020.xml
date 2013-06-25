@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OTS_SA_R2_D060_C020]]></id>
+	<title><![CDATA[Well Done]]></title>
+    <descriptionText><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Well Done</Introtext><welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">"Right on target.<BR><BR>This Problems question helps probe deeper into issues faced by the cardiology department without jumping prematurely to solutions. Now you know the department’s strategic goals and the key pressures against achieving them."</welcomeText>]]></descriptionText>
+    <character><![CDATA[Mac_happy]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>
+	<branchTo><![CDATA[OTS_SA_R2_D070]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

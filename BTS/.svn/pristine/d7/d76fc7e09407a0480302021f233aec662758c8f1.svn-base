@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OC_SA_R1_D040_E010]]></id>
+	<title><![CDATA[]]></title>
+    <descriptionText><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Make it Happen</Introtext><welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">It’s important to meet with Dr. Hayes so that you can make sure that your strategy is aligned with his priorities.  Although Dr. Hayes is the key decision maker, not including Dr. Bennett in the meeting could impact your ability to establish trust with Dr. Hayes. Have Dr. Bennett set up a meeting with Dr. Hayes to move forward.</welcomeText>]]></descriptionText>
+    <character><![CDATA[Char_Mack]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>
+	<branchTo><![CDATA[OC_SA_R1_D050_I010]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

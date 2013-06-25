@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OTS_SA_R2_D060_B020]]></id>
+	<title><![CDATA[Not Quite]]></title>
+    <descriptionText><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Not Quite</Introtext><welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">“This is an Options question, not a Problems question. It will take you backward in the conversation and make it difficult to reconnect to the value creation discussion you are already building.<BR><BR>The best question to ask at this point is, “What other obstacles do you anticipate facing as you focus on achieving your patient treatment goals?”<BR>This is a Problems question that probes deeper into the issues Dr. Cardonza faces in his department. <BR><BR><B>Here is how Dr. Cardonza would have answered that question:</B><BR><BR>“We have several to consider. First, many of our patients have no or sub-optimal insurance, which can prevent us from pursuing optimal treatment plans. Second, as much as we’d sometimes like to, we can’t force patients to change their lifestyles or be compliant with their treatment plans. Finally, we have limited control over what other physicians in the community, such as primary care, may do; and we have limited control over what other hospitals do. If other cardiology departments make improvements faster and better than we do, we could be bumped from the “top 100” list. But, if it’s all in the name of better patient care, I can’t get too upset about that.””</welcomeText>]]></descriptionText>
+    <character><![CDATA[Mac_skeptical]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>
+	<branchTo><![CDATA[OTS_SA_R2_D070]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

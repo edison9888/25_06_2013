@@ -1,0 +1,62 @@
+//
+//  MaintenancePlanDetailView.m
+//  GreenVolts
+//
+//  Created by Rapidvalue on 8/22/12.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//
+
+#import "MaintenancePlanDetailView.h"
+
+@implementation MaintenancePlanDetailView
+
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self loadview];
+        // Initialization code
+    }
+    return self;
+}
+-(void) loadview
+{
+    
+    maintenaceDetailTable = [[UITableView alloc] initWithFrame: CGRectMake(0,0,320,330) style:UITableViewStylePlain];
+    //maintenaceTable.backgroundColor = [UIColor grayColor];
+	maintenaceDetailTable.delegate = self;
+	maintenaceDetailTable.dataSource = self;
+	[self addSubview:maintenaceDetailTable]; 
+}
+#pragma - Tableview DataSource/Delegate Methods
+
+- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 10;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+	return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{	
+    static NSString *CellIdentifier = @"Cell";
+    
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier];
+    }
+    cell.textLabel.text = @"Test";
+    return cell;
+    
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
+{
+    
+}
+
+
+@end

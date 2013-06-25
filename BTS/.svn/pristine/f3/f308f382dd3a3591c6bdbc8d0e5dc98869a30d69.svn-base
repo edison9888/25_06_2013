@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OC_SA_R1_D040_A010]]></id>
+    <emailHeader><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; border-bottom:1px solid #333; display:block;">E-mail</Introtext>]]></emailHeader>
+    <emailTypeImage><![CDATA[mail]]></emailTypeImage>    
+	<title><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:14pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>Not Quite</b></welcomeText>]]></title>
+    <emailContent><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">OK, I’ll let you know what he says.</welcomeText>]]></emailContent>
+    <from><![CDATA[Dr. Bennett]]></from>
+    <character><![CDATA[Char_Bennett_email]]></character>
+	<branchTo><![CDATA[OC_SA_R1_D040_E010]]></branchTo>
+	<to><![CDATA[]]></to>
+</pageContent>
+
+
+
+
+
+
+
+

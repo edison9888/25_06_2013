@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OTS_SA_R2_D030_C010]]></id>
+	<title><![CDATA[]]></title>
+    <descriptionText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">To gain patient trust, I need to be able to positively affect their condition, ideally with the first treatment I begin.  I won’t be able to keep a patient for very long if my methods fail.</welcomeText>]]></descriptionText>
+    <character><![CDATA[Char_DrHayes01]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>
+	<branchTo><![CDATA[OTS_SA_R2_D030_C020]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

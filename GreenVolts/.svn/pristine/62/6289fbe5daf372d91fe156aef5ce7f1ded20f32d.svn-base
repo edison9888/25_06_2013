@@ -1,0 +1,19 @@
+//
+//  MaintenanceLogDetailNotesView.h
+//  GreenVolts
+//
+//  Created by Shinu Mohan on 24/08/12.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface MaintenanceLogDetailNotesView : UIView<UITextViewDelegate>
+{
+    UIButton *notessavebutton;
+    UITextView *detailtextView;
+    UIView *notesview;
+}
+-(void)notessavedonButtonclick;
+@property (nonatomic, retain) UITextView *detailtextView;
+@end

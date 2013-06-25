@@ -1,0 +1,294 @@
+    //
+//  Feedback.m
+//  Otsuka_Sales_Simulation
+//
+//  Created by administrator on 5/20/11.
+//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//
+
+#import "Feedback.h"
+#import "ShellViewController.h"
+#import "XmlParser.h"
+#import "Metrics.h"
+
+@interface Feedback ()
+
+- (void) choiceSelected:(id) sender;
+- (void) populateFeedback:(NSMutableArray *) decisionStructure;
+- (void) displayFeedback:(int) decisionID;
+- (void) flashTableScrollIndicatorsForText:(UIScrollView *) scrollVw;
+
+@end
+
+@implementation Feedback
+
+@synthesize pageContent, options, decisionsArr, KPIViewsArr;
+@synthesize feedbackText, closeBtn, instructionalText, instructionalIcon, scoresTitle;
+
+// Params for questions
+static const float DEFAULT_X_POS_CHOICE = 34.0;
+static const float DEFAULT_Y_POS_CHOICE = 118.0;
+static const float DEFAULT_WIDTH_CHOICE = 464.0;
+static const float DEFAULT_HEIGHT_CHOICE = 62.0;
+static const float Y_DIFF_CHOICE = 3;
+
+// Params for question lines
+static const float DEFAULT_WIDTH_LINE = 466.0;
+static const float DEFAULT_HEIGHT_LINE = 1.0;
+static const float Y_DIFF_LINE = 1;
+
+// Params for KPI Labels
+static const float DEFAULT_X_POS_KPI = 509.0;
+static const float DEFAULT_Y_POS_KPI = 550.0;
+static const float DEFAULT_WIDTH_KPI = 340.0;
+static const float DEFAULT_HEIGHT_KPI = 80.0;
+static const float Y_DIFF_KPI = 32.0;
+
+static const float DEFAULT_WIDTH_PB_BG = 327.0;
+static const float DEFAULT_HEIGHT_PB_BG = 22.0;
+static const float X_DIFF_PB_BG = -8.0;
+static const float Y_DIFF_PB_BG = -22.0;
+
+
+// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
+- (void)viewDidLoad {
+	[self.view setBackgroundColor:[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.0]];
+	feedbackText.backgroundColor = [UIColor clearColor];
+	feedbackText.opaque = NO;
+    [super viewDidLoad];
+}
+
+- (void) initActivityWithRound:(int) currentRoundPointer {
+	NSMutableArray *decisionStructure = [[[NSMutableArray alloc] init] autorelease];
+	
+    currentRound = currentRoundPointer;
+    
+	XmlParser *inst = [[XmlParser alloc] init];
+	NSMutableArray *temp = [[inst loadXMLByURL:[NSString stringWithFormat:@"Feedback_Round%d", (currentRound + 1)]] retain];
+	[inst release];
+	
+	int count1 = [[temp objectAtIndex:0] count];
+	for(int i = 0; i<count1; i++) {
+        [decisionStructure addObject:[[temp objectAtIndex:0] objectAtIndex:i]];
+	}
+	[temp release];
+		
+	[self populateFeedback:decisionStructure];
+}
+
+- (void) populateFeedback:(NSMutableArray *) decisionStructure {
+	decisionsArr = [[NSMutableArray alloc] init];
+	options = [[NSMutableDictionary alloc] init];
+	KPIViewsArr = [[NSMutableDictionary alloc] init];
+    
+	int count1 = [decisionStructure count];
+	for (int i = 0; i<count1; i++) {
+		[decisionsArr addObject:[[decisionStructure objectAtIndex:i] objectAtIndex:1]];
+		UIWebView *choiceText = [[UIWebView alloc] initWithFrame:CGRectMake(DEFAULT_X_POS_CHOICE - 3, DEFAULT_Y_POS_CHOICE + ((DEFAULT_HEIGHT_CHOICE + Y_DIFF_CHOICE) * (float)i), DEFAULT_WIDTH_CHOICE + 13, DEFAULT_HEIGHT_CHOICE)];
+		[choiceText loadHTMLString:[[[decisionsArr objectAtIndex:i] objectAtIndex:3] objectForKey:@"instructions"] baseURL:[NSURL URLWithString:@""]];
+		choiceText.backgroundColor = [UIColor clearColor];
+		choiceText.opaque = NO;
+		[self.view addSubview:choiceText];
+		choiceText.backgroundColor = [UIColor clearColor];
+		choiceText.opaque = NO;
+        [choiceText setUserInteractionEnabled:NO];
+		[choiceText release];
+		
+		UIButton *choiceBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+		choiceBtn.frame = CGRectMake(DEFAULT_X_POS_CHOICE, DEFAULT_Y_POS_CHOICE + 4 + ((DEFAULT_HEIGHT_CHOICE + Y_DIFF_CHOICE) * (float)i), DEFAULT_WIDTH_CHOICE, DEFAULT_HEIGHT_CHOICE);
+		choiceBtn.tag = i;
+		[choiceBtn addTarget:self action:@selector(choiceSelected:) forControlEvents:(UIControlEvents)UIControlEventTouchDown];
+		[choiceBtn setBackgroundImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"feedback_selected" ofType:@"png"]] forState:UIControlStateSelected];        
+        NSDictionary *choiceInfo = [NSDictionary dictionaryWithObjectsAndKeys:choiceBtn, @"choiceBtn", [[[[decisionStructure objectAtIndex:i] objectAtIndex:0] objectForKey:@"attributes"] objectForKey:@"template"], @"templateType", nil];
+		[options setObject:choiceInfo forKey:[NSString stringWithFormat:@"%d", i]];
+		[self.view addSubview:choiceBtn];
+		
+		UIImageView *line = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Line_feedback" ofType:@"png"]]];
+		line.frame = CGRectMake(choiceBtn.frame.origin.x, choiceBtn.frame.origin.y + choiceBtn.frame.size.height + Y_DIFF_LINE, DEFAULT_WIDTH_LINE, DEFAULT_HEIGHT_LINE);
+		[self.view addSubview:line];
+		[line release];
+	}
+	NSArray *KPIs = [ShellViewController getKPIsForRound:currentRound];
+    [scoresTitle loadHTMLString:[NSString stringWithFormat:@"<p style='font-family:helvetica;font-size:16;color:#297cc8;font-weight:bold'>%@</p>", @"Your scores for this question"] baseURL:[NSURL URLWithString:@""]];
+    scoresTitle.backgroundColor = [UIColor clearColor];
+    scoresTitle.userInteractionEnabled = NO;
+    scoresTitle.opaque = NO;
+	for (int i = 0; i<[KPIs count]; i++) {
+		UIWebView *label = [[UIWebView alloc] initWithFrame:CGRectMake(DEFAULT_X_POS_KPI, DEFAULT_Y_POS_KPI + (Y_DIFF_KPI * (float)i), DEFAULT_WIDTH_KPI, DEFAULT_HEIGHT_KPI)];
+        [label loadHTMLString:[NSString stringWithFormat:@"<p style='font-family:helvetica;font-size:12;color:#297cc8;font-weight:bold'>%@</p>", [KPIs objectAtIndex:i]] baseURL:[NSURL URLWithString:@""]];
+        label.backgroundColor = [UIColor clearColor];
+		label.userInteractionEnabled = NO;
+        label.opaque = NO;
+		[self.view addSubview:label];
+		[label release];
+		
+		UIWebView *KPIScore = [[UIWebView alloc] initWithFrame:CGRectMake(DEFAULT_X_POS_KPI, DEFAULT_Y_POS_KPI + (Y_DIFF_KPI * (float)i), DEFAULT_WIDTH_KPI, DEFAULT_HEIGHT_KPI)];
+        [KPIScore loadHTMLString:[NSString stringWithFormat:@"<p style='font-family:helvetica;text-align:right;font-size:16'>%d</p>", 0] baseURL:[NSURL URLWithString:@""]];
+        KPIScore.backgroundColor = [UIColor clearColor];
+		KPIScore.userInteractionEnabled = NO;
+        KPIScore.opaque = NO;
+		[self.view addSubview:KPIScore];
+        [KPIViewsArr setValue:KPIScore forKey:[KPIs objectAtIndex:i]];
+		[KPIScore release];
+		
+        if (i < [KPIs count] - 1) {
+            UIImageView *KPIBg = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"feedback_line" ofType:@"png"]]];
+            KPIBg.frame = CGRectMake(label.frame.origin.x - X_DIFF_PB_BG, label.frame.origin.y - Y_DIFF_PB_BG, DEFAULT_WIDTH_PB_BG, DEFAULT_HEIGHT_PB_BG);
+            [KPIBg setContentMode:UIViewContentModeCenter];
+            [self.view insertSubview:KPIBg belowSubview:label];
+            [KPIBg release];
+        }
+	}
+	
+	[self performSelector:@selector(choiceSelected:) withObject:[[options objectForKey:[NSString stringWithFormat:@"%d", 0]] objectForKey:@"choiceBtn"]];
+}
+
+- (void) choiceSelected:(id) sender {
+	UIButton *btn = (UIButton *) sender;
+	int choiceCount = [options count];
+
+	for (int i = 0; i < choiceCount; i++) {
+		[[[options objectForKey:[NSString stringWithFormat:@"%d", i]] objectForKey:@"choiceBtn"] setSelected:NO];
+	}
+	btn.selected = YES;
+	[self displayFeedback:btn.tag];
+}
+
+- (void) displayFeedback:(int) decisionID {
+	NSArray *decision = [decisionsArr objectAtIndex:decisionID];
+	NSMutableString *feedbackString = [NSMutableString stringWithFormat:@"<font face='helvetica' color='#297cc8'size='4'><b>%@</b></font><br><font face='helvetica' color='#297cc8'size='3'>Options</font><br>", [[decision objectAtIndex:3] objectForKey:@"instructions"]];
+    
+	NSString *templateType = [NSString stringWithString:[[options objectForKey:[NSString stringWithFormat:@"%d", decisionID]] objectForKey:@"templateType"]];
+
+    int choiceCount = [[decision objectAtIndex:4] count];
+	for (int i = 0; i<choiceCount; i++) {
+		[feedbackString appendFormat:@"%@", [[[[decision objectAtIndex:4] objectAtIndex:i] objectAtIndex:2] objectForKey:@"choiceText"]];
+	}
+	
+	NSMutableDictionary *userData = [ShellViewController getUserData];
+	NSMutableDictionary *roundsData = [[[userData objectForKey:@"Rounds"] objectAtIndex:currentRound] objectAtIndex:0];
+    
+	if ([templateType isEqualToString:@"MultipleSelectMCQ"]) {
+        [feedbackString appendFormat:@"<br><font face='helvetica' color='#e74e14' size='3'>Your Selection:</font><br><welcomeText style=' font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block'>%@</welcomeText><br>", [[roundsData objectForKey:[[decision objectAtIndex:0] objectForKey:@"id"]] objectForKey:@"ChoiceSelected"]]; 
+       
+        [feedbackString appendFormat:@"<br><font face='helvetica' color='#00b121' size='3'>Correct Choice:</font><br><welcomeText style=' font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block'>%@</welcomeText><br>", [[roundsData objectForKey:[[decision objectAtIndex:0] objectForKey:@"id"]] objectForKey:@"CorrectChoice"]];
+        [feedbackString appendFormat:@"<br><font face='helvetica' color='#297cc8' size='3'>Summary:</font><br>%@", [[decision objectAtIndex:6] objectForKey:@"summary"]];
+    }else {
+        [feedbackString appendFormat:@"<br><font face='helvetica' color='#e74e14' size='3'>Your Selection:</font><br>%@", [[[[decision objectAtIndex:4] objectAtIndex:[[[roundsData objectForKey:[[decision objectAtIndex:0] objectForKey:@"id"]] objectForKey:@"ChoiceSelected"] intValue]] objectAtIndex:2] objectForKey:@"choiceText"]]; 
+        [feedbackString appendFormat:@"<br><font face='helvetica' color='#00b121' size='3'>Correct Choice:</font><br>%@", [[[[decision objectAtIndex:4] objectAtIndex:[[[roundsData objectForKey:[[decision objectAtIndex:0] objectForKey:@"id"]] objectForKey:@"CorrectChoice"] intValue]] objectAtIndex:2] objectForKey:@"choiceText"]];
+               
+        if(currentRound == 0 || currentRound == 2 || currentRound == 3 || currentRound == 4){
+            [feedbackString appendFormat:@"<br><font face='helvetica' color='#297cc8' size='3'>Summary:</font><br>%@", [[decision objectAtIndex:5] objectForKey:@"summary"]];
+        }else if(currentRound==1){
+            choiceSelected = [[[roundsData objectForKey:[[decision objectAtIndex:0] objectForKey:@"id"]] objectForKey:@"ChoiceSelected"]intValue];
+            if (choiceSelected==0){
+                [feedbackString appendFormat:@"<br><font face='helvetica' color='#297cc8' size='3'>Summary:</font><br>%@", [[decision objectAtIndex:5] objectForKey:@"summary"]];
+            }else if(choiceSelected==1){
+                [feedbackString appendFormat:@"<br><font face='helvetica' color='#297cc8' size='3'>Summary:</font><br>%@", [[decision objectAtIndex:6] objectForKey:@"summary"]];
+            }else if(choiceSelected==2){
+                [feedbackString appendFormat:@"<br><font face='helvetica' color='#297cc8' size='3'>Summary:</font><br>%@", [[decision objectAtIndex:7] objectForKey:@"summary"]];
+            }else if(choiceSelected==3) {
+                [feedbackString appendFormat:@"<br><font face='helvetica' color='#297cc8' size='3'>Summary:</font><br>%@", [[decision objectAtIndex:8] objectForKey:@"summary"]];
+            }
+            else if(choiceSelected==4) {
+                [feedbackString appendFormat:@"<br><font face='helvetica' color='#297cc8' size='3'>Summary:</font><br>%@", [[decision objectAtIndex:8] objectForKey:@"summary"]];
+            }
+            
+        }
+    } 
+	
+	[feedbackText loadHTMLString:feedbackString baseURL:[NSURL URLWithString:@""]];
+	[NSObject cancelPreviousPerformRequestsWithTarget:self];
+	UIScrollView *scrollView = nil;
+	for(UIView *aView in feedbackText.subviews){
+		if([aView isKindOfClass:[UIScrollView class] ]){
+			scrollView = (UIScrollView *)aView;
+			scrollView.delegate = self;
+			scrollView.bounces = NO;
+			[self performSelector:@selector(flashTableScrollIndicatorsForText:) withObject:scrollView afterDelay:1.0];
+		}
+	}
+    
+	NSArray *KPIs = [ShellViewController getKPIsForRound:currentRound];
+	for (int i = 0; i<[KPIs count]; i++) {
+		int KPIVal = [[[[[[userData objectForKey:@"Rounds"] objectAtIndex:currentRound] objectAtIndex:0] objectForKey:[[decision objectAtIndex:0] objectForKey:@"id"]] objectForKey:[KPIs objectAtIndex:i]] intValue];
+        		
+        [[KPIViewsArr objectForKey:[KPIs objectAtIndex:i]] loadHTMLString:[NSString stringWithFormat:@"<p style='font-family:helvetica;text-align:right;font-size:16'>%d</p>", KPIVal] baseURL:[NSURL URLWithString:@""]];
+	}
+    
+    [instructionalText setUserInteractionEnabled:NO];
+	instructionalText.backgroundColor = [UIColor clearColor];
+	instructionalText.opaque = NO;
+    instructionalText.hidden = YES;
+    instructionalIcon.hidden = YES;
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    if ([[webView stringByEvaluatingJavaScriptFromString:@"document.body.offsetHeight;"] floatValue] > webView.frame.size.height) {
+        instructionalText.hidden = NO;
+        [instructionalText loadHTMLString:[ShellViewController getScrollDownInstructionalText] baseURL:[NSURL URLWithString:@""]];
+        instructionalIcon.hidden = NO;
+    }
+}
+
+- (void) flashTableScrollIndicatorsForText:(UIScrollView *) scrollVw {
+	[scrollVw flashScrollIndicators];
+	[self performSelector:@selector(flashTableScrollIndicatorsForText:) withObject:scrollVw afterDelay:2.0];
+}
+
+- (void) scrollViewDidScroll:(UIScrollView *)scrollView {
+	[NSObject cancelPreviousPerformRequestsWithTarget:self];
+}
+
+- (IBAction) onClose:(id) sender {
+	if ([[ShellViewController getInstance] pagesInfo] != nil) {
+		[[ShellViewController getInstance] addSwipeGastures];
+	}
+	[NSObject cancelPreviousPerformRequestsWithTarget:self];
+	[self.view removeFromSuperview];
+	[self release];
+}
+
+- (IBAction) onMetricsClicked:(id) sender {
+	Metrics  *metricsView = [[Metrics alloc] initWithNibName:@"Metrics" bundle:nil];
+	[metricsView initActivityWithRound:currentRound];
+	[[self.view superview] addSubview:metricsView.view];
+    [self performSelector:@selector(onClose:)];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    // Overriden to allow any orientation.
+    return YES;
+}
+
+- (void)didReceiveMemoryWarning {
+    // Releases the view if it doesn't have a superview.
+    [super didReceiveMemoryWarning];
+    
+    // Release any cached data, images, etc that aren't in use.
+}
+
+
+- (void)viewDidUnload {
+    [super viewDidUnload];
+    // Release any retained subviews of the main view.
+    // e.g. self.myOutlet = nil;
+}
+
+
+- (void)dealloc 
+{
+	[pageContent release];
+	[options release];
+	[decisionsArr release];
+	[feedbackText release];
+	[closeBtn release];
+	[KPIViewsArr release];
+    [instructionalText release];
+    [instructionalIcon release];
+    [scoresTitle release];
+    [super dealloc];
+}
+
+
+@end

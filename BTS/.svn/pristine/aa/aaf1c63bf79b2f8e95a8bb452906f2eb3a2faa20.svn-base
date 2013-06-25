@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OC_SA_R1_D060_I010]]></id>
+    <emailHeader><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; border-bottom:1px solid #333; display:block;">Voicemail</Introtext>]]></emailHeader>
+    <emailTypeImage><![CDATA[voice]]></emailTypeImage>    
+	<title><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:14pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>Head’s Up</b></welcomeText>]]></title>
+    <emailContent><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">“Hey, I just wanted to let you know that Dr. Cardonza is going to be pretty tied up at a conference this whole week, but we both have time to meet next Monday. It’s good timing, because today we had another meeting, one of the topics being the importance of keeping costs low.”</welcomeText>]]></emailContent>
+    <from><![CDATA[Dr. Rachel Gomez]]></from>
+    <character><![CDATA[Liz_happy]]></character>
+	<branchTo><![CDATA[OC_SA_R1_D060]]></branchTo>
+	<to><![CDATA[]]></to>
+</pageContent>
+
+
+
+
+
+
+
+

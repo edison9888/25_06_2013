@@ -1,0 +1,33 @@
+//
+//  MaintenancePlanViewController.m
+//  GreenVolts
+//
+//  Created by Rapidvalue on 8/22/12.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//
+
+#import "MaintenancePlanCell.h"
+
+@interface MaintenancePlanCell ()
+@property (strong, nonatomic) IBOutlet UILabel *TitleLabel;
+
+@end
+
+@implementation MaintenancePlanCell
+@synthesize TitleLabel;
+
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        // Initialization code
+    }
+    return self;
+}
+
+#pragma mark- Display Methods
+- (void)displayDetails:(MaintenancePlan *)result
+{
+    self.TitleLabel.text  = @"Location";
+}
+@end

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OTS_SA_R5_D030_C010]]></id>
+	<title><![CDATA[]]></title>
+    <descriptionText><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Identifying Areas of Value Creation</Introtext><welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">They have a big role.  Patients have much more time with non-physician staff than with physicians.  That person’s knowledge, professionalism, and attitude can have a huge effect on the patient’s perception of the hospital and their overall hospital experience.  </welcomeText>]]></descriptionText>
+    <character><![CDATA[Matt Chu]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>	
+	<branchTo><![CDATA[OTS_SA_R5_D030_C020]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OTS_SA_R2_D060_D010]]></id>
+	<title><![CDATA[]]></title>
+    <descriptionText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">We’re all responsible to a certain degree.  Rachel, our office manager, often gets our front office staff to help with a lot of it.</welcomeText>]]></descriptionText>
+    <character><![CDATA[Char_DrHayes01]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>
+	<branchTo><![CDATA[OTS_SA_R2_D060_D020]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

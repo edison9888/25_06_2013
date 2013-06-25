@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OC_SA_R1_D040_I010]]></id>
+    <emailHeader><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; border-bottom:1px solid #333; display:block;">E-mail</Introtext>]]></emailHeader>
+    <emailTypeImage><![CDATA[mail]]></emailTypeImage>    
+	<title><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:14pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>Switching Gears</b></welcomeText>]]></title>
+    <emailContent><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">After talking more about this, I think expanding our prescribing is great, but Dr. Hayes really ought to get involved at this point.  He has strong viewpoints about achieving our desired patient outcomes, and he doesn’t want to do it in a way that could expose us to additional risk or uncertainty. Unfortunately, he might think a product like yours has the potential to do both. He wants to keep our patients’ wellness out front. Historically, we’ve prescribed a lot of generics and a select number of branded products that we’re all very comfortable with.  If we’re looking to increase prescribing of a particular product, Dr. Hayes would need to be comfortable with that decision.  He won’t be easily persuaded to change his prescribing habits, but I can talk to him about it.<BR><BR>Will Bennett</welcomeText>]]></emailContent>
+    <from><![CDATA[Dr. Bennett]]></from>
+    <character><![CDATA[Char_Bennett_email]]></character>
+	<branchTo><![CDATA[OC_SA_R1_D040]]></branchTo>
+	<to><![CDATA[]]></to>
+</pageContent>
+
+
+
+
+
+
+
+

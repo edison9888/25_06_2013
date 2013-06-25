@@ -1,0 +1,253 @@
+//
+//  MaintenancePlanDetailCell.m
+//  GreenVolts
+//
+//  Created by Rapidvalue on 8/22/12.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//
+
+#import "MaintenancePlanDetailCell.h"
+#import "MaintenanceLogView.h"
+
+@interface MaintenancePlanDetailCell ()
+{
+
+}
+- (NSString *)getActualDateFrom:(NSString*)epochTime;
+- (NSString *)getGreenVoltsStandardDateAndTimeFromDate:(NSDate *)dateX;
+@property (strong, nonatomic) IBOutlet UIButton *backButton;
+@property (strong, nonatomic) IBOutlet UIButton *logButton;
+@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
+
+
+@end
+
+@implementation MaintenancePlanDetailCell
+@synthesize backButton;
+@synthesize logButton;
+@synthesize titleLabel;
+
+#pragma mark-initialisation
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) 
+    {
+        // Initialization code
+    }
+    return self;
+}
+
+-(void) awakeFromNib
+{
+    logButton.backgroundColor = [UIColor clearColor];
+}
+
+#pragma mark-display methods
+
+- (void)displayDetails:(int)rowValue:(MaintenancePlan*)maintenancePlan;
+{
+    UIImageView *backButtonImage=[[UIImageView alloc]initWithFrame:CGRectMake(5,5, 43, 43)];
+    self.titleLabel.text = @"Maintenance Detail";
+    self.titleLabel.textColor=[UIColor whiteColor];
+    self.contentView.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"navpopover_cell_backround (2)"]];
+    UILabel *planLabel=[[UILabel alloc]initWithFrame:CGRectMake(50, 10, 220, 25)];
+    planLabel.backgroundColor=[UIColor clearColor];
+    planLabel.textColor=[UIColor whiteColor];
+    planLabel.font=[UIFont systemFontOfSize:14];
+    [self.contentView addSubview:planLabel]; 
+    UILabel *contentLabel=[[UILabel alloc]initWithFrame:CGRectMake(20, 10, 30, 25)];
+    contentLabel.backgroundColor=[UIColor clearColor];
+    contentLabel.textColor=[UIColor whiteColor];
+    contentLabel.font=[UIFont systemFontOfSize:14];
+    [self.contentView addSubview:contentLabel]; 
+    if (rowValue == 0) 
+    {
+        planLabel.frame=CGRectMake(45, 10, 200, 25);
+        
+        planLabel.text=[NSString stringWithFormat:@"Plan Item Number : %d",[maintenancePlan.iD intValue]];
+        backButtonImage.image = [UIImage imageNamed:@"backArrow.png"];
+        [self.contentView addSubview:backButtonImage];
+        
+        
+    }
+    else 
+    {
+        switch (rowValue) 
+        {
+            case 1:
+            {
+                NSString *tempString=@"Location:";
+                CGSize stringSize=[tempString sizeWithFont:[UIFont systemFontOfSize:14]];
+                contentLabel.frame=CGRectMake(20, 10, stringSize.width, 25);
+                contentLabel.text=tempString;
+                planLabel.frame=CGRectMake(25+stringSize.width, 10, 220, 25);
+                planLabel.text=maintenancePlan.location;
+            }
+                break;
+            case 2:
+            {
+                NSString *tempString=@"Date:";
+                CGSize stringSize=[tempString sizeWithFont:[UIFont systemFontOfSize:14]];
+                contentLabel.frame=CGRectMake(20, 10, stringSize.width, 25);
+                contentLabel.text=tempString;
+                planLabel.frame=CGRectMake(25+stringSize.width, 10, 220, 25);
+                NSString *dateStr =maintenancePlan.dateTimeLocal;
+//                
+//                // Convert string to date object
+//                NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+//                dateStr = @"1342221607617";
+//                [dateFormat setDateFormat:@"dd mm yyyy"];
+//                NSDate *date = [dateFormat dateFromString:dateStr]; 
+//                NSLog(@"%@",date);
+//                planLabel.text=[dateFormat stringFromDate:date];
+
+                planLabel.text=[self getActualDateFrom:dateStr];
+            }
+                break;
+            case 3:
+            {
+                NSString *tempString=@"Task:";
+                CGSize stringSize=[tempString sizeWithFont:[UIFont systemFontOfSize:14]];
+                contentLabel.frame=CGRectMake(20, 10, stringSize.width, 25);
+                contentLabel.text=tempString;
+                planLabel.frame=CGRectMake(25+stringSize.width, 10, 220, 25);
+                planLabel.text=maintenancePlan.maintenanceAction;
+            }
+                break;
+            case 4:
+            {
+                NSString *tempString=@"Component:";
+                CGSize stringSize=[tempString sizeWithFont:[UIFont systemFontOfSize:14]];
+                contentLabel.frame=CGRectMake(20, 10, stringSize.width, 25);
+                contentLabel.text=tempString;
+                planLabel.frame=CGRectMake(25+stringSize.width, 10, 220, 25);
+                planLabel.text=maintenancePlan.componentType;
+            }
+                break;
+            case 5:
+            {
+                NSString *tempString=@"Created by:";
+                CGSize stringSize=[tempString sizeWithFont:[UIFont systemFontOfSize:14]];
+                contentLabel.frame=CGRectMake(20, 10, stringSize.width, 25);
+                contentLabel.text=tempString;
+                planLabel.frame=CGRectMake(25+stringSize.width, 10, 220, 25);
+                planLabel.text=maintenancePlan.owner;
+            }
+                break;
+            case 6:
+            {
+                NSString *tempString=@"Notes:";
+                CGSize stringSize=[tempString sizeWithFont:[UIFont systemFontOfSize:14]];
+                contentLabel.frame=CGRectMake(20, 10, stringSize.width, 25);
+                contentLabel.text=tempString;
+                planLabel.frame=CGRectMake(25+stringSize.width, 10, 220, 25);
+                planLabel.text=maintenancePlan.notes;
+            }
+                break;
+            default:
+                break;
+        }
+        
+        [self.backButton removeFromSuperview];
+        [self.logButton removeFromSuperview];
+//        CGRect newLabelRect = CGRectMake(20, 5, 200, 30);
+//        self.titleLabel.frame = newLabelRect;
+
+    }
+    
+
+}
+
+#pragma mark-date convert method
+
+- (NSString *)getActualDateFrom:(NSString*)epochTime
+
+{
+    
+    //epochTime: /Date(1320918970748-0800)/
+    
+    //epochTime: /Date(1320918970748)/
+    
+    if(epochTime == NULL || epochTime == nil || epochTime == @"" || [epochTime isEqualToString:@"null"])
+    return NULL;
+    NSDate *actualDate=nil;
+    NSString *str=[epochTime stringByReplacingOccurrencesOfString:@"/" withString:@""];
+    NSString *str1=[str stringByReplacingOccurrencesOfString:@"(" withString:@""];
+    str1=[str1 stringByReplacingOccurrencesOfString:@")" withString:@""];
+    str1=[str1 stringByReplacingOccurrencesOfString:@"Date" withString:@""];
+    NSArray *pArr1;
+    BOOL isNegativeOffset = YES;
+    if([str1 rangeOfString:@"-"].location != NSNotFound)
+    {
+        isNegativeOffset = YES;
+        pArr1 =[str1 componentsSeparatedByString:@"-"];
+    }
+    else  if([str1 rangeOfString:@"+"].location != NSNotFound)
+    {
+        isNegativeOffset = NO;
+        pArr1 =[str1 componentsSeparatedByString:@"+"];
+    }
+    double seconds=0;
+    double milliSeconds1=0;
+    double seconds2beSubtracted=0;
+    //If offset is provided
+    if([pArr1 count]>=1)
+    {
+        NSString *dateX=[pArr1 objectAtIndex:0];
+        milliSeconds1=[dateX doubleValue];
+        seconds=milliSeconds1/1000;
+        NSString *offset=[pArr1 objectAtIndex:1];
+        NSString *hourOffset=[offset substringToIndex:2];
+        NSString *minOffset=[offset substringFromIndex:2];
+        seconds2beSubtracted=([hourOffset intValue]*3600)+([minOffset intValue]*60);
+    }
+    else
+    {
+        milliSeconds1=[str1 doubleValue];
+        seconds=milliSeconds1/1000;
+    }
+    //seconds2beSubtracted = 0;
+    NSDate *pDate;
+    if(isNegativeOffset)
+        pDate =[NSDate dateWithTimeIntervalSince1970:seconds-seconds2beSubtracted];
+    else
+        pDate =[NSDate dateWithTimeIntervalSince1970:seconds+seconds2beSubtracted];
+    
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    NSTimeZone *gmt = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+    [formatter setTimeZone:gmt];
+    [formatter setDateFormat:@"hh:mm a"];
+    //Optionally for time zone converstions    
+    actualDate=pDate;    
+    return [self getGreenVoltsStandardDateAndTimeFromDate:actualDate];
+}
+
+
+
+- (NSString *)getGreenVoltsStandardDateAndTimeFromDate:(NSDate *)dateX
+{
+    
+    NSDateFormatter *dateformat1=[[NSDateFormatter alloc] init];
+    [dateformat1 setDateFormat:@"MM-dd-yyyy HH:mm:ss"];
+    NSString *thedate=[dateformat1 stringFromDate:dateX];
+    return thedate;
+}
+
+
+#pragma mark-button actions
+
+//- (IBAction)logButtonTouched:(id)sender
+//{
+//    //NSLog(@"log button touched");
+//    MaintenanceLogView *maintenancelogview=[[MaintenanceLogView alloc]initWithFrame:CGRectMake(0, 0, 310, 460)];
+//    [self addSubview:maintenancelogview];
+//    
+//    NSNumber *tabButtonTag=[NSNumber numberWithInt:2];
+//    [[NSUserDefaults standardUserDefaults] setObject:tabButtonTag forKey:@"SelectedControlTab"];
+//    
+//    
+//    NSLog(@"log button touched");
+//}
+@end

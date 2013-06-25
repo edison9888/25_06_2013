@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OTS_SA_R3_D060_B010]]></id>
+	<title><![CDATA[]]></title>
+    <descriptionText><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">We’re in Sync</Introtext><welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">I think you have a good understanding of our practice and patients.  I’m looking forward to seeing how you and the Otsuka resources can help support us in achieving positive patient outcomes.</welcomeText>]]></descriptionText>
+    <character><![CDATA[Char_DrBennett01]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>
+	<branchTo><![CDATA[OTS_SA_R3_D060_E010]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

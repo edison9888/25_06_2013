@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OTS_SA_R2_D040_B020]]></id>
+	<title><![CDATA[Not Quite]]></title>
+    <descriptionText><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Not Quite</Introtext><welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">"This is a Problem question, and it could lead to a discussion of ways you could help address some challenges. As a trusted advisor, however, you need to fully explore the department’s patient treatment goals and their strategies. <BR><BR>The best question to ask now is, “What role does staying abreast of medical advances play in your goal of achieving patient treatment goals and being one of the top hospitals for cardiac care?”<BR><BR>This is an Options question that continues to explore ways to build the value of Samsca. <BR><BR><B>Here is how Dr. Cardonza would have answered that question:</B><BR><BR>“Don’t get me wrong – medical advances are important. However, I’m also not one to jump on the bandwagon of trying every new diagnostic test, every new medical device, and every new drug just for the sake of mistakenly being considered “advanced” or “state-of-the-art.” Before I adopt anything new, I want to be certain that the benefit to my patients will outweigh the risk and extra expense. It’s also desirable to have protocols or some guidelines for patient selection in place to evaluate the benefit versus the risk. Once I know it’s in the best interest of my patients, I’m on it. In marketing terms, I guess I’m what you might call a “fast follower.”””</welcomeText>]]></descriptionText>
+    <character><![CDATA[Mac_skeptical]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>
+	<branchTo><![CDATA[OTS_SA_R2_D050]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

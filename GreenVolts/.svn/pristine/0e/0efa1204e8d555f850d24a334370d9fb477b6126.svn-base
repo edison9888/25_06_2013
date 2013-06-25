@@ -1,0 +1,128 @@
+//
+//  MaintenanceLogDetailView.m
+//  GreenVolts
+//
+//  Created by Shinu Mohan on 23/08/12.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//
+
+#import "MaintenanceLogDetailView.h"
+
+@interface MaintenanceLogDetailView() 
+
+-(void)createCustomNavigationView;
+- (IBAction)logbackButtonTouched:(id)sender;   
+@end
+
+@implementation MaintenanceLogDetailView
+@synthesize maintenanceLogDetailCell;
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self loadview];
+        // Initialization code
+    }
+    return self;
+}
+#pragma mark- initial methods
+-(void) loadview
+{
+    self.backgroundColor = [UIColor lightGrayColor];
+    [self createCustomNavigationView];
+    maintenacelogDetailTable = [[UITableView alloc] initWithFrame: CGRectMake(0,40,320,330) style:UITableViewStylePlain];
+    //maintenaceTable.backgroundColor = [UIColor grayColor];
+	maintenacelogDetailTable.delegate = self;
+	maintenacelogDetailTable.dataSource = self;
+	[self addSubview:maintenacelogDetailTable]; 
+    
+    
+    
+}
+
+#pragma mark-custom methods
+
+-(void)createCustomNavigationView
+{
+    //imageview,button label
+    UIImage *image = [UIImage imageNamed:@"RedBig.png"];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+    imageView.frame = CGRectMake(0,0,320,40);
+    imageView.contentMode = UIViewContentModeScaleToFill;
+    [self addSubview:imageView];
+    
+   /* UIButton *button = [UIButton  buttonWithType:UIButtonTypeRoundedRect];
+    [button addTarget:self 
+               action:@selector(logbackButtonTouched)
+     forControlEvents:UIControlEventTouchDown];
+    [button setTitle:@"Show View" forState:UIControlStateNormal];
+    button.frame = CGRectMake(2, 2,6,2);
+    [self addSubview:button];*/
+    
+    UIButton *button=[UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame=CGRectMake(0,5,80,25);
+    button.backgroundColor=[UIColor clearColor];
+    button.titleLabel.text=@"BACK";
+    [button setImage:[UIImage imageNamed:@"array.png"] forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(logbackButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:button]; 
+    
+    UILabel *logtitlelabel = [[UILabel alloc] initWithFrame:CGRectMake(100,10,200,25)];
+    //logtitlelabel.numberOfLines = 0;//Dynamic
+    logtitlelabel.backgroundColor = [UIColor clearColor];
+    logtitlelabel.textColor = [UIColor grayColor];
+    logtitlelabel.text = @"MaintenanceLogDetails";
+    [self addSubview:logtitlelabel];
+    
+    
+   
+}
+#pragma mark- Table Delegates
+- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 10;
+}
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+	return 1;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{	
+    static NSString *CellIdentifier = @"Cell";
+    MaintenanceLogDetailCell *logmaintenanceDetailCell = (MaintenanceLogDetailCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+
+    
+    if (logmaintenanceDetailCell == nil) 
+    {
+        [[NSBundle mainBundle] loadNibNamed:@"MaintenanceLogDetailCell" owner:self options:nil];
+        logmaintenanceDetailCell = maintenanceLogDetailCell;
+        self.maintenanceLogDetailCell = nil;
+    }
+    
+    logmaintenanceDetailCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    [logmaintenanceDetailCell displayDetails:indexPath.row];
+    return logmaintenanceDetailCell;
+   
+    
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
+{
+   
+    
+}
+
+- (IBAction)logbackButtonTouched:(id)sender
+ {
+    [UIView animateWithDuration:.35 delay:0.0 options:UIViewAnimationCurveEaseOut animations:
+     ^{
+         //self.center = CGPointMake(self.center.x + CGRectGetWidth(self.frame), self.frame.origin.y);         
+         CGRect newRect = self.frame;
+         newRect.origin.x += newRect.size.width;
+         self.frame = newRect;
+     } completion:^(BOOL finished) {
+         [self removeFromSuperview];
+     }];
+}
+
+
+@end

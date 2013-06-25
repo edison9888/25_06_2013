@@ -1,0 +1,144 @@
+//
+//  MoreViewController.m
+//  NotiyiiPhoneApplicationProject
+//
+//  Created by Veena on 10/09/12.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//
+
+#import "MoreViewController.h"
+#import "ProfileViewController.h"
+#import "MobileSettingsViewController.h"
+#import "CalenderViewController.h"
+#import "CoverageCalendar.h"
+#import "DataManager.h"
+
+@interface MoreViewController ()
+
+- (void)dummyData:(NSDate *)date name1:(NSString *)drName1 name2:(NSString *)drName2;
+-(void)fontCustomization;
+@property (weak, nonatomic)IBOutlet UIButton *myProfileButton;
+@property (weak, nonatomic)IBOutlet UILabel *moreLabel;
+@property (weak, nonatomic)IBOutlet UILabel *myProfileLabel;
+@property (weak, nonatomic)IBOutlet UILabel *calendarLabel;
+@property (weak, nonatomic)IBOutlet UILabel *settingsLabel;
+@end
+
+@implementation MoreViewController
+@synthesize myProfileButton,moreLabel;
+@synthesize myProfileLabel,calendarLabel;
+@synthesize settingsLabel;
+
+#pragma mark- init
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        self.title = @"More";
+        self.tabBarItem.image = [UIImage imageNamed:@"tabBar_More"];
+        
+        
+    }
+    return self;
+}
+
+#pragma mark- initial Load
+-(void) viewDidAppear:(BOOL)animated
+{
+    self.navigationController.navigationBarHidden = YES;
+}
+
+- (void)viewDidLoad
+{
+    [self fontCustomization];
+    NSDate *today = [NSDate date];
+    [self dummyData:today name1:@"Dr.ABC1" name2:@"Dr.ABC1"];//today
+    NSTimeInterval secondsPerDay = 24 * 60 * 60;    
+    NSDate *tommarowdate = [today addTimeInterval:secondsPerDay]; 
+    [self dummyData:tommarowdate name1:@"Dr.ABC2" name2:@"Dr.BCD2"];//tommarrow
+     NSDate *yesterdaydate = [today addTimeInterval:-secondsPerDay]; 
+    [self dummyData:yesterdaydate name1:@"Dr.ABC3" name2:@"Dr.ABC3"];//for yesterday
+    
+//    NSDate *tomorrow = date;
+//    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+//    [dateFormat setDateFormat:@"yyyy-MM-dd"];
+//    NSString *stringDate = [dateFormat stringFromDate:tomorrow];
+//    NSLog(@"stringDate: %@",stringDate);
+
+    [super viewDidLoad];
+    
+}
+#pragma mark- Methods
+- (void)dummyData:(NSDate *)date name1:(NSString *)drName1 name2:(NSString *)drName2;
+{
+    for (int i =0; i < 2 ; i++)
+    {
+        CoverageCalendar *coverageCalendar = [DataManager createEntityObject:@"CoverageCalendar"];
+        coverageCalendar.date = date;
+        
+        if (i == 1) {
+            coverageCalendar.title = @"Night";
+            coverageCalendar. details = drName1;
+        }
+        else 
+        {
+            coverageCalendar.title = @"Day";
+            coverageCalendar. details = drName2;
+        }
+        
+        coverageCalendar.startTime = @"8 AM";
+        coverageCalendar. endTime = @"6 PM";
+        
+    }
+
+    BOOL isSaved = [DataManager saveContext];
+}
+    
+-(void)fontCustomization{
+    moreLabel.font = [UIFont fontWithName:@"Eurostile LT" size:17.0];
+    calendarLabel.font = [UIFont fontWithName:@"Eurostile LT" size:18.0];
+    myProfileLabel.font = [UIFont fontWithName:@"Eurostile LT" size:18.0];
+    settingsLabel.font = [UIFont fontWithName:@"Eurostile LT" size:18.0];  
+}
+#pragma mark- Button Actions
+
+- (IBAction)myProfileBtnTouched:(id)sender {
+    
+    ProfileViewController *detailViewController=[[ProfileViewController alloc] initWithNibName:@"ProfileViewController" bundle:nil];
+    [self.navigationController pushViewController:detailViewController animated:YES];
+    detailViewController = nil;
+}
+
+- (IBAction)coverageCalenderBtnTouched:(id)sender 
+{
+    CalenderViewController *calenderViewController=[[CalenderViewController alloc] initWithNibName:@"CalenderViewController" bundle:nil];
+    [self.navigationController pushViewController:calenderViewController animated:YES];
+    calenderViewController = nil;
+}
+
+- (IBAction)mobileSettingsBtnTouched:(id)sender {
+    
+    MobileSettingsViewController *mobileSettingsViewController=[[MobileSettingsViewController alloc] initWithNibName:@"MobileSettingsViewController" bundle:nil];
+    [self.navigationController pushViewController:mobileSettingsViewController animated:YES];
+    mobileSettingsViewController = nil;
+
+}
+#pragma mark- Memory
+
+- (void)viewDidUnload
+{
+    [self setMoreLabel:nil];
+    [self setCalendarLabel:nil];
+    [self setMyProfileLabel:nil];
+    [self setSettingsLabel:nil];
+    [super viewDidUnload];
+    // Release any retained subviews of the main view.
+    // e.g. self.myOutlet = nil;
+}
+#pragma mark- Orientation
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+@end

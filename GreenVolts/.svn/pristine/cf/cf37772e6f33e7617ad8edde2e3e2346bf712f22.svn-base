@@ -1,0 +1,25 @@
+//
+//  MaintenancePlanDetailView.h
+//  GreenVolts
+//
+//  Created by Rapidvalue on 8/22/12.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "MaintenancePlanDetailCell.h"
+
+@protocol MaintenaceDetailLogButtonTouchedDelegate<NSObject>
+-(void)planDetailViewlogbuttontouchedWithLocation:(NSString*)location maintenancePlanID:(NSNumber*)iD task:(NSString*)task component:(NSString*)component notes:(NSString*)notes;
+@end
+
+@interface MaintenancePlanDetailView : UIView<UITableViewDelegate,UITableViewDataSource>
+{
+    UITableView   *maintenaceDetailTable;
+}
+@property(nonatomic,strong) IBOutlet MaintenancePlanDetailCell *maintenancePlanDetailCell;
+@property(nonatomic,strong)id<MaintenaceDetailLogButtonTouchedDelegate>delegate;
+@property(nonatomic,strong) MaintenancePlan *maintenancePlan;
+- (IBAction)backButtonTouched:(id)sender;
+@end
+

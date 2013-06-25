@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OTS_SA_R5_D070_B020]]></id>
+	<title><![CDATA[]]></title>
+    <descriptionText><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Understanding the Context</Introtext><welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">This is a Results question, not an Execute Next Steps question. Asking this now will likely send Dr. Chu in a different direction and risk making any progress with this conversation.<BR><BR>
+        
+        The best question is, “You’ve mentioned consulting more with Pharmacy, and I understand your desire to be familiar with the safety profile of what you prescribe.  When you consider trying a product you have never used before, such as Samsca, what factors are important to you?”<BR><BR>
+        This Execute Next Steps question moves you toward taking action and helps you to better understand how to position yourself as an advisor to decision makers.<BR><BR>
+        <B>It will help you to know the answer to this question to continue.  Here is how Dr. Chu would have answered:</B><BR><BR>
+        
+        “I’ll begin by saying that I would very rarely be one of the first people in a hospital to try a product.  As you know, I’m cautious and safety-focused, so I wouldn’t begin a new product unless Pharmacy supported it or I had peers with experience prescribing it.  In my position as a hospitalist, I see such a wide variety of patients that I can’t be fully up to speed on the specialized therapies they might need.  That’s why the specialist consults are important.<BR><BR>
+        
+        However, if the product was already adopted and supported by the hospital and Pharmacy, then I must be comfortable with the drug’s safety and efficacy profile, and it must be available at a reasonable cost.”</welcomeText>]]></descriptionText>
+    <character><![CDATA[Char_Mack]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>	
+	<branchTo><![CDATA[OTS_SA_R5_D080]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

@@ -1,0 +1,55 @@
+10
+
+dir
+133
+https://subversion.assembla.com/svn/pe-com-enterprise-media/trunk/iPhone/InlandCasinos/InlandCasinos/Classes
+https://subversion.assembla.com/svn/pe-com-enterprise-media
+
+
+
+2011-08-26T17:13:41.369982Z
+123
+nithing
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+3d29c451-5705-4f41-89ec-f9666ed09546
+
+Admob
+dir
+
+Application Delegate
+dir
+
+DataBase
+dir
+
+DetailedViewController
+dir
+
+Helper
+dir
+
+Model Classes
+dir
+
+SubSectionViewController
+dir
+
+TabbarViewControllers
+dir
+
+Utilities
+dir
+

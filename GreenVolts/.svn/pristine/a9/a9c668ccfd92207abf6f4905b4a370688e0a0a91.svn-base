@@ -1,0 +1,89 @@
+//
+//  MaintenanceLogDetailCell.m
+//  GreenVolts
+//
+//  Created by Shinu Mohan on 23/08/12.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//
+
+#import "MaintenanceLogDetailCell.h"
+@interface MaintenanceLogDetailCell ()
+@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
+- (IBAction)saveButtonTouched:(id)sender;
+
+@end
+
+@implementation MaintenanceLogDetailCell
+@synthesize titleLabel;
+
+
+
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) 
+    {
+        // Initialization code
+    }
+    return self;
+}
+
+- (void)displayDetails:(int)rowValue
+{    
+    self.contentView.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"navpopover_cell_backround (2)"]];
+   // self.titleLabel.text = @"Select Task";
+    self.titleLabel.textColor=[UIColor whiteColor];
+    UILabel *planLabel=[[UILabel alloc]initWithFrame:CGRectMake(20, 10, 220, 25)];
+    planLabel.backgroundColor=[UIColor clearColor];
+    planLabel.textColor=[UIColor whiteColor];
+    planLabel.font=[UIFont systemFontOfSize:14];
+    [self.contentView addSubview:planLabel]; 
+//    if(rowValue ==0)
+//    { 
+//        //planLabel.frame=CGRectMake(45, 10, 200, 25);
+//        planLabel.text=@"Replaced";
+//        
+//        
+//    }
+//    else if(rowValue==1)
+//    {
+//        planLabel.text=@"Debugged/Repaired";
+//        
+//        
+//    }
+//    else 
+//    {
+        switch (rowValue) 
+        {case 0:
+                planLabel.text=@"Replaced";
+                break;
+            case 1:
+                planLabel.text=@"Debugged/Repaired";
+                break;
+                
+            case 2:
+                planLabel.text=@"Inspected";
+                break;
+            case 3:
+                planLabel.text=@"Cleaned";
+                break;
+                
+            case 4:
+                planLabel.text=@"Upgraded Inverter Firmware";
+                break;
+            case 5:
+                planLabel.text=@"Referenced";
+                break;
+            
+                
+            default:
+                break;
+        }
+
+    //self.titleLabel.frame
+    
+    }
+//}
+
+
+@end

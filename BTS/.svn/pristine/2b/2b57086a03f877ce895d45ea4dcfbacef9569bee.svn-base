@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OTS_SA_R5_D030_A010]]></id>
+	<title><![CDATA[]]></title>
+    <descriptionText><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Identifying Areas of Value Creation</Introtext><welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">I think there are a couple of things I can do.  Patient education is key.  The hospital experience can be overwhelming for many patients, so I need to spend sufficient time with them to ensure they understand their condition and how to continue care after discharge.  With so many patients, it can be a challenge to spend adequate time with each one, but this is critical. <BR><BR>
+        
+        Another aspect to consider is prompt discharge.  Keeping patients longer than necessary makes them feel unimportant and forgotten.  Since discharge is their last memory of the hospital, we want to ensure it’s a smooth process in order to keep our satisfaction rates up.</welcomeText>]]></descriptionText>
+    <character><![CDATA[Matt Chu]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>	
+	<branchTo><![CDATA[OTS_SA_R5_D030_A020]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OTS_SA_R2_D020_D020]]></id>
+	<title><![CDATA[Not Quite]]></title>
+    <descriptionText><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Not Quite</Introtext><welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">"This is an Execute Next Steps question, not a Results question, and it moves too quickly to an end result before you fully understand all the areas where OAPI might help with patient treatment goals.<br><br>The best question is, "Clearly, achieving patient treatment goals is key to maintain your standing as one of the "top 100" hospitals for cardiac care. How will you know if you are on track to maintain that standard?"<br>This Results question probes Dr. Cardonza’s answer to the previous question while staying focused on results.<br><br><b>It will help you to know the answer to this question to continue. Here is how Dr. Cardonza would have answered:</b><br><br>"We track and report all the statistics I mentioned before, in addition to others. Our cardiology department performs very well when compared to other hospitals across the nation, and to stay on the list, we’ll need to improve or maintain those stats. I feel we may better achieve our patient treatment goals by better understanding how to select the appropriate therapy for each patient.""</welcomeText>]]></descriptionText>
+    <character><![CDATA[Mac_skeptical]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>
+	<branchTo><![CDATA[OTS_SA_R2_D030]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

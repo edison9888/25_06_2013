@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>appID</key>
+	<string>1</string>
+	<key>auxBackgroundImage</key>
+	<string></string>
+	<key>dataPostPath</key>
+	<string>http://www.btslearning.com/external/ipad/ipadSave.aspx</string>
+	<key>defaultImageExtn</key>
+	<string>png</string>
+	<key>emailText</key>
+	<string>&lt;welcomeText style=&quot; font-family:Helvetica; font-size:16pt; line-height:18pt; font-weight:normal; color:#333; display:block; margin:0 10px 10px&quot;&gt;You&apos;ve received an e-mail in your inbox.&lt;/welcomeText&gt;</string>
+	<key>instructionalText</key>
+	<string>&lt;welcomeText style=&quot; font-family:Helvetica; font-size:10pt; line-height:18pt; font-weight:normal; color:#100; display:block; margin:0 10px 10px&quot;&gt;&lt;i&gt;Scroll to view entire content.&lt;/i&gt;&lt;/welcomeText&gt;</string>
+	<key>rounds</key>
+	<array>
+		<dict>
+			<key>code</key>
+			<string>OC_SA_R1</string>
+			<key>appID</key>
+			<string>522</string>
+			<key>KPIs</key>
+			<array>
+				<string>Customer Results Score</string>
+				<string>Sales Progress Score</string>
+				<string>Trusted Advisor Relationship Score</string>
+			</array>
+			<key>mainXML</key>
+			<string>OC_SA_R1_structure</string>
+			<key>maxKPIs</key>
+			<array>
+				<string>50</string>
+				<string>55</string>
+				<string>55</string>
+			</array>
+			<key>title</key>
+			<string>Round 1</string>
+		</dict>
+		<dict>
+			<key>code</key>
+			<string>OTA_SA_R2</string>
+			<key>appID</key>
+			<string>526</string>
+			<key>KPIs</key>
+			<array>
+				<string>Customer Results Score</string>
+				<string>Sales Progress Score</string>
+				<string>Trusted Advisor Relationship Score</string>
+			</array>
+			<key>mainXML</key>
+			<string>OTA_SA_R2_structure</string>
+			<key>maxKPIs</key>
+			<array>
+				<string>140</string>
+				<string>120</string>
+				<string>140</string>
+			</array>
+			<key>title</key>
+			<string>Round 2</string>
+		</dict>
+		<dict>
+			<key>code</key>
+			<string>OTS_SA_R3</string>
+			<key>appID</key>
+			<string>527</string>
+			<key>KPIs</key>
+			<array>
+				<string>Customer Results Score</string>
+				<string>Sales Progress Score</string>
+				<string>Trusted Advisor Relationship Score</string>
+			</array>
+			<key>mainXML</key>
+			<string>OTS_SA_R3_structure</string>
+			<key>maxKPIs</key>
+			<array>
+				<string>60</string>
+				<string>60</string>
+				<string>60</string>
+			</array>
+			<key>title</key>
+			<string>Round 3</string>
+		</dict>
+		<dict>
+			<key>code</key>
+			<string>OTS_SA_R4</string>
+			<key>appID</key>
+			<string>528</string>
+			<key>KPIs</key>
+			<array>
+				<string>Customer Results Score</string>
+				<string>Sales Progress Score</string>
+				<string>Trusted Advisor Relationship Score</string>
+			</array>
+			<key>mainXML</key>
+			<string>OTS_SA_R4_structure</string>
+			<key>maxKPIs</key>
+			<array>
+				<string>65</string>
+				<string>70</string>
+				<string>60</string>
+			</array>
+			<key>title</key>
+			<string>Round 4</string>
+		</dict>
+		<dict>
+			<key>code</key>
+			<string>OTS_SA_R5</string>
+			<key>appID</key>
+			<string>529</string>
+			<key>KPIs</key>
+			<array>
+				<string>Customer Results Score</string>
+				<string>Sales Progress Score</string>
+				<string>Trusted Advisor Relationship Score</string>
+			</array>
+			<key>mainXML</key>
+			<string>OTS_SA_R5_structure</string>
+			<key>maxKPIs</key>
+			<array>
+				<string>140</string>
+				<string>120</string>
+				<string>140</string>
+			</array>
+			<key>title</key>
+			<string>Post Workshop Sim</string>
+		</dict>
+	</array>
+	<key>cliID</key>
+	<string>430</string>
+	<key>shellImages</key>
+	<dict>
+		<key>defaultBgnd</key>
+		<string>BgImg_Scene01</string>
+	</dict>
+	<key>userData</key>
+	<string>user_data</string>
+	<key>voicemailText</key>
+	<string>&lt;welcomeText style=&quot; font-family:Helvetica; font-size:16pt; line-height:18pt; font-weight:normal; color:#333; display:block; margin:0 10px 10px&quot;&gt;You&apos;ve received a voicemail in your inbox.&lt;/welcomeText&gt;</string>
+</dict>
+</plist>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OTS_SA_R5_D050_A020]]></id>
+	<title><![CDATA[]]></title>
+    <descriptionText><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Understanding the Context</Introtext><welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">This is an Options question, not a Problems question.  It doesn’t advance the conversation to the point where you can discuss Samsca as an option for the priorities that Dr. Chu has already identified.<BR><BR>
+        The best question is, “As you focus on these key goals of patient safety and patient experience, do you anticipate any conflicts in meeting Maycomb’s other goals, especially those around cost and efficiency?”<BR><BR>
+        This Problems question helps you by getting Dr. Chu to focus on the barriers he may encounter when implementing the changes.<BR><BR>
+        <B>It will help you to know the answer to this question to continue.  Here is how Dr. Chu would have answered:</B><BR><BR>
+        
+        “Ah…that’s a good question.  I think there will be some conflicts, especially at first.  As you can imagine, increasing the number of specialist consults will increase costs.  However, as my own experience increases and my knowledge of treatment options grows, the need for specialist consults should decrease.”</welcomeText>]]></descriptionText>
+    <character><![CDATA[Mack]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>	
+	<branchTo><![CDATA[OTS_SA_R5_D060]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

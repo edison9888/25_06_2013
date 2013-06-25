@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OTS_SA_R2_D020_C020]]></id>
+	<title><![CDATA[]]></title>
+    <descriptionText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">This is an Execute Next Steps question, not a Results question.  It focuses too much on the implementation of the strategy instead of on the patient outcomes it may support.<br><br>The best question is, "Clearly, patient outcomes are key to receiving referrals from satisfied patients – and, ultimately, driving your short-term goals. Since compliance seems to be an issue, how do you track that?"<br><br>This Results question probes Dr. Hayes’ answer to the previous question while staying focused on results.<br><br><b>It will help you to know the answer to this question to continue.  Here is how Dr. Hayes would have answered:</b><br><br>"For a patient with depression, I want to be able to make a difference for them as quickly as possible.  A lot of the patients who are referred to Sunnydale have been struggling with depression for years; they’ve been moved from product to product without experiencing the relief they need, and they’ve undergone a lot of unpleasant side effects.  By the time I see the patients, they’re jaded and don’t have much confidence left in doctors.  When I see a new patient like this, I want the first product I put them on to work.  In order for that to happen, I have to truly understand their history and why their previous treatments were unsuccessful.  They also need to be able to afford and take the medication.  Patients don’t forget doctors who make a difference in their lives – and they also tell everyone they know."</welcomeText>]]></descriptionText>
+    <character><![CDATA[Char_Mack]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>
+	<branchTo><![CDATA[OTS_SA_R2_D030]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

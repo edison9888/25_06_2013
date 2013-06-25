@@ -1,0 +1,8 @@
+//
+// Prefix header for all source files of the 'Otsuka_BTS_Simulation' target in the 'Otsuka_BTS_Simulation' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+    #import <UIKit/UIKit.h>
+#endif

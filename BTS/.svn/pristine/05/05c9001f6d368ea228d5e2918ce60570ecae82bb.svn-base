@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[Pre_OTS_SA_R2_D010]]></id>
+	<title><![CDATA[]]></title>
+    <descriptionText><![CDATA[<Introtext style="font-family:Helvetica; font-size:14pt; font-weight:bold; color:#cc0033; margin:10px -5px 10px 5px; width:418px; padding:5px 0 5px 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Meeting with Dr. Hayes</Introtext><welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">You are at your meeting with Dr. Hayes at Sunnyside Psychiatry. With you is Dr. Bennett, who has been your main contact at Sunnyside Psychiatry during the past year, as well as Dennis, your co-promote partner.  After establishing rapport, you reviewed the agenda for the meeting.  Now it is time to kick off your discussion with a question</welcomeText><lasttext style="font-family:Helvetica; font-size:11pt; color:#000; background-color:#c0c0c0; margin:10px; padding:2px 0 2px 5px; display:block;"><i>Click the <b><I>Continue</I></b> button to proceed.</i></lasttext>]]></descriptionText>
+    <character><![CDATA[Char_Mack]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>
+	<branchTo><![CDATA[OTS_SA_R2_D010]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

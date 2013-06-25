@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OTS_SA_R5_D050_C020]]></id>
+	<title><![CDATA[]]></title>
+    <descriptionText><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Understanding the Context</Introtext><welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">This is a Results question, not a Problems question. It puts you back in the results conversation rather than advancing the conversation by probing about their problems.<BR><BR>The best question to ask is, "What challenges do you anticipate in meeting the options you’ve described, such as shorter wait times and more structured processes?"<BR><BR>This Problems question helps you by getting Rachel to focus on the barriers she may encounter when implementing the changes.  The question appropriately links to the previous discussion, and it lets Rachel tell you about her concerns instead of you potentially trying to solve a problem she has not yet articulated.<BR><BR><B>Note how Rachel would have answered that question:</B><BR><BR>"As much as we’d like our office to operate like clockwork, we recognize that it’s an elusive goal.  It seems staff members are always trying to catch the doctors between appointments, oftentimes because there’s been a call-back and a patient’s treatment plan needs to change.  Depending on the situation, that may make the doctor late for the next appointment.  Or, if the office staff are busy on the phones pushing through prior-authorizations or speaking with pharmacies or insurance plans, it can be difficult to return calls from our patients promptly.  Of course, that can lead to a domino effect, which may last all day."</welcomeText>]]></descriptionText>
+    <character><![CDATA[Char_Mack]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>	
+	<branchTo><![CDATA[OTS_SA_R5_D060]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

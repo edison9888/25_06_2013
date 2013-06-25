@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<decisions>
+    <decision template="MultipleSelectMCQ">
+        <pageContent>
+            <id><![CDATA[OC_SA_R1_D010]]></id>
+            <title><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Understanding Your Customer’s Priorities</Introtext>]]></title>
+            <title2><![CDATA[Understanding Your Customer’s Priorities]]></title2>
+            <instructions><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:11pt; line-height:18pt; text-align:justify; font-weight:bold; color:#333; display:block; margin:0 10px 10px">Based on what you’ve read so far and your market knowledge, how would you answer Annie’s question? Select the cardiology department’s top three priorities.</welcomeText>]]></instructions>
+            <choices>
+                <choice>
+                    <id><![CDATA[1]]></id>
+                    <isCorrect><![CDATA[NO]]></isCorrect>
+                    <choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>A</b>. Applying New Protocols</span></welcomeText>]]></choiceText>
+                </choice>
+                <choice>
+                    <id><![CDATA[2]]></id>
+                    <isCorrect><![CDATA[NO]]></isCorrect>
+                    <choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>B</b>. Attracting and Retaining Patients</welcomeText>]]></choiceText>
+                </choice>
+                <choice>
+                    <id><![CDATA[3]]></id>
+                    <isCorrect><![CDATA[NO]]></isCorrect>
+                    <choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>C</b>. Making Staffing More Efficient</welcomeText>]]></choiceText>
+                </choice>
+                <choice>
+                    <id><![CDATA[4]]></id>
+                    <isCorrect><![CDATA[NO]]></isCorrect>
+                    <choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>D</b>. Addressing Healthcare Trends</welcomeText>]]></choiceText>
+                </choice>
+                <choice>
+                    <id><![CDATA[5]]></id>
+                    <isCorrect><![CDATA[NO]]></isCorrect>
+                    <choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>E</b>. Improving Patient Management </welcomeText>]]></choiceText>
+                </choice>
+                <choice>
+                    <id><![CDATA[6]]></id>
+                    <isCorrect><![CDATA[NO]]></isCorrect>
+                    <choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>F</b>. Addressing or Controlling Side Effects </welcomeText>]]></choiceText>
+                </choice>
+                <choice>
+                    <id><![CDATA[7]]></id>
+                    <isCorrect><![CDATA[YES]]></isCorrect>
+                    <choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>G</b>. Taking Advantage of Medical Advances   </welcomeText>]]></choiceText>
+                </choice>
+                <choice>
+                    <id><![CDATA[8]]></id>
+                    <isCorrect><![CDATA[YES]]></isCorrect>
+                    <choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>H</b>. Protecting their Professional Reputation </welcomeText>]]></choiceText>
+                </choice>
+                <choice>
+                    <id><![CDATA[9]]></id>
+                    <isCorrect><![CDATA[NO]]></isCorrect>
+                    <choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>I</b>. Understanding Formulary Status and Possible Restrictions </welcomeText>]]></choiceText>
+                </choice>
+                <choice>
+                    <id><![CDATA[10]]></id>
+                    <isCorrect><![CDATA[NO]]></isCorrect>
+                    <choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>J</b>. Improving Administrative Execution and Businesses Processes </welcomeText>]]></choiceText>
+                </choice>
+                <choice>
+                    <id><![CDATA[11]]></id>
+                    <isCorrect><![CDATA[YES]]></isCorrect>
+                    <choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>K</b>. Achieving Positive Patient Results </welcomeText>]]></choiceText>
+                </choice>
+                <choice>
+                    <id><![CDATA[12]]></id>
+                    <isCorrect><![CDATA[NO]]></isCorrect>
+                    <choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>L</b>. Handling Payer Interventions </welcomeText>]]></choiceText>
+                </choice>
+                <choice>
+                    <id><![CDATA[13]]></id>
+                    <isCorrect><![CDATA[NO]]></isCorrect>
+                    <choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>M</b>. Leveraging Information Technology</welcomeText>]]></choiceText>
+                </choice>
+                <choice>
+                    <id><![CDATA[14]]></id>
+                    <isCorrect><![CDATA[NO]]></isCorrect>
+                    <choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>N</b>. Solving Adherence Challenges</welcomeText>]]></choiceText>
+                </choice>
+                
+            </choices>
+            <scores>
+                <wrong>
+                    <KPIs totalScore="0">
+                        <KPI marks="0"><![CDATA[Customer Results Score]]></KPI>
+                        <KPI marks="0"><![CDATA[Sales Progress Score]]></KPI>
+                        <KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+                    </KPIs>
+                    <branchTo><![CDATA[OC_SA_R1_D010_C010]]></branchTo>
+                </wrong>
+                <partial>
+                    <KPIs totalScore="15">
+                        <KPI marks="5"><![CDATA[Customer Results Score]]></KPI>
+                        <KPI marks="5"><![CDATA[Sales Progress Score]]></KPI>
+                        <KPI marks="5"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+                    </KPIs>
+                    <branchTo><![CDATA[OC_SA_R1_D010_B010]]></branchTo>
+                </partial>
+                <correct>
+                    <KPIs totalScore="30">
+                        <KPI marks="10"><![CDATA[Customer Results Score]]></KPI>
+                        <KPI marks="10"><![CDATA[Sales Progress Score]]></KPI>
+                        <KPI marks="10"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+                    </KPIs>
+                    <branchTo><![CDATA[OC_SA_R1_D010_AEH010]]></branchTo>
+                </correct>
+            </scores>
+            <summary><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">You know from your research that the cardiology department provides state-of-the-art treatment and is considered a leader in its field.    You also know that Dr. Cardonza takes his professional reputation very seriously, and that all the physicians keep patient welfare at the forefront of their minds.  The three main business priorities that fit best for the cardiology department are Taking Advantage of Medical Advances (Choice G), Protecting their Business Reputation (Choice H), and Achieving Positive Patient Results (Choice K).</welcomeText>]]></summary>
+        </pageContent>    </decision>
+    <decision template="SingleSelectMCQ">
+        <pageContent>
+            <id><![CDATA[OC_SA_R1_D020]]></id>
+            <title><![CDATA[<Introtext style="font-family:Helvetica; font-size:14pt; font-weight:bold; color:#cc0033; margin:10px -5px 10px 5px; padding:5px 0 5px 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Using Trends in a Customer Conversation</Introtext>]]></title>
+            <title2><![CDATA[Using Trends in a Customer Conversation]]></title2>
+            <instructions><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:11pt; line-height:18pt; text-align:justify; font-weight:bold; color:#333; display:block; margin:0 10px 10px">What is the best way to use trends in a conversation with Dr. Gomez?</welcomeText>]]></instructions>
+            <choices>
+                <choice>
+                    <id><![CDATA[1]]></id>
+                    <isCorrect><![CDATA[NO]]></isCorrect>
+                    <choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>A</b>. Ask Dr. Gomez what her patient volume has looked like for the past month to get a feel for how healthcare reform may be affecting patient procedures.  </welcomeText>]]></choiceText>
+                    <KPIs totalScore="0">
+                        <KPI marks="0"><![CDATA[Customer Results Score]]></KPI>
+                        <KPI marks="-5"><![CDATA[Sales Progress Score]]></KPI>
+                        <KPI marks="5"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+                    </KPIs>
+                    <branchTo><![CDATA[OC_SA_R1_D020_A010]]></branchTo>
+                </choice>
+                <choice>
+                    <id><![CDATA[2]]></id>
+                    <isCorrect><![CDATA[YES]]></isCorrect>
+                    <choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>B</b>. Invite Dr. Gomez to the speaker program. Ask Dr. Gomez what she thinks the top trends are that affect her department’s desired goals, and also find out as a potential prescriber of your product, what aspects of hyponatremia and its management she needs education on the most. </welcomeText>]]></choiceText>
+                    <KPIs totalScore="25">
+                        <KPI marks="10"><![CDATA[Customer Results Score]]></KPI>
+                        <KPI marks="10"><![CDATA[Sales Progress Score]]></KPI>
+                        <KPI marks="5"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+                    </KPIs>
+                    <branchTo><![CDATA[OC_SA_R1_D020_B010]]></branchTo>
+                </choice>
+                <choice>
+                    <id><![CDATA[3]]></id>
+                    <isCorrect><![CDATA[NO]]></isCorrect>
+                    <choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>C</b>. Ask Dr. Gomez what trends she believes are currently impacting Maycomb. Arrange for a lunch to discuss her feedback.</welcomeText>]]></choiceText>
+                    <KPIs totalScore="15">
+                        <KPI marks="5"><![CDATA[Customer Results Score]]></KPI>
+                        <KPI marks="5"><![CDATA[Sales Progress Score]]></KPI>
+                        <KPI marks="5"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+                    </KPIs>
+                    <branchTo><![CDATA[OC_SA_R1_D020_C010]]></branchTo>
+                </choice>
+                <choice>
+                    <id><![CDATA[4]]></id>
+                    <isCorrect><![CDATA[NO]]></isCorrect>
+                    <choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>D</b>. Find out from Dr. Gomez if she has seen an opportunity for using your product lately. Stress the advantages of Samsca over fluid restriction, notably higher patient satisfaction. Detail your product and leave some information packets.</welcomeText>]]></choiceText>
+                    <KPIs totalScore="10">
+                        <KPI marks="5"><![CDATA[Customer Results Score]]></KPI>
+                        <KPI marks="5"><![CDATA[Sales Progress Score]]></KPI>
+                        <KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+                    </KPIs>
+                    <branchTo><![CDATA[OC_SA_R1_D020_D010]]></branchTo>
+                </choice>
+            </choices>
+            <summary><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">This is a great opportunity to involve Dr. Gomez and learn about the most important trends affecting the cardiology department’s goals (Choice B).  Choice A makes the assumption that healthcare reform is the most important trend for the department, and you miss an opportunity to discuss trends with Dr. Gomez in a way that positions you as a trusted advisor.  If you chose C, you didn’t include her desired goals or discuss which patients with dilutional hyponatremia are appropriate for treatment with Samsca.    Again, with Choice D, you made an assumption about what trend was most important for Dr. Gomez’s department, and missed an opportunity to build trust as an advisor to Dr. Gomez.  Choice B is the best choice.</welcomeText>]]></summary>
+        </pageContent>    
+    </decision>
+    <decision template="SingleSelectMCQ">
+        <pageContent>
+            <id><![CDATA[OC_SA_R1_D030]]></id>
+            <title><![CDATA[<Introtext style="font-family:Helvetica; font-size:14pt; font-weight:bold; color:#cc0033; margin:10px -5px 10px 5px; padding:5px 0 5px 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Anticipating Feedback</Introtext>]]></title>
+            <title2><![CDATA[Anticipating Feedback]]></title2>
+            <instructions><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:11pt; line-height:18pt; text-align:justify; font-weight:bold; color:#333; display:block; margin:0 10px 10px">What is your next step?</welcomeText>]]></instructions>
+            <choices>
+                <choice>
+                    <id><![CDATA[1]]></id>
+                    <isCorrect><![CDATA[NO]]></isCorrect>
+                    <choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>A</b>. Provide Dr. Gomez with information on Medicare and Medicaid coverage, as well as some of the major insurance carriers in the area.  Also, provide her with information on the patient assistance program.  </welcomeText>]]></choiceText>
+                    <KPIs totalScore="0">
+                        <KPI marks="5"><![CDATA[Customer Results Score]]></KPI>
+                        <KPI marks="-5"><![CDATA[Sales Progress Score]]></KPI>
+                        <KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+                    </KPIs>
+                    <branchTo><![CDATA[OC_SA_R1_D030_A010]]></branchTo>
+                </choice>
+                <choice>
+                    <id><![CDATA[2]]></id>
+                    <isCorrect><![CDATA[YES]]></isCorrect>
+                    <choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>B</b>. Probe Dr. Gomez further about the factors she is taking into consideration. It’s important that you fully understand the criteria that Dr. Gomez is using to evaluate whether she will begin prescribing Samsca.  Assist by using any of your approved resources to help her, including information on insurance coverage.</welcomeText>]]></choiceText>
+                    <KPIs totalScore="25">
+                        <KPI marks="10"><![CDATA[Customer Results Score]]></KPI>
+                        <KPI marks="5"><![CDATA[Sales Progress Score]]></KPI>
+                        <KPI marks="10"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+                    </KPIs>
+                    <branchTo><![CDATA[OC_SA_R1_D030_B010]]></branchTo>
+                </choice>
+                <choice>
+                    <id><![CDATA[3]]></id>
+                    <isCorrect><![CDATA[NO]]></isCorrect>
+                    <choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>C</b>. Find out what concerns Dr. Gomez has about prescribing Samsca. It’s important to anticipate the objections that she may have. Gather the data within your approved resources for Dr. Gomez that will address all of her concerns. </welcomeText>]]></choiceText>
+                    <KPIs totalScore="10">
+                        <KPI marks="5"><![CDATA[Customer Results Score]]></KPI>
+                        <KPI marks="0"><![CDATA[Sales Progress Score]]></KPI>
+                        <KPI marks="5"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+                    </KPIs>
+                    <branchTo><![CDATA[OC_SA_R1_D030_C010]]></branchTo>
+                </choice>
+                <choice>
+                    <id><![CDATA[4]]></id>
+                    <isCorrect><![CDATA[NO]]></isCorrect>
+                    <choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>D</b>. Tell Dr. Gomez that you’ll put together a presentation which takes into consideration all of her concerns about beginning to prescribe Samsca. Use approved resources, including patient success stories, as well as information on insurance coverage and the patient assistance program. </welcomeText>]]></choiceText>
+                    <KPIs totalScore="5">
+                        <KPI marks="0"><![CDATA[Customer Results Score]]></KPI>
+                        <KPI marks="0"><![CDATA[Sales Progress Score]]></KPI>
+                        <KPI marks="5"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+                    </KPIs>
+                    <branchTo><![CDATA[OC_SA_R1_D030_D010]]></branchTo>
+                </choice>
+            </choices>
+            <summary><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">Because Dr. Gomez is still in the evaluating options phase of the prescribing cycle, jumping ahead to deciding to trial is premature. In Choices A and D, you are attempting to help her decide which medication to trial by using marketing materials,  but you aren’t even sure yet what criteria Dr. Gomez is using to evaluate her options. If you chose Choice C, you are also jumping ahead to handle objections before finding out more information on what is driving those concerns. You should first make sure you fully understand all of the factors that Dr. Gomez is taking into consideration as she evaluates her options. This will help to ensure that you don’t become misaligned and run into problems later in the prescribing cycle. Choice B is the best choice. </welcomeText>]]></summary>
+        </pageContent>   
+    </decision>
+    <decision template="SingleSelectMCQ">
+        <pageContent>
+            <id><![CDATA[OC_SA_R1_D040]]></id>
+            <title><![CDATA[<Introtext style="font-family:Helvetica; font-size:14pt; font-weight:bold; color:#cc0033; margin:10px -5px 10px 5px; padding:5px 0 5px 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Mistaken Identity</Introtext>]]></title>
+            <title2><![CDATA[Mistaken Identity]]></title2>
+            <instructions><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:11pt; line-height:18pt; text-align:justify; font-weight:bold; color:#333; display:block; margin:0 10px 10px">How do you respond to the information that Dr. Gomez is not the decision maker?</welcomeText>]]></instructions>
+            <choices>
+                <choice>
+                    <id><![CDATA[1]]></id>
+                    <isCorrect><![CDATA[NO]]></isCorrect>
+                    <choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>A</b>. Agree to have Dr. Gomez talk to Dr. Cardonza. You really haven’t dealt much with Dr. Cardonza, and now that Dr. Gomez has been educated on your product and the many appropriate patient types with hyponatremia it could impact, she will be the best person to relay the information to Dr. Cardonza. </welcomeText>]]></choiceText>
+                    <KPIs totalScore="5">
+                        <KPI marks="5"><![CDATA[Customer Results Score]]></KPI>
+                        <KPI marks="0"><![CDATA[Sales Progress Score]]></KPI>
+                        <KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+                    </KPIs>
+                    <branchTo><![CDATA[OC_SA_R1_D040_A010]]></branchTo>
+                </choice>
+                <choice>
+                    <id><![CDATA[2]]></id>
+                    <isCorrect><![CDATA[NO]]></isCorrect>
+                    <choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>B</b>. Tell Dr. Gomez that you are planning another speaker program Dr. Cardonza could attend.  That way, Dr. Cardonza could see the benefits and side effects of products like yours for himself. </welcomeText>]]></choiceText>
+                    <KPIs totalScore="0">
+                        <KPI marks="0"><![CDATA[Customer Results Score]]></KPI>
+                        <KPI marks="-5"><![CDATA[Sales Progress Score]]></KPI>
+                        <KPI marks="5"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+                    </KPIs>
+                    <branchTo><![CDATA[OC_SA_R1_D040_B010]]></branchTo>
+                </choice>
+                <choice>
+                    <id><![CDATA[3]]></id>
+                    <isCorrect><![CDATA[YES]]></isCorrect>
+                    <choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>C</b>. Ask Dr. Gomez to set up a time when the three of you can get together so that you can better understand Dr. Cardonza’s priorities.</welcomeText>]]></choiceText>
+                    <KPIs totalScore="25">
+                        <KPI marks="5"><![CDATA[Customer Results Score]]></KPI>
+                        <KPI marks="10"><![CDATA[Sales Progress Score]]></KPI>
+                        <KPI marks="10"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+                    </KPIs>
+                    <branchTo><![CDATA[OC_SA_R1_D040_C010]]></branchTo>
+                </choice>
+                <choice>
+                    <id><![CDATA[4]]></id>
+                    <isCorrect><![CDATA[NO]]></isCorrect>
+                    <choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>D</b>. Tell Dr. Gomez that you will call on Dr. Cardonza next week. Plan to present a strong case for him to begin trialing Samsca, and separately show Dr. Cardonza how you can support him in achieving positive patient goals.</welcomeText>]]></choiceText>
+                    <KPIs totalScore="10">
+                        <KPI marks="5"><![CDATA[Customer Results Score]]></KPI>
+                        <KPI marks="5"><![CDATA[Sales Progress Score]]></KPI>
+                        <KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+                    </KPIs>
+                    <branchTo><![CDATA[OC_SA_R1_D040_D010]]></branchTo>
+                </choice>
+            </choices>
+            <summary><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">When you learn that Dr. Gomez is not actually the decision maker, the best thing to do is to get Dr. Cardonza involved right away.  You want to make sure that you include Dr. Gomez, since she is the person you have built the relationship with and she trusts you already (Choice C).  Having Dr. Gomez speak with Dr. Cardonza is not ideal, since you won’t be there to establish trust with Dr. Cardonza and show the value both you and the product can bring (Choice A). Choice B doesn’t give you the chance to connect with Dr. Cardonza about his priorities, and you don’t even know if he will agree to come to the speaker program. Choice D is an okay option, but it would be more effective to have Dr. Gomez set up the meeting, since you already have a good relationship with Dr. Gomez. The correct answer is Choice C.</welcomeText>]]></summary>
+        </pageContent>  
+    </decision>
+    <decision template="SingleSelectMCQ">
+        <pageContent>
+            <id><![CDATA[OC_SA_R1_D050]]></id>
+            <title><![CDATA[<Introtext style="font-family:Helvetica; font-size:14pt; font-weight:bold; color:#cc0033; margin:10px -5px 10px 5px; padding:5px 0 5px 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Aligning Your Strategy</Introtext>]]></title>
+            <title2><![CDATA[Aligning Your Strategy]]></title2>
+            <instructions><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:11pt; line-height:18pt; text-align:justify; font-weight:bold; color:#333; display:block; margin:0 10px 10px">As you prepare for your meeting with Dr. Cardonza, what action will you plan to take?</welcomeText>]]></instructions>
+            <choices>
+                <choice>
+                    <id><![CDATA[1]]></id>
+                    <isCorrect><![CDATA[NO]]></isCorrect>
+                    <choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>A</b>. Plan to offer Dr. Cardonza information and data that he can use to evaluate his options. Be prepared to help him by providing the features and fair balance of your product. </welcomeText>]]></choiceText>
+                    <KPIs totalScore="15">
+                        <KPI marks="5"><![CDATA[Customer Results Score]]></KPI>
+                        <KPI marks="5"><![CDATA[Sales Progress Score]]></KPI>
+                        <KPI marks="5"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+                    </KPIs>
+                    <branchTo><![CDATA[OC_SA_R1_D050_A010]]></branchTo>
+                </choice>
+                <choice>
+                    <id><![CDATA[2]]></id>
+                    <isCorrect><![CDATA[NO]]></isCorrect>
+                    <choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>B</b>. Take time to research the cardiology department thoroughly, and identify questions to ask Dr. Cardonza in your meeting that will help to accelerate the prescribing cycle. </welcomeText>]]></choiceText>
+                    <KPIs totalScore="0">
+                        <KPI marks="5"><![CDATA[Customer Results Score]]></KPI>
+                        <KPI marks="-10"><![CDATA[Sales Progress Score]]></KPI>
+                        <KPI marks="5"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+                    </KPIs>
+                    <branchTo><![CDATA[OC_SA_R1_D050_B010]]></branchTo>
+                </choice>
+                <choice>
+                    <id><![CDATA[3]]></id>
+                    <isCorrect><![CDATA[YES]]></isCorrect>
+                    <choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>C</b>. Prepare to confirm what you have heard from Dr. Gomez with Dr. Cardonza, such as the department’s focus on taking advantage of new treatment options and their reputation.  Also, ask Dr. Cardonza his vision for patient treatment goals. </welcomeText>]]></choiceText>
+                    <KPIs totalScore="30">
+                        <KPI marks="10"><![CDATA[Customer Results Score]]></KPI>
+                        <KPI marks="10"><![CDATA[Sales Progress Score]]></KPI>
+                        <KPI marks="10"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+                    </KPIs>
+                    <branchTo><![CDATA[OC_SA_R1_D050_C010]]></branchTo>
+                </choice>
+                <choice>
+                    <id><![CDATA[4]]></id>
+                    <isCorrect><![CDATA[NO]]></isCorrect>
+                    <choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>D</b>. Plan to use the meeting to fully identify and document all of Dr. Cardonza’s concerns about prescribing your product, in addition to presenting information. Take time to anticipate his concerns. After all, he is very comfortable with the traditional methods for treating hyponatremia, having used them for his entire career, and naturally he will have some reservations.</welcomeText>]]></choiceText>
+                    <KPIs totalScore="0">
+                        <KPI marks="5"><![CDATA[Customer Results Score]]></KPI>
+                        <KPI marks="-10"><![CDATA[Sales Progress Score]]></KPI>
+                        <KPI marks="5"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+                    </KPIs>
+                    <branchTo><![CDATA[OC_SA_R1_D050_D010]]></branchTo>
+                </choice>
+            </choices>
+            <summary><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">Dr. Gomez stated earlier that he and Dr. Cardonza are willing to explore other options, so this indicates they are in the evaluating options phase of the prescribing cycle. Because this will be your first conversation with Dr. Cardonza, it would be best to confirm the information you have received from Dr. Gomez, and ask Dr. Cardonza about the treatment goals he hopes to achieve. (Choice C). In this way you are able both to bring value to the customer and to increase their trust in you and your product. Choice A is an okay option, since providing Dr. Cardonza criteria to evaluate his options is another appropriate action in this phase of the prescribing cycle, but it doesn’t take into consideration Dr. Cardonza’s priorities, and in this instance you want to do both. You should have already researched the department and the hospital thoroughly, so Choice B does not move you and your customer forward. Choice D prematurely jumps ahead to deciding to trial instead of providing what is needed for this phase of the prescribing cycle. Choice C is the best choice.</welcomeText>]]></summary>
+        </pageContent>   
+    </decision>
+    <decision template="SingleSelectMCQ">
+        <pageContent>
+            <id><![CDATA[OC_SA_R1_D060]]></id>
+            <title><![CDATA[<Introtext style="font-family:Helvetica; font-size:14pt; font-weight:bold; color:#cc0033; margin:10px -5px 10px 5px; padding:5px 0 5px 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Networking for Results</Introtext>]]></title>
+            <title2><![CDATA[Networking for Results]]></title2>
+            <instructions><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:11pt; line-height:18pt; text-align:justify; font-weight:bold; color:#333; display:block; margin:0 10px 10px">How do you react to this new information?</welcomeText>]]></instructions>
+            <choices>
+                <choice>
+                    <id><![CDATA[1]]></id>
+                    <isCorrect><![CDATA[NO]]></isCorrect>
+                    <choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>A</b>. Confirm that you’ll meet with Dr. Gomez and Dr. Cardonza on Monday. You feel good about your growing relationship with Dr. Gomez, and you know that you can demonstrate a strong case for using your product. </welcomeText>]]></choiceText>
+                    <KPIs totalScore="5">
+                        <KPI marks="0"><![CDATA[Customer Results Score]]></KPI>
+                        <KPI marks="5"><![CDATA[Sales Progress Score]]></KPI>
+                        <KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+                    </KPIs>
+                    <branchTo><![CDATA[OC_SA_R1_D060_A010]]></branchTo>
+                </choice>
+                <choice>
+                    <id><![CDATA[2]]></id>
+                    <isCorrect><![CDATA[NO]]></isCorrect>
+                    <choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>B</b>. Prepare to speak about the patient assistance program in your meeting.  If Dr. Cardonza is concerned about cost, you want to be sure he is fully informed about this option.</welcomeText>]]></choiceText>
+                    <KPIs totalScore="10">
+                        <KPI marks="5"><![CDATA[Customer Results Score]]></KPI>
+                        <KPI marks="5"><![CDATA[Sales Progress Score]]></KPI>
+                        <KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+                    </KPIs>
+                    <branchTo><![CDATA[OC_SA_R1_D060_B010]]></branchTo>
+                </choice>
+                <choice>
+                    <id><![CDATA[3]]></id>
+                    <isCorrect><![CDATA[NO]]></isCorrect>
+                    <choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>C</b>. Plan a meeting with Annie, your District Manager, to get some ideas on how to best position the cost of Samsca. She has always been extremely helpful in the past in coming up with ways to deal with these situations. </welcomeText>]]></choiceText>
+                    <KPIs totalScore="10">
+                        <KPI marks="0"><![CDATA[Customer Results Score]]></KPI>
+                        <KPI marks="10"><![CDATA[Sales Progress Score]]></KPI>
+                        <KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+                    </KPIs>
+                    <branchTo><![CDATA[OC_SA_R1_D060_C010]]></branchTo>
+                </choice>
+                <choice>
+                    <id><![CDATA[4]]></id>
+                    <isCorrect><![CDATA[YES]]></isCorrect>
+                    <choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>D</b>. Build an initial strategy for the meeting with Dr. Cardonza.  Then, schedule some time with Annie, your district manager, to receive her feedback and refine your strategy. This is an important meeting, and you don’t want to risk being unprepared.</welcomeText>]]></choiceText>
+                    <KPIs totalScore="25">
+                        <KPI marks="5"><![CDATA[Customer Results Score]]></KPI>
+                        <KPI marks="10"><![CDATA[Sales Progress Score]]></KPI>
+                        <KPI marks="10"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+                    </KPIs>
+                    <branchTo><![CDATA[OC_SA_R1_D060_D010]]></branchTo>
+                </choice>
+            </choices>
+            <summary><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">It is important to leverage your resources and to plan your strategy carefully when going into a discussion about your product’s disease state. Meeting with Annie beforehand to refine  your strategy for the meeting will ensure that you are prepared for your meeting with Dr. Cardonza (Choice D). Choice A is too risky when you have Annie available to help you further prepare. Choice B only focuses exclusively on the patient assistance program, which isn’t the only factor to consider. Choice C only leverages pricing information from Annie, which again should not be the sole focus of your meeting.   Refining your strategy with Annie is the best way to demonstrate your role as a trusted advisor and to accelerate the prescribing cycle. Choice D is the best choice.</welcomeText>]]></summary>
+        </pageContent>   
+    </decision>
+</decisions>

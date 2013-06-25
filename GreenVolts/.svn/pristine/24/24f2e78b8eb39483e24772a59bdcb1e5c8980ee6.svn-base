@@ -1,0 +1,179 @@
+//
+//  MaintenanceLogCell.m
+//  GreenVolts
+//
+//  Created by Rapidvalue on 8/22/12.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//
+
+#import "MaintenanceLogCell.h"
+
+@interface MaintenanceLogCell ()
+{
+    int height;
+}
+
+
+@end
+
+@implementation MaintenanceLogCell
+@synthesize titleLabel;
+@synthesize savebtn;
+@synthesize accessoryButton;
+
+#pragma mark-initial methods
+
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) 
+    {
+        // Initialization code
+    }
+    return self;
+}
+
+#pragma mark- Display Methods
+- (void)displayDetails:(MaintenanceLog *)result rowValue:(int)row:(NSString*)planLabelText
+{
+    accessoryButton.tag = row;
+    
+    UILabel *planLabel=[[UILabel alloc]initWithFrame:CGRectMake(10,10,220,25)];
+    UILabel *plancontentLabel=[[UILabel alloc]initWithFrame:CGRectMake(225,10,235,25)];
+    planLabel.backgroundColor=[UIColor clearColor];
+    plancontentLabel.backgroundColor=[UIColor clearColor];
+    planLabel.textColor=[UIColor whiteColor];
+    plancontentLabel.textColor=[UIColor whiteColor];
+    planLabel.font=[UIFont systemFontOfSize:14];
+    plancontentLabel.font=[UIFont systemFontOfSize:14];
+    [self.contentView addSubview:planLabel]; 
+    [self.contentView addSubview:plancontentLabel]; 
+     
+        if(row==0)
+        {
+            NSString *tempString=@"Plan Item Number: ";
+            CGSize stringSize=[tempString sizeWithFont:[UIFont systemFontOfSize:14]];
+            planLabel.frame=CGRectMake(10, 10, stringSize.width, 25);
+            planLabel.text=tempString;
+            plancontentLabel.frame=CGRectMake(10+stringSize.width, 10, 235, 25);
+            plancontentLabel.text=planLabelText;
+            [self.accessoryButton removeFromSuperview];
+        }
+        else if(row==1)
+        {    
+        
+            NSString *tempString=@"Location: ";
+            CGSize stringSize=[tempString sizeWithFont:[UIFont systemFontOfSize:14]];
+            planLabel.frame=CGRectMake(10, 10, stringSize.width, 25);
+            planLabel.text=tempString;
+            plancontentLabel.frame=CGRectMake(10+stringSize.width, 10, 235, 25);
+            plancontentLabel.text=planLabelText;   
+       
+            [self.accessoryButton removeFromSuperview];
+            
+            [self.savebtn removeFromSuperview];
+            self.titleLabel.textColor=[UIColor whiteColor];
+        }
+        else
+        {
+           switch (row)
+           {
+             case 2:
+                {
+                  NSString *tempString=@"Task: ";
+                  CGSize stringSize=[tempString sizeWithFont:[UIFont systemFontOfSize:14]];
+                  planLabel.frame=CGRectMake(10, 10, stringSize.width, 25);
+                  planLabel.text=tempString;
+                  plancontentLabel.frame=CGRectMake(10+stringSize.width, 10, 235, 25);
+                  plancontentLabel.text=planLabelText;
+                }
+                break;    
+             case 3:
+             {
+                 NSString *tempString=@"Component: ";
+                 CGSize stringSize=[tempString sizeWithFont:[UIFont systemFontOfSize:14]];
+                 planLabel.frame=CGRectMake(10, 10, stringSize.width, 25);
+                 planLabel.text=tempString;
+                 plancontentLabel.frame=CGRectMake(10+stringSize.width, 10, 235, 25);
+                plancontentLabel.text=planLabelText;
+            
+             }
+        break;
+        case 4:
+        {
+            NSString *tempString=@"OLD Serial Number: ";
+            CGSize stringSize=[tempString sizeWithFont:[UIFont systemFontOfSize:14]];
+            planLabel.frame=CGRectMake(10, 10, stringSize.width, 25);
+            planLabel.text=tempString;
+            plancontentLabel.frame=CGRectMake(10+stringSize.width, 10, 235, 25);
+            plancontentLabel.text=planLabelText; 
+        }
+        break;
+        case 5:
+        {
+                   NSString *tempString=@"NEW Serial Number: ";
+                   CGSize stringSize=[tempString sizeWithFont:[UIFont systemFontOfSize:14]];
+                   planLabel.frame=CGRectMake(10, 10, stringSize.width, 25);
+                   planLabel.text=tempString;
+                   plancontentLabel.frame=CGRectMake(10+stringSize.width, 10, 235, 25);
+                   plancontentLabel.text=planLabelText;
+            
+        }
+            break;
+        case 6:
+        {
+            NSString *tempString=@"Task Duration: ";
+            CGSize stringSize=[tempString sizeWithFont:[UIFont systemFontOfSize:14]];
+            planLabel.frame=CGRectMake(10, 10, stringSize.width, 25);
+            planLabel.text=tempString;
+            plancontentLabel.frame=CGRectMake(10+stringSize.width, 10, 235, 25);
+            plancontentLabel.text=planLabelText;
+        }
+            break;
+        case 7:
+        {
+            NSString *tempString=@"Notes: ";
+            CGSize stringSize=[tempString sizeWithFont:[UIFont systemFontOfSize:14]];
+            planLabel.frame=CGRectMake(10,10, stringSize.width, 25);
+            planLabel.text=tempString;
+            int calculatedHeight = [self textViewHeight:planLabelText andWidth:235];
+            NSLog(@"Calculated Height: %d", calculatedHeight);
+            if (calculatedHeight > 25)
+            {
+                int numberOfLines = (calculatedHeight / 25) +2;
+                NSLog(@"No of Lines: %d", numberOfLines);
+              //  plancontentLabel.numberOfLines =numberOfLines ;
+                plancontentLabel.numberOfLines =0;
+                plancontentLabel.lineBreakMode = UILineBreakModeWordWrap;
+               // plancontentLabel.backgroundColor=[UIColor grayColor];
+                //height=(contentSize.width/225)*14+1;
+                plancontentLabel.frame=CGRectMake(10+stringSize.width,15 , 235, calculatedHeight);
+                 plancontentLabel.text=planLabelText;
+            }
+            else 
+            {
+                plancontentLabel.frame=CGRectMake(10+stringSize.width, 10, 235, 25);
+                plancontentLabel.text=planLabelText;
+            }
+          
+         
+        }
+            break;
+        
+    }
+    [self.savebtn removeFromSuperview];        
+  }
+}
+
+#pragma mark - Helper Methods
+
+- (float)textViewHeight:(NSString *)textString andWidth:(float)width
+{
+    UIFont *font = [UIFont fontWithName:@"Helvetica" size:14];
+    CGSize size = CGSizeMake(width, CGFLOAT_MAX);
+    CGSize stringSize = [textString sizeWithFont:font constrainedToSize:size];
+    return stringSize.height;
+}
+
+
+@end

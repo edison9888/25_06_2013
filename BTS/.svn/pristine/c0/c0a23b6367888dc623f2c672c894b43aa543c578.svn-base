@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+<id><![CDATA[OTS_SA_R4_D030_I010]]></id>
+<emailHeader><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; border-bottom:1px solid #333; display:block;">E-mail</Introtext>]]></emailHeader>
+<emailTypeImage><![CDATA[voice]]></emailTypeImage>    
+<title><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:14pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>Returning your call</b></welcomeText>]]></title>
+<emailContent><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">“Hi, it’s Dr. Gomez over at Maycomb. I got your message, and I think the meeting with Dr. Cardonza went really well. In fact, after you left, we got to talking more about Samsca, and Dr. Cardonza expressed some interest in discharging one of our hospitalized patients for continuing therapy in the oupatient setting.  I know most of our previous conversations have been about using your product for inpatient treatment, but Dr. Cardonza has a particular patient who consistently struggles to maintain the proper sodium levels after discharge.  I know this will open up an entirely new discussion around cost and insurance coverage.  We’d like to know more, so give me a call back.”</welcomeText>]]></emailContent>
+<from><![CDATA[Dr. Gomez]]></from>
+<character><![CDATA[Liz_happy]]></character>
+<branchTo><![CDATA[OTS_SA_R4_D030]]></branchTo>
+<to><![CDATA[]]></to>
+</pageContent>
+
+

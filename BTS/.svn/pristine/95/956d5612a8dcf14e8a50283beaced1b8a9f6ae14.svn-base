@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OTS_SA_R4_SIMEND]]></id>
+	<title><![CDATA[End of Round Four]]></title>
+    <descriptionText><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#3333; margin:25px 10px 10px 10px; padding:0 0 0 5px;  display:block; text-align:center">Congratulations!</Introtext><contentText style="font-family:Helvetica; font-size:14pt; font-weight:normal; color:#3333; margin:10px; padding:10px 0;  display:block; text-align:center">You have completed Round Four of the <B>OAPI Sales Accelerator Simulation.</B>.</contentText><contentText style="font-family:Helvetica; font-size:13pt; font-weight:normal; color:#3333; margin:10px; padding:10px 0;  display:block; text-align:center">Press the <b>FEEDBACK</b> button below to see how well you performed in this round.<BR><BR>After exploring the feedback, you can close the application to finish.<BR><BR><BR><BR><BR><BR><BR><BR><BR><I>Simulation Version: January 2012   0711T-3576D</I></contentText>]]></descriptionText>
+    <continueBtn><![CDATA[NO]]></continueBtn>
+	<branchTo><![CDATA[]]></branchTo>
+</pageContent>

@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<decisions>
+    <decision template="MultipleSelectMCQ">
+	 <pageContent>
+           <id><![CDATA[OC_SA_R1_D010]]></id>
+	<title><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Understanding Your Customer’s Practice Priorities</Introtext>]]></title>
+	<title2><![CDATA[Understanding Your Customer’s Business Priorities]]></title2>
+	<instructions><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:bold; color:#333; display:block; margin:0 10px 10px">Based on what you’ve read so far and your market knowledge, how would you answer Annie’s question? Select Sunnydale Psychiatry’s top three business priorities.</welcomeText>]]></instructions>
+	<choices>
+		<choice>
+			<id><![CDATA[A]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>A</b>. Applying New Protocols</span></welcomeText>]]></choiceText>
+		</choice>
+		<choice>
+			<id><![CDATA[B]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>B</b>. Taking Advantage of Medical Advances</welcomeText>]]></choiceText>
+		</choice>
+		<choice>
+			<id><![CDATA[C]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>C</b>. Making Staffing More Efficient</welcomeText>]]></choiceText>
+		</choice>
+		<choice>
+			<id><![CDATA[D]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>D</b>. Addressing Healthcare Trends</welcomeText>]]></choiceText>
+		</choice>
+		<choice>
+			<id><![CDATA[E]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>E</b>. Improving Patient Management </welcomeText>]]></choiceText>
+		</choice>
+		<choice>
+			<id><![CDATA[F]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>F</b>. Addressing or Controlling Side Effects </welcomeText>]]></choiceText>
+		</choice>
+		<choice>
+			<id><![CDATA[G]]></id>
+			<isCorrect><![CDATA[YES]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>G</b>. Attracting and Retaining Patients</welcomeText>]]></choiceText>
+		</choice>
+		<choice>
+			<id><![CDATA[H]]></id>
+			<isCorrect><![CDATA[YES]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>H</b>. Protecting their Professional Reputation </welcomeText>]]></choiceText>
+		</choice>
+		<choice>
+			<id><![CDATA[I]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>I</b>. Understanding Formulary Status and Possible Restrictions </welcomeText>]]></choiceText>
+		</choice>
+		<choice>
+			<id><![CDATA[J]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>J</b>. Improving Administrative Execution and Businesses Processes </welcomeText>]]></choiceText>
+		</choice>
+		<choice>
+			<id><![CDATA[K]]></id>
+			<isCorrect><![CDATA[YES]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>K</b>. Achieving Positive Patient Outcomes </welcomeText>]]></choiceText>
+		</choice>
+		<choice>
+			<id><![CDATA[L]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>L</b>. Handling Payer Interventions </welcomeText>]]></choiceText>
+		</choice>
+		<choice>
+			<id><![CDATA[M]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>M</b>. Leveraging Information Technology</welcomeText>]]></choiceText>
+		</choice>
+		<choice>
+			<id><![CDATA[N]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>N</b>. Solving Adherence Challenges</welcomeText>]]></choiceText>
+		</choice>
+
+	</choices>
+	<scores>
+		<wrong>
+            <KPIs totalScore="0">
+				<KPI marks="0"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="0"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+            <branchTo><![CDATA[OC_SA_R1_D010_C010]]></branchTo>
+		</wrong>
+		<partial>
+            <KPIs totalScore="15">
+				<KPI marks="5"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="5"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="5"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+            <branchTo><![CDATA[OC_SA_R1_D010_B010]]></branchTo>
+        </partial>
+        <correct>
+            <KPIs totalScore="30">
+				<KPI marks="10"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="10"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+            <branchTo><![CDATA[OC_SA_R1_D010_AEH010]]></branchTo>
+		</correct>
+    </scores>
+    <summary><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">You know from your conversations with Dr. Bennett that Dr. Hayes is concerned with growing his practice.  You also know that he takes his professional reputation very seriously, and he is most comfortable sticking with what has worked in the past, which is why he has been slow to adopt newer products, such as yours.  The three main business priorities that fit best for Sunnydale Psychiatry are Attracting and Retaining Patients (Choice G), Protecting their Business Reputation (Choice H), and Achieving Positive Patient Outcomes (Choice K).</welcomeText>]]></summary>
+</pageContent>
+    </decision>
+    <decision template="SingleSelectMCQ">
+        <pageContent>
+    <id><![CDATA[OC_SA_R1_D020]]></id>
+	<title><![CDATA[<Introtext style="font-family:Helvetica; font-size:14pt; font-weight:bold; color:#cc0033; margin:10px -5px 10px 5px; padding:5px 0 5px 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Using Trends in a Customer Conversation</Introtext>]]></title>
+	<title2><![CDATA[]]></title2>
+	<instructions><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:11pt; line-height:18pt; text-align:justify; font-weight:bold; color:#333; display:block; margin:0 10px 10px">What is the best way to use trends in a conversation with Dr. Bennett?</welcomeText>]]></instructions>
+	<choices>
+		<choice>
+			<id><![CDATA[1]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>A</b>. Ask Dr. Bennett what Sunnydale Psychiatry’s patient volume looks likes for the coming month to get a feel for how healthcare reform may be affecting their practice.</welcomeText>]]></choiceText>
+			<KPIs totalScore="0">
+				<KPI marks="0"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="-5"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="5"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OC_SA_R1_D020_A010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[2]]></id>
+			<isCorrect><![CDATA[YES]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>B</b>. Tell Dr. Bennett that you have scheduled a speaker program.  Ask Dr. Bennett what he thinks the top trends are that affect his desired outcomes, and also find out as a prescriber of your product, what he believes he needs the most education on.</welcomeText>]]></choiceText>
+			<KPIs totalScore="25">
+				<KPI marks="10"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="5"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OC_SA_R1_D020_B010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[3]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>C</b>. Ask Dr. Bennett what trends he believes are currently impacting Sunnydale Psychiatry. Arrange for an office lunch to discuss his feedback.</welcomeText>]]></choiceText>
+			<KPIs totalScore="15">
+				<KPI marks="5"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="5"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="5"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OC_SA_R1_D020_C010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[4]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>D</b>. Find out from Dr. Bennett how he has been using your product lately.  Detail your product and leave starters.</welcomeText>]]></choiceText>
+			<KPIs totalScore="10">
+				<KPI marks="5"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="5"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OC_SA_R1_D020_D010]]></branchTo>
+		</choice>
+	</choices>
+    <summary><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">This is a great opportunity to involve Dr. Bennett and learn about the most important trend affecting his practice outcomes (Choice B).  Choice A assumes that healthcare reform is the most important trend for Sunnydale Psychiatry, and you miss an opportunity to discuss trends with Dr. Bennett in a way that positions you as a trusted advisor.  If you chose C, you didn’t include his desired outcomes in the conversation and how your solutions can add value.  Again, with Choice D, you made an assumption about what trend was most important for Dr. Bennett’s business, and missed an opportunity to build trust as an advisor to Dr. Bennett.  Choice B is the best choice.</welcomeText>]]></summary>
+</pageContent>
+    </decision>
+    <decision template="SingleSelectMCQ">
+        <pageContent>
+    <id><![CDATA[OC_SA_R1_D030]]></id>
+	<title><![CDATA[<Introtext style="font-family:Helvetica; font-size:14pt; font-weight:bold; color:#cc0033; margin:10px -5px 10px 5px; padding:5px 0 5px 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Anticipating Outcomes</Introtext>]]></title>
+	<title2><![CDATA[]]></title2>
+	<instructions><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:11pt; line-height:18pt; text-align:justify; font-weight:bold; color:#333; display:block; margin:0 10px 10px">What is your next step?</welcomeText>]]></instructions>
+	<choices>
+		<choice>
+			<id><![CDATA[1]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>A</b>. Provide Dr. Bennett with information on Medicare and Medicaid coverage, as well as some of the major insurance carriers in the area.  Also, provide him with approved resources that have more information on your product’s co-pay status.</welcomeText>]]></choiceText>
+			<KPIs totalScore="0">
+				<KPI marks="5"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="5"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OC_SA_R1_D030_A010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[2]]></id>
+			<isCorrect><![CDATA[YES]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>B</b>. Probe Dr. Bennett further about all the factors he is taking into consideration. It’s important that you fully understand the criteria that Dr. Bennett is using to evaluate whether he will consider expanding his prescribing.   Assist by using any of your approved resources to help him.</welcomeText>]]></choiceText>
+			<KPIs totalScore="25">
+				<KPI marks="10"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="5"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="10"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OC_SA_R1_D030_B010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[3]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>C</b>. Find out what concerns Dr. Bennett has about expanding his prescribing. It’s important to anticipate the objections that he may have. Gather the data within your approved resources for Dr. Bennett that will address all of his concerns.</welcomeText>]]></choiceText>
+			<KPIs totalScore="10">
+				<KPI marks="5"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="0"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="5"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OC_SA_R1_D030_C010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[4]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>D</b>. Tell Dr. Bennett that you’ll put together a presentation that takes into consideration all of his concerns about expanding his prescribing of your product. Use approved resources, including patient success stories, as well as information on insurance coverage and co-pay cards.</welcomeText>]]></choiceText>
+			<KPIs totalScore="5">
+				<KPI marks="0"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="0"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="5"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OC_SA_R1_D030_C010]]></branchTo>
+		</choice>
+	</choices>
+    <summary><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">Because Dr. Bennett is still in the evaluating options phase of the prescribing cycle, jumping ahead to deciding to trial is premature. In Choices A and D, you are attempting to help him decide which medication to trial by using marketing materials but you aren’t even sure yet what criteria Dr. Bennett is using to evaluate his options. If you chose Choice C, you are also jumping ahead to handle objections before finding out more information on what is driving those concerns. You should first make sure you fully understand all of the factors that Dr. Bennett is taking into consideration as he evaluates his options. This will help to ensure that you don’t become misaligned and run into problems later in the prescribing cycle. Choice B is the best choice.</welcomeText>]]></summary>
+</pageContent>
+    </decision>
+    <decision template="SingleSelectMCQ">
+       <pageContent>
+    <id><![CDATA[OC_SA_R1_D040]]></id>
+	<title><![CDATA[<Introtext style="font-family:Helvetica; font-size:14pt; font-weight:bold; color:#cc0033; margin:10px -5px 10px 5px; padding:5px 0 5px 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Mistaken Identity</Introtext>]]></title>
+	<title2><![CDATA[]]></title2>
+	<instructions><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:11pt; line-height:18pt; text-align:justify; font-weight:bold; color:#333; display:block; margin:0 10px 10px">How do you respond to the information that Dr. Bennett is not the decision maker?</welcomeText>]]></instructions>
+	<choices>
+		<choice>
+			<id><![CDATA[1]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>A</b>. Agree to have Dr. Bennett talk to Dr. Hayes. You really haven’t dealt much with Dr. Hayes, and now that Dr. Bennett has been educated on your product and the many different patient types it could impact, he will be the best person to relay the information to Dr. Hayes.</welcomeText>]]></choiceText>
+			<KPIs totalScore="5">
+				<KPI marks="5"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="0"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OC_SA_R1_D040_A010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[2]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>B</b>. Tell Dr. Bennett that you are planning another speaker program Dr. Hayes could attend.  That way, Dr. Hayes could see the benefits and side effects of products like yours for himself.</welcomeText>]]></choiceText>
+			<KPIs totalScore="0">
+				<KPI marks="0"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="-5"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="5"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OC_SA_R1_D040_B010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[3]]></id>
+			<isCorrect><![CDATA[YES]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>C</b>. Ask Dr. Bennett to set up a time when the three of you can get together so that you can better understand Dr. Hayes’ priorities.</welcomeText>]]></choiceText>
+			<KPIs totalScore="25">
+				<KPI marks="5"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="10"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OC_SA_R1_D040_C010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[4]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>D</b>. Tell Dr. Bennett that you will call on Dr. Hayes next week. Plan to present a strong case for him to expand his prescribing of your product, and separately show Dr. Hayes how you can support him in achieving positive patient outcomes.</welcomeText>]]></choiceText>
+			<KPIs totalScore="10">
+				<KPI marks="5"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="5"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OC_SA_R1_D040_D010]]></branchTo>
+		</choice>
+	</choices>
+    <summary><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">When you learn that Dr. Bennett is not actually the decision maker, the best thing to do is to get Dr. Hayes involved right away.  You want to make sure that you include Dr. Bennett, since he is the person you have built the relationship with and he trusts you already (Choice C).  Having Dr. Bennett speak with Dr. Hayes is not ideal, since you won’t be there to establish trust with Dr. Hayes and show the value both you and the product can bring (Choice A). Choice B doesn’t give you the chance to connect with Dr. Hayes about his business priorities, and you don’t even know if he will agree to come to the speaker program. Choice D is an okay option, but it would be more effective to have Dr. Bennett set up the meeting, since you already have a good relationship with Dr. Bennett. The correct answer is Choice C.</welcomeText>]]></summary>
+</pageContent>
+    </decision>
+    <decision template="SingleSelectMCQ">
+       <pageContent>
+    <id><![CDATA[OC_SA_R1_D050]]></id>
+	<title><![CDATA[<Introtext style="font-family:Helvetica; font-size:14pt; font-weight:bold; color:#cc0033; margin:10px -5px 10px 5px; padding:5px 0 5px 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Aligning Your Strategy</Introtext>]]></title>
+	<title2><![CDATA[]]></title2>
+	<instructions><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:11pt; line-height:18pt; text-align:justify; font-weight:bold; color:#333; display:block; margin:0 10px 10px">As you prepare for your meeting with Dr. Hayes, what action will you plan to take?</welcomeText>]]></instructions>
+	<choices>
+		<choice>
+			<id><![CDATA[1]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>A</b>. Plan to offer Dr. Hayes information and data that he can use to evaluate his options. Be prepared to help him by providing the features and fair balance of your product.</welcomeText>]]></choiceText>
+			<KPIs totalScore="15">
+				<KPI marks="5"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="5"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="5"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OC_SA_R1_D050_A010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[2]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>B</b>. Take time to research the business thoroughly, and identify questions to ask Dr. Hayes in your meeting that will help to accelerate the prescribing cycle. </welcomeText>]]></choiceText>
+			<KPIs totalScore="0">
+				<KPI marks="5"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="-10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="5"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OC_SA_R1_D050_B010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[3]]></id>
+			<isCorrect><![CDATA[YES]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>C</b>. Prepare to confirm what you have heard from Dr. Bennett with Dr. Hayes, such as Sunnydale Psychiatry’s focus on growth and reputation.  Also, ask Dr. Hayes his vision for patient outcomes.</welcomeText>]]></choiceText>
+			<KPIs totalScore="30">
+				<KPI marks="10"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="10"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OC_SA_R1_D050_C010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[4]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>D</b>. Plan to use the meeting to fully identify and document all of Dr. Hayes’ concerns about prescribing your product, in addition to presenting information. Take time to anticipate his concerns. After all, he is very comfortable with the products he typically prescribes, having used them for years, and naturally he will have some reservations.</welcomeText>]]></choiceText>
+			<KPIs totalScore="0">
+				<KPI marks="5"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="-10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="5"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OC_SA_R1_D050_D010]]></branchTo>
+		</choice>
+	</choices>
+    <summary><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">Dr. Bennett stated earlier that he and Dr. Hayes are willing to explore other options, so this indicates they are in the evaluating options phase of the prescribing cycle. Because this will be your first conversation with Dr. Hayes, it would be best to confirm the information you have received from Dr. Bennett, and ask Dr. Hayes about the outcomes he hopes to achieve. (Choice C). In this way you are able both to bring value to the customer and to increase their trust in you and your product. Choice A is an okay option, since providing Dr. Hayes criteria to evaluate his options is another appropriate action in this phase of the prescribing cycle, but it doesn’t take into consideration Dr. Hayes’ priorities, and in this instance you want to do both. You should have already researched the practice thoroughly, so Choice B does not move you and your customer forward. Choice D prematurely jumps ahead to deciding to trial instead of providing what is needed for this phase of the prescribing cycle. Choice C is the best choice.</welcomeText>]]></summary>
+</pageContent>
+    </decision>
+    <decision template="SingleSelectMCQ">
+       <pageContent>
+    <id><![CDATA[OC_SA_R1_D060]]></id>
+	<title><![CDATA[<Introtext style="font-family:Helvetica; font-size:14pt; font-weight:bold; color:#cc0033; margin:10px -5px 10px 5px; padding:5px 0 5px 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Networking for Results</Introtext>]]></title>
+	<title2><![CDATA[]]></title2>
+	<instructions><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:11pt; line-height:18pt; text-align:justify; font-weight:bold; color:#333; display:block; margin:0 10px 10px">How do you react to this new information?</welcomeText>]]></instructions>
+	<choices>
+		<choice>
+			<id><![CDATA[1]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>A</b>. Confirm that you’ll meet with Dr. Bennett and Dr. Hayes on Monday. You feel good about your growing relationship with Dr. Bennett, and you know that you can demonstrate a strong case for using your product.</welcomeText>]]></choiceText>
+			<KPIs totalScore="5">
+				<KPI marks="0"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="5"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OC_SA_R1_D060_A010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[2]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>B</b>. Call Dennis, your co-promote partner, and see what information you can find out from him about how the other company’s reps' position their product. You need to know whether they are currently offering any solutions, such as co-pay cards. </welcomeText>]]></choiceText>
+			<KPIs totalScore="10">
+				<KPI marks="5"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="5"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OC_SA_R1_D060_B010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[3]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>C</b>. Plan a meeting with Annie, your District Manager, to get some ideas on how to deal with competitors. She has always been extremely helpful in the past in coming up with ways to deal with these tricky situations. </welcomeText>]]></choiceText>
+			<KPIs totalScore="10">
+				<KPI marks="0"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OC_SA_R1_D060_C010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[4]]></id>
+			<isCorrect><![CDATA[YES]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>D</b>. Call Dennis, your co-promote partner, and work with him to build a strategy for the meeting. Dennis has a successful history of working with Sunnydale Psychiatry, and his insights will help you to be fully prepared for the meeting with Dr. Hayes.</welcomeText>]]></choiceText>
+			<KPIs totalScore="25">
+				<KPI marks="5"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="10"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OC_SA_R1_D060_D010]]></branchTo>
+		</choice>
+	</choices>
+    <summary><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">It is important to leverage your resources and to network broadly when going into a discussion about your product’s disease state. Dennis is the perfect partner to engage here, since you know he also has a good relationship with Sunnydale Psychiatry. Meeting with Dennis beforehand and aligning your strategy for the meeting will ensure that you are prepared for your meeting with Dr. Hayes (Choice D). Choice A is too risky when you have Dennis at your disposal to help you further prepare. Choice B only leverages promotional information from Dennis, which isn’t the only factor to consider, and Dennis may not have that information. Engaging your DM to discuss strategies may not be the best use of your time, since Dennis is closer to the customer and can help build your credibility. Working with your co-promote partner is the best way to demonstrate your role as a trusted advisor and to accelerate the prescribing cycle. Choice D is the best choice.</welcomeText>]]></summary>
+</pageContent>
+    </decision>
+</decisions>

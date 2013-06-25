@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OTS_SA_R5_D080]]></id>
+	<title><![CDATA[<Introtext style="font-family:Helvetica; font-size:14pt; font-weight:bold; color:#cc0033; margin:10px -5px 10px 5px; width:738px; padding:5px 0 5px 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Meeting with Dr. Chu – Collecting Information and Determining Next Steps</Introtext>]]></title>
+	<title2><![CDATA[]]></title2>
+	<instructions><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:11pt; line-height:18pt; text-align:justify; font-weight:bold; color:#333; display:block; margin:0 10px 10px">Which question will you ask Dr. Chu next?</welcomeText >]]></instructions>
+	<choices>
+		<choice>
+			<id><![CDATA[1]]></id>
+			<isCorrect><![CDATA[YES]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>A</b>.As a hospitalist, I know you see SIADH, cirrhosis, and heart failure patients who present with hyponatremia.  I’d like to set a time to share more specifically with you about Samsca, and potentially also arrange a time to continue that conversation with Pharmacy or Dr. Rivers, a nephrologist who regularly prescribes Samsca ...<b>READ MORE</b> When would be a good time to meet again?</welcomeText>]]></choiceText>
+			<KPIs totalScore="50">
+				<KPI marks="10"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="30"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="10"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R5_D080_A010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[2]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>B</b>.It’s clear that both patient safety and patient experience are the critical areas you’re focusing on to improve.  Are there particular metrics you’re targeting that will help you know if you’re on track to meeting your goals?</welcomeText>]]></choiceText>
+			<KPIs totalScore="-20">
+				<KPI marks="10"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="-30"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R5_D080_B010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[3]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>C</b>.Safely and appropriately treating your patients seems to be the foundation for your patient treatment goals.  What are your thoughts on how expanding the base of products you prescribe could help achieve your goals?</span></welcomeText>]]></choiceText>
+			<KPIs totalScore="-10">
+				<KPI marks="10"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="-20"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R5_D080_C010]]></branchTo>
+		</choice>
+
+		<choice>
+			<id><![CDATA[4]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>D</b>.Will you prescribe Samsca for the next patient you see with hyponatremia?</span></welcomeText>]]></choiceText>
+			<KPIs totalScore="10">
+				<KPI marks="0"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R5_D080_D010]]></branchTo>
+		</choice>
+		
+		
+	</choices>
+	<!-- <summary><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">You know that Dr. Bennett is concerned with achieving positive patient outcomes and solving adherence challenges.  These priorities are about better outcomes. </welcomeText>]]></summary> -->
+</pageContent>

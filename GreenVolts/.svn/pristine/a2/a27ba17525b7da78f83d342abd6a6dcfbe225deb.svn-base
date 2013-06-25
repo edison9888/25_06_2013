@@ -1,0 +1,625 @@
+//
+//  GreenVoltsAppDelegate.m
+//  GreenVolts
+//
+//  Created by YML on 8/26/11.
+//  Copyright 2011 YML. All rights reserved.
+//
+
+#import "GreenVoltsAppDelegate.h"
+#import "SBJson.h"
+#import "PortfolioViewController.h"
+#import "SiteListTileView.h"
+#import "SiteViewController.h"
+#import "Site.h"
+#import "Section.h"
+#import "SectionViewController.h"
+#import "Array.h"
+#import "ArrayViewController.h"
+#import "String.h"
+#import "StringViewController.h"
+#import "LoginViewController.h"
+#import "SBJson.h"
+#import "NSData+GVBlowfish.h"
+
+@interface GreenVoltsAppDelegate(PVT)<AccelerometerObserverDelegate>
+-(void)LoginSuccess:(NSString *)sessionToken;
+-(void)jsonParser;
+-(void)connectToServer;
+
+@end
+
+@implementation GreenVoltsAppDelegate
+@synthesize RootViewController;
+@synthesize window;
+
+
+#pragma mark Application lifecycle
+-(UIViewController*)RootViewController
+{
+  if(m_rootViewController)
+    return m_rootViewController;
+  return m_TabBarController;
+}
+
+void onUncaughtException(NSException* exception) {
+    NSLog(@"uncaught exception: %@", exception.description);
+    /*
+    m_ActivityIndicatorView=[[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(150, 200, 30, 30)];
+    [m_ActivityIndicatorView startAnimating];
+    m_ActivityIndicatorView.activityIndicatorViewStyle=UIActivityIndicatorViewStyleWhite;
+    [window addSubview:m_ActivityIndicatorView];  
+    
+	if(mURLConnection) 
+	{
+		[mURLConnection cancel];
+		mURLConnection=nil;
+	}
+    if(mResponseData)
+	{
+		mResponseData=nil;
+	}
+    
+    NSString *pUsername=[[NSUserDefaults standardUserDefaults]objectForKey:@"USERNAME"];
+    
+	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    
+    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/GreenVolts-ISIS-BL-Web-Models-iPhone-iPhone_DS.svc/JSON/SubmitException?username=%@&password=%@",kserverAddress,[[pUsername stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding], [exception.description stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]]];
+    
+	[request setHTTPMethod:@"POST"];
+	[[NSURLConnection alloc] initWithRequest:request delegate:self];	
+*/
+  //  @throw exception;
+}
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{    
+    NSLog(@"Finished launch");
+
+    // Override point for customization after application launch.
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if ([defaults objectForKey:@"cleared_pass"] == nil) {
+        [defaults setBool:NO forKey:@"RememberPassword"];
+        [defaults setObject:nil forKey:@"PASSWORD1"];
+        [defaults setObject:nil forKey:@"PASSWORD"];
+        [defaults setBool:YES forKey:@"cleared_pass"];
+    }
+ 
+    
+  window=[[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
+  m_rootViewController = [[RootViewController alloc] init];
+  window.rootViewController = m_rootViewController;
+  [window makeKeyAndVisible];
+    
+  m_TabBarController = nil;
+  
+  BOOL enabled = [[NSUserDefaults standardUserDefaults] boolForKey:@"RememberPassword"];
+  if(enabled)
+  {
+    NSString *password=[[[NSUserDefaults standardUserDefaults]objectForKey:@"PASSWORD1"] decryptAsDES];
+    if([password length])
+    {
+        [self connectToServer]; 
+    }
+    else 
+    {
+      [[NSUserDefaults standardUserDefaults]setObject:nil forKey:@"PASSWORD1"];
+      [[LoginManager sharedLoginManagerWithDelegate:self] ShowLoginPage];
+    }
+  }
+  else 
+  {
+    [[NSUserDefaults standardUserDefaults]setObject:nil forKey:@"PASSWORD1"];
+    [[LoginManager sharedLoginManagerWithDelegate:self] ShowLoginPage];
+  }
+
+    
+  BOOL shketoReloadEnabled=[[NSUserDefaults standardUserDefaults] boolForKey:@"ShakeEnabled"];
+  
+  if(shketoReloadEnabled)
+  {
+    mAccelerometerObserver=[[AccelerometerObserver alloc]initWithTimeGap:5];
+    mAccelerometerObserver.m_delegate=self;
+    [mAccelerometerObserver startObseving];
+  }
+  else 
+    mAccelerometerObserver=nil;
+  isShekeAllowed=YES;
+  
+
+  [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:kCurrentSelectedDateKey];
+  [[NSUserDefaults standardUserDefaults] setObject:[[NSDate date] dateByAddingTimeInterval:-(24*60*60)*14] forKey:kDailyStartDateKey];
+  [[NSUserDefaults standardUserDefaults] setObject:[[NSDate date] dateByAddingTimeInterval:-(24*60*60)*21] forKey:kWeeklyStartDateKey];
+  [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    NSSetUncaughtExceptionHandler(&onUncaughtException);  
+    
+  return YES;
+}
+-(void)clicked
+{
+//  PasswordChanger *p=[[PasswordChanger alloc]init];
+//  [p changePassword];
+}
+-(void)showResult
+{
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"RELOAD_DATA" object:nil userInfo:nil];
+}
+
+#pragma mark URLConnectionManager Methods
+
+-(void)connectToServer
+{
+  m_ActivityIndicatorView=[[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(150, 200, 30, 30)];
+  [m_ActivityIndicatorView startAnimating];
+  m_ActivityIndicatorView.activityIndicatorViewStyle=UIActivityIndicatorViewStyleWhite;
+  [window addSubview:m_ActivityIndicatorView];  
+  
+	if(mURLConnection) 
+	{
+		[mURLConnection cancel];
+		mURLConnection=nil;
+	}
+  if(mResponseData)
+	{
+		mResponseData=nil;
+	}
+  
+	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+  
+  NSString *pUsername=[[NSUserDefaults standardUserDefaults]objectForKey:@"USERNAME"];
+  NSString *pPassword=[[[NSUserDefaults standardUserDefaults]objectForKey:@"PASSWORD"] decryptAsDES];
+    
+  [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/GreenVolts-ISIS-BL-Web-Models-iPhone-iPhone_DS.svc/JSON/GetUserInfo?username=%@&password=%@",kserverAddress,[pUsername stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[pPassword stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]]];
+
+	[request setHTTPMethod:@"GET"];
+	mURLConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];	
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response 
+{
+	if(mResponseData == nil)
+		mResponseData = [[NSMutableData alloc] init];
+	[mResponseData setLength:0];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+   
+	if(mResponseData != nil)
+		[mResponseData appendData:data];
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error 
+{
+  //  Error Codes: 
+  //  10001 – cannot connect to backend systems
+  //  10002 – invalid username or password (displays an error message on top of the screen)
+  if(m_ActivityIndicatorView){[m_ActivityIndicatorView removeFromSuperview];m_ActivityIndicatorView=nil;}
+  
+  UIAlertView *pAlert=[[UIAlertView alloc]initWithTitle:@"" message:@"Make sure your device has an active network connection and try again"  delegate:self cancelButtonTitle:@"OK" otherButtonTitles:NULL];
+  [pAlert show];
+  pAlert=nil;        
+  
+  if(mURLConnection) 
+	{
+		[mURLConnection cancel];
+		mURLConnection=nil;
+	}
+	if(mResponseData)
+	{
+		mResponseData=nil;
+	}
+    
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    BOOL enabled = [[NSUserDefaults standardUserDefaults] boolForKey:@"RememberPassword"];
+    if(enabled) 
+        [self connectToServer];
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+  if(m_ActivityIndicatorView){[m_ActivityIndicatorView removeFromSuperview];;m_ActivityIndicatorView=nil;}
+  
+	if(mURLConnection) 
+	{
+		[mURLConnection cancel];
+		mURLConnection=nil;
+	}
+  
+  [self jsonParser];
+}	
+
+- (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace
+{
+  return [protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
+{
+  if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust])
+    [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
+}
+
+-(void)jsonParser
+{
+  // parsing the first level    
+  
+  NSString *responseString=[[NSString alloc]initWithData:mResponseData encoding:NSUTF8StringEncoding];
+  
+  //printf("\nJson String:%s\n",[responseString UTF8String]);
+  
+  NSDictionary *data=[responseString JSONValue];
+  
+  NSDictionary *userResult= [data objectForKey:@"GetUserInfoResult"]; 
+  
+  NSArray *rootResult = [userResult objectForKey:@"RootResults"];
+  
+  if([rootResult count])
+  {
+    NSDictionary *rootResultDict=[rootResult objectAtIndex:0];
+    
+    NSString *sessionToken=[rootResultDict objectForKey:@"SessionToken"];
+      
+    if([sessionToken isKindOfClass:[NSNull class]])
+    {
+      UIAlertView *pAlert=[[UIAlertView alloc]initWithTitle:@"" message:[rootResultDict objectForKey:@"Err"] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:NULL];
+      [pAlert show];
+      pAlert=nil;    
+      int errorID=[[rootResultDict objectForKey:@"ErrID"] intValue];
+      if(errorID==10002 || errorID == 10026 || errorID == 10028 || errorID == 10029)
+      {
+        [[LoginManager sharedLoginManagerWithDelegate:self] ShowLoginPage];
+      }
+    }
+    else 
+    {
+      [[NSUserDefaults standardUserDefaults]setObject:sessionToken forKey:@"SESSION_TOKEN"];
+      [self LoginSuccess:sessionToken];
+    }
+  }
+  if(mResponseData)
+	{
+		mResponseData=nil;
+	}  
+}
+
+
+- (void)creatingTwoTabBarControllers
+{
+    
+    //NSLog(@"TWO TABS HERE");
+    [pDashboardButton removeFromSuperview];         /*removing images from previousviews*/
+    [pControlButton removeFromSuperview];
+    [pAlertButton removeFromSuperview];
+    
+    if(!dashboardNavController)
+    {
+        if(!m_PortfolioViewController)
+            m_PortfolioViewController = [[PortfolioViewController alloc] init];
+        
+        dashboardNavController=[[UINavigationController alloc]initWithRootViewController:m_PortfolioViewController];
+        dashboardNavController.delegate=self;
+    }
+    
+    if(!alertsNavController)
+    {
+        if(!m_AlertViewController)
+            m_AlertViewController = [[AlertViewController alloc] init];
+        
+        alertsNavController=[[UINavigationController alloc]initWithRootViewController:m_AlertViewController];
+        alertsNavController.delegate=self;
+    }
+
+    dashboardNavController.tabBarItem.title = @"Dashboard";
+    alertsNavController.tabBarItem.title=@"Alarms";
+
+    if(!pnavigArray)
+        pnavigArray = [[NSMutableArray alloc] init];
+    
+    [pnavigArray removeAllObjects];
+    [pnavigArray addObject:dashboardNavController];
+    [pnavigArray addObject:alertsNavController];
+    
+    id selectNavControler = [m_TabBarController selectedViewController];
+    int newSelectedindex = 0;
+    
+    if(selectNavControler == dashboardNavController)
+        newSelectedindex = 0;
+    else if(selectNavControler == alertsNavController)
+        newSelectedindex = 1;
+
+ 	[m_TabBarController setViewControllers:pnavigArray];
+	m_TabBarController.selectedIndex=newSelectedindex;
+    m_TabBarController.tabBar.hidden=NO;
+    m_rootViewController=nil;
+
+    int indexOfAlertTab =  [m_TabBarController.viewControllers indexOfObject:alertsNavController];
+    UITabBarItem *tempItem = [m_TabBarController.tabBar.items objectAtIndex:indexOfAlertTab]; 
+     [self setTabTabBarBadge:[tempItem.badgeValue intValue]];
+
+    
+}
+
+
+
+-(void)creatingThreeTabBarControllers
+{
+    //method for creating three tabbarcontrollers on second view    
+    if(!dashboardNavController)
+    {
+        if(!m_PortfolioViewController)
+            m_PortfolioViewController = [[PortfolioViewController alloc] init];
+        dashboardNavController=[[UINavigationController alloc]initWithRootViewController:m_PortfolioViewController];
+        dashboardNavController.delegate=self;
+    }
+       
+    if(!controlNavController)
+    {
+        if(!m_ControlViewController)
+            m_ControlViewController = [[ControlViewController alloc] init];
+        
+        controlNavController=[[UINavigationController alloc]initWithRootViewController:m_ControlViewController];
+        
+        controlNavController.delegate=self;
+    }
+    
+    if(!alertsNavController)
+    {
+        if(!m_AlertViewController)
+            m_AlertViewController = [[AlertViewController alloc] init];
+        
+        alertsNavController=[[UINavigationController alloc]initWithRootViewController:m_AlertViewController];
+        alertsNavController.delegate=self;
+    }
+
+    
+    dashboardNavController.tabBarItem.title = @"Dashboard";
+    controlNavController.tabBarItem.title = @"Service";
+    alertsNavController.tabBarItem.title=@"Alerts";
+    
+    [pnavigArray removeAllObjects];
+    [pnavigArray addObject:dashboardNavController];
+    [pnavigArray addObject:controlNavController];
+    [pnavigArray addObject:alertsNavController];
+    
+    id selectNavControler = [m_TabBarController selectedViewController];
+    int newSelectedindex = 0;
+    
+    if(selectNavControler == dashboardNavController)
+    {
+        newSelectedindex = 0;
+
+    }
+    else if(selectNavControler == controlNavController)
+        newSelectedindex = 1;
+    else if(selectNavControler == alertsNavController)
+        newSelectedindex = 2;
+    
+    [m_TabBarController setViewControllers:pnavigArray];
+	m_TabBarController.selectedIndex=newSelectedindex;
+    m_TabBarController.tabBar.hidden=NO;
+    m_rootViewController=nil;
+    //window.rootViewController=m_TabBarController;
+    
+    
+    [pDashboardButton removeFromSuperview];
+    [pControlButton removeFromSuperview];
+    [pAlertButton removeFromSuperview];
+    
+        int indexOfAlertTab =  [m_TabBarController.viewControllers indexOfObject:alertsNavController];
+        UITabBarItem *tempItem = [m_TabBarController.tabBar.items objectAtIndex:indexOfAlertTab]; 
+    [self setTabTabBarBadge:[tempItem.badgeValue intValue]];
+}
+
+//Backbutton action in control level
+
+-(void)pushservicebackbutton
+{    
+    ControlViewController *tempControlViewController;
+    tempControlViewController = [[ControlViewController alloc] init];
+    tempControlViewController.navigationItem.hidesBackButton=YES;
+    [self->controlNavController pushViewController:tempControlViewController animated:NO]; 
+}
+
+-(void)popservicebackbutton
+{
+   
+   [controlNavController popViewControllerAnimated:YES]; 
+    
+}
+-(void)popdashboardbackbutton
+{
+    [dashboardNavController popViewControllerAnimated:YES];
+}
+
+- (void)setTabTabBarBadge:(int)badgeValue
+{
+    
+    NSString *badgeNumber = nil;
+    
+    if(badgeValue != 0)
+        badgeNumber = [NSString stringWithFormat:@"%d",badgeValue];
+    NSLog(@"BADGE NUMBER %@",badgeNumber);
+    
+    int indexOfAlertTab =  [m_TabBarController.viewControllers indexOfObject:alertsNavController];
+   [[m_TabBarController.tabBar.items objectAtIndex:indexOfAlertTab] setBadgeValue:badgeNumber]; 
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:[badgeNumber intValue]];
+    
+}
+
+
+
+-(void)LoginSuccess:(NSString *)sessionToken
+{
+  m_TabBarController= [[UITabBarController alloc] init];
+  m_TabBarController.delegate=self;
+  m_TabBarController.tabBar.hidden=YES;
+  window.rootViewController=m_TabBarController;  
+
+     [self creatingTwoTabBarControllers];    
+}
+
+- (void)applicationWillResignActive:(UIApplication *)application 
+{
+  
+}
+
+- (void)applicationDidEnterBackground:(UIApplication *)application 
+{
+}
+
+- (void)applicationWillEnterForeground:(UIApplication *)application 
+{
+  
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application 
+{
+  
+}
+
+- (void)applicationWillTerminate:(UIApplication *)application 
+{
+  
+}
+
+-(void) disableTabbarControlAtBottomFully
+{
+#ifdef DEMO_BUILD
+    m_TabBarController.tabBar.alpha = 0.4;
+#endif
+}
+-(void) enableTabbarControlAtBottomAsPerEntity
+{
+#ifdef DEMO_BUILD    
+    m_TabBarController.tabBar.alpha = 1.0;
+#endif
+}
+
+
+#pragma mark UITabBarController delegate methods
+
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
+{
+    
+    UIViewController *selecteVC =  tabBarController.selectedViewController;
+    
+    if(selecteVC == dashboardNavController)
+    {
+        [pDashboardButton setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"Dash" ofType:@"png"]] forState:UIControlStateNormal];
+        [pControlButton setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"ControlDull" ofType:@"png"]] forState:UIControlStateNormal];
+        [pAlertButton setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"AlertDull" ofType:@"png"]] forState:UIControlStateNormal];
+
+    }
+    else if(selecteVC == controlNavController)
+    {
+            
+        [pDashboardButton setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"DashDull" ofType:@"png"]] forState:UIControlStateNormal];
+        [pControlButton setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"Control" ofType:@"png"]] forState:UIControlStateNormal];
+        [pAlertButton setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"AlertDull" ofType:@"png"]] forState:UIControlStateNormal];
+        NSNumber *tabButtonTag=0;
+        [[NSUserDefaults standardUserDefaults] setObject:tabButtonTag forKey:@"SelectedControlTab"];
+        
+    }
+    else if(selecteVC == alertsNavController)
+    {
+        [pDashboardButton setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"DashDull" ofType:@"png"]] forState:UIControlStateNormal];
+        [pControlButton setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"ControlDull" ofType:@"png"]] forState:UIControlStateNormal];
+        [pAlertButton setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"Alert" ofType:@"png"]] forState:UIControlStateNormal];
+    }
+
+    //if(viewController == controlNavController)
+       // [self createControlViewControllers];
+
+}
+
+
+#pragma mark UINavigationControllerDelegate methods
+
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+//  [viewController viewWillAppear:animated];
+}
+
+- (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+//  [viewController viewDidAppear:animated];
+}
+
+#pragma mark UITabBarControllerDelegate methods
+- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
+{
+    return YES;
+    
+  if([[NSUserDefaults standardUserDefaults]boolForKey:@"ControlEnabled"])
+  {
+    return YES;
+  }
+  else if([[NSUserDefaults standardUserDefaults]boolForKey:@"AlertEnabled"])
+  {
+    if(([tabBarController.viewControllers objectAtIndex:0] == viewController) || ([tabBarController.viewControllers objectAtIndex:2] == viewController))
+    {
+      return YES;
+    }
+    else 
+      return NO;    
+  }
+  else 
+  {
+    if(([tabBarController.viewControllers objectAtIndex:0] == viewController))
+    {
+      return YES;
+    }
+    else 
+      return NO;
+  }
+}
+
+#pragma mark -
+#pragma mark Memory management
+
+- (void)applicationDidReceiveMemoryWarning:(UIApplication *)application {
+    /*
+     Free up as much memory as possible by purging cached data objects that can be recreated (or reloaded from disk) later.
+     */
+}
+
+
+- (void)dealloc 
+{
+  if(m_NavigationController){m_NavigationController=nil;}
+  if(mAccelerometerObserver){mAccelerometerObserver=nil;}
+  if(mURLConnection) 
+	{
+		[mURLConnection cancel];
+		mURLConnection=nil;
+	}
+  if(mResponseData)
+	{
+		mResponseData=nil;
+	}  
+  if(m_ActivityIndicatorView){[m_ActivityIndicatorView removeFromSuperview];m_ActivityIndicatorView=nil;}
+}
+
+
+#pragma mark -- LoginManagerDelegate
+-(void)loginManager:(LoginManager*)manager loggedInSuccesfullyWithSessionToken:(NSString*)sessionToken
+{
+  [self LoginSuccess:sessionToken];
+}
+-(void)loginManagerFoundNoRootViewController
+{
+  if(m_TabBarController)
+  {
+    m_TabBarController=nil;
+  }
+  m_TabBarController= [[UITabBarController alloc] init];
+  m_TabBarController.delegate=self;
+  m_TabBarController.tabBar.hidden=YES;
+//  window.rootViewController=m_TabBarController;  
+  [[LoginManager sharedLoginManagerWithDelegate:self] ShowLoginPage];
+}
+@end

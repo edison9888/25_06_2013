@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OC_SA_R1_D020_I010]]></id>
+	<title><![CDATA[]]></title>
+    <descriptionText><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Opportunity Knocks</Introtext><welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">You have just scheduled a speaker program, and you think Dr. Bennett and the other prescribers at Sunnydale Psychiatry might be interested in attending.  This would be a perfect opportunity to get a conversation started about patient types best suited to benefit from your product.  Since it’s time for your regular visit to Sunnydale Psychiatry anyway, you plan to speak to Dr. Bennett about trends that are affecting the practice, so that you can better position yourself as a partner.</welcomeText>]]></descriptionText>
+    <continueBtn><![CDATA[]]></continueBtn>
+	<branchTo><![CDATA[OC_SA_R1_D020]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

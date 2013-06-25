@@ -1,0 +1,233 @@
+//
+//  LoginViewController.m
+//  NotiyiiPhoneApplicationProject
+//
+//  Created by Veena on 10/09/12.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//
+
+#import "LoginViewController.h"
+#import "AppDelegate.h"
+#import "NotifyiConstants.h"
+#import "GeneralClass.h"
+#import "SBJSON.h"
+#import "JSON.h"
+
+@interface LoginViewController ()
+
+-(void) setFontForControlls;
+-(BOOL) isLoginSuccess;
+
+@property(strong,nonatomic)IBOutlet UITextField *userNameTextField;
+@property(strong,nonatomic)IBOutlet UITextField *passwordTextField;
+
+@end
+
+@implementation LoginViewController
+@synthesize userNameTextField;
+@synthesize passwordTextField;
+
+#pragma mark- Init Load
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        
+        
+    }
+    return self;
+}
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"logged_in"];
+    passwordTextField.secureTextEntry = YES;
+    userNameTextField.delegate = self;
+    passwordTextField.delegate = self;
+    
+    [self setFontForControlls];
+    
+//    userNameTextField.text = @"test@notifyi.com";
+//    passwordTextField.text = @"notifyi123";
+}
+
+#pragma mark- Methods
+/*******************************************************************************
+ *  Function Name:isLoginSuccess.
+ *  Purpose: Validate Username and Password.
+ *  Parametrs:nil.
+ *  Return Values:BOOL,if valid return YES else NO.
+ ********************************************************************************/
+-(BOOL)isLoginSuccess
+{
+    BOOL result;
+    if([passwordTextField.text length] == 0||[userNameTextField.text length] == 0)
+    {
+        NSLog(@"Invalid Login");
+        //Alert for Invalid Username or Password
+        //UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"PLEASE CHECK YOUR DETAILS",nil) message:NSLocalizedString(@"INVALID USERNAME AND PASSWORD MESSAGE", nil) delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil,nil];
+        [GeneralClass showAlertView:self
+                                msg:NSLocalizedString(@"INVALID USERNAME AND PASSWORD MESSAGE", nil)
+                              title:NSLocalizedString(@"PLEASE CHECK YOUR DETAILS",nil)
+                        cancelTitle:@"Ok"
+                         otherTitle:nil];
+        //[alert show];
+        //alert = nil;
+        result=NO;
+    }
+    else
+    {
+        BOOL isValidEmailId = [ GeneralClass emailValidation:userNameTextField.text];
+        if(isValidEmailId)
+        {
+            result=YES;
+        }
+        else
+        {
+            result=NO;
+        }
+    }
+    return result;
+}
+
+/*******************************************************************************
+ *  Function Name:setFontForControlls.
+ *  Purpose: To set font for Controllers.
+ *  Parametrs:nil.
+ *  Return Values:nil.
+ ********************************************************************************/
+-(void) setFontForControlls
+{
+    userNameTextField.font = [GeneralClass getFont:titleFont and:regularFont];
+    passwordTextField.font = [GeneralClass getFont:titleFont and:regularFont];
+    loginButton.titleLabel.font = [GeneralClass getFont:titleFont and:boldFont];
+    forgotPasswordButton.titleLabel.font = [GeneralClass getFont:buttonFont and:boldFont];
+    contactUsButton.titleLabel.font =  [GeneralClass getFont:buttonFont and:boldFont];
+}
+
+/*******************************************************************************
+ *  Function Name: touchesBegan.
+ *  Purpose: To delegate back ground touch events.
+ *  Parametrs:event.
+ *  Return Values:nil.
+ ********************************************************************************/
+- (void) touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event
+{
+	NSLog(@"Background touched ");
+	[userNameTextField resignFirstResponder];
+	[passwordTextField resignFirstResponder];
+    
+}
+#pragma mark- TextField delegate
+/*******************************************************************************
+ *  UITextField delegate.
+ ********************************************************************************/
+-(BOOL)textFieldShouldReturn:(UITextField*)textField
+{
+    NSLog(@"textFieldShouldReturn:");
+    if (textField.tag == 1) {
+        // if Found next responder, so set it.
+        UITextField *nextTextField = (UITextField *)[self.view viewWithTag:2];
+        [nextTextField becomeFirstResponder];
+    }
+    else {
+        // if Not found, so remove keyboard.
+        [textField resignFirstResponder];
+        
+    }
+    return NO;
+}
+#pragma mark- Button Actions
+/*******************************************************************************
+ *  ContactUs button Touch action.
+ ********************************************************************************/
+- (IBAction)contactUsButtonTouched:(id)sender
+{
+    [GeneralClass clickableLinkMethod:@"http://www.google.com"];
+}
+
+/*******************************************************************************
+ *  Forgot password button Touch action.
+ ********************************************************************************/
+- (IBAction)forgotPasswordButtonTouched:(id)sender
+{
+    [GeneralClass clickableLinkMethod:@"http://www.google.com"];
+
+}
+
+/*******************************************************************************
+ *  Login password button Touch action.
+ ********************************************************************************/
+- (IBAction)loginButtonTouched:(id)sender
+{
+    BOOL isValidLogin = [self isLoginSuccess];
+    if (isValidLogin)
+    {
+        
+//        [self fetchInboxDetails];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"logged_in"];
+
+        AppDelegate *app= (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        [app addTabBarToDisplay];
+        //signature at inbox
+        NSString * email = userNameTextField.text;
+        [[NSUserDefaults standardUserDefaults] setObject:email forKey:@"USERNAME"];
+        //password lock
+        NSString * passwordLockKey = passwordTextField.text;
+        [[NSUserDefaults standardUserDefaults] setObject:passwordLockKey forKey:@"PASSWORD"];
+        [userNameTextField resignFirstResponder];
+        [passwordTextField resignFirstResponder];
+    }
+    else
+    {
+        [userNameTextField resignFirstResponder];
+        [passwordTextField resignFirstResponder];
+        
+    }
+}
+/*******************************************************************************
+ *  Function Name:fetchInboxDetails.
+ *  Purpose: To set font for Controllers.
+ *  Parametrs:nil.
+ *  Return Values:nil.
+ ********************************************************************************/
+-(void) fetchInboxDetails
+{
+    NSString *uname = @"Veena";
+    NSString *password = @"Veena";
+    NSString *string=[NSString stringWithFormat:@"{ \"emailId\": \"%@\",\"password\":\"%@\"}",uname,password];
+    JsonParser *objParser=[[JsonParser alloc] init];
+    objParser.delegate=self;
+    [objParser parseJson:InboxParse :string];
+}
+
+/*******************************************************************************
+ *  Function Name: parseCompleteSuccessfully,parseFailedWithError.
+ *  Purpose: To delegate the json parser.
+ *  Parametrs:Array of resulted parserObject.
+ *  Return Values:nil.
+ ********************************************************************************/
+-(void)parseCompleteSuccessfully:(ParseServiseType) eparseType:(NSArray *)result
+{
+    NSLog(@"Parse complete");
+
+}
+-(void)parseFailedWithError:(ParseServiseType) eparseType:(NSError *)error:(int)errorCode
+{
+    
+    NSLog(@"Parse Error");
+}
+#pragma mark- Memory
+- (void)viewDidUnload
+{
+    [self setUserNameTextField:nil];
+    [self setPasswordTextField:nil];
+    [super viewDidUnload];
+}
+#pragma mark- Orientation
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+@end

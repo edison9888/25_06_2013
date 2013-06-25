@@ -1,0 +1,42 @@
+//
+//  MaintenanceLogDetailCell.m
+//  GreenVolts
+//
+//  Created by Shinu Mohan on 23/08/12.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//
+
+#import "MaintenanceLogDetailCell.h"
+@interface MaintenanceLogDetailCell ()
+@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
+- (IBAction)saveButtonTouched:(id)sender;
+
+@end
+
+@implementation MaintenanceLogDetailCell
+@synthesize titleLabel;
+
+
+
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) 
+    {
+        // Initialization code
+    }
+    return self;
+}
+
+- (void)displayDetails:(int)rowValue
+{    
+   
+    self.titleLabel.text = @"Maintenancelog details";
+    self.titleLabel.textColor=[UIColor whiteColor];
+    //self.titleLabel.frame
+    
+
+}
+
+
+@end

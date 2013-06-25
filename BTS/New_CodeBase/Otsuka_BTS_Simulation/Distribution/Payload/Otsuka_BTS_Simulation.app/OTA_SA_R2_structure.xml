@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<round_structure>
+	<title><![CDATA[Round 2]]></title>
+	<intro totalPages="3">
+		<page bgnd="BgImg_intro" template="TextOnlyTemplate"><![CDATA[OTS_SA_R2_INTRO1]]></page>
+		<page bgnd="BgImg_intro" template="TextOnlyTemplate"><![CDATA[OTS_SA_R2_INTRO2]]></page>
+		<page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[Pre_OTS_SA_R2_D010]]></page>
+	</intro>
+	<decision totalPages="3">
+	    
+		<page bgnd="BgImg_Scene01" template="SingleSelectMCQ"><![CDATA[OTS_SA_R2_D010]]></page>
+		<page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D010_A010]]></page>
+		<page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D010_B010]]></page>
+		<page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D010_C010]]></page>
+		<page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D010_D010]]></page>
+		<page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D010_A020]]></page>
+		<page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D010_B020]]></page>
+		<page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D010_C020]]></page>
+		<page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D010_D020]]></page>
+	</decision>
+
+<decision totalPages="3">
+		<page bgnd="BgImg_Scene01" template="SingleSelectMCQ"><![CDATA[OTS_SA_R2_D020]]></page>
+		<page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D020_A010]]></page>
+            <page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D020_B010]]></page>
+            <page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D020_C010]]></page>
+            <page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D020_D010]]></page>
+            <page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D020_A020]]></page>
+            <page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D020_B020]]></page>
+            <page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D020_C020]]></page>
+            <page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D020_D020]]></page>
+
+	</decision>
+
+
+<decision totalPages="3">
+		<page bgnd="BgImg_Scene01" template="SingleSelectMCQ"><![CDATA[OTS_SA_R2_D030]]></page>
+		<page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D030_A010]]></page>
+            <page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D030_B010]]></page>
+            <page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D030_C010]]></page>
+            <page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D030_D010]]></page>
+            <page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D030_A020]]></page>
+            <page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D030_B020]]></page>
+            <page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D030_C020]]></page>
+            <page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D030_D020]]></page>
+
+    
+	</decision>
+
+<decision totalPages="3">
+		<page bgnd="BgImg_Scene01" template="SingleSelectMCQ"><![CDATA[OTS_SA_R2_D040]]></page>
+		<page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D040_A010]]></page>
+            <page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D040_B010]]></page>
+            <page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D040_C010]]></page>
+            <page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D040_D010]]></page>
+            <page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D040_A020]]></page>
+            <page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D040_B020]]></page>
+            <page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D040_C020]]></page>
+            <page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D040_D020]]></page>
+
+    
+	</decision>
+
+
+<decision totalPages="3">
+		<page bgnd="BgImg_Scene01" template="SingleSelectMCQ"><![CDATA[OTS_SA_R2_D050]]></page>
+		<page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D050_A010]]></page>
+            <page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D050_B010]]></page>
+            <page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D050_C010]]></page>
+            <page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D050_D010]]></page>
+            <page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D050_A020]]></page>
+            <page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D050_B020]]></page>
+            <page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D050_C020]]></page>
+            <page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D050_D020]]></page>
+
+    
+	</decision>
+
+
+<decision totalPages="3">
+		<page bgnd="BgImg_Scene01" template="SingleSelectMCQ"><![CDATA[OTS_SA_R2_D060]]></page>
+		<page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D060_A010]]></page>
+            <page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D060_B010]]></page>
+            <page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D060_C010]]></page>
+            <page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D060_D010]]></page>
+            <page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D060_A020]]></page>
+            <page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D060_B020]]></page>
+            <page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D060_C020]]></page>
+            <page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D060_D020]]></page>
+
+    
+	</decision>
+
+
+<decision totalPages="3">
+		<page bgnd="BgImg_Scene01" template="SingleSelectMCQ"><![CDATA[OTS_SA_R2_D070]]></page>
+		<page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D070_A010]]></page>
+            <page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D070_B010]]></page>
+            <page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D070_C010]]></page>
+            <page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D070_D010]]></page>
+            <page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D070_A020]]></page>
+            <page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D070_B020]]></page>
+            <page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D070_C020]]></page>
+            <page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D070_D020]]></page>
+
+    
+	</decision>
+
+
+<decision totalPages="3">
+		<page bgnd="BgImg_Scene01" template="SingleSelectMCQ"><![CDATA[OTS_SA_R2_D080]]></page>
+		<page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D080_A010]]></page>
+            <page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D080_B010]]></page>
+            <page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D080_C010]]></page>
+            <page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D080_D010]]></page>
+            <page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D080_A020]]></page>
+            <page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D080_B020]]></page>
+            <page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D080_C020]]></page>
+            <page bgnd="BgImg_Scene01" template="ImageTextTemplate"><![CDATA[OTS_SA_R2_D080_D020]]></page>
+
+    
+	</decision>
+
+	<simEnd totalPages="1">
+		<page bgnd="BgImg_Scene01" template="TextOnlyTemplate"><![CDATA[OTS_SA_R2_SIMEND]]></page>
+	</simEnd>
+</round_structure>

@@ -1,0 +1,37 @@
+//
+//  MaintenanceTaskContent.m
+//  GreenVolts
+//
+//  Created by Shinu Mohan on 21/08/12.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//
+
+#import "MaintenanceTaskContent.h"
+
+@implementation MaintenanceTaskContent
+
+ 
+@synthesize displayOrder,
+ err,
+ errId,
+ iD,
+ isSelectable,
+ name;
+
+-(id)init
+{
+    if(self  = [super init])
+    {
+        displayOrder =nil;
+        err=nil;
+        errId=nil;
+        iD=nil;
+        isSelectable=nil;
+        name=nil;
+        
+        
+    }
+    return self;
+}
+
+@end

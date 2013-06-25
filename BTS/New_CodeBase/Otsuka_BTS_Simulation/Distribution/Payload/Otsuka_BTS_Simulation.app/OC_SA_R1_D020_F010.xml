@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OC_SA_R1_D020_F010]]></id>
+	<title><![CDATA[]]></title>
+    <descriptionText><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Use Trends Effectively</Introtext><welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">It’s important to use trends in a conversation with Dr. Bennett in a way that incorporates Sunnydale Psychiatry’s desired patient and practice outcomes. This opens the door for you to show how you can discuss Sunnydale Psychiatry’s goals. Also, you would have learned that Dr. Bennett feels that his patients are more and more educated about their condition and the products used to treat it. As a prescriber, he would feel more confident if he had more information about patient types who would most benefit from being put on a particular product, and why.</welcomeText>]]></descriptionText>
+    <character><![CDATA[Char_Mack]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>
+	<branchTo><![CDATA[OC_SA_R1_D030_I010]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

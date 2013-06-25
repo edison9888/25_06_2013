@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OC_SA_R1_D020]]></id>
+	<title><![CDATA[<Introtext style="font-family:Helvetica; font-size:14pt; font-weight:bold; color:#cc0033; margin:10px -5px 10px 5px; padding:5px 0 5px 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Using Trends in a Customer Conversation</Introtext>]]></title>
+	<title2><![CDATA[Using Trends in a Customer Conversation]]></title2>
+	<instructions><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:11pt; line-height:18pt; text-align:justify; font-weight:bold; color:#333; display:block; margin:0 10px 10px">What is the best way to use trends in a conversation with Dr. Gomez?</welcomeText>]]></instructions>
+	<choices>
+		<choice>
+			<id><![CDATA[1]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>A</b>. Ask Dr. Gomez what her patient volume has looked like for the past month to get a feel for how healthcare reform may be affecting patient procedures.  </welcomeText>]]></choiceText>
+			<KPIs totalScore="0">
+				<KPI marks="0"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="-5"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="5"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OC_SA_R1_D020_A010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[2]]></id>
+			<isCorrect><![CDATA[YES]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>B</b>. Invite Dr. Gomez to the speaker program. Ask Dr. Gomez what she thinks the top trends are that affect her department’s desired goals, and also find out as a potential prescriber of your product, what aspects of hyponatremia and its management she needs education on the most. </welcomeText>]]></choiceText>
+			<KPIs totalScore="25">
+				<KPI marks="10"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="5"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OC_SA_R1_D020_B010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[3]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>C</b>. Ask Dr. Gomez what trends she believes are currently impacting Maycomb. Arrange for a lunch to discuss her feedback.</welcomeText>]]></choiceText>
+			<KPIs totalScore="15">
+				<KPI marks="5"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="5"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="5"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OC_SA_R1_D020_C010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[4]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>D</b>. Find out from Dr. Gomez if she has seen an opportunity for using your product lately. Stress the advantages of Samsca over fluid restriction, notably higher patient satisfaction. Detail your product and leave some information packets.</welcomeText>]]></choiceText>
+			<KPIs totalScore="10">
+				<KPI marks="5"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="5"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OC_SA_R1_D020_D010]]></branchTo>
+		</choice>
+	</choices>
+    <summary><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">This is a great opportunity to involve Dr. Gomez and learn about the most important trends affecting the cardiology department’s goals (Choice B).  Choice A makes the assumption that healthcare reform is the most important trend for the department, and you miss an opportunity to discuss trends with Dr. Gomez in a way that positions you as a trusted advisor.  If you chose C, you didn’t include her desired goals or discuss which patients with dilutional hyponatremia are appropriate for treatment with Samsca.    Again, with Choice D, you made an assumption about what trend was most important for Dr. Gomez’s department, and missed an opportunity to build trust as an advisor to Dr. Gomez.  Choice B is the best choice.</welcomeText>]]></summary>
+</pageContent>

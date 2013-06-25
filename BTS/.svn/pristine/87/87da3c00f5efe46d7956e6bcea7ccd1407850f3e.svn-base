@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OTS_SA_R3_D040]]></id>
+	<title><![CDATA[<Introtext style="font-family:Helvetica; font-size:14pt; font-weight:bold; color:#cc0033; margin:10px -5px 10px 5px; width:738px; padding:5px 0 5px 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Create Value</Introtext>]]></title>
+	<title2><![CDATA[]]></title2>
+	<instructions><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:11pt; line-height:18pt; text-align:justify; font-weight:bold; color:#333; display:block; margin:0 10px 10px">What is your next step?</welcomeText >]]></instructions>
+	<choices>
+		<choice>
+			<id><![CDATA[1]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>A</b>. Ask Dr. Bennett which medications have the greatest side effects. Based on his answer, help him explore the factors that may be contributing to the frequent side effects</welcomeText>]]></choiceText>
+			<KPIs totalScore="10">
+				<KPI marks="5"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="5"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R3_D040_A010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[2]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>B</b>. Ask Dr. Bennett how he feels that you, as a pharma rep, can best help him address his concerns about side effects.</welcomeText>]]></choiceText>
+			<KPIs totalScore="-10">
+				<KPI marks="0"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="-5"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="-5"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R3_D040_B010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[3]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>C</b>. Refer Dr. Bennett to another practice, where he may get some suggestions about addressing and controlling side effects.  </span></welcomeText>]]></choiceText>
+			<KPIs totalScore="5">
+				<KPI marks="5"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="0"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R3_D040_C010]]></branchTo>
+		</choice>
+		
+		<choice>
+			<id><![CDATA[4]]></id>
+			<isCorrect><![CDATA[YES]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>D</b>. With Dr. Bennett, discuss your product’s ability to treat patients successfully due to a favorable side effect profile.  Then explain how products with a favorable side effect profile may achieve better patient outcomes, as patients are more likely to remain on the medication and receive the full treatment.</span></welcomeText>]]></choiceText>
+			<KPIs totalScore="30">
+				<KPI marks="10"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="10"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R3_D040_D010]]></branchTo>
+		</choice>
+		
+	</choices>
+	<summary><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">The best way to help Dr. Bennett address and control side effects address and control side effects is to talk to him about your product’s favorable side effects profile (Choice D).  Choice A is too general, and while it may initiate an interesting discussion, it would have little value. Choice B is not effective because you are not coming to the table with a point of view and a recommendation for a solution. Choice C may be effective, but again, it is too general and does not demonstrate your understanding of Sunnydale Psychiatry. Discussing the side effect profile of your product, and sharing how a favorable side effect profile may achieve better patient outcomes, positions you as a trusted advisor who can address a specific concern.</welcomeText>]]></summary>
+</pageContent>

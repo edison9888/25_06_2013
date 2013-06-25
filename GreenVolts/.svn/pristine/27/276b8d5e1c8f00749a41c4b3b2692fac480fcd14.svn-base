@@ -1,0 +1,52 @@
+//
+//  MaintenancePlanDetailCell.m
+//  GreenVolts
+//
+//  Created by Rapidvalue on 8/22/12.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//
+
+#import "MaintenancePlanDetailCell.h"
+
+@interface MaintenancePlanDetailCell ()
+@property (strong, nonatomic) IBOutlet UIButton *backButton;
+@property (strong, nonatomic) IBOutlet UIButton *logButton;
+@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
+- (IBAction)logButtonTouched:(id)sender;
+
+@end
+
+@implementation MaintenancePlanDetailCell
+@synthesize backButton;
+@synthesize logButton;
+@synthesize titleLabel;
+
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        // Initialization code
+    }
+    return self;
+}
+
+- (void)displayDetails:(int)rowValue
+{
+    self.titleLabel.text = @"Maintenance Detail";
+    if (rowValue == 0) {
+        
+    }
+    else {
+        [self.backButton removeFromSuperview];
+        [self.logButton removeFromSuperview];
+        CGRect newLabelRect = CGRectMake(20, 5, 200, 30);
+        self.titleLabel.frame = newLabelRect;
+
+    }
+}
+
+#pragma mark- Display Methods
+
+- (IBAction)logButtonTouched:(id)sender {
+}
+@end

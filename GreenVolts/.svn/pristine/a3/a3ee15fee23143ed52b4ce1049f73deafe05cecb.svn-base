@@ -1,0 +1,18 @@
+//
+//  MaintenancePlanDetailView.h
+//  GreenVolts
+//
+//  Created by Rapidvalue on 8/22/12.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "MaintenancePlanDetailCell.h"
+@interface MaintenancePlanDetailView : UIView<UITableViewDelegate,UITableViewDataSource>
+{
+    UITableView   *maintenaceDetailTable;
+}
+
+- (IBAction)backButtonTouched:(id)sender;
+@property(nonatomic,strong) IBOutlet MaintenancePlanDetailCell *maintenancePlanDetailCell;
+@end

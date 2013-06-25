@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OTS_SA_R2_Intro2]]></id>
+	<title><![CDATA[Introduction2]]></title>
+    <descriptionText><![CDATA[INTRO 2]]></descriptionText>
+    <character><![CDATA[Char_Annie]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>
+	<branchTo><![CDATA[]]></branchTo>
+</pageContent>

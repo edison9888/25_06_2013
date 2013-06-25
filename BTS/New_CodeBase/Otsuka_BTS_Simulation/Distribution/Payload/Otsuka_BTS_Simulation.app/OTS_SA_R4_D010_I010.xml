@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OTS_SA_R4_D010_I010]]></id>
+	<title><![CDATA[]]></title>
+    <descriptionText><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Not So Sure</Introtext><welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">When you arrive at Sunnydale Psychiatry, Dr. Bennett greets you with a handshake. As you engage him in a conversation about how the practice is doing, Dr. Bennett seems a bit distant.<BR><BR>When you probe a little further to uncover what is bothering him, he finally says, "Dr. Hayes wrote his first prescription for your product last week.  Then yesterday, he got a phone call from the patient – she had gone to fill the prescription, and she found out that her insurance didn’t cover the product, and it would cost her $500 for a month’s supply.  I had the front office help, and it looks like if we go through a lengthy prior-authorization process, the product will be covered.<BR><BR>But Dr. Hayes isn’t pleased, and we can’t go through this hassle every time we prescribe a product.  The experience brought back all of Dr. Hayes’ reasons for sticking to lower cost and more familiar products."</welcomeText>]]></descriptionText>
+    <character><![CDATA[Char_DrBennett]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>
+	<branchTo><![CDATA[OTS_SA_R4_D010]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

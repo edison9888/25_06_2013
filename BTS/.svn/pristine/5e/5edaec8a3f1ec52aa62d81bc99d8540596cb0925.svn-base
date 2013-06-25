@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OTS_SA_R5_D010_B020]]></id>
+	<title><![CDATA[]]></title>
+    <descriptionText><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Aligning with the Customer’s Needs</Introtext><welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">This is a Problems question, not a Results question.  It focuses too widely on problems that may be encountered rather than on the opportunity to uncover Dr. Chu’s goals.  The first question you ask Dr. Chu should be one that opens the conversation around his priorities and the goals he is trying to achieve.<BR><BR>
+        
+        The best question is, “From our previous conversations, I know that you are focused on improving the patient experience.  What specific aspects of the patient experience do you want to see improved?”<BR><BR>
+        
+        This results question begins to create a foundation for aligning with his goals and priorities, which is the best beginning point for becoming a trusted advisor.  Whenever you begin the prescribing process with a consideration of the prescriber’s goals, it enhances your ability to advance the prescribing cycle.<BR>
+        
+        <b>You need to know the answer to this question to continue.  Here is how Dr. Chu would have answered that question:</b><BR><BR>
+        
+        “The two areas I’m most focused on are patient safety and their experience in the hospital.  To me, the patient experience is about much more than being appropriately treated – it is the overall care, compassion, and respect with which they are treated. It’s also about making sure they aren’t exposed to unnecessary safety risks.  I often like to think of what the patient will say about the hospital after they are discharged.  Did they truly feel that Maycomb provided them with the best possible care?”</welcomeText>]]></descriptionText>
+    <character><![CDATA[Char_Mack]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>	
+	<branchTo><![CDATA[OTS_SA_R5_D020]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

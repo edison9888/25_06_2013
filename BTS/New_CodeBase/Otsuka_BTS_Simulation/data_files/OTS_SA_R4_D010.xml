@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OTS_SA_R4_D010]]></id>
+	<title><![CDATA[<Introtext style="font-family:Helvetica; font-size:14pt; font-weight:bold; color:#cc0033; margin:10px -5px 10px 5px; width:738px; padding:5px 0 5px 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Caught By Surprise</Introtext>]]></title>
+	<title2><![CDATA[]]></title2>
+	<instructions><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:11pt; line-height:18pt; text-align:justify; font-weight:bold; color:#333; display:block; margin:0 10px 10px">How do you respond?</welcomeText >]]></instructions>
+	<choices>
+		<choice>
+			<id><![CDATA[1]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>A</b>. Question Dr. Gomez to find out more about the concerns of Pharmacy.  Based on her answer, provide strategies for effectively responding to such concerns in the future. </welcomeText>]]></choiceText>
+			<KPIs totalScore="10">
+				<KPI marks="5"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="0"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="5"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R4_D010_A010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[2]]></id>
+			<isCorrect><![CDATA[YES]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>B</b>. Tell Dr. Gomez that you will plan to meet with Michelle Hinley in Pharmacy.  It has been some time since your last meeting with her, which occurred during the formulary review process. At that time, she was resistant but ultimately agreed to allow access to Samsca for nephrology. You will work closely with Michelle,...<b>READ MORE</b> discussing the benefits and risks of prescribing Samsca for heart failure patients with hyponatremia, and providing pertinent information, such as clinical trial results.  Once Michelle understands the benefits of Samsca for use with hyponatremia in heart failure, she may be more supportive of its use. </welcomeText>]]></choiceText>
+			<KPIs totalScore="30">
+				<KPI marks="10"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="10"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R4_D010_B010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[3]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:11pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>C</b>. Tell Dr. Gomez that resistance from Pharmacy is not uncommon during the early stages of prescribing; however, it will become easier as Pharmacy becomes more familiar with Samsca.  Go back and review the marketing information to provide Dr. Gomez a balanced view of the advantages and tradeoffs involved when prescribing Samsca.</welcomeText>]]></choiceText>
+			<KPIs totalScore="-5">
+				<KPI marks="0"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="0"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="-5"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R4_D010_C010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[4]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>D</b>. Confirm with Dr. Gomez the cardiology department’s priorities and restate the value of working with you to tie back into the department’s goals and priorities. </welcomeText>]]></choiceText>
+			<KPIs totalScore="15">
+				<KPI marks="5"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="5"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="5"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R4_D010_C010]]></branchTo>
+		</choice>
+		<!--<feedbackText><![CDATA[Your customer is in the “deciding to trial” phase of the prescribing cycle. Providing a clear understanding to Pharmacy about the benefits and risks of Samsca for different patient types is the best way to handle Michelle’s and Dr. Gomez’s concern at this stage of the prescribing cycle. If you choose to provide strategies to counter Pharmacy’s concerns (Choice A), you are jumping ahead to the next phase of the prescribing cycle, without closing on this phase. You have already worked through fair balance and have helped Dr. Gomez evaluate all her options, so Choice C is not the ideal way to respond, either. Choice D is an okay choice, but you should have already planned out your targets for this customer on a value map, so this may or may not resolve the current concerns they have. Choice B is the best choice.]]></feedbackText>-->
+	</choices>
+	 <summary><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">Your customer is in the "deciding to trial" phase of the prescribing cycle. Setting clear expectations about insurance coverage is the best way to handle Dr. Bennett’s concern at this stage and to close on this phase of the prescribing cycle. If you choose to offer a creative solution to resolve his concerns (Choice A), you are jumping ahead to the next phase of the prescribing cycle, without closing on this phase. You have already worked through fair balance and have helped Dr. Bennett evaluate all his options, so Choice C is not the ideal way to respond, either. Choice D is an okay choice, but you should have already planned out your targets for this customer on a value map, so this may or may not resolve the current concerns they have. Choice B is the best choice.</welcomeText>]]></summary>
+</pageContent>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OC_SA_R1_D020_E010]]></id>
+	<title><![CDATA[Well Done]]></title>
+    <descriptionText><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Well Done</Introtext><welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">“Nice work. You were wise to inform Dr. Gomez that there are no outcomes data for Samsca. Redirect the conversation to how Samsca can be used to treat dilutional hyponatremia in appropriate patients.  Asking Dr. Gomez about prescriber education needs, as well as what is affecting the Maycomb cardiology department, gives you valuable information on the market and industry trends she believes are most important. By engaging Dr. Gomez in this kind of conversation, you gain her buy-in, increasing the chances that she will attend the speaker program and give you another opportunity for pull-through.”</welcomeText>]]></descriptionText>
+    <character><![CDATA[Mac_happy]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>
+	<branchTo><![CDATA[OC_SA_R1_D030_I010]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

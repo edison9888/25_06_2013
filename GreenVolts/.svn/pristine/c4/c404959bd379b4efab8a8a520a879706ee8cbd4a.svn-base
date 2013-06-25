@@ -1,0 +1,21 @@
+//
+//  MaintenancePlanView.h
+//  GreenVolts
+//
+//  Created by Shinu Mohan on 21/08/12.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "MaintenancePlanCell.h"
+
+@interface MaintenancePlanView : UIView<UITableViewDelegate,UITableViewDataSource>
+{
+    UITableView   *maintenaceTable;
+
+}
+
+@property(nonatomic,strong)NSMutableArray *maintenancePlanArray;
+@property(nonatomic,strong) IBOutlet MaintenancePlanCell *maintenancePlanCell;
+
+@end

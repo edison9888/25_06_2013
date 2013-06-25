@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OTS_SA_R2_SIMEND]]></id>
+	<title><![CDATA[SIMEND]]></title>
+    <descriptionText><![CDATA[<font size='3' face= 'helvetica'>Welcome to the <i>Otsuka Sales Accelerator Simulation</i>. 
+In this second round of the simulation you will have a chance to practice the strategies you’ve learned for asking customers questions that drive accelerated selling. You’ll be competing against your peers.
+
+You will be applying the ROPE questioning model you learned:
+
+Results
+Opportunities
+Problems
+Execution
+
+On each screen, you’ll choose from a set of possible questions and decide which is the best one to ask at that point in the conversation. Based on your selection, you will receive a score that can range from +50 points, for the best choice, to -20 points, for the worst choice. So, make your decisions carefully. Your scoring will be cumulative, and at the end of the simulation you’ll be able to compare your performance to that of other teams.
+
+Each of the possible questions you consider has been rated according to the following individual metrics, so your score will reflect whether your decision making is in line with these characteristics as well.
+
+Customer’s Results 
+Decisions will accelerate your customer's desired business results
+Decisions will capture new opportunities for the customer
+
+Sales Progress 
+Decisions build on previous discussions and align with where the customer is in their prescribing cycle
+Decisions advance the sale by "closing" at multiple points in the prescribing cycleCustomer’s Results 
+Decisions will accelerate your customer's desired business results
+Decisions will capture new opportunities for the customer
+
+Sales Progress 
+Decisions build on previous discussions and align with where the customer is in their prescribing cycle
+Decisions advance the sale by "closing" at multiple points in the prescribing cycle
+]]></descriptionText>
+    <continueBtn><![CDATA[NO]]></continueBtn>
+	<branchTo><![CDATA[]]></branchTo>
+</pageContent>

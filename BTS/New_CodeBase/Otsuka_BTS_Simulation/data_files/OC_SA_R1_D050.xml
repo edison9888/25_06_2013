@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OC_SA_R1_D050]]></id>
+	<title><![CDATA[<Introtext style="font-family:Helvetica; font-size:14pt; font-weight:bold; color:#cc0033; margin:10px -5px 10px 5px; padding:5px 0 5px 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Aligning Your Strategy</Introtext>]]></title>
+	<title2><![CDATA[Aligning Your Strategy]]></title2>
+	<instructions><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:11pt; line-height:18pt; text-align:justify; font-weight:bold; color:#333; display:block; margin:0 10px 10px">As you prepare for your meeting with Dr. Cardonza, what action will you plan to take?</welcomeText>]]></instructions>
+	<choices>
+		<choice>
+			<id><![CDATA[1]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>A</b>. Plan to offer Dr. Cardonza information and data that he can use to evaluate his options. Be prepared to help him by providing the features and fair balance of your product. </welcomeText>]]></choiceText>
+			<KPIs totalScore="15">
+				<KPI marks="5"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="5"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="5"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OC_SA_R1_D050_A010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[2]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>B</b>. Take time to research the cardiology department thoroughly, and identify questions to ask Dr. Cardonza in your meeting that will help to accelerate the prescribing cycle. </welcomeText>]]></choiceText>
+			<KPIs totalScore="0">
+				<KPI marks="5"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="-10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="5"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OC_SA_R1_D050_B010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[3]]></id>
+			<isCorrect><![CDATA[YES]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>C</b>. Prepare to confirm what you have heard from Dr. Gomez with Dr. Cardonza, such as the department’s focus on taking advantage of new treatment options and their reputation.  Also, ask Dr. Cardonza his vision for patient treatment goals. </welcomeText>]]></choiceText>
+			<KPIs totalScore="30">
+				<KPI marks="10"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="10"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OC_SA_R1_D050_C010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[4]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>D</b>. Plan to use the meeting to fully identify and document all of Dr.Cardonza’s concerns about prescribing your product, in addition to presenting information. Take time to anticipate his concerns. After all, he is very comfortable with the traditional methods for treating hyponatremia, having used them for his entire career, and...<b>READ MORE</b> naturally he will have some reservations.</welcomeText>]]></choiceText>
+			<KPIs totalScore="0">
+				<KPI marks="5"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="-10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="5"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OC_SA_R1_D050_D010]]></branchTo>
+		</choice>
+	</choices>
+    <summary><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">Dr. Gomez stated earlier that he and Dr. Cardonza are willing to explore other options, so this indicates they are in the evaluating options phase of the prescribing cycle. Because this will be your first conversation with Dr. Cardonza, it would be best to confirm the information you have received from Dr. Gomez, and ask Dr. Cardonza about the treatment goals he hopes to achieve. (Choice C). In this way you are able both to bring value to the customer and to increase their trust in you and your product. Choice A is an okay option, since providing Dr. Cardonza criteria to evaluate his options is another appropriate action in this phase of the prescribing cycle, but it doesn’t take into consideration Dr. Cardonza’s priorities, and in this instance you want to do both. You should have already researched the department and the hospital thoroughly, so Choice B does not move you and your customer forward. Choice D prematurely jumps ahead to deciding to trial instead of providing what is needed for this phase of the prescribing cycle. Choice C is the best choice.</welcomeText>]]></summary>
+</pageContent>

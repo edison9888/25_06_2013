@@ -1,0 +1,2005 @@
+//
+//  JsonParser.m
+//  EducatedPatient
+//
+//  Created by Joseph on 26/12/11.
+//  Copyright (c) 2011 Intellisphere. All rights reserved.
+//
+
+#import "JsonParser.h"
+#import "TouchBaseViewController.h"
+#import "SBJSON.h"
+#import "JSON.h"
+#import "TouchBase.h"
+#import "Comments.h"
+#import "DiscussionParticipants.h"
+#import "DataManager.h"
+#import "Utilities.h"
+#import "Inbox.h"
+#import "MsgRecipient.h"
+#import "Directory.h"
+#import "Reachability.h"
+#import "MyProfile.h"
+#import "CoverageCalendar.h"
+#import "TimeStamp.h"
+#import "DateFormatter.h"
+
+@interface JsonParser ()
+{
+    int inBoxPageNumber;
+    int touchBasePageNumber;
+    int directoryPageNumber;
+}
+-(NSString *)setInboxParameters:(ParseServiseType)eparseType;
+-(NSString *)setReadMessageParameters:(ParseServiseType)eparseType;
+-(NSString *)setDirectoryParameters:(ParseServiseType)eparseType;
+-(NSString *)setMyprofileParameters:(ParseServiseType)eparseType;
+-(NSString *)setCoverageCalenderParameters:(ParseServiseType)eparseType;
+-(NSString *)setTouchBaseParameters:(ParseServiseType)eparseType;
+
+-(void)loginDataInsertion:(NSDictionary *)results;
+-(void)inboxDataInsertion:(NSDictionary *)results;
+-(void)touchBaseDataInsertion:(NSDictionary *)results;
+-(void)directoryDataInsertion:(NSDictionary *)results;
+-(void)profileDataInsertion:(NSDictionary *)results;
+-(void)coverageCalenderDataInsertion:(NSDictionary *)results;
+-(void)readMessageUpdation:(NSDictionary *)results;
+-(void)composeMessageUpdation:(NSDictionary *)results;
+-(void)startDiscussionUpdation:(NSDictionary *)results;
+-(void)newCommentsUpdation:(NSDictionary *)results;
+-(void)addParticipantsUpdation:(NSDictionary *)results;
+-(void)removeParticipantsUpdation:(NSDictionary *)results;
+-(void)readPushNotificationDeviceTockenResponse:(NSDictionary *)results;
+-(void)readCommentUpdation:(NSDictionary *)results;
+
+
+- (NSString *)lastUpdateddateFromTimeStamp :(ParseServiseType)eparseType;
+
+-(MsgRecipient*)fetchEntityObjectForMsgRecipient:(NSString *)entityName selectBy:(int)recipientID;
+-(id)fetchEntityObjectForDirectory:(NSString *)entityName selectBy:(int)physicianID;
+
+-(void)errorHandler;
+
+@end
+
+@implementation JsonParser
+
+@synthesize delegate;
+
+#pragma mark- NSURLConnection delegate methods
+
+-(void)parseJson:(ParseServiseType)eparseType :(NSString *)jsonRequest
+{
+    if ([Reachability connected])
+    {
+        NSLog(@"******* %@",jsonRequest);
+        NSMutableURLRequest        *request;
+        NSURLConnection            *theConnection;
+        NSString                   *requestDataLengthString;
+        NSData                     *requestData;
+        NSData                     *requestBody;
+        
+        eparseTypess=eparseType;
+        
+        responseData = [NSMutableData data];
+        
+        switch (eparseType) {
+                
+            case LoginAPI:
+            {
+                NSString *URLWithParameters = [NSString stringWithFormat:@"%@%@&operationType=%d",LOGIN_FETCH_URL,jsonRequest,eparseType];
+                
+                request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:URLWithParameters]];
+                NSLog(@"request==%@",request);
+                [request setHTTPMethod:@"GET"];
+                [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+                [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+                [request setHTTPBody:requestBody];
+                [request setTimeoutInterval:45.0];
+                theConnection = [NSURLConnection connectionWithRequest:request  delegate:self];
+            }
+                break;
+            case InboxAPI:
+            {
+                
+                NSString *URLWithParameters = [self setInboxParameters:eparseType];
+                URLWithParameters = [URLWithParameters stringByAppendingFormat:@"%@",jsonRequest];
+                NSLog(@"%@",URLWithParameters);
+                request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[URLWithParameters stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+
+                [request setHTTPMethod:@"GET"];
+                [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+                [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+                [request setHTTPBody:requestBody];
+                [request setTimeoutInterval:45.0];
+                theConnection = [NSURLConnection connectionWithRequest:request  delegate:self];
+            }
+                break;
+                
+            case TouchBaseAPI:
+            {
+                NSString *touchBaseURLWithParameters = [self setTouchBaseParameters:eparseType];
+                request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:touchBaseURLWithParameters]];
+                [request setHTTPMethod:@"GET"];
+                [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+                [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+                [request setHTTPBody:requestBody];
+                [request setTimeoutInterval:45.0];
+                theConnection = [NSURLConnection connectionWithRequest:request  delegate:self];
+            }
+                break;
+                
+                
+            case DirectoryAPI:
+            {
+                NSString *directoryURLWithParameters = [self setDirectoryParameters:eparseType];
+                directoryURLWithParameters = [directoryURLWithParameters stringByAppendingFormat:@"%@",jsonRequest];
+                NSLog(@"%@",directoryURLWithParameters);
+                request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[directoryURLWithParameters stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+                [request setHTTPMethod:@"GET"];
+                [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+                [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+                [request setHTTPBody:requestBody];
+                [request setTimeoutInterval:45.0];
+                theConnection = [NSURLConnection connectionWithRequest:request  delegate:self];
+            }
+                break;
+                
+            case MyProfileAPI:
+            {
+                NSString *directoryURLWithParameters = [self setMyprofileParameters:eparseType];
+                request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:directoryURLWithParameters]];
+                [request setHTTPMethod:@"GET"];
+                [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+                [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+                [request setHTTPBody:requestBody];
+                [request setTimeoutInterval:45.0];
+                theConnection = [NSURLConnection connectionWithRequest:request  delegate:self];
+            }
+                break;
+            case CoverageCalendarAPI:
+            {
+                NSString *coverageCalenderURLWithParameters = [self setCoverageCalenderParameters:eparseType];
+                request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:coverageCalenderURLWithParameters]];
+                [request setHTTPMethod:@"GET"];
+                [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+                [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+                [request setHTTPBody:requestBody];
+                [request setTimeoutInterval:45.0];
+                theConnection = [NSURLConnection connectionWithRequest:request  delegate:self];
+            }
+                break;
+            case ReadMessageAPI:
+            {
+                NSString *readMailURLWithParameters = [self setReadMessageParameters:eparseType];
+                readMailURLWithParameters = [readMailURLWithParameters stringByAppendingFormat:@"%@",jsonRequest];
+                NSLog(@"%@",readMailURLWithParameters);
+                request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[readMailURLWithParameters stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+                [request setHTTPMethod:@"GET"];
+                [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+                [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+                [request setHTTPBody:requestBody];
+                [request setTimeoutInterval:45.0];
+                theConnection = [NSURLConnection connectionWithRequest:request  delegate:self];
+            }
+                break;
+                
+            case ReadCommentAPI:
+            {
+                NSString *URLWithParameters = [NSString stringWithFormat:@"%@%@",READ_COMMENT_URL,jsonRequest];
+                request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[URLWithParameters stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+                [request setHTTPMethod:@"GET"];
+                [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+                [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+                [request setHTTPBody:requestBody];
+                [request setTimeoutInterval:45.0];
+                theConnection = [NSURLConnection connectionWithRequest:request  delegate:self];
+                
+            }
+                break;
+                
+            case DeleteMsgAPI:
+            {
+                NSString *URLWithParameters = [NSString stringWithFormat:@"%@%@",DELETE_MESSAGE_URL,jsonRequest];
+                requestData = [jsonRequest dataUsingEncoding:NSUTF8StringEncoding];
+                requestDataLengthString = [[NSString alloc] initWithFormat:@"%d", [requestData length]];
+                request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[URLWithParameters stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+                [request setHTTPMethod:@"POST"];
+                [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+                [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+                [request setHTTPBody:requestBody];
+                [request setTimeoutInterval:45.0];
+                theConnection = [NSURLConnection connectionWithRequest:request  delegate:self];
+            }
+                break;
+
+            case ComposeAPI:
+            {
+                NSString *URLWithParameters = [NSString stringWithFormat:@"%@%@",COMPOSE_MESSAGE_URL,jsonRequest];
+                requestData = [jsonRequest dataUsingEncoding:NSUTF8StringEncoding];
+                requestDataLengthString = [[NSString alloc] initWithFormat:@"%d", [requestData length]];
+                request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[URLWithParameters stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+                [request setHTTPMethod:@"POST"];
+                [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+                [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+                [request setHTTPBody:requestBody];
+                [request setTimeoutInterval:45.0];
+                theConnection = [NSURLConnection connectionWithRequest:request  delegate:self];
+            }
+                break;
+             
+            case StartDiscussionAPI:
+            {
+                NSString *URLWithParameters = [NSString stringWithFormat:@"%@%@",START_DISCUSSION_URL,jsonRequest];
+                requestData = [jsonRequest dataUsingEncoding:NSUTF8StringEncoding];
+                requestDataLengthString = [[NSString alloc] initWithFormat:@"%d", [requestData length]];
+                request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[URLWithParameters stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+                [request setHTTPMethod:@"POST"];
+                [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+                [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+                [request setHTTPBody:requestBody];
+                [request setTimeoutInterval:45.0];
+                theConnection = [NSURLConnection connectionWithRequest:request  delegate:self];
+            }
+                break;
+                
+            case NewCommentsAPI:
+            {
+                NSString *URLWithParameters = [NSString stringWithFormat:@"%@%@",NEW_COMMENTS_URL,jsonRequest];
+                requestData = [jsonRequest dataUsingEncoding:NSUTF8StringEncoding];
+                requestDataLengthString = [[NSString alloc] initWithFormat:@"%d", [requestData length]];
+                request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[URLWithParameters stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+                [request setHTTPMethod:@"POST"];
+                [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+                [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+                [request setHTTPBody:requestBody];
+                [request setTimeoutInterval:45.0];
+                theConnection = [NSURLConnection connectionWithRequest:request  delegate:self];
+            }
+                break;
+            case AddParticipantAPI:
+            {
+                NSString *URLWithParameters = [NSString stringWithFormat:@"%@%@",ADD_PARTICIPANT_URL,jsonRequest];
+                NSLog(@"%@",URLWithParameters);
+                requestData = [jsonRequest dataUsingEncoding:NSUTF8StringEncoding];
+                requestDataLengthString = [[NSString alloc] initWithFormat:@"%d", [requestData length]];
+                request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[URLWithParameters stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+                [request setHTTPMethod:@"POST"];
+                [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+                [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+                [request setHTTPBody:requestBody];
+                [request setTimeoutInterval:45.0];
+                theConnection = [NSURLConnection connectionWithRequest:request  delegate:self];
+            }
+                break;
+                
+            case RemoveMeAPI:
+            {
+                NSString *URLWithParameters = [NSString stringWithFormat:@"%@%@",REMOVE_PARTICIPANT_URL,jsonRequest];
+                requestData = [jsonRequest dataUsingEncoding:NSUTF8StringEncoding];
+                requestDataLengthString = [[NSString alloc] initWithFormat:@"%d", [requestData length]];
+                request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[URLWithParameters stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+                [request setHTTPMethod:@"POST"];
+                [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+                [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+                [request setHTTPBody:requestBody];
+                [request setTimeoutInterval:45.0];
+                theConnection = [NSURLConnection connectionWithRequest:request  delegate:self];
+            }
+                break;
+                
+            case pushNotificationAPI:
+            {
+                NSString *URLWithParameters = [NSString stringWithFormat:@"%@%@",PUSHNOTIFICATION_URL,jsonRequest];
+                
+                request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:URLWithParameters]];
+                [request setHTTPMethod:@"GET"];
+                [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+                [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+                [request setHTTPBody:requestBody];
+                [request setTimeoutInterval:45.0];
+                theConnection = [NSURLConnection connectionWithRequest:request  delegate:self];
+            }
+                break;
+                
+            case SingleDirectoryDetail:
+            {
+                NSString *singleDirectoryURLWithParameters = [NSString stringWithFormat:@"%@%@",SINGLE_DIRECTORYDETAIL_URL,jsonRequest];
+                
+                request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:singleDirectoryURLWithParameters]];
+                [request setHTTPMethod:@"GET"];
+                [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+                [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+                [request setHTTPBody:requestBody];
+                [request setTimeoutInterval:45.0];
+                theConnection = [NSURLConnection connectionWithRequest:request  delegate:self];
+            }
+                
+                
+            default:
+                
+                NSLog(@"fail");
+        }
+    }
+    else
+    {
+        if(self.delegate && [self.delegate respondsToSelector:@selector(netWorkNotReachable)])
+        {
+            [self.delegate netWorkNotReachable];
+        }
+    }
+}
+
+
+#pragma mark- parser Delegates
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+    
+    
+    //    NSLog(@"didReceiveResponse");
+    NSLog(@"didReceiveResponse===%@",response);
+	[responseData setLength:0];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    //    NSLog(@"didReceiveData");
+	[responseData appendData:data];
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    NSLog(@"didFailWithError");
+    int errorCode = 605;
+    if (eparseTypess == LoginAPI)
+    {
+        if(self.delegate && [self.delegate respondsToSelector:@selector(parseFailedWithError:::)])
+        {
+            [self.delegate parseFailedWithError:eparseTypess:(NSError *)error:(int)errorCode];
+        }
+    }
+    else if( eparseTypess == InboxAPI)
+    {
+        if(self.delegate && [self.delegate respondsToSelector:@selector(parseFailedWithError:::)])
+        {
+            [self.delegate parseFailedWithError:eparseTypess:(NSError *)error:(int)errorCode];
+        }
+        
+    }
+    else if(eparseTypess==TouchBaseAPI)
+    {
+        if(self.delegate && [self.delegate respondsToSelector:@selector(parseFailedWithError:::)])
+        {
+            [self.delegate parseFailedWithError:eparseTypess:(NSError *)error:(int)errorCode];
+        }
+        
+    }
+    else if(eparseTypess==DirectoryAPI)
+    {
+        if(self.delegate && [self.delegate respondsToSelector:@selector(parseFailedWithError:::)])
+        {
+            [self.delegate parseFailedWithError:eparseTypess:(NSError *)error:(int)errorCode];
+        }
+    }
+    else if(eparseTypess==MyProfileAPI)
+    {
+        
+        
+        if(self.delegate && [self.delegate respondsToSelector:@selector(parseFailedWithError:::)])
+        {
+            [self.delegate parseFailedWithError:eparseTypess:(NSError *)error:(int)errorCode];
+        }
+    }
+    else if(eparseTypess==CoverageCalendarAPI)
+    {
+        if(self.delegate && [self.delegate respondsToSelector:@selector(parseFailedWithError:::)])
+        {
+            [self.delegate parseFailedWithError:eparseTypess:(NSError *)error:(int)errorCode];
+        }
+    }
+    else if(eparseTypess==ReadMessageAPI)
+    {
+        if(self.delegate && [self.delegate respondsToSelector:@selector(parseFailedWithError:::)])
+        {
+            [self.delegate parseFailedWithError:eparseTypess:(NSError *)error:(int)errorCode];
+        }
+    }
+    else if(eparseTypess==DeleteMsgAPI)
+    {
+        if(self.delegate && [self.delegate respondsToSelector:@selector(parseFailedWithError:::)])
+        {
+            [self.delegate parseFailedWithError:eparseTypess:(NSError *)error:(int)errorCode];
+        }
+    }
+    else if(eparseTypess==ComposeAPI)
+    {
+        if(self.delegate && [self.delegate respondsToSelector:@selector(parseFailedWithError:::)])
+        {
+            [self.delegate parseFailedWithError:eparseTypess:(NSError *)error:(int)errorCode];
+        }
+    }
+    else if(eparseTypess==StartDiscussionAPI)
+    {
+        if(self.delegate && [self.delegate respondsToSelector:@selector(parseFailedWithError:::)])
+        {
+            [self.delegate parseFailedWithError:eparseTypess:(NSError *)error:(int)errorCode];
+        }
+    }
+    else if(eparseTypess==NewCommentsAPI)
+    {
+        if(self.delegate && [self.delegate respondsToSelector:@selector(parseFailedWithError:::)])
+        {
+            [self.delegate parseFailedWithError:eparseTypess:(NSError *)error:(int)errorCode];
+        }
+    }
+    else if(eparseTypess==AddParticipantAPI)
+    {
+        if(self.delegate && [self.delegate respondsToSelector:@selector(parseFailedWithError:::)])
+        {
+            [self.delegate parseFailedWithError:eparseTypess:(NSError *)error:(int)errorCode];
+        }
+    }
+    else if(eparseTypess==RemoveMeAPI)
+    {
+        if(self.delegate && [self.delegate respondsToSelector:@selector(parseFailedWithError:::)])
+        {
+            [self.delegate parseFailedWithError:eparseTypess:(NSError *)error:(int)errorCode];
+        }
+    }
+    else if(eparseTypess==pushNotificationAPI)
+    {
+        if(self.delegate && [self.delegate respondsToSelector:@selector(parseFailedWithError:::)])
+        {
+            [self.delegate parseFailedWithError:eparseTypess:(NSError *)error:(int)errorCode];
+        }
+    }
+    else if(eparseTypess==SingleDirectoryDetail)
+    {
+        if(self.delegate && [self.delegate respondsToSelector:@selector(parseFailedWithError:::)])
+        {
+            [self.delegate parseFailedWithError:eparseTypess:(NSError *)error:(int)errorCode];
+        }
+    }
+    else if(eparseTypess==ReadCommentAPI)
+    {
+        if(self.delegate && [self.delegate respondsToSelector:@selector(parseFailedWithError:::)])
+        {
+            [self.delegate parseFailedWithError:eparseTypess:(NSError *)error:(int)errorCode];
+        }
+    }    
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    NSString *responseString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+    //NSLog(@"response String==%@",responseString);
+    NSDictionary *results = [responseString JSONValue];
+    responseString = nil;
+    
+    if (eparseTypess == LoginAPI)
+    {
+        [self loginDataInsertion:results];
+    }
+    else if( eparseTypess == InboxAPI)
+    {
+        [self inboxDataInsertion:results];
+    }
+    else if(eparseTypess==TouchBaseAPI)
+    {
+        [self touchBaseDataInsertion:results];
+    }
+    else if(eparseTypess==DirectoryAPI)
+    {
+        [self directoryDataInsertion:results];
+    }
+    else if(eparseTypess==MyProfileAPI)
+    {
+        [self profileDataInsertion:results];
+    }
+    else if(eparseTypess==CoverageCalendarAPI)
+    {
+        [self coverageCalenderDataInsertion:results];
+    }
+    else if(eparseTypess==ReadMessageAPI)
+    {
+        [self readMessageUpdation:results];
+    }
+    else if(eparseTypess==DeleteMsgAPI)
+    {
+        [self deleteMessageUpdation:results];
+    }
+    else if(eparseTypess==ComposeAPI)
+    {
+        [self composeMessageUpdation:results];
+    }
+    else if(eparseTypess==StartDiscussionAPI)
+    {
+        [self startDiscussionUpdation:results];
+    }
+    else if(eparseTypess==NewCommentsAPI)
+    {
+        [self newCommentsUpdation:results];
+    }
+    else if(eparseTypess==AddParticipantAPI)
+    {
+        [self addParticipantsUpdation:results];
+    }
+    else if(eparseTypess==RemoveMeAPI)
+    {
+        [self removeParticipantsUpdation:results];
+    }
+    else if(eparseTypess==pushNotificationAPI)
+    {
+        [self readPushNotificationDeviceTockenResponse:results];
+    }
+    else if(eparseTypess==SingleDirectoryDetail)
+    {
+        [self directoryDataInsertion:results];
+    }
+    else if(eparseTypess==ReadCommentAPI)
+    {
+        [self readCommentUpdation:results];
+    }    
+}
+
+-(void)errorHandler
+{
+    int errorCode = 605;
+    NSError *error;
+    
+    if(self.delegate && [self.delegate respondsToSelector:@selector(parseFailedWithError:::)])
+    {
+        [self.delegate parseFailedWithError:eparseTypess:(NSError *)error:(int)errorCode];
+    }
+    
+}
+
+#pragma mark- Parsing
+
+-(void)loginDataInsertion:(NSDictionary *)results
+{
+    if (results)
+    {
+        NSArray *loginResponse = [results  objectForKey:NSLocalizedString(@"API RESPONSE KEY VALUE", nil)];
+        
+        if ([loginResponse count])
+        {
+            NSString *resultResponseCode = [loginResponse valueForKey:@"response code"];
+            NSString *operationTypeFromServer = [loginResponse valueForKey:@"operationType"];
+            NSString *operationType = [NSString stringWithFormat:@"%d",eparseTypess];
+            
+            if ([resultResponseCode isEqualToString:@"600"] && [operationTypeFromServer isEqualToString:operationType])
+            {
+                NSArray *loginDetails = [results  objectForKey:@"Details"];
+                
+                if ([loginDetails count])
+                {
+                    //local saving
+                    NSString * userName = [loginDetails valueForKey:@"UserName"];
+                    [[NSUserDefaults standardUserDefaults] setObject:userName forKey:@"USERNAME"];
+                    NSString * userID = [loginDetails valueForKey:@"UserId"];
+                    [[NSUserDefaults standardUserDefaults] setObject:userID forKey:@"USERID"];
+                    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"FirstLoginProfile"];
+                    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"FirstLoginCoverageCalender"];
+                    
+                    if(self.delegate && [self.delegate respondsToSelector:@selector(parseCompleteSuccessfully::)])
+                    {
+                        [self.delegate parseCompleteSuccessfully:eparseTypess :[results objectForKey:@"service response"]];
+                    }
+                }
+                
+            }
+            else
+            {
+                if(self.delegate && [self.delegate respondsToSelector:@selector(parseWithInvalidMessage:)])
+                {
+                    //show error msg
+                    [self.delegate parseWithInvalidMessage:loginResponse];
+                }
+            }
+        }
+        
+        else
+        {
+            int errorCode = 605;
+            NSError *error;
+            
+            if(self.delegate && [self.delegate respondsToSelector:@selector(parseFailedWithError:::)]){
+                [self.delegate parseFailedWithError:eparseTypess:(NSError *)error:(int)errorCode];
+            }
+        }
+    }
+}
+
+-(void)inboxDataInsertion:(NSDictionary *)results
+{
+    NSMutableArray * resultArray = [[NSMutableArray alloc] init];
+    NSMutableArray *inboxResponse = [results  objectForKey:NSLocalizedString(@"API RESPONSE KEY VALUE", nil)];
+    NSMutableDictionary *inboxDict;
+    NSMutableDictionary *recipientDict;
+    NSArray *recipentDatas;
+    
+    if ([inboxResponse count]>0)
+    {
+        NSString *resultResponseCode = [inboxResponse valueForKey:@"response code"];
+        NSString *operationTypeFromServer = [inboxResponse valueForKey:@"operationType"];
+        NSString *operationType = [NSString stringWithFormat:@"%d",eparseTypess];
+        
+        if ([resultResponseCode isEqualToString:@"600"] && [operationTypeFromServer isEqualToString:operationType])
+        {
+            NSArray *inboxDetails = [results  objectForKey:@"Details"];
+            if ([inboxDetails count])
+            {
+                int inboxCount = [inboxDetails count];
+                int recipientsCount = 0;
+                int directoryRecipentCount = 0;
+                NSArray *existingInboxRecipentListArray;
+                NSArray *existingDirectoryRecipentListArray;
+                
+                BOOL isSaved;
+                
+                for (int i = 0; i < inboxCount; i ++)
+                {
+                    inboxDict = [inboxDetails objectAtIndex:i];
+                    NSLog(@"InboxDict==%@",inboxDict);
+                    Inbox *inbox = [DataManager fetchExistingInboxEntityObject:INBOX messageID:[[inboxDict objectForKey:@"MessageId"] intValue] messageType:[[inboxDict objectForKey:@"MessageType"] intValue]];
+                    
+                    
+                    if (!inbox)
+                    {
+                        inbox = [DataManager createEntityObject:@"Inbox"];
+                    }
+                    else
+                    {
+                        //its an updation in the inbox list
+                        existingInboxRecipentListArray = [inbox.recipientmessageID allObjects];
+                        recipientsCount                = [existingInboxRecipentListArray count];
+                        
+                        existingDirectoryRecipentListArray = [inbox.recipientContacts allObjects];
+                        directoryRecipentCount = [existingDirectoryRecipentListArray count];
+                    }
+                    
+                    inbox.senderName = [inboxDict objectForKey:@"senderName"];
+                    int senderID = [[inboxDict objectForKey:@"senderID"] intValue];
+                    inbox.senderID = [NSNumber numberWithInt:senderID];
+                    
+                    
+                    inbox. messageId   = [NSNumber  numberWithInt:[[inboxDict objectForKey:@"MessageId"] intValue]];
+                    inbox. messageType   = [NSNumber  numberWithInt:[[inboxDict objectForKey:@"MessageType"] intValue]];
+                    inbox.readStatus   = [inboxDict objectForKey:@"ReadStatu"];
+                    
+                    if(![[inboxDict objectForKey:@"Subject"] isEqual:[NSNull null]])
+                    {
+                        NSLog(@"Subject not null");
+                        NSLog(@"%@",[inboxDict objectForKey:@"Subject"]);
+                        inbox.subject = [inboxDict objectForKey:@"Subject"];
+                    }
+                    else
+                    {
+                        NSLog(@"Subject null");
+                        inbox.subject =@"";
+                    }
+                    
+                    if(![[inboxDict objectForKey:@"deleteFrom"] isEqual:[NSNull null]])
+                    {
+                        NSLog(@"deleteFrom not null");
+                        inbox. deleteFrom   = [NSNumber  numberWithInt:[[inboxDict objectForKey:@"deleteFrom"] intValue]];
+                    }
+                    else
+                    {
+                        NSLog(@"deleteFrom null");
+                    }
+                    
+                    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                    [dateFormatter setDateFormat:@"MM/dd/yyyy"];
+                    NSDate *dateFromString;
+                    
+                    if(![[inboxDict objectForKey:@"Date"] isEqual:[NSNull null]])
+                    {
+                        NSLog(@"not null");
+                        dateFromString = [dateFormatter dateFromString:[inboxDict objectForKey:@"Date"]];
+                        inbox. date  = dateFromString;
+                    }
+                    
+                    if(![[inboxDict objectForKey:@"patientDOB"] isEqual:[NSNull null]])
+                    {
+                        NSLog(@"not null");
+                        dateFromString = [dateFormatter dateFromString:[inboxDict objectForKey:@"patientDOB"]];
+                        inbox. patientDOB  = dateFromString;
+                    }
+                    else
+                    {
+                        NSLog(@"null");
+                    }
+                    
+                    dateFormatter = nil;
+                    
+                    if(![[inboxDict objectForKey:@"patientFirstName"] isEqual:[NSNull null]])
+                    {
+                        inbox. patientFirstName   = [inboxDict objectForKey:@"patientFirstName"];
+                    }
+                    else
+                    {
+                        inbox. patientFirstName   = @"";
+                    }
+                    if(![[inboxDict objectForKey:@"patientLastName"] isEqual:[NSNull null]])
+                    {
+                        inbox. patientLastName   = [inboxDict objectForKey:@"patientLastName"];
+                    }
+                    else
+                    {
+                        inbox. patientLastName   = @"";
+                    }
+                    if(![[inboxDict objectForKey:@"patientFirstName"] isEqual:[NSNull null]])
+                    {
+                        inbox. textMessageBody   = [inboxDict objectForKey:@"TextMessageBody"];
+                    }
+                    else
+                    {
+                        inbox. textMessageBody   = @"";
+                    }
+                    
+                    //Handling mail Recipients
+                    recipentDatas = [inboxDict objectForKey:@"Recipients"];
+                    
+                    if ([recipentDatas count]>0)
+                    {
+                        int recipientArrayCount = [recipentDatas count];
+                        for (int j = 0; j < recipientArrayCount; j ++)
+                        {
+                            BOOL isExistingRecipientObj = NO;
+                            BOOL isExistingDirectoryObj = NO;
+                            
+                            MsgRecipient *msgRecipient;
+                            Directory *directory;
+                            
+                            recipientDict = [recipentDatas objectAtIndex:j];
+                            int recipientID = [[recipientDict objectForKey:@"RecipientId"] intValue];
+                            
+                            NSLog(@"recipientDict###\n%@",recipientDict);
+                            NSLog(@"RecipentID ####\n %d",recipientID);
+                            
+                            if (recipientsCount > 0)
+                            {
+                                NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.recipientId = %d",recipientID];
+                                NSArray *recipientEntityObject = [existingInboxRecipentListArray filteredArrayUsingPredicate:predicate];
+                                
+                                if ([recipientEntityObject count] == 0)
+                                {
+                                    //no existing object
+                                    msgRecipient = [self fetchEntityObjectForMsgRecipient:@"MsgRecipient" selectBy:recipientID];
+                                }
+                                else
+                                {
+                                    //using the same object
+                                    isExistingRecipientObj = YES;
+                                    msgRecipient = [recipientEntityObject objectAtIndex:0];
+                                }
+                            }
+                            else
+                            {
+                                msgRecipient = [self fetchEntityObjectForMsgRecipient:@"MsgRecipient" selectBy:recipientID];
+                                
+                            }
+                            
+                            msgRecipient.docterName = [recipientDict objectForKey:@"RecipientName"];
+                            msgRecipient.isCC = [NSNumber numberWithInt:[[recipientDict objectForKey:@"isCC"] intValue]];
+                            msgRecipient.recipientId = [NSNumber numberWithInt:[[recipientDict objectForKey:@"RecipientId"] intValue]];
+                            
+                            if(!isExistingRecipientObj)
+                            {
+                                [inbox addRecipientmessageIDObject:msgRecipient];
+                                
+                            }
+                            else
+                            {
+                                NSLog(@"Existing obj");
+                            }
+                            
+                            
+                            if (directoryRecipentCount>0)
+                            {
+                                NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.physicianId = %d",[[recipientDict objectForKey:@"RecipientId"] intValue]];
+                                NSArray *recipientEntityObject = [existingDirectoryRecipentListArray filteredArrayUsingPredicate:predicate];
+                                
+                                if ([recipientEntityObject count] == 0)
+                                {
+                                    //no existing object
+                                    directory = [self fetchEntityObjectForDirectory:@"Directory" selectBy:[[recipientDict objectForKey:@"RecipientId"] intValue]];
+                                }
+                                else
+                                {
+                                    //using the same object
+                                    isExistingDirectoryObj = YES;
+                                    directory = [recipientEntityObject objectAtIndex:0];
+                                }
+                            }
+                            else
+                            {
+                                directory = [self fetchEntityObjectForDirectory:@"Directory" selectBy:[[recipientDict objectForKey:@"RecipientId"] intValue]];
+                                
+                            }
+                            
+                            directory.physicianId = [NSNumber numberWithInt:[[recipientDict objectForKey:@"RecipientId"] intValue]];
+                            directory.physicianName = [recipientDict objectForKey:@"RecipientName"];
+                            
+                            if(!isExistingDirectoryObj)
+                            {
+                                directory.physicianImage = @"NoImage";
+                                directory.city = @"";
+                                directory.state = @"NULL";
+                                directory.phone = @"";
+                                directory.faxNumber = @"";
+                                [inbox addRecipientContactsObject:directory];
+                                
+                            }
+                            else
+                            {
+                                NSLog(@"Existing obj");
+                            }
+                            
+                            [DataManager saveContext];
+                        }
+                        
+                    }
+                    
+                    [DataManager saveContext];
+                    
+                    if(inbox)
+                        [resultArray addObject:inbox];
+                    
+                }
+                
+                //saving Lastupdated Date to Time Stamp
+                int balanceCount = [[inboxResponse valueForKey:@"balanceCount"]intValue];
+                
+                if (balanceCount == 0)
+                {
+                    
+                    NSString *stringAsDate = [inboxResponse valueForKey:@"lastUpdatedDate"];
+                    
+                    NSDate *updatedDate = [DateFormatter getDateFromDateString:stringAsDate forFormat:@"mm/dd/yyyy"];
+                    
+                    int operatioTypeValue = [[inboxResponse valueForKey:@"operationType"] intValue];
+                    
+                    TimeStamp *timeStamp = [DataManager fetchExistingEntityObject:@"TimeStamp" attributeName:@"operationType" selectBy:operatioTypeValue];
+                    if (!timeStamp)
+                    {
+                        timeStamp = [DataManager createEntityObject:@"TimeStamp"];
+                    }
+                    timeStamp.lastUpdatedDate = updatedDate;
+                    timeStamp.operationType  = [NSNumber numberWithInt:operatioTypeValue];
+                    
+                    isSaved = [DataManager saveContext];
+                    
+                    if(isSaved)
+                    {
+                        if(self.delegate && [self.delegate respondsToSelector:@selector(parseCompleteSuccessfully::)]){
+                            [self.delegate parseCompleteSuccessfully:eparseTypess :resultArray];
+                        }
+                        
+                    }
+                }
+                else
+                {
+                    // call the Inbox API second time
+                    inBoxPageNumber = inBoxPageNumber + 1;
+                    [self parseJson:InboxAPI :@""];
+                }
+                
+            }
+            else
+            {
+                [self errorHandler];
+            }
+            
+        }
+        else
+        {
+            if(self.delegate && [self.delegate respondsToSelector:@selector(parseWithInvalidMessage:)])
+            {
+                [self.delegate parseWithInvalidMessage:inboxResponse];
+            }
+            
+            
+        }
+    }
+    else
+    {
+        [self errorHandler];
+    }
+    
+}
+
+-(void) touchBaseDataInsertion:(NSDictionary *)results
+{
+    if ([results count]>0)
+    {
+        NSMutableArray * resultArray = [[NSMutableArray alloc] init];
+        
+        NSArray* touchBaseResponse = [results valueForKey:NSLocalizedString(@"API RESPONSE KEY VALUE", nil)];
+        NSString *resultResponseCode = [touchBaseResponse valueForKey:@"response code"];
+        NSString *operationTypeFromServer = [touchBaseResponse valueForKey:@"operationType"];
+        NSString *operationType = [NSString stringWithFormat:@"%d",eparseTypess];
+        
+        if ([resultResponseCode isEqualToString:@"600"] && [operationTypeFromServer isEqualToString:operationType])
+        {
+            NSMutableArray * touchBaseDetails = [results  objectForKey:@"details"];
+            
+            int commentCount = 0;
+            NSArray *commentListArray;
+            
+            NSMutableDictionary *touchBaseDict;
+            int discussionParticipantsCount = 0;
+            NSArray *discussionParticipantsListArray;
+            int touchBaseCount = [touchBaseDetails count];
+            
+            BOOL isSaved;
+            
+            for (int i=0; i<touchBaseCount; i++)
+            {
+                touchBaseDict = [touchBaseDetails objectAtIndex:i];
+                
+                TouchBase  * touchBase = [DataManager fetchExistingEntityTouchBaseObject:TOUCHBASE discussionId:[touchBaseDict objectForKey:DISCUSSIONID]];
+                if (!touchBase)
+                {
+                    touchBase = [DataManager createEntityObject:TOUCHBASE];
+                }
+                else
+                {
+                    commentListArray = [touchBase.commentID allObjects];
+                    commentCount = [commentListArray count];
+                    
+                    discussionParticipantsListArray = [touchBase.participantsID allObjects];
+                    discussionParticipantsCount = [discussionParticipantsListArray count];
+                }
+                touchBase.discussionId = [NSString stringWithFormat:@"%@", [[touchBaseDict objectForKey:DISCUSSIONID] stringValue]];
+                touchBase.textDiscussion = [NSString stringWithFormat:@"%@",[touchBaseDict objectForKey:TEXTDISCUSSION]];
+                touchBase.subject = [touchBaseDict objectForKey:SUBJECT];
+                
+                //***************
+#warning dummy value we have chage based on date format(use MM/dd/yyyy HH:mm:ss)
+                
+                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                //                [dateFormatter setDateFormat:@"dd/MM/yyyy HH:mm:ss"];//MM/dd/yyyy HH:mm:ss
+                [dateFormatter setDateFormat:@"MM/dd/yyyy"];
+                NSDate *dateFromString;
+                //                dateFromString = [dateFormatter dateFromString:[tmp objectForKey:DISCUSSIONDATE]]; //discussion date from server is in dd/mm/yyy format. so, for 13/02/2012 onwards we get null
+                dateFromString = [dateFormatter dateFromString:[touchBaseDict objectForKey:@"PostedOn"]];
+                touchBase.discussionDate = dateFromString;
+                NSLog(@"discussionDate : %@",touchBase.discussionDate);
+                dateFormatter = nil;
+                /////**************
+                
+                int touchBaseCommentsCount = [[touchBaseDict objectForKey:COMMENTS] count];
+                for (int j=0; j<touchBaseCommentsCount; j++)
+                {
+                    Comments *commentsObj;
+                    if (commentCount > 0)
+                    {
+                        int commetID = [[[[touchBaseDict objectForKey:COMMENTS] objectAtIndex:j] objectForKey:COMMENTID] intValue];
+                        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.commentsId = %d",commetID];
+                        
+                        NSArray *commentEntityObject = [commentListArray filteredArrayUsingPredicate:predicate];
+                        if ([commentEntityObject count] == 0)
+                        {
+                            //no existing object
+                            commentsObj = [DataManager createEntityObject:@"Comments"];
+                        }
+                        else
+                        {
+                            //using the same object
+                            commentsObj = [commentEntityObject objectAtIndex:0];
+                        }
+                    }
+                    else
+                    {
+                        commentsObj = [DataManager createEntityObject:@"Comments"];
+                    }
+                    
+                    commentsObj.commentsId = [NSNumber numberWithInt:[[[[touchBaseDict objectForKey:COMMENTS] objectAtIndex:j] objectForKey:COMMENTID] intValue]];
+                    commentsObj.comments = [[[touchBaseDict objectForKey:COMMENTS] objectAtIndex:j] objectForKey:COMMENTDESCRIPTION];
+                    commentsObj.commentStatus = [NSNumber numberWithInt:[[[[touchBaseDict objectForKey:COMMENTS] objectAtIndex:j] objectForKey:COMMENTSTATUS] intValue]];
+                    
+                    NSLog(@"commentsObj.commentsId==%@",commentsObj.commentsId);
+                    NSLog(@"commentsObj.comments==%@",commentsObj.comments);
+                    NSLog(@"commentsObj.commentStatus==%@",commentsObj.commentStatus);
+                    
+                    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                    [dateFormatter setDateFormat:@"MM/dd/yyyy HH:mm:ss"];
+                    NSDate *dateFromString;
+                    dateFromString = [dateFormatter dateFromString:[[[touchBaseDict objectForKey:COMMENTS] objectAtIndex:j] objectForKey:COMMENTDATE]];
+                    
+                    commentsObj.commentDate = dateFromString;
+                    NSLog(@"commentDate : %@",commentsObj.commentDate);
+                    commentsObj.commentPersonName = [[[touchBaseDict objectForKey:COMMENTS] objectAtIndex:j] objectForKey:COMMENTPERSONNAME];
+                    commentsObj.commentPersonId = [NSNumber numberWithInt:[[[[touchBaseDict objectForKey:COMMENTS] objectAtIndex:j] objectForKey:COMMENTPERSONID] intValue]];
+                    [touchBase addCommentIDObject:commentsObj];
+                }
+                int touchBaseParticipantsCount = [[touchBaseDict objectForKey:PARTICIPANTS] count];
+                for (int j=0; j<touchBaseParticipantsCount; j++)
+                {
+                    DiscussionParticipants *discussionParticipantsObj;
+                    
+                    if (discussionParticipantsCount > 0)
+                    {
+                        int discussionID = [[[[touchBaseDict objectForKey:PARTICIPANTS] objectAtIndex:j] objectForKey:PARTICIPANTID] intValue];
+                        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.participantId = %d",discussionID];
+                        
+                        NSArray *commentEntityObject = [discussionParticipantsListArray filteredArrayUsingPredicate:predicate];
+                        if ([commentEntityObject count] == 0)
+                        {
+                            //no existing object
+                            discussionParticipantsObj = [DataManager createEntityObject:DISCUSSIONPARTICIPANTS];
+                        }
+                        else
+                        {
+                            //using the same object
+                            discussionParticipantsObj = [commentEntityObject objectAtIndex:0];
+                        }
+                    }
+                    else
+                    {
+                        discussionParticipantsObj = [DataManager createEntityObject:DISCUSSIONPARTICIPANTS];
+                    }
+                    
+                    
+                    discussionParticipantsObj.participantId = [NSNumber numberWithInt:[[[[touchBaseDict objectForKey:PARTICIPANTS] objectAtIndex:j] objectForKey:PARTICIPANTID] intValue]];
+                    discussionParticipantsObj.participantName = [[[touchBaseDict objectForKey:PARTICIPANTS] objectAtIndex:j] objectForKey:PARTICIPANTNAME];
+                    NSLog(@"discussionParticipantsObj.participantId==%@",discussionParticipantsObj.participantId);
+                    NSLog(@"discussionParticipantsObj.participantName==%@",discussionParticipantsObj.participantName);
+                    
+                    
+                    [touchBase addParticipantsIDObject:discussionParticipantsObj];
+                }
+                
+                if(touchBase)
+                    [resultArray addObject:touchBase];
+                
+                isSaved = [DataManager saveContext];
+                
+            }
+            
+            //saving Lastupdated Date to Time Stamp
+            int balanceCount = [[touchBaseResponse valueForKey:@"balanceCount"]intValue];
+            
+            if (balanceCount == 0)
+            {
+                
+                NSString *stringAsDate = [touchBaseResponse valueForKey:@"lastUpdatedDate"];
+                
+                NSDate *updatedDate = [DateFormatter getDateFromDateString:stringAsDate forFormat:@"mm/dd/yyyy"];
+                
+                int operatioTypeValue = [[touchBaseResponse valueForKey:@"operationType"] intValue];
+                
+                TimeStamp *timeStamp = [DataManager fetchExistingEntityObject:@"TimeStamp" attributeName:@"operationType" selectBy:operatioTypeValue];
+                if (!timeStamp)
+                {
+                    timeStamp = [DataManager createEntityObject:@"TimeStamp"];
+                }
+                timeStamp.lastUpdatedDate = updatedDate;
+                timeStamp.operationType  = [NSNumber numberWithInt:operatioTypeValue];
+                
+                isSaved = [DataManager saveContext];
+                
+                if(isSaved)
+                {
+                    if(self.delegate && [self.delegate respondsToSelector:@selector(parseCompleteSuccessfully::)]){
+                        [self.delegate parseCompleteSuccessfully:eparseTypess :[results objectForKey:@"details"]];
+                    }
+                    
+                }
+                
+                
+            }
+            else
+            {
+                // call the Inbox API second time
+                touchBasePageNumber = touchBasePageNumber + 1;
+                [self parseJson:TouchBaseAPI :@""];
+            }
+        }
+        else
+        {
+            if(self.delegate && [self.delegate respondsToSelector:@selector(parseWithInvalidMessage:)])
+            {
+                [self.delegate parseWithInvalidMessage:touchBaseResponse];
+            }
+        }
+    }
+    else
+    {
+        [self errorHandler];
+    }
+    
+}
+
+-(void) directoryDataInsertion:(NSDictionary *)results
+{
+    if (results)
+    {
+        NSArray *directoryResponse = [results  valueForKey:@"service Response"];
+        
+        if ([directoryResponse count])
+        {
+            NSString *resultResponseCode = [directoryResponse valueForKey:@"response code"];
+            NSString *operationTypeFromServer = [directoryResponse valueForKey:@"operationType"];
+            NSString *operationType = [NSString stringWithFormat:@"%d",eparseTypess];
+            
+            if ([resultResponseCode isEqualToString:@"600"] && [operationTypeFromServer isEqualToString:operationType])
+            {
+                NSArray *directoryDetails = [results  objectForKey:@"Details"];
+                
+                if ([directoryDetails count])
+                {
+                    NSMutableArray * directoryArray = [[NSMutableArray alloc] init];
+                    Directory  * directory;
+                    NSMutableDictionary *directoryDictionary;
+                    BOOL isSaved;
+                    DataManager *dataManager;
+                    if(dataManager)
+                    {
+                        dataManager = nil;
+                    }
+                    dataManager = [[DataManager alloc]init];
+                    int directoryDetailsCount = [directoryDetails count];
+                    for (int i=0; i<directoryDetailsCount; i++)
+                    {
+                        directoryDictionary = [directoryDetails objectAtIndex:i];
+                        
+                        directory = [DataManager fetchExistingEntityObject:@"Directory" attributeName:@"physicianId" selectBy:[[directoryDictionary objectForKey:PHYSICIANID] intValue]];
+                        if (!directory)
+                        {
+                            directory = [DataManager createEntityObject:@"Directory"];
+                        }
+                        
+                        directory.physicianId = [directoryDictionary objectForKey:PHYSICIANID];
+                        directory.physicianName = [directoryDictionary objectForKey:PHYSICIANNAME];
+                        directory.practice = [directoryDictionary objectForKey:PRACTICE];
+                        directory.speciality = [directoryDictionary objectForKey:SPECIALITY];
+                        directory.phone = [directoryDictionary objectForKey:PHONE];
+                        directory.city = [directoryDictionary objectForKey:CITY];
+                        directory.contactInfo = [directoryDictionary objectForKey:@"contactInfo"];
+                        directory.faxStatus = [directoryDictionary objectForKey:@"faxStatus"];
+                        directory.inboxStatus = [directoryDictionary objectForKey:@"InboxStatus"];
+                        directory.coverageStatus = [directoryDictionary objectForKey:@"coverageStatus"];
+                        directory.faxNumber = [directoryDictionary objectForKey:@"faxNumber"];
+                        NSLog(@"communicationPreference==%@",[directoryDictionary objectForKey:@"communicationPreference"]);
+                        NSString *communicationPreference = [directoryDictionary objectForKey:@"communicationPreference"];
+                        
+                        if(![communicationPreference isEqual:[NSNull null]])
+                        {
+                            directory.communicationPreference = [directoryDictionary objectForKey:@"communicationPreference"];
+                        }
+                        else
+                        {
+                            directory.communicationPreference = @"";
+                        }
+                        
+                        directory.state = [[directoryDictionary objectForKey:@"state"] stringValue];
+                        
+                        NSLog(@"directory.statedirectory.statedirectory.statedirectory.state%@",[directoryDictionary objectForKey:@"state"]);
+
+                        directory.status = [NSString stringWithFormat:@"%@",[directoryDictionary objectForKey:STATUS]];
+                        
+                        NSString *imageName = [NSString stringWithFormat:@"%@_%@.png",directory.physicianName,directory.physicianId];
+                        
+                        directory.physicianImage = [directoryDictionary objectForKey:PHYSICIANTHUMBNAIL];
+                        
+                        NSArray * arrayOfThingsIWantToPassAlong = [NSArray arrayWithObjects:[directoryDictionary objectForKey:PHYSICIANTHUMBNAIL],imageName, nil];
+                        
+                        [NSThread detachNewThreadSelector:@selector(cacheImages:) toTarget:self withObject:arrayOfThingsIWantToPassAlong];
+                        
+                        if(directory)
+                            [directoryArray addObject:directory];
+                        
+                        isSaved = [DataManager saveContext];
+                    }
+                    if(isSaved)
+                    {
+                        if(self.delegate && [self.delegate respondsToSelector:@selector(parseCompleteSuccessfully::)])
+                        {
+                            [self.delegate parseCompleteSuccessfully:eparseTypess :directoryArray];
+                        }
+                        
+                    }
+                    
+                    //saving Lastupdated Date to Time Stamp
+                    //                    int balanceCount = [[directoryResponse valueForKey:@"balanceCount"]intValue];
+                    //
+                    //                    if (balanceCount == 0)
+                    //                    {
+                    //
+                    //                        NSString *stringAsDate = [directoryResponse valueForKey:@"lastUpdatedDate"];
+                    //
+                    //                        NSDate *updatedDate = [DateFormatter getDateFromDateString:stringAsDate forFormat:@"mm/dd/yyyy"];
+                    //
+                    //                        int operatioTypeValue = [[directoryResponse valueForKey:@"operationType"] intValue];
+                    //
+                    //                        TimeStamp *timeStamp = [DataManager fetchExistingEntityObject:@"TimeStamp" attributeName:@"operationType" selectBy:operatioTypeValue];
+                    //                        if (!timeStamp)
+                    //                        {
+                    //                            timeStamp = [DataManager createEntityObject:@"TimeStamp"];
+                    //                        }
+                    //                        timeStamp.lastUpdatedDate = updatedDate;
+                    //                        timeStamp.operationType  = [NSNumber numberWithInt:operatioTypeValue];
+                    //
+                    //                        isSaved = [DataManager saveContext];
+                    //
+                    //                        if(isSaved)
+                    //                        {
+                    //                            if(self.delegate && [self.delegate respondsToSelector:@selector(parseCompleteSuccessfully::)])
+                    //                            {
+                    //                                [self.delegate parseCompleteSuccessfully:eparseTypess :directoryArray];
+                    //                            }
+                    //
+                    //                        }
+                    //
+                    //                    }
+                    //                    else
+                    //                    {
+                    //                        // call the DirectoryAPI second time
+                    //                        directoryPageNumber = directoryPageNumber + 1;
+                    //                        [self parseJson:DirectoryAPI :@""];
+                    //                    }
+                    //
+                }
+                else
+                {
+                    [self errorHandler];
+                }
+                
+            }
+            else
+            {
+                //Show alert view
+                if(self.delegate && [self.delegate respondsToSelector:@selector(parseWithInvalidMessage:)])
+                {
+                    //show error msg
+                    [self.delegate parseWithInvalidMessage:directoryResponse];
+                }
+                
+            }
+        }
+        else
+        {
+            [self errorHandler];
+        }
+    }
+    else
+    {
+        [self errorHandler];
+    }
+}
+
+-(void)profileDataInsertion:(NSDictionary *)results
+{
+    if(results)
+    {
+        NSArray *profileResponse = [results  objectForKey:@"service response"];
+        if([profileResponse count])
+        {
+            NSString *resultResponseCode = [profileResponse valueForKey:@"response code"];
+            NSString *operationTypeFromServer = [profileResponse valueForKey:@"operationType"];
+            NSString *operationType = [NSString stringWithFormat:@"%d",eparseTypess];
+            
+            if ([resultResponseCode isEqualToString:@"600"] && [operationTypeFromServer isEqualToString:operationType])
+            {
+                NSArray *profileDetails = [results  objectForKey:@"Details"];
+                
+                if ([profileDetails count])
+                {
+                    MyProfile *myProfile = [DataManager createEntityObject:@"MyProfile"];
+                    myProfile.userName = [profileDetails valueForKey:@"username"];
+                    myProfile.hospital = [profileDetails valueForKey:@"hospital"];
+                    myProfile.speciality = [profileDetails valueForKey:@"speciality"];
+                    myProfile.practice = [profileDetails valueForKey:@"practice"];
+                    myProfile.contactInfo = [profileDetails valueForKey:@"contactInfo"];
+                    NSString *communicationPreference = [profileDetails valueForKey:@"CommunicationPreference"];
+                    if(![communicationPreference isEqual:[NSNull null]])
+                    {
+                        myProfile.communicationPreference = [profileDetails valueForKey:@"CommunicationPreference"];
+                    }
+                    else
+                    {
+                        myProfile.communicationPreference = @"";
+                    }
+                    myProfile.imagepath = [profileDetails valueForKey:@"ImagePath"];
+                    myProfile.inboxStatus = [NSNumber numberWithInt:[[profileDetails valueForKey:@"InboxStatus"] intValue]];
+                    myProfile.coverageStatus = [NSNumber numberWithInt:[[profileDetails valueForKey:@"CoverageStatus"] intValue]];
+                    myProfile.faxStatus = [NSNumber numberWithInt:[[profileDetails valueForKey:@"faxStatus"] intValue]];
+                    BOOL isSaved = [DataManager saveContext];
+                    if(isSaved)
+                    {
+                        if(self.delegate && [self.delegate respondsToSelector:@selector(parseCompleteSuccessfully::)])
+                        {
+                            [self.delegate parseCompleteSuccessfully:eparseTypess :profileDetails];
+                        }
+                        
+                    }
+                    else
+                    {
+                        NSLog(@"fail");
+                    }
+                }
+                else
+                {
+                    [self errorHandler];
+                    
+                }
+                
+            }
+            else
+            {
+                [self errorHandler];
+            }
+            
+        }
+        else
+        {
+            [self errorHandler];
+        }
+        
+    }
+    else
+    {
+        [self errorHandler];
+    }
+}
+
+-(void)coverageCalenderDataInsertion:(NSDictionary *)results
+{
+    NSLog(@"CoverageCalenderDetails==%@",results);
+    if(results)
+    {
+        NSArray *coverageCalenderResponse = [results  valueForKey:@"service Response"];
+        if([coverageCalenderResponse count])
+        {
+            NSString *resultResponseCode = [coverageCalenderResponse valueForKey:@"response code"];
+            NSString *operationTypeFromServer = [coverageCalenderResponse valueForKey:@"operationType"];
+            NSString *operationType = [NSString stringWithFormat:@"%d",eparseTypess];
+            if ([resultResponseCode isEqualToString:@"600"] && [operationTypeFromServer isEqualToString:operationType])
+            {
+                NSArray *coverageCalenderDetails = [results  objectForKey:@"Details"];
+                
+                if ([coverageCalenderDetails count])
+                {
+                    NSMutableDictionary *CoverageCalenderDictionary;
+                    NSDateFormatter *dateFormatterToDate = [[NSDateFormatter alloc] init];
+                    [dateFormatterToDate setDateFormat:@"MM/dd/yyyy"];
+                    NSDateFormatter *dateFormatterToString = [[NSDateFormatter alloc] init];
+                    [dateFormatterToString setDateFormat:@"hh:mm a"];
+                    
+                    int detailsCount = [coverageCalenderDetails count];
+                    for (int i=0; i<detailsCount; i++)
+                    {
+                        CoverageCalenderDictionary = [coverageCalenderDetails objectAtIndex:i];
+                        NSLog(@"CoverageCalenderDictionary==%@",CoverageCalenderDictionary);
+                        CoverageCalendar *coveragecalender = [DataManager createEntityObject:@"CoverageCalendar"];
+                        
+                        NSDate *datefromString = [dateFormatterToDate dateFromString:[CoverageCalenderDictionary objectForKey:@"date"]];
+                        coveragecalender.date = datefromString;
+                        NSLog(@"coveragecalender.date==%@",coveragecalender.date);
+                        coveragecalender.details = [CoverageCalenderDictionary objectForKey:@"details"];
+                        
+                        NSDate *startDate = [dateFormatterToString dateFromString: [CoverageCalenderDictionary objectForKey:@"startTime"]];
+                        NSString* startDateString = [dateFormatterToString stringFromDate:startDate];
+                        coveragecalender.startTime = startDateString;
+                        NSLog(@"coveragecalender.startTime==%@",coveragecalender.startTime);
+                        coveragecalender.title = [CoverageCalenderDictionary objectForKey:@"title"];
+                        
+                        NSDate *endDate = [dateFormatterToString dateFromString: [CoverageCalenderDictionary objectForKey:@"endTime"]];
+                        NSString* endDateString = [dateFormatterToString stringFromDate:endDate];
+                        coveragecalender.endTime = endDateString;
+                        NSLog(@"coveragecalender.endTime==%@",coveragecalender.endTime);
+                    }
+                    dateFormatterToDate = nil;
+                    dateFormatterToString = nil;
+                    BOOL isSaved = [DataManager saveContext];
+                    if(isSaved)
+                    {
+                        if(self.delegate && [self.delegate respondsToSelector:@selector(parseCompleteSuccessfully::)]){
+                            [self.delegate parseCompleteSuccessfully:eparseTypess :coverageCalenderDetails];
+                        }
+                        
+                    }
+                    else
+                    {
+                        NSLog(@"fail");
+                    }
+                    
+                }
+                else
+                {
+                    [self errorHandler];
+                }
+            }
+            else
+            {
+                // show the failed reson
+                if(self.delegate && [self.delegate respondsToSelector:@selector(parseWithInvalidMessage:)])
+                {
+                    //show error msg
+                    [self.delegate parseWithInvalidMessage:coverageCalenderResponse];
+                }
+                
+            }
+            
+        }
+        else
+        {
+            [self errorHandler];
+        }
+        
+    }
+    else
+    {
+        [self errorHandler];
+    }
+}
+- (void)readMessageUpdation:(NSDictionary *)results
+{
+    // call delegate to inbox details
+    NSLog(@"readMessage==%@",results);
+    if(results)
+    {
+        NSArray *readMessageResponse = [results  valueForKey:NSLocalizedString(@"API RESPONSE KEY VALUE", nil)];
+        if([readMessageResponse count])
+        {
+            NSString *resultResponseCode = [readMessageResponse valueForKey:@"response code"];
+            NSString *operationTypeFromServer = [readMessageResponse valueForKey:@"operationType"];
+            NSString *operationType = [NSString stringWithFormat:@"%d",eparseTypess];
+            if ([resultResponseCode isEqualToString:@"600"] && [operationTypeFromServer isEqualToString:operationType])
+            {
+                NSArray *readMessageDetails = [results valueForKey:@"details"];
+                if([readMessageDetails count])
+                {
+                    if(self.delegate && [self.delegate respondsToSelector:@selector(parseCompleteSuccessfully::)]){
+                        [self.delegate parseCompleteSuccessfully:eparseTypess :readMessageDetails];
+                    }
+                    
+                }
+                else
+                {
+                    [self errorHandler];
+                }
+                
+            }
+            else
+            {
+                if(self.delegate && [self.delegate respondsToSelector:@selector(parseWithInvalidMessage:)])
+                {
+                    //show error msg
+                    [self.delegate parseWithInvalidMessage:readMessageResponse];
+                }
+                
+            }
+        }
+        else
+        {
+            [self errorHandler];
+        }
+    }
+    else
+    {
+        [self errorHandler];
+    }
+}
+-(void)readCommentUpdation:(NSDictionary *)results
+{
+    // call delegate to inbox details
+    NSLog(@"readComment==%@",results);
+    if(results)
+    {
+        NSArray *readCommentResponse = [results  valueForKey:NSLocalizedString(@"API RESPONSE KEY VALUE", nil)];
+        if([readCommentResponse count])
+        {
+            NSString *resultResponseCode = [readCommentResponse valueForKey:@"response code"];
+            NSString *operationTypeFromServer = [readCommentResponse valueForKey:@"operationType"];
+            NSString *operationType = [NSString stringWithFormat:@"%d",eparseTypess];
+            if ([resultResponseCode isEqualToString:@"600"] && [operationTypeFromServer isEqualToString:operationType])
+            {
+                NSArray *readCommentDetails = [results valueForKey:@"Details"];
+                if([readCommentDetails count])
+                {
+                    if(self.delegate && [self.delegate respondsToSelector:@selector(parseCompleteSuccessfully::)]){
+                        [self.delegate parseCompleteSuccessfully:eparseTypess :readCommentDetails];
+                    }
+                    
+                }
+                else
+                {
+                    [self errorHandler];
+                }
+                
+            }
+            else
+            {
+                if(self.delegate && [self.delegate respondsToSelector:@selector(parseWithInvalidMessage:)])
+                {
+                    //show error msg
+                    [self.delegate parseWithInvalidMessage:readCommentResponse];
+                }
+                
+            }
+        }
+        else
+        {
+            [self errorHandler];
+        }
+    }
+    else
+    {
+        [self errorHandler];
+    }
+    
+}
+- (void)deleteMessageUpdation:(NSDictionary *)results
+{
+    NSLog(@"deleteMessage==%@",results);
+    if(results)
+    {
+        NSArray *deleteMessageResponse = [results  valueForKey:NSLocalizedString(@"API RESPONSE KEY VALUE", nil)];
+        if([deleteMessageResponse count])
+        {
+            NSString *resultResponseCode = [deleteMessageResponse valueForKey:@"response code"];
+            NSString *operationTypeFromServer = [deleteMessageResponse valueForKey:@"operationType"];
+            NSString *operationType = [NSString stringWithFormat:@"%d",eparseTypess];
+            if ([resultResponseCode isEqualToString:@"600"] && [operationTypeFromServer isEqualToString:operationType])
+            {
+                NSArray *deleteMessageDetails = [results valueForKey:@"Details"];
+                if([deleteMessageDetails count])
+                {
+                    if(self.delegate && [self.delegate respondsToSelector:@selector(parseCompleteSuccessfully::)]){
+                        [self.delegate parseCompleteSuccessfully:eparseTypess :deleteMessageDetails];
+                    }
+                    
+                }
+                else
+                {
+                    [self errorHandler];
+                }
+                
+            }
+            else
+            {
+                if(self.delegate && [self.delegate respondsToSelector:@selector(parseWithInvalidMessage:)])
+                {
+                    //show error msg
+                    [self.delegate parseWithInvalidMessage:deleteMessageResponse];
+                }
+                
+            }
+        }
+        else
+        {
+            [self errorHandler];
+        }
+    }
+    else
+    {
+        [self errorHandler];
+    }
+}
+-(void)composeMessageUpdation:(NSDictionary *)results
+{
+    NSLog(@"composeMessage==%@",results);
+    if(results)
+    {
+        NSArray *composeMessageResponse = [results  valueForKey:NSLocalizedString(@"API RESPONSE KEY VALUE", nil)];
+        if([composeMessageResponse count])
+        {
+            NSString *resultResponseCode = [composeMessageResponse valueForKey:@"response code"];
+            NSString *operationTypeFromServer = [composeMessageResponse valueForKey:@"operationType"];
+            NSString *operationType = [NSString stringWithFormat:@"%d",eparseTypess];
+            if ([resultResponseCode isEqualToString:@"600"] && [operationTypeFromServer isEqualToString:operationType])
+            {
+                NSArray *composeMessageDetails = [results valueForKey:@"Details"];
+                if([composeMessageDetails count])
+                {
+                    if(self.delegate && [self.delegate respondsToSelector:@selector(parseCompleteSuccessfully::)]){
+                        [self.delegate parseCompleteSuccessfully:eparseTypess :composeMessageDetails];
+                    }
+                    
+                }
+                else
+                {
+                    [self errorHandler];
+                }
+                
+            }
+            else
+            {
+                if(self.delegate && [self.delegate respondsToSelector:@selector(parseWithInvalidMessage:)])
+                {
+                    //show error msg
+                    [self.delegate parseWithInvalidMessage:composeMessageResponse];
+                }
+                
+            }
+        }
+        else
+        {
+            [self errorHandler];
+        }
+    }
+    else
+    {
+        [self errorHandler];
+    }
+    
+}
+-(void)startDiscussionUpdation:(NSDictionary *)results
+{
+    NSLog(@"startDiscussion==%@",results);
+    if(results)
+    {
+        NSArray *startDiscussionResponse = [results  valueForKey:NSLocalizedString(@"API RESPONSE KEY VALUE", nil)];
+        if([startDiscussionResponse count])
+        {
+            NSString *resultResponseCode = [startDiscussionResponse valueForKey:@"response code"];
+            NSString *operationTypeFromServer = [startDiscussionResponse valueForKey:@"operationType"];
+            NSString *operationType = [NSString stringWithFormat:@"%d",eparseTypess];
+            if ([resultResponseCode isEqualToString:@"600"] && [operationTypeFromServer isEqualToString:operationType])
+            {
+                NSArray *startDiscussionDetails = [results valueForKey:@"Details"];
+                if([startDiscussionDetails count])
+                {
+                    if(self.delegate && [self.delegate respondsToSelector:@selector(parseCompleteSuccessfully::)]){
+                        [self.delegate parseCompleteSuccessfully:eparseTypess :startDiscussionDetails];
+                    }
+                    
+                }
+                else
+                {
+                    [self errorHandler];
+                }
+                
+            }
+            else
+            {
+                if(self.delegate && [self.delegate respondsToSelector:@selector(parseWithInvalidMessage:)])
+                {
+                    //show error msg
+                    [self.delegate parseWithInvalidMessage:startDiscussionResponse];
+                }
+                
+            }
+        }
+        else
+        {
+            [self errorHandler];
+        }
+    }
+    else
+    {
+        [self errorHandler];
+    }
+}
+-(void)newCommentsUpdation:(NSDictionary *)results
+{
+    NSLog(@"newComments==%@",results);
+    if(results)
+    {
+        NSArray *newCommentsResponse = [results  valueForKey:NSLocalizedString(@"API RESPONSE KEY VALUE", nil)];
+        if([newCommentsResponse count])
+        {
+            NSString *resultResponseCode = [newCommentsResponse valueForKey:@"response code"];
+            NSString *operationTypeFromServer = [newCommentsResponse valueForKey:@"operationType"];
+            NSString *operationType = [NSString stringWithFormat:@"%d",eparseTypess];
+            if ([resultResponseCode isEqualToString:@"600"] && [operationTypeFromServer isEqualToString:operationType])
+            {
+                NSArray *newCommentsDetails = [results valueForKey:@"Details"];
+                if([newCommentsDetails count])
+                {
+                    if(self.delegate && [self.delegate respondsToSelector:@selector(parseCompleteSuccessfully::)]){
+                        [self.delegate parseCompleteSuccessfully:eparseTypess :newCommentsDetails];
+                    }
+                    
+                }
+                else
+                {
+                    [self errorHandler];
+                }
+                
+            }
+            else
+            {
+                if(self.delegate && [self.delegate respondsToSelector:@selector(parseWithInvalidMessage:)])
+                {
+                    //show error msg
+                    [self.delegate parseWithInvalidMessage:newCommentsResponse];
+                }
+                
+            }
+        }
+        else
+        {
+            [self errorHandler];
+        }
+    }
+    else
+    {
+        [self errorHandler];
+    }
+    
+}
+-(void)addParticipantsUpdation:(NSDictionary *)results
+{
+    NSLog(@"addParticipants==%@",results);
+    if(results)
+    {
+        NSArray *addParticipantsResponse = [results  valueForKey:NSLocalizedString(@"API RESPONSE KEY VALUE", nil)];
+        if([addParticipantsResponse count])
+        {
+            NSString *resultResponseCode = [addParticipantsResponse valueForKey:@"response code"];
+            NSString *operationTypeFromServer = [addParticipantsResponse valueForKey:@"operationType"];
+            NSString *operationType = [NSString stringWithFormat:@"%d",eparseTypess];
+            if ([resultResponseCode isEqualToString:@"600"] && [operationTypeFromServer isEqualToString:operationType])
+            {
+                NSArray *addParticipantsDetails = [results valueForKey:@"Details"];
+                if([addParticipantsDetails count])
+                {
+                    if(self.delegate && [self.delegate respondsToSelector:@selector(parseCompleteSuccessfully::)]){
+                        [self.delegate parseCompleteSuccessfully:eparseTypess :addParticipantsDetails];
+                    }
+                    
+                }
+                else
+                {
+                    [self errorHandler];
+                }
+                
+            }
+            else
+            {
+                if(self.delegate && [self.delegate respondsToSelector:@selector(parseWithInvalidMessage:)])
+                {
+                    //show error msg
+                    [self.delegate parseWithInvalidMessage:addParticipantsResponse];
+                }
+                
+            }
+        }
+        else
+        {
+            [self errorHandler];
+        }
+    }
+    else
+    {
+        [self errorHandler];
+    }
+}
+
+-(void)removeParticipantsUpdation:(NSDictionary *)results
+{
+    NSLog(@"removeParticipants==%@",results);
+    if(results)
+    {
+        NSArray *removeParticipantsResponse = [results  valueForKey:NSLocalizedString(@"API RESPONSE KEY VALUE", nil)];
+        if([removeParticipantsResponse count])
+        {
+            NSString *resultResponseCode = [removeParticipantsResponse valueForKey:@"response code"];
+            NSString *operationTypeFromServer = [removeParticipantsResponse valueForKey:@"operationType"];
+            NSString *operationType = [NSString stringWithFormat:@"%d",eparseTypess];
+            if ([resultResponseCode isEqualToString:@"600"] && [operationTypeFromServer isEqualToString:operationType])
+            {
+                NSArray *removeParticipantsDetails = [results valueForKey:@"Details"];
+                if([removeParticipantsDetails count])
+                {
+                    if(self.delegate && [self.delegate respondsToSelector:@selector(parseCompleteSuccessfully::)]){
+                        [self.delegate parseCompleteSuccessfully:eparseTypess :removeParticipantsDetails];
+                    }
+                    
+                }
+                else
+                {
+                    [self errorHandler];
+                }
+                
+            }
+            else
+            {
+                if(self.delegate && [self.delegate respondsToSelector:@selector(parseWithInvalidMessage:)])
+                {
+                    //show error msg
+                    [self.delegate parseWithInvalidMessage:removeParticipantsResponse];
+                }
+                
+            }
+        }
+        else
+        {
+            [self errorHandler];
+        }
+    }
+    else
+    {
+        [self errorHandler];
+    }
+    
+    
+}
+
+-(void)readPushNotificationDeviceTockenResponse:(NSDictionary *)results
+{
+    NSLog(@"readPushNotificationDeviceTockenResponse==%@",results);
+    if (results)
+    {
+        NSArray *pushNotificationResponse = [results  objectForKey:@"service Response"];
+        
+        if ([pushNotificationResponse count])
+        {
+            NSString *resultResponseCode = [pushNotificationResponse valueForKey:@"response code"];
+            NSString *operationTypeFromServer = [pushNotificationResponse valueForKey:@"operationType"];
+            NSString *operationType = [NSString stringWithFormat:@"%d",eparseTypess];
+            
+            if ([resultResponseCode isEqualToString:@"600"] && [operationTypeFromServer isEqualToString:operationType])
+            {
+                if(self.delegate && [self.delegate respondsToSelector:@selector(parseCompleteSuccessfully::)])
+                {
+                    [self.delegate parseCompleteSuccessfully:eparseTypess :[results objectForKey:@"service response"]];
+                }
+                
+            }
+            else
+            {
+                if(self.delegate && [self.delegate respondsToSelector:@selector(parseWithInvalidMessage:)])
+                {
+                    //show error msg
+                    [self.delegate parseWithInvalidMessage:pushNotificationResponse];
+                }
+            }
+        }
+        
+        else
+        {
+            int errorCode = 605;
+            NSError *error;
+            
+            if(self.delegate && [self.delegate respondsToSelector:@selector(parseFailedWithError:::)]){
+                [self.delegate parseFailedWithError:eparseTypess:(NSError *)error:(int)errorCode];
+            }
+        }
+    }
+    
+    
+}
+
+#pragma mark- attach API parameters
+-(NSString *)setInboxParameters:(ParseServiseType)eparseType
+{
+    NSString *lastUpdateDate = [self lastUpdateddateFromTimeStamp:eparseType];
+    
+    NSLog(@"%d",inBoxPageNumber);
+    NSString *pagenumber = [NSString stringWithFormat:@"%d",inBoxPageNumber];
+    NSString *userID = [[NSUserDefaults standardUserDefaults] objectForKey:@"USERID"];
+    
+    NSString *URLWithParameters = [NSString stringWithFormat:@"%@?userId=%@&operationType=%d&LastUpdatedDate=%@&PageNumber=%@",INBOX_FETCH_URL,userID,eparseType,lastUpdateDate,pagenumber];
+    
+    return URLWithParameters;
+    
+}
+
+
+-(NSString *)setTouchBaseParameters:(ParseServiseType)eparseType
+{
+    NSString *lastUpdateDate = [self lastUpdateddateFromTimeStamp:eparseType];
+    
+    NSLog(@"%d",touchBasePageNumber);
+    NSString *pagenumber = [NSString stringWithFormat:@"%d",touchBasePageNumber];
+    
+    NSString *userID = [[NSUserDefaults standardUserDefaults] objectForKey:@"USERID"];
+    NSString *URLWithParameters = [NSString stringWithFormat:@"%@?userId=%@&operationType=%d&LastUpdatedDate=%@&PageNumber=%@",TOUCHBASE_FETCH_URL,userID,eparseType,lastUpdateDate,pagenumber];
+    return URLWithParameters;
+}
+
+-(NSString *)setDirectoryParameters:(ParseServiseType)eparseType
+{
+    NSString *lastUpdateDate = [self lastUpdateddateFromTimeStamp:eparseType];
+    
+    NSLog(@"%d",directoryPageNumber);
+    NSString *pagenumber = [NSString stringWithFormat:@"%d",directoryPageNumber];
+    
+    NSString *userID = [[NSUserDefaults standardUserDefaults] objectForKey:@"USERID"];
+    NSString *searching = @"1";
+    NSString *URLWithParameters = [NSString stringWithFormat:@"%@?userId=%@&operationType=%d&LastUpdatedDate=%@&PageNumber=%@&searching=%@",DIRECTORY_FETCH_URL,userID,eparseType,lastUpdateDate,pagenumber,searching];
+    
+    return URLWithParameters;
+}
+
+
+-(NSString *)setReadMessageParameters:(ParseServiseType)eparseType
+{
+    NSString *userID = [[NSUserDefaults standardUserDefaults] objectForKey:@"USERID"];
+    NSString *URLWithParameters = [NSString stringWithFormat:@"%@?userId=%@&operationType=%d",READ_MESSAGE_URL,userID,eparseType];
+    return URLWithParameters;
+}
+
+
+-(NSString *)setMyprofileParameters:(ParseServiseType)eparseType
+{
+    NSString *userID = [[NSUserDefaults standardUserDefaults] objectForKey:@"USERID"];
+    NSString *URLWithParameters = [NSString stringWithFormat:@"%@?userId=%@&operationType=%d",MYPROFILE_FETCH_URL,userID,eparseType];
+    return URLWithParameters;
+}
+
+-(NSString *)setCoverageCalenderParameters:(ParseServiseType)eparseType
+{
+    NSString *userID = [[NSUserDefaults standardUserDefaults] objectForKey:@"USERID"];
+    NSString *URLWithParameters = [NSString stringWithFormat:@"%@?userId=%@&operationType=%d",COVERAGECALENDER_FETCH_URL,userID,eparseType];
+    return URLWithParameters;
+}
+
+- (NSString *)lastUpdateddateFromTimeStamp :(ParseServiseType)eparseType
+{
+    
+    NSString *lastUpdateDate;
+    
+    TimeStamp *timeStamp = [DataManager fetchExistingEntityObject:@"TimeStamp" attributeName:@"operationType" selectBy:eparseType];
+    
+    if (!timeStamp)
+    {
+        lastUpdateDate = @"1/1/1901";
+    }
+    else
+    {
+        NSDate *lastUpdatedStringDate = timeStamp.lastUpdatedDate;
+        
+        lastUpdateDate = [DateFormatter getDateStringFromDate:lastUpdatedStringDate withFormat:@"MM/dd/yyyy"];
+    }
+    
+    return lastUpdateDate;
+}
+
+-(MsgRecipient*)fetchEntityObjectForMsgRecipient:(NSString *)entityName selectBy:(int)recipientID
+{
+    MsgRecipient* msgRecipientObject;
+    
+    msgRecipientObject = (MsgRecipient*)[DataManager fetchExistingEntityObject:entityName attributeName:@"recipientId" selectBy:recipientID];
+    
+    if (!msgRecipientObject)
+    {
+        msgRecipientObject = [DataManager createEntityObject:entityName];
+        
+    }
+    else
+    {
+    }
+    
+    return msgRecipientObject;
+}
+
+-(id)fetchEntityObjectForDirectory:(NSString *)entityName selectBy:(int)physicianID
+{
+    id managedObject = nil;
+    
+    managedObject = [DataManager fetchExistingEntityObject:entityName attributeName:@"physicianId" selectBy:physicianID];
+    if (!managedObject)
+    {
+        managedObject = [DataManager createEntityObject:entityName];
+    }
+    else
+    {
+        
+    }
+    
+    return managedObject;
+}
+
+#pragma mark-
+-(void)cacheImages:(NSArray *)imgNameArr
+{
+    
+    if ([imgNameArr count] > 0)
+    {
+        [[Utilities sharedInstance] cacheImage:[imgNameArr objectAtIndex:0]imgName:[imgNameArr objectAtIndex:1]];
+    }
+    
+}
+
+
+- (void)dealloc
+{
+    
+}
+
+@end

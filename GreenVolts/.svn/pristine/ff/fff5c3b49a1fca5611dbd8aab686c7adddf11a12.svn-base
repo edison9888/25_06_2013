@@ -1,0 +1,13 @@
+//
+//  BackButtonTouchProtocol.h
+//  GreenVolts
+//
+//  Created by Rapidvalue on 9/3/12.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+@protocol BackButtonTouchProtocol <NSObject>
+- (void)backButtonTouched:(id)currentobject;
+@end

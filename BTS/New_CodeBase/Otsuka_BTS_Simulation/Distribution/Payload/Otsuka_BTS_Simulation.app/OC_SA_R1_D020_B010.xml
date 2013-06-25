@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OC_SA_R1_D020_B010]]></id>
+	<title><![CDATA[]]></title>
+    <descriptionText><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">That's it</Introtext><welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">These days, patients are more and more educated about their condition and the products used to treat it.  So, more information on the products themselves – and why they should be used for particular patient types – would be extremely helpful.  A lot of our patients have been struggling with depression for years, and they might have been on any number of depression medications in the past.  Being able to describe the differences of a product, and why it is right for <I>their</I> situation, would help me prescribe with more confidence.</welcomeText>]]></descriptionText>
+    <character><![CDATA[Char_DrBennett01]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>
+	<branchTo><![CDATA[OC_SA_R1_D020_E010]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

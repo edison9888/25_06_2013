@@ -1,0 +1,425 @@
+    //
+//  AlertViewController.m
+//  GreenVolts
+//
+//  Created by YML on 8/26/11.
+//  Copyright 2011 YML. All rights reserved.
+//
+
+#import "AlertViewController.h"
+#import "AlertTableViewCell.h"
+#import "LoginManager.h"
+#import "Alert.h"
+#import "SBJson.h"
+#import "Connection.h"
+#import "GreenVoltsAppDelegate.h"
+@interface AlertViewController(PVT)<LoginManagerDelegate,ConnectionDelegate>
+
+-(void)jsonParser;
+-(void)connectToServer;
+-(void)fetchSessionToken;
+@end
+
+UILabel *emptyAlarmLabel;
+NSString *emptyAtertOrAlarmMessage;
+
+UILabel *pTitleLAbel;
+
+@implementation AlertViewController
+
+-(id)init 
+{
+
+  if((self = [super init]))
+  {
+    m_TableView=nil;
+    pTitleLabel=nil;
+    m_AlertsArray=nil;
+    
+    mURLConnection=nil;
+    mResponseData=nil;
+    m_ActivityIndicatorView=nil;    
+      
+  }
+  return self;
+}
+
+- (void)dealloc 
+{
+  if(m_TableView){m_TableView=nil;}
+  if(pTitleLabel){pTitleLabel=nil;}
+  if(m_AlertsArray){m_AlertsArray=nil;}
+  
+  if(mURLConnection) 
+	{
+		[mURLConnection cancel];
+		mURLConnection=nil;
+	}
+  if(mResponseData)
+	{
+		mResponseData=nil;
+	}  
+  if(m_ActivityIndicatorView){[m_ActivityIndicatorView removeFromSuperview];m_ActivityIndicatorView=nil;}  
+  
+}
+
+
+-(void)loadView
+{
+  self.view=[[UIView alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
+  self.view.backgroundColor=[UIColor colorWithRed:(10.2/100.0) green:(13.3/100.0) blue:(13.7/100.0) alpha:1.0];
+  
+  self.navigationController.navigationBar.tintColor=[UIColor blackColor];
+  
+  UINavigationBar *aNavigBar=[[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
+	aNavigBar.tintColor=[UIColor blackColor];
+	[self.navigationController.navigationBar addSubview:aNavigBar];
+  
+  pTitleLabel=[[UILabel alloc]initWithFrame:CGRectMake(10, 8, 300, 30)];
+  pTitleLabel.backgroundColor=[UIColor clearColor];
+  pTitleLabel.font=[UIFont fontWithName:@"HelveticaNeue-Bold" size:18];
+  pTitleLabel.textColor=[UIColor whiteColor];
+  pTitleLabel.textAlignment=UITextAlignmentCenter;
+  [aNavigBar addSubview:pTitleLabel];              
+  
+  UINavigationBar *pNavigBar=[[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
+	pNavigBar.tintColor=[UIColor blackColor];
+	[self.view addSubview:pNavigBar];
+  
+  pTitleLAbel=[[UILabel alloc]initWithFrame:CGRectMake(10, 8, 130, 20)];
+  pTitleLAbel.textColor=[UIColor colorWithRed:(99.2/100.00) green:(77.3/100.0) blue:0 alpha:1.0];
+  pTitleLAbel.backgroundColor=[UIColor clearColor];
+  pTitleLAbel.text=@"";
+  [pNavigBar addSubview:pTitleLAbel];
+  
+  m_TableView = [[UITableView alloc] initWithFrame: CGRectMake(0,40,320,330) style:UITableViewStylePlain];
+	m_TableView.backgroundColor=[UIColor clearColor];
+	m_TableView.delegate = self;
+	m_TableView.dataSource = self;
+	m_TableView.scrollEnabled = YES;
+  m_TableView.separatorColor=[UIColor clearColor];
+	m_TableView.rowHeight=20;
+	[self.view addSubview:m_TableView]; 
+    
+    
+    //Label For Displaying the Empty Alarms
+    emptyAlarmLabel = [[UILabel alloc]init];
+    emptyAlarmLabel.frame = CGRectMake(80,80, 200, 30);
+    emptyAlarmLabel.backgroundColor = [UIColor clearColor];
+    emptyAlarmLabel.textColor = [UIColor colorWithRed:(99.2/100.00) green:(77.3/100.0) blue:0 alpha:1.0];
+    [self.view addSubview:emptyAlarmLabel];
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+}
+-(void)viewWillAppear:(BOOL)animated
+{
+  emptyAlarmLabel.text = @"";
+    //setting the Empty Alert/Alarm Message and Title Tablen
+  NSArray *navigationsResultArray = self.tabBarController.viewControllers;
+  UINavigationController *alertNavController = [navigationsResultArray lastObject];
+  emptyAtertOrAlarmMessage = [NSString stringWithFormat:@"No Pending %@",alertNavController.tabBarItem.title];
+    pTitleLAbel.text=alertNavController.tabBarItem.title;;
+    
+  pTitleLabel.text=[[NSUserDefaults standardUserDefaults]objectForKey:@"ENTITY_NAME"];
+
+  if(m_ActivityIndicatorView){[m_ActivityIndicatorView removeFromSuperview];m_ActivityIndicatorView=nil;}
+  if(m_AlertsArray)
+  {
+    m_AlertsArray=nil;
+  }
+  [m_TableView reloadData];
+  [self connectToServer];
+}
+
+-(void)gotoSectionAlertView
+{
+  AlertViewController *pAlertViewController=[[AlertViewController alloc]init];
+  [self.navigationController pushViewController:pAlertViewController animated:YES];
+}
+
+-(void)gotoArrayAlertView
+{
+  AlertViewController *pAlertViewController=[[AlertViewController alloc]init];
+  [self.navigationController pushViewController:pAlertViewController animated:YES];  
+}
+
+#pragma mark URLConnectionManager Methods
+
+-(void)connectToServer
+{
+  if(m_ActivityIndicatorView){[m_ActivityIndicatorView removeFromSuperview];m_ActivityIndicatorView=nil;}
+
+  m_ActivityIndicatorView=[[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(150, 200, 30, 30)];
+  [m_ActivityIndicatorView startAnimating];
+  m_ActivityIndicatorView.activityIndicatorViewStyle=UIActivityIndicatorViewStyleWhite;
+  [self.view addSubview:m_ActivityIndicatorView];  
+  
+	if(mURLConnection) 
+	{
+		[mURLConnection cancel];
+		mURLConnection=nil;
+	}
+  if(mResponseData)
+	{
+		mResponseData=nil;
+	}
+  
+  NSString *pSessionToken=[[NSUserDefaults standardUserDefaults]objectForKey:@"SESSION_TOKEN"];
+  NSString *pEntityType=[[NSUserDefaults standardUserDefaults]objectForKey:@"ENTITY_TYPE"];
+  NSString *pEntityId=[[NSUserDefaults standardUserDefaults]objectForKey:@"ID"];
+  
+
+  mURLConnection=[NSURLConnection connectionWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/GreenVolts-ISIS-BL-Web-Models-iPhone-iPhone_DS.svc/JSON/GetAlertsforEntity?sessionToken=%@&entityScope=%@&entityID=%@",kserverAddress,pSessionToken,pEntityType,pEntityId]]] delegate:self];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response 
+{
+  if(!mResponseData)
+    mResponseData=[NSMutableData data];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+		[mResponseData appendData:data];
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error 
+{
+  //  Error Codes: 
+  //  10001 – cannot connect to backend systems
+  //  10002 – invalid username or password (displays an error message on top of the screen)
+  if(m_ActivityIndicatorView){[m_ActivityIndicatorView removeFromSuperview];m_ActivityIndicatorView=nil;}
+  
+  UIAlertView *pAlert=[[UIAlertView alloc]initWithTitle:@"" message:@"Make sure your device has an active network connection and try again" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:NULL];
+  [pAlert show];
+  pAlert=nil;        
+  
+  if(mURLConnection) 
+	{
+		[mURLConnection cancel];
+		mURLConnection=nil;
+	}
+	if(mResponseData)
+	{
+		mResponseData=nil;
+	}
+  
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{  
+	if(mURLConnection) 
+	{
+		[mURLConnection cancel];
+		mURLConnection=nil;
+	}
+  
+  [self jsonParser];
+}	
+
+- (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace
+{
+  return [protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
+{
+  if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust])
+    //    if (... user allows connection despite bad certificate ...)
+    [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
+  
+  //[challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
+}
+
+-(void)jsonParser
+{  
+  // parsing the first level    
+  NSString *responseString=[[NSString alloc]initWithData:mResponseData encoding:NSUTF8StringEncoding];
+  mResponseData=nil;
+  //printf("\nJson String:%s\n",[responseString UTF8String]);
+  
+  NSDictionary *data=[responseString JSONValue];
+  
+  NSDictionary *userResult= [data objectForKey:@"GetAlertsforEntityResult"]; 
+  
+  NSArray *rootResult = [userResult objectForKey:@"RootResults"];
+  
+    NSLog(@"ROOT Cound ::: %d",[rootResult count]);
+  if([rootResult count])
+  {
+    NSDictionary *rootResultDict=[rootResult objectAtIndex:0];
+    
+    NSObject *error=[rootResultDict objectForKey:@"Err"];
+    
+    if([error isKindOfClass:[NSNull class]])
+    {
+      if(m_ActivityIndicatorView){[m_ActivityIndicatorView removeFromSuperview];m_ActivityIndicatorView=nil;}
+      NSMutableArray *alertArray=[[NSMutableArray alloc]init];
+      for(int i=0;i<[rootResult count];i++)
+      {
+        NSDictionary *siteDictinary=[rootResult objectAtIndex:i];
+        Alert *pAlert=[[Alert alloc]init];
+        
+        NSObject *pAlarmCount=[siteDictinary objectForKey:@"Description"];
+        if(![pAlarmCount isKindOfClass:[NSNull class]])
+          pAlert.m_Description=[siteDictinary objectForKey:@"Description"];
+        
+        NSObject *pArrayCount=[siteDictinary objectForKey:@"ArrayName"];
+        if(![pArrayCount isKindOfClass:[NSNull class]])
+          pAlert.m_Severity=[siteDictinary objectForKey:@"ArrayName"];
+        
+        NSObject *pSiteId=[siteDictinary objectForKey:@"ID"];
+        if(![pSiteId isKindOfClass:[NSNull class]])
+          pAlert.m_AlarmId=[siteDictinary objectForKey:@"ID"];      
+        
+        [alertArray addObject:pAlert];
+        
+        pAlert=nil;
+      }
+      m_AlertsArray=[NSArray arrayWithArray:alertArray];
+        
+        NSLog(@" ARRAY COUNT:::: %d",[m_AlertsArray count]);
+        if ([m_AlertsArray count]>0) {
+            [m_TableView reloadData];
+            emptyAlarmLabel.text = @"";
+            m_TableView.userInteractionEnabled = YES;
+        }
+        else 
+            emptyAlarmLabel.text = emptyAtertOrAlarmMessage;
+        m_TableView.userInteractionEnabled = NO;
+    }
+    else 
+    {
+      NSNumber *errorId=[rootResultDict objectForKey:@"ErrID"];
+      if([errorId intValue]==10002 || [errorId intValue]==10026 || [errorId intValue]==10028 || [errorId intValue]==10029)
+      {
+        [[LoginManager sharedLoginManagerWithDelegate:self] ShowLoginPage];
+      }    
+      if([errorId intValue]==10003)
+      {
+        [self fetchSessionToken];
+      }    
+    }
+
+      m_TableView.userInteractionEnabled = YES;
+  }
+  else
+  {
+      emptyAlarmLabel.text = @"";
+      emptyAlarmLabel.text = emptyAtertOrAlarmMessage;
+      m_TableView.userInteractionEnabled = NO;
+    if(m_ActivityIndicatorView){[m_ActivityIndicatorView removeFromSuperview];m_ActivityIndicatorView=nil;}
+  }
+}
+
+#pragma mark UITableView delegate methods
+
+- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+  return (m_AlertsArray!=nil)?[m_AlertsArray count]:0;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+	return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{	
+	AlertTableViewCell *cell = (AlertTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"AlertListCell"];
+	if(cell == nil)
+	{  
+    cell=[[AlertTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"AlertListCell"];
+		cell.accessoryType = UITableViewCellAccessoryNone;
+		cell.selectionStyle=UITableViewCellSelectionStyleNone;
+	}
+  Alert *pAlert=[m_AlertsArray objectAtIndex:indexPath.row];
+  
+  cell.m_TilteLabel.text =pAlert.m_Description;
+  cell.m_AlarmLabel.text =pAlert.m_Severity;
+	return cell;
+}
+-(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+  UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0,0,320,20)];
+  UIImageView *bgImgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 20)];
+  bgImgView.image=[UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"Header" ofType:@"png"]];
+  [view addSubview:bgImgView];
+  
+  UILabel *m_TilteLabel=[[UILabel alloc]initWithFrame:CGRectMake(2, 6, 250, 12)];
+  [m_TilteLabel setFont:[UIFont fontWithName:@"Arial-BoldMT" size:12]];
+  m_TilteLabel.textColor=[UIColor colorWithRed:(7.1/100.0) green:(7.5/100.0) blue:(7.8/100.0) alpha:1.0];
+  m_TilteLabel.backgroundColor=[UIColor clearColor];
+  m_TilteLabel.text=@"Description";
+  [view addSubview:m_TilteLabel];
+  
+  UILabel *m_AlarmLabel=[[UILabel alloc]initWithFrame:CGRectMake(280, 6, 50, 12)];
+  [m_AlarmLabel setFont:[UIFont fontWithName:@"Arial-BoldMT" size:12]];
+  m_AlarmLabel.textColor=[UIColor colorWithRed:(7.1/100.0) green:(7.5/100.0) blue:(7.8/100.0) alpha:1.0];
+  m_AlarmLabel.backgroundColor=[UIColor clearColor];
+  m_AlarmLabel.textAlignment=UITextAlignmentLeft;
+  m_AlarmLabel.text=@"Array";
+  [view addSubview:m_AlarmLabel];
+  
+  return view;
+}
+- (void)didReceiveMemoryWarning {
+}
+
+- (void)viewDidUnload {
+    [super viewDidUnload];
+    // Release any retained subviews of the main view.
+    // e.g. self.myOutlet = nil;
+}
+
+#pragma mark -- LoginManagerDelegate
+-(void)loginManager:(LoginManager*)manager loggedInSuccesfullyWithSessionToken:(NSString*)sessionToken
+{
+  [[NSUserDefaults standardUserDefaults]setObject:sessionToken forKey:@"SESSION_TOKEN"];
+//  [self connectToServer]; 
+  GreenVoltsAppDelegate* appDelegate=(GreenVoltsAppDelegate*)[UIApplication sharedApplication].delegate;
+  UITabBarController *tabBar=(UITabBarController *)appDelegate.RootViewController;
+  tabBar.selectedIndex=0;
+  [appDelegate tabBarController:tabBar didSelectViewController:nil];
+  UINavigationController *navC=[tabBar.viewControllers objectAtIndex:0];
+  [navC popToRootViewControllerAnimated:YES];
+}
+
+
+-(void)fetchSessionToken
+{
+  if(!m_Connection)
+  {
+    m_Connection=[[Connection alloc]init];
+    m_Connection.m_delegate=self;
+  }
+  [m_Connection connectToServer];
+}
+#pragma mark -- ConnectionDelegate
+-(void)ConnectionFailed
+{
+  UIAlertView *pAlert=[[UIAlertView alloc]initWithTitle:@"" message:@"Make sure your device has an active network connection and try again" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:NULL];
+  [pAlert show];
+  pAlert=nil;
+}
+-(void)InvalidUserNameError:(int)errorIndex
+{
+  if(errorIndex==0)
+  {
+    UIAlertView *pAlert=[[UIAlertView alloc]initWithTitle:@"" message:@"Cannot connect to backend systems" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:NULL];
+    [pAlert show];
+    pAlert=nil;              
+  }
+  else if(errorIndex==1)
+  {
+    [[LoginManager sharedLoginManagerWithDelegate:self] ShowLoginPage];
+  }  
+}
+-(void)Success
+{
+  [self connectToServer];
+}
+@end

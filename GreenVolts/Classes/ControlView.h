@@ -1,0 +1,42 @@
+//
+//  ControlView.h
+//  GreenVolts
+//
+//  Created by Shinu Mohan on 21/08/12.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "Connection.h"
+
+
+typedef enum 
+{
+    MOVE,
+    LOCK,
+    UNLOCK,
+    ROLL_AND_TILT,
+    UNAVAILABLE,
+}ACTION_STATE;
+
+typedef enum
+{
+    UP=0,
+    WEST,
+    EAST,
+    DOWN,
+    RESUME,
+    NO_DIRECTION
+}MOVE_DIRECTION;
+@interface ControlView : UIView<UITextFieldDelegate,ConnectionDelegate>
+{
+    Connection *m_Connection;
+    NSURLConnection *mURLConnection;
+    NSMutableData *mResponseData;
+    UIActivityIndicatorView *m_ActivityIndicatorView;
+    NSString *urlString;
+    ACTION_STATE actionState;
+    MOVE_DIRECTION moveDirection;
+    BOOL isArrayLockStatusCheck;
+}
+@end

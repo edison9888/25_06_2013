@@ -1,0 +1,23 @@
+//
+//  MaintenanceLogView.h
+//  GreenVolts
+//
+//  Created by Shinu Mohan on 21/08/12.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "MaintenanceLogCell.h"
+#import "MaintenanceLogBarCodeView.h"
+#import "BackButtonTouchProtocol.h"
+
+@interface MaintenanceLogView : UIView<UITableViewDelegate,UITableViewDataSource,BackButtonTouchProtocol>
+{
+    UITableView   *maintenacelogTable;
+}
+- (IBAction)saveButtonTouched:(id)sender;
+
+//- (IBAction)cellButtonTouched:(id)sender ;
+@property(nonatomic,strong)NSMutableArray *maintenanceLogArray;
+@property(nonatomic,strong) IBOutlet MaintenanceLogCell *maintenanceLogCell;
+@end

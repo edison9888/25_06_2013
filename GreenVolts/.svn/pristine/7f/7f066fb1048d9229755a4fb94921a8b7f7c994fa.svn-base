@@ -1,0 +1,370 @@
+    //
+//  LoginViewController.m
+//  GreenVolts
+//
+//  Created by YML on 8/26/11.
+//  Copyright 2011 YML. All rights reserved.
+//
+
+#import "LoginViewController.h"
+#import "SBJson.h"
+#import "NSData+GVBlowfish.h"
+#import "LoginManager.h"
+
+@interface LoginViewController(PVT)
+-(void)validateCredintial;
+-(void)connectToServer;
+-(void)jsonParser;
+@end
+
+@implementation LoginViewController
+@synthesize m_delegate;
+
+-(id)init 
+{
+  if((self = [super init]))
+  {
+    m_delegate=nil;
+    mURLConnection=nil;
+    mResponseData=nil;
+    m_ActivityIndicatorView=nil;
+    m_UserName=nil;
+    m_Password=nil;
+  }
+  return self;
+}
+
+-(void)loadView
+{
+  self.view=[[UIView alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
+  self.view.backgroundColor=[UIColor colorWithRed:(206.0/255.0) green:(206.0/255.0) blue:(206.0/255.0) alpha:1.0];
+
+#ifndef AUTO_LOGIN
+  UIImageView *pImageView=[[UIImageView alloc]initWithFrame:CGRectMake(182, 215, 130, 23)];
+#else
+  UIImageView *pImageView=[[UIImageView alloc]initWithFrame:CGRectMake(182, 420, 130, 23)];
+#endif
+    
+  pImageView.image=[UIImage imageNamed:@"Logo.png"];
+  [self.view addSubview:pImageView];
+
+  UIImageView *pTextFieldImageView=[[UIImageView alloc]initWithFrame:CGRectMake(5, 105,310, 93)];
+  pTextFieldImageView.image=[UIImage imageNamed:@"txt-field.png"];
+  [self.view addSubview:pTextFieldImageView];
+  
+  UILabel *pTitleLabel=[[UILabel alloc]initWithFrame:CGRectMake(24, 33, 200 , 40)];
+  pTitleLabel.textColor=[UIColor blackColor];
+  pTitleLabel.text=@"ISIS";
+  pTitleLabel.backgroundColor=[UIColor clearColor];
+  [pTitleLabel setFont:[UIFont fontWithName:@"Arial" size:40]];
+  [self.view addSubview:pTitleLabel];
+  
+  UILabel *pDetailLabel=[[UILabel alloc]initWithFrame:CGRectMake(27, 76, 250 , 16)];
+  pDetailLabel.textColor=[UIColor blackColor];
+  pDetailLabel.text=@"Intelligent Solar Information System";
+  pDetailLabel.backgroundColor=[UIColor clearColor];
+  [pDetailLabel setFont:[UIFont fontWithName:@"Arial" size:15]];
+  [self.view addSubview:pDetailLabel];
+      
+  m_UsernameTextfield=[[UITextField alloc]initWithFrame:CGRectMake(20, 115, 280, 30)];
+  m_UsernameTextfield.placeholder=@"Username";
+  m_UsernameTextfield.tag=1;
+  m_UsernameTextfield.autocorrectionType = UITextAutocorrectionTypeNo;
+  m_UsernameTextfield.autocapitalizationType=UITextAutocapitalizationTypeNone;
+  m_UsernameTextfield.returnKeyType=UIReturnKeyGo;
+  m_UsernameTextfield.text=[[NSUserDefaults standardUserDefaults]objectForKey:@"USERNAME"];
+  m_UsernameTextfield.backgroundColor=[UIColor whiteColor];
+  m_UsernameTextfield.delegate=self;
+    
+#ifdef AUTO_LOGIN
+    m_UsernameTextfield.enabled=NO;
+    m_UsernameTextfield.text=@"guest";
+#endif
+    
+  [self.view addSubview:m_UsernameTextfield];
+  
+  m_PasswordTextField=[[UITextField alloc]initWithFrame:CGRectMake(20, 165, 280, 30)];
+  m_PasswordTextField.placeholder=@"Password";
+  m_PasswordTextField.tag=2;
+  m_PasswordTextField.returnKeyType=UIReturnKeyGo;
+  m_PasswordTextField.selected=YES;
+  m_PasswordTextField.secureTextEntry=YES;
+  m_PasswordTextField.backgroundColor=[UIColor whiteColor];
+  m_PasswordTextField.text=@"";
+  m_PasswordTextField.delegate=self;
+    
+   // m_UsernameTextfield.text = @"athomas";
+   // m_PasswordTextField.text = @"a@thomas";
+#ifdef AUTO_LOGIN
+    m_PasswordTextField.enabled=NO;
+    m_PasswordTextField.text=@"test";
+#endif
+    
+  [self.view addSubview:m_PasswordTextField];  
+    
+#ifdef AUTO_LOGIN
+    [self connectToServer];
+#endif
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+  if([m_UsernameTextfield.text length]==0 && [m_PasswordTextField.text length]==0)
+  {
+    UIAlertView *pAlert=[[UIAlertView alloc]initWithTitle:@"" message:@"Please Enter Username and Password" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:NULL];
+    [pAlert show];
+    pAlert=nil;        
+  }
+  else if([m_UsernameTextfield.text length]==0)
+  {
+    UIAlertView *pAlert=[[UIAlertView alloc]initWithTitle:@"" message:@"Please Enter Username" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:NULL];
+    [pAlert show];
+    pAlert=nil;            
+  }
+  else if([m_PasswordTextField.text length]==0)
+  {
+    UIAlertView *pAlert=[[UIAlertView alloc]initWithTitle:@"" message:@"Please Enter Password" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:NULL];
+    [pAlert show];
+    pAlert=nil;            
+  }  
+  else 
+  {
+    [self connectToServer];
+  }
+  return YES;
+}
+
+#pragma mark URLConnectionManager Methods
+
+-(void)connectToServer
+{  
+  if(m_ActivityIndicatorView)
+  {
+    [m_ActivityIndicatorView removeFromSuperview];
+    m_ActivityIndicatorView=nil;
+  }
+  if(m_UserName)
+  {
+    m_UserName=nil;
+  }
+    
+  m_UserName=m_UsernameTextfield.text;
+  
+  if(m_Password)
+  {
+    m_Password=nil;
+  }
+  m_Password=m_PasswordTextField.text;
+  
+#ifdef AUTO_LOGIN  
+   m_UserName = @"iph0nedem0user";
+   m_Password = @"d3m0!ph0n3us2r";
+#endif
+    
+  m_ActivityIndicatorView=[[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(150, 200, 30, 30)];
+  [m_ActivityIndicatorView startAnimating];
+  m_ActivityIndicatorView.activityIndicatorViewStyle=UIActivityIndicatorViewStyleGray;
+  [self.view addSubview:m_ActivityIndicatorView];  
+  
+	if(mURLConnection) 
+	{
+		[mURLConnection cancel];
+		mURLConnection=nil;
+	}
+  if(mResponseData)
+	{
+		mResponseData=nil;
+	}
+  
+  mURLConnection=[NSURLConnection connectionWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/GreenVolts-ISIS-BL-Web-Models-iPhone-iPhone_DS.svc/JSON/GetUserInfo?username=%@&password=%@",kserverAddress,[m_UserName stringByAddingPercentEscapesUsingEncoding:NSUncachedRead],[m_Password stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]]] delegate:self];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response 
+{
+  if(!mResponseData)
+    mResponseData=[NSMutableData data];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+   
+  [mResponseData appendData:data];
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error 
+{
+//  Error Codes: 
+//  10001 – cannot connect to backend systems
+//  10002 – invalid username or password (displays an error message on top of the screen)
+  if(m_ActivityIndicatorView){[m_ActivityIndicatorView removeFromSuperview];m_ActivityIndicatorView=nil;}
+
+  UIAlertView *pAlert=[[UIAlertView alloc]initWithTitle:@"" message:@"Make sure your device has an active network connection and try again" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:NULL];
+  [pAlert show];
+  pAlert=nil;        
+  
+  if(mURLConnection) 
+	{
+		[mURLConnection cancel];
+		mURLConnection=nil;
+	}
+	if(mResponseData)
+	{
+		mResponseData=nil;
+	}
+}
+
+-(void) alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+#ifdef AUTO_LOGIN
+    [self connectToServer];   
+#endif
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+#ifdef AUTO_LOGIN
+   // sleep(1);
+#endif
+    
+  if(m_ActivityIndicatorView){[m_ActivityIndicatorView removeFromSuperview];m_ActivityIndicatorView=nil;}
+
+	if(mURLConnection) 
+	{
+		[mURLConnection cancel];
+		mURLConnection=nil;
+	}
+  
+  [self jsonParser];
+}	
+
+- (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace
+{
+  return [protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
+{
+  if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust])
+//    if (... user allows connection despite bad certificate ...)
+      [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
+  
+  //[challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
+}
+
+-(void)jsonParser
+{
+    // parsing the first level    
+  
+  NSString *responseString=[[NSString alloc]initWithData:mResponseData encoding:NSUTF8StringEncoding];
+  mResponseData=nil;
+  //printf("\nJson String:%s\n",[responseString UTF8String]);
+  
+  NSDictionary *data=[responseString JSONValue];
+  
+  NSDictionary *userResult= [data objectForKey:@"GetUserInfoResult"]; 
+  
+  NSArray *rootResult = [userResult objectForKey:@"RootResults"];
+  
+  if([rootResult count])
+  {
+    NSDictionary *rootResultDict=[rootResult objectAtIndex:0];
+    
+    NSObject *sessionToken=[rootResultDict objectForKey:@"SessionToken"];
+        
+    if([sessionToken isKindOfClass:[NSNull class]])
+    {
+      UIAlertView *pAlert=[[UIAlertView alloc]initWithTitle:@"" message:[rootResultDict objectForKey:@"Err"] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:NULL];
+      [pAlert show];
+      pAlert=nil;    
+      int errorID=[[rootResultDict objectForKey:@"ErrID"] intValue];
+      if(errorID==10002 || errorID==10026 || errorID==10028 || errorID==10029)
+      {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        BOOL enabled = [defaults boolForKey:@"RememberPassword"];
+        if(enabled)
+        {
+          [[NSUserDefaults standardUserDefaults]setObject:nil forKey:@"PASSWORD1"];
+          [[NSUserDefaults standardUserDefaults]setObject:nil forKey:@"PASSWORD"];
+        }
+      }
+    }
+    else 
+    {
+      [[NSUserDefaults standardUserDefaults]setObject:m_UserName forKey:@"USERNAME"];
+      [[NSUserDefaults standardUserDefaults]setObject:[[m_Password dataUsingEncoding:NSASCIIStringEncoding] encryptAsDES] forKey:@"PASSWORD"];
+      
+      NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+      BOOL enabled = [defaults boolForKey:@"RememberPassword"];
+      if(enabled)
+         [[NSUserDefaults standardUserDefaults]setObject:[[m_Password dataUsingEncoding:NSASCIIStringEncoding] encryptAsDES] forKey:@"PASSWORD1"];
+      
+      [[NSUserDefaults standardUserDefaults]setObject:sessionToken forKey:@"SESSION_TOKEN"];
+      [m_UsernameTextfield resignFirstResponder];
+      [m_PasswordTextField resignFirstResponder];
+      if(m_delegate && [m_delegate respondsToSelector:@selector(LoginSuccess:)])
+        [m_delegate LoginSuccess:[rootResultDict objectForKey:@"SessionToken"]];    
+    }
+  }
+  if(mResponseData)
+	{
+		mResponseData=nil;
+	}  
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+  if(m_UsernameTextfield.text.length>0)
+    [m_PasswordTextField becomeFirstResponder];
+  else
+    [m_UsernameTextfield becomeFirstResponder];
+  [self.navigationController setNavigationBarHidden:YES];
+}
+
+- (void)didReceiveMemoryWarning {
+}
+
+- (void)viewDidUnload {
+    [super viewDidUnload];
+    // Release any retained subviews of the main view.
+    // e.g. self.myOutlet = nil;
+}
+
+#ifdef AUTO_LOGIN
+- (void)viewDidLoad {
+    [super viewDidLoad];
+ //   [hiddenTextField becomeFirstResponder];
+}
+#endif
+
+- (void)dealloc
+{
+  if(m_UserName)
+  {
+    m_UserName=nil;
+  }
+  
+  if(m_Password)
+  {
+    m_Password=nil;
+  }
+  
+  if(mURLConnection) 
+	{
+		[mURLConnection cancel];
+		mURLConnection=nil;
+	}
+  if(mResponseData)
+	{
+		mResponseData=nil;
+	}  
+  if(m_UsernameTextfield){m_UsernameTextfield=nil;}
+  if(m_PasswordTextField){m_PasswordTextField=nil;}
+  if(m_ActivityIndicatorView){[m_ActivityIndicatorView removeFromSuperview];m_ActivityIndicatorView=nil;}
+  m_delegate=nil;
+  
+}
+@end

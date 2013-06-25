@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+  <id><![CDATA[OTS_SA_R3_INTRO_2]]></id>
+  <title><![CDATA[Introduction 2]]></title>
+  <descriptionText><![CDATA[<font face="helvetica" size="3"><Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">You and Your Customer</Introtext><welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">You recently used the ROPE questioning framework with Dr. Hayes, the lead psychiatrist at Sunnydale Psychiatry, to learn about the patient outcomes he is trying to achieve. You have also recently learned that two of Dr. Bennett’s patients have stopped their treatment, complaining of side effects.<BR><BR>You plan to work further with Dr. Bennett, your main contact at Sunnydale, in order to understand even further the priorities of the practice and to explore ways to achieve the desired patient outcomes.</welcomeText><br><br><lasttext style="font-family:Helvetica; font-size:11pt; color:#000; background-color:#c0c0c0; margin:10px; padding:2px 0 2px 5px; display:block;"><i>Please press <b>CONTINUE</b> to begin the simulation.</i></lasttext>]]></descriptionText>
+  <continueBtn><![CDATA[]]></continueBtn>
+  <branchTo><![CDATA[]]></branchTo>
+</pageContent>

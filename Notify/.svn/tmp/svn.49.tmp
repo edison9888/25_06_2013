@@ -1,0 +1,432 @@
+//
+//  DirectoryViewController.m
+//  NotiyiiPhoneApplicationProject
+//
+//  Created by Veena on 10/09/12.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//
+
+#import "DirectoryViewController.h"
+#import "GeneralClass.h"
+#import "DirectoryDetailsViewController.h"
+#import "DataManager.h"
+#import "AppDelegate.h"
+#import "Directory.h"
+#import <QuartzCore/QuartzCore.h>
+@interface DirectoryViewController ()
+{
+    DataManager *dataManager;
+    NSArray *directoryDataManagerArray;
+    IBOutlet UILabel *directoryLabel;
+    int identifyFlag;
+    IBOutlet UIButton *doneButton;
+    IBOutlet UIButton *popOverButton;
+    popOverViewController *popOverView;
+}
+
+@property (strong, nonatomic) IBOutlet UISearchBar *directorySearchBar;
+@property (strong, nonatomic) IBOutlet UITableView *directorytableView;
+@property (strong, nonatomic) Directory *directory;
+@property (strong, nonatomic) NSString *cachePath;
+
+- (void)initialize;
+- (void)searchBarTextClearButtonTouched;
+- (void)getDirectoryInformation;
+- (void)dummyDataBaseInsertion;
+- (void)updateSelectionTrackerWith:(Directory *)directoryObj;
+
+- (IBAction)doneButtonTouched:(id)sender;
+-(IBAction)popOverStateNameButtonTouched:(id)sender;
+-(void) getDataFromServer;
+-(void) fetchDirectoryDataFromServer;
+
+@end
+
+@implementation DirectoryViewController
+@synthesize directorySearchBar;
+@synthesize directorytableView;
+@synthesize directory;
+@synthesize delegate;
+@synthesize customDirectoryCell;
+@synthesize selectionTracker;
+@synthesize cachePath;
+
+#pragma mark- init
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        self.title = @"Directory";
+        self.tabBarItem.image = [UIImage imageNamed:@"tabBar_Directory"];
+    }
+    return self;
+}
+
+#pragma mark- initial Load
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self searchBarTextClearButtonTouched];
+    
+    [self initialize];
+    
+    [self getDataFromServer];
+    
+    NSLog(@"selectionTracker Distionary count === %d",[selectionTracker count]);//this Dictionary should take as 'To' field members.
+    NSLog(@"selectionTracker === %@",selectionTracker);
+    
+    NSArray *temp = [selectionTracker allValues];
+    if ([temp count]) {
+        directory = [temp objectAtIndex:0];
+        NSLog(@"%@",directory.physicianName);
+    }
+
+     NSArray *temp1 = [selectionTracker allKeys];
+     NSArray *temp2 = [selectionTracker allKeysForObject:directory];
+}
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    self.navigationController.navigationBarHidden = YES;
+}
+
+#pragma mark- methods
+- (void)initialize
+{
+    //search bar background color setting
+    GeneralClass *generalClass = [[GeneralClass alloc]init];
+    [generalClass searchBarBackGroundColorSetting:self.directorySearchBar];
+    generalClass = nil;
+    directoryLabel.font = [GeneralClass getFont:titleFont and:boldFont];
+    doneButton.titleLabel.font = [GeneralClass getFont:buttonFont and:regularFont];
+    popOverButton.titleLabel.font = [GeneralClass getFont:customNormal and:boldFont];
+    popOverButton.titleLabel.textAlignment = UITextAlignmentLeft;
+    [popOverButton setTitleColor:[UIColor colorWithRed:0.6 green:0.8 blue:0.8 alpha:1] forState:UIControlStateNormal];
+    [popOverButton setTitle:@"ALL" forState:UIControlStateNormal];
+    if(identifyFlag)//came from selection.
+    {
+        [doneButton setHidden:NO];
+    }
+    else//normal
+    {
+        [doneButton setHidden:YES];
+    }
+    /*
+    //delete the conent before insertion
+    dataManager = [[DataManager alloc]init];
+    BOOL deleteBool = [dataManager deleteAllObjects:@"Directory"];
+    
+    if(deleteBool)
+    {
+        [self dummyDataBaseInsertion];
+    }
+    
+    if (!selectionTracker)
+    {
+        selectionTracker = [[NSMutableDictionary alloc]init];
+    }
+    
+    [self getDirectoryInformation];
+     */
+}
+
+-(void) beginWithAddParticipants:(int)falgValue
+{
+    NSLog(@"falgValue === %d",falgValue);
+    identifyFlag = falgValue;
+}
+
+-(void) getDataFromServer
+{
+    if(dataManager)
+    {
+        dataManager = nil;
+    }
+    dataManager = [[DataManager alloc]init];
+    
+    BOOL deleteBool = [dataManager deleteAllObjects:@"Directory"];
+    
+    if(deleteBool)
+    {
+        [self fetchDirectoryDataFromServer];
+    }
+}
+
+-(void) fetchDirectoryDataFromServer
+{
+    NSString *string=@"";//No need of inputs right now.
+    JsonParser *objParser=[[JsonParser alloc] init];
+    objParser.delegate=self;
+    [objParser parseJson:DirectoryParse :string];
+}
+
+-(void)parseCompleteSuccessfully:(ParseServiseType) eparseType:(NSArray *)result
+{
+    NSLog(@"Parse complete in Directory");    
+    [self getDirectoryInformation];
+}
+-(void)parseFailedWithError:(ParseServiseType) eparseType:(NSError *)error:(int)errorCode
+{
+    NSLog(@"Parse Error in TouchBase");
+}
+
+/*
+//As per the absence of the API information from the notify client, we are now inserting 10 data in to table manually using this function.
+-(void)dummyDataBaseInsertion
+{
+    NSArray *doctorIdArray = [NSArray arrayWithObjects:@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10",nil];
+    
+    NSArray *doctorNameArray = [NSArray arrayWithObjects:@"Issur Danielovitch",@"Seth Ward",@"Lincoln Perry",@"Raymond Cramton",@"Douglas Ullman",@"Barbara Huffman",@"William Franklin",@"Ehrich Weiss",@"Krishna Banji",@"Sidney Leibowitz",nil];
+    
+    NSArray *phoneNoArray = [NSArray arrayWithObjects:@"023323",@"032312323",@"032232324",@"045466567",@"067674624",@"0323556",@"0565642",@"04234234333",@"042423524545",@"06768675563",nil];
+    
+    NSArray *practiceArray = [NSArray arrayWithObjects:@"Connecticut Medical Group",@"Guliford Internal Medicine Group",@"Hostpitalist Service",@"Yale-New Haven Hospital",@"Fair Haven",@"Community Health Centre",@"Internal Medicine Group",@"Guliford Internal Medicine",@"Health Centre",@"Yale-New Haven Hospital",nil];
+    
+    NSArray *cityArray = [NSArray arrayWithObjects:@"New York",@"Los Angeles",@"Chicago",@"Houston",@"Phoenix",@"San Antonio",@"San Jose",@"Fort Worth",@"Charlotte",@"Boston",nil];
+    
+    NSArray *specialityArray = [NSArray arrayWithObjects:@"Internal Medicine",@"Dermatology, Critical Care Medicine",@"Specialty",@"Critical Care",@"Internal",@"Caine",@"Dermatology",@"Fairbanks",@"Dermatology",@" Care Medicine",nil];
+    
+    NSArray *stateArray = [NSArray arrayWithObjects:@"Alabama",@"Alaska",@"California",@"Connecticut",@"Delaware",@"Florida",@"Georgia",@"Idaho",@"Illinois",@"Indiana",nil];
+    
+    NSArray *statusArray = [NSArray arrayWithObjects:@"1",@"0",@"1",@"0",@"0",@"1",@"0",@"1",@"0",@"1",nil];
+    
+    for (int i =0; i < 10 ; i++)
+    {
+        self.directory = [DataManager createEntityObject:@"Directory"];
+        
+        self.directory.city = [cityArray objectAtIndex:i];
+        self.directory.physicianId = [NSNumber numberWithInt:[[doctorIdArray objectAtIndex:i] intValue]];
+        self.directory.physicianName = [doctorNameArray objectAtIndex:i];
+        
+        self.directory.phone = [phoneNoArray objectAtIndex:i];
+        self.directory. practice = [practiceArray objectAtIndex:i];
+        self.directory. speciality = [specialityArray objectAtIndex:i];
+        self.directory.status = [statusArray objectAtIndex:i];
+        self.directory.state = [stateArray objectAtIndex:i];
+        
+    }
+    BOOL isSaved = [DataManager saveContext];
+    if(isSaved)
+    {
+        NSLog(@"SUCCESS");
+    }
+}
+*/
+
+//getting data from database
+-(void)getDirectoryInformation
+{
+    
+    if(directoryDataManagerArray)
+    {
+        directoryDataManagerArray = nil;
+    }
+    
+    directoryDataManagerArray = [DataManager getWholeEntityDetails:@"Directory" sortBy:@"physicianName"];
+    
+    
+    NSLog(@"directoryDataManagerArray count === %d",[directoryDataManagerArray count]);
+    
+    [self.directorytableView reloadData];
+}
+
+
+- (void)updateSelectionTrackerWith:(Directory *)directoryObj
+{
+    //If the tracker has the specified key then remove the item from the tracker. else add it to the tracker.
+    NSLog(@"selectionTracker === %@",selectionTracker);
+    if ([selectionTracker objectForKey:directoryObj.physicianId])
+    {
+        [selectionTracker removeObjectForKey:directoryObj.physicianId];
+    }
+    else
+    {
+        [selectionTracker setObject:directoryObj forKey:directoryObj.physicianId];
+    }
+    
+    //Reload the tableView to reflect the changes.
+    [self. directorytableView reloadData];
+}
+-(void)popOverStateSelected:(NSString*)result
+{
+    [popOverButton setTitle:result forState:UIControlStateNormal];
+}
+#pragma mark- Button Actions
+- (IBAction)doneButtonTouched:(id)sender
+{
+    
+    NSLog(@"selectionTracker Distionary count === %d",[selectionTracker count]);//this Dictionary should take as 'To' field members.
+    NSLog(@"selectionTracker === %@",selectionTracker);
+    if (delegate && [delegate respondsToSelector:@selector(selectedContacts:)])
+    {
+        [delegate selectedContacts:selectionTracker];
+    }
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(IBAction)popOverStateNameButtonTouched:(id)sender
+{
+    popOverView = [[popOverViewController alloc]initWithNibName:@"popOverViewController" bundle:nil];
+    popOverView.delegate = self;
+    [self.view addSubview:popOverView.view];
+    
+}
+
+//Search Bar Clear Button Actions
+-(void)searchBarTextClearButtonTouched
+{
+    directorySearchBar.delegate = self;
+    directorySearchBar.tintColor = [UIColor blackColor];
+    for (UIView *view in directorySearchBar.subviews)
+    {
+        if ([view isKindOfClass: [UITextField class]])
+        {
+            UITextField *textField = (UITextField *)view;
+            textField.delegate = self;
+            break;
+        }
+        
+    }
+}
+
+#pragma mark - Table view data source
+
+- (CGFloat) tableView:(UITableView *)tableView1 heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 82.5;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [directoryDataManagerArray count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"Cell";
+    
+    CustomDirectoryCell *directoryCell = (CustomDirectoryCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    if (directoryCell == nil)
+    {
+        [[NSBundle mainBundle] loadNibNamed:@"CustomDirectoryCell" owner:self options:nil];
+        directoryCell = customDirectoryCell;
+        self.customDirectoryCell = nil;
+    }
+    if([directoryDataManagerArray count] > 0)
+    {
+        Directory *directotyObject = [directoryDataManagerArray objectAtIndex:indexPath.row];
+        [directoryCell displayDetails:directotyObject];
+        
+        if ([selectionTracker objectForKey:directotyObject.physicianId])
+        {
+            directoryCell.accessoryType = UITableViewCellAccessoryCheckmark;
+        }
+        else
+        {
+            //no check mark
+            //directoryCell.accessoryType = UITableViewCellAccessoryCheckmark;
+        }
+        
+    }
+    
+    directoryCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    return directoryCell;
+}
+
+#pragma mark - Table view delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if(!identifyFlag)
+    {
+        DirectoryDetailsViewController *directoryDetailsViewController=[[DirectoryDetailsViewController alloc] initWithNibName:@"DirectoryDetailsViewController" bundle:nil];
+        directoryDetailsViewController.directoryManagerArr = directoryDataManagerArray;
+        directoryDetailsViewController.selectedDirectoryNumber = indexPath.row;
+        [self.navigationController pushViewController:directoryDetailsViewController animated:YES];
+        directoryDetailsViewController = nil;
+    }
+    else
+    {
+        Directory *selectedDirectory = [directoryDataManagerArray objectAtIndex:indexPath.row];
+        [self updateSelectionTrackerWith:selectedDirectory];
+    }
+    
+}
+
+#pragma mark- SearchBar Delegates
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    NSLog(@"Donebutton");
+    [searchBar resignFirstResponder];
+}
+
+-(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    
+    [searchBar resignFirstResponder];
+    searchBar.text = nil;
+    [searchBar setShowsCancelButton:NO animated:NO];
+    NSLog(@"Cancelbutton");
+}
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
+{
+    //Showing Done key on Keyboard
+    for (UIView *searchBarSubview in [searchBar subviews])
+    {
+        if ([searchBarSubview conformsToProtocol:@protocol(UITextInputTraits)])
+        {
+            @try {
+                
+                [(UITextField *)searchBarSubview setReturnKeyType:UIReturnKeyDone];
+                [(UITextField *)searchBarSubview setKeyboardAppearance:UIKeyboardAppearanceAlert];
+            }
+            @catch (NSException * e)
+            {
+                // ignore exception
+            }
+        }
+    }
+    [searchBar setShowsCancelButton:YES animated:YES];
+}
+
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
+{
+    [searchBar setShowsCancelButton:NO animated:NO];
+}
+
+#pragma mark- TextField Delegate
+- (BOOL)textFieldShouldClear:(UITextField *)textField
+{
+    [self performSelector:@selector(searchBarCancelButtonClicked:) withObject:self.directorySearchBar afterDelay: 0.0];
+    return YES;
+}
+
+#pragma mark- Memory
+
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
+}
+
+-(void) dealloc
+{
+    [self setDirectory:nil];
+    [self setDirectorySearchBar:nil];
+    [self setDirectorytableView:nil];
+}
+
+#pragma mark- Orientation
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+@end

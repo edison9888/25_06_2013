@@ -1,0 +1,107 @@
+//
+//  InboxTableViewCell.m
+//  NotiyiiPhoneApplicationProject
+//
+//  Created by Veena on 11/09/12.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//
+
+#import "InboxTableViewCell.h"
+#import "GeneralClass.h"
+#import "MsgRecipient.h"
+#import "DateFormatter.h"
+
+@implementation InboxTableViewCell
+
+@synthesize mailBoxImage;
+@synthesize patientLabel,subjectLabel,pNameContentLabel,subjectContentLabel,dateLabel,fromLabel;
+
+#pragma mark- Init
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        
+    }
+    return self;
+}
+
+#pragma mark - awakeFromNib
+-(void)awakeFromNib{
+    self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    self.patientLabel.font = [GeneralClass getFont:customNormal and:regularFont];
+    patientLabel.textColor = [UIColor colorWithRed:GreyBackGround_RedColor green:GreyBackGround_GreenColor blue:GreyBackGround_BlueColor alpha:1];
+    self.subjectLabel.font = [GeneralClass getFont:customNormal and:regularFont];
+    subjectLabel.textColor = [UIColor colorWithRed:GreyBackGround_RedColor green:GreyBackGround_GreenColor blue:GreyBackGround_BlueColor alpha:1];
+    self.pNameContentLabel.font = [GeneralClass getFont:customNormal and:regularFont];
+    self.subjectContentLabel.font = [GeneralClass getFont:customNormal and:regularFont];   
+    self.dateLabel.font = [GeneralClass getFont:customNormal and:regularFont];
+    self.fromLabel.font = [GeneralClass getFont:titleFont and:boldFont];
+    dateLabel.textColor = [UIColor colorWithRed:GreenBackGround_RedColor green:GreenBackGround_GreenColor blue:GreenBackGround_BlueColor alpha:1];
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+{
+    [super setSelected:selected animated:animated];
+}
+
+#pragma mark- Display
+/*******************************************************************************
+ *  Function Name:displayDetails.
+ *  Purpose: To Show Inbox Message details.
+ *  Parametrs:Inbox Object.
+ *  Return Values:nil.
+ ********************************************************************************/
+- (void)displayDetails:(Inbox *)inbox
+{      
+    if([inbox.readStatus intValue] == 0)//unread
+    {
+        mailBoxImage.image = [UIImage imageNamed:@"newMsgImage.png"];
+    }
+    else 
+    {
+        mailBoxImage.image = [UIImage imageNamed:@"oldMsgImage.png"];
+    }
+    
+    pNameContentLabel.text = [NSString stringWithFormat:@"%@ %@",inbox.patientFirstName,inbox.patientLastName];
+    NSLog(@"Patient Name==%@",pNameContentLabel.text);
+    subjectContentLabel.text = inbox.subject;
+    
+//    //fetching the sender Name
+//    NSArray *recipientList = [inbox.recipientmessageID allObjects];
+//    NSMutableArray * toNames = [[NSMutableArray alloc]init];
+//    if ([recipientList count]>0)
+//    {
+//        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.isCC = 0"];// 0 means Sender(To Address)
+//        
+//        NSArray *fromAddress = [recipientList filteredArrayUsingPredicate:predicate];
+//        for(int i = 0; i < [fromAddress count]; i++)
+//        {
+//            MsgRecipient *msgRecipient = [fromAddress objectAtIndex:i];
+//            if ([fromAddress count]>0) 
+//            {
+//                [toNames addObject:msgRecipient.docterName];
+//            }
+//        }
+//    }
+//    fromLabel.text = [toNames componentsJoinedByString:@", "];
+    NSLog(@"Fromlabeltext ====%@",fromLabel.text);
+//    toNames = nil;
+    NSString * senderName = inbox.senderName;
+    fromLabel.text = senderName;
+    dateLabel.text = [DateFormatter displayConvertedDateAsPerDeviceZone:inbox.date withFormat:@"MM/dd/yyyy hh:mm a"];
+    NSLog(@"date : %@",dateLabel.text);
+}
+
+
+#pragma mark- Unload
+-(void) dealloc
+{
+    [self setMailBoxImage:nil];
+    [self setPNameContentLabel:nil];
+    [self setSubjectContentLabel:nil];
+    [self setDateLabel:nil];
+    [self setFromLabel:nil];
+}
+
+@end

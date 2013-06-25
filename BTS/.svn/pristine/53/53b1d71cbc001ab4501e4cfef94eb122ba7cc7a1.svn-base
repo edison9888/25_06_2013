@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OTS_SA_R5_D080_B020]]></id>
+	<title><![CDATA[]]></title>
+    <descriptionText><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Collecting Information and Determining Next Steps</Introtext><welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">This is a Results question, not an Execute Next Steps question. It is far too broad to bring up at this stage in the conversation.<BR><BR>The best question is, "With the changes in responsibility for insurance administration, I’d like to schedule an appointment within the next few weeks.  What time would be best for me to come back?"<BR><BR>This Execute Next Steps question makes a clear advance, and demonstrates your understanding of the practice’s key issues.<BR><BR><B>Here’s how Rachel would have answered that question:</B><BR><BR>"I think the Tuesday after next would work well.  I’ll look forward to seeing you then!"</welcomeText>]]></descriptionText>
+    <character><![CDATA[Char_Mack]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>	
+	<branchTo><![CDATA[OTS_SA_R5_SIMEND]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

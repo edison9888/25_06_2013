@@ -1,0 +1,25 @@
+//
+//  MyProfile.m
+//  NotiyiiPhoneApplicationProject
+//
+//  Created by Rapidvalue on 11/20/12.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//
+
+#import "MyProfile.h"
+
+
+@implementation MyProfile
+
+@dynamic contactInfo;
+@dynamic hospital;
+@dynamic practice;
+@dynamic speciality;
+@dynamic userName;
+@dynamic faxStatus;
+@dynamic inboxStatus;
+@dynamic coverageStatus;
+@dynamic communicationPreference;
+@dynamic imagepath;
+
+@end

@@ -1,0 +1,17 @@
+//
+//  MaintenanceLogView.h
+//  GreenVolts
+//
+//  Created by Shinu Mohan on 21/08/12.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface MaintenanceLogView : UIView<UITableViewDelegate,UITableViewDataSource>
+{
+    UITableView   *maintenacelogTable;
+}
+
+@property(nonatomic,strong)NSMutableArray *maintenanceLogArray;
+@end

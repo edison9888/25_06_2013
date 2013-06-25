@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OTS_SA_R3_D040_A010]]></id>
+	<title><![CDATA[Not Quite]]></title>
+    <descriptionText><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Not Quite</Introtext><welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">“Right now the best way to engage Dr. Gomez and demonstrate the value that you bring is in acknowledging the factors that can contribute to patient satisfaction as well as offering education on our option for treating dilutional hyponatremia Her ability to communicate the various options for treating a condition and why she chose a particular treatment may be a factor in increasing patient satisfaction.”</welcomeText>]]></descriptionText>
+    <character><![CDATA[Mac_skeptical]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>
+	<branchTo><![CDATA[OTS_SA_R3_D050_I010]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OTS_SA_R4_D060_I020]]></id>
+	<title><![CDATA[<Introtext style="font-family:Helvetica; font-size:14pt; font-weight:bold; color:#cc0033; margin:10px -5px 10px 5px; width:738px; padding:5px 0 5px 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Scheduling Conflict</Introtext>]]></title>
+	<title2><![CDATA[]]></title2>
+	<instructions><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:11pt; line-height:18pt; text-align:justify; font-weight:bold; color:#333; display:block; margin:0 10px 10px">You already have plans for a ride along with Dan, a new account manager for OAPI, for him to see your day in action.  It has taken awhile to coordinate your schedules, and you know he is eager to get a better understanding of how you work.<br/>What should you do?</welcomeText >]]></instructions>
+	<choices>
+		<choice>
+			<id><![CDATA[1]]></id>
+			<isCorrect><![CDATA[YES]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>A</b>. Call Dan to see if it’s possible to reschedule the ride along session. You might not get another opportunity to meet with Dr. Chu. </welcomeText>]]></choiceText>
+			<KPIs totalScore="15">
+				<KPI marks="5"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R4_D060_I030]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[2]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>B</b>. Tell Dr. Gomez that you already have a commitment on Friday, and ask him to see if there is another day Dr. Chu can meet. The ride along with Dan was scheduled first, and you don’t want to risk that relationship. </welcomeText>]]></choiceText>
+			<KPIs totalScore="5">
+				<KPI marks="5"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="10"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R4_D060_I040]]></branchTo>
+		</choice>
+	
+			
+		<!--<feedbackText><![CDATA[]]></feedbackText>-->
+	</choices>
+	 <summary><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">Although it’s always important to keep commitments, in this instance it’s worth making a phone call to Dan to see if anything has changed and if he’s willing to reschedule the ride along. You might even be able to work with your own schedule to make the ride along happen sooner, or come up with another creative solution.  Choice A is the best choice.    </welcomeText>]]></summary>
+</pageContent>

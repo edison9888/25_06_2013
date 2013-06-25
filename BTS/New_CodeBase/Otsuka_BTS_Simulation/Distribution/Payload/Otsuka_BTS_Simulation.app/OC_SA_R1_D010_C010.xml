@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OC_SA_R1_D010_C010]]></id>
+    <emailHeader><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; border-bottom:1px solid #333; display:block;">E-mail</Introtext>]]></emailHeader>
+    <emailTypeImage><![CDATA[mail]]></emailTypeImage>    
+	<title><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:14pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>Not Quite There</b></welcomeText>]]></title>
+    <emailContent><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">Your business plan and research indicate that Dr. Hayes wants to grow the practice, that he holds his professional reputation in high regard, and that he is most comfortable with what has worked in the past when making prescribing decisions. Therefore, you should have identified Attracting and Retaining Patients, Protecting their Business Reputation, and Achieving Positive Patient Outcomes as the top three priorities for Sunnydale Psychiatry. Keep these in mind as you move forward.<BR><BR>Thanks, <BR>Annie</welcomeText>]]></emailContent>
+    <from><![CDATA[Annie DeMarco]]></from>
+    <character><![CDATA[Char_Annie_email]]></character>
+	<branchTo><![CDATA[OC_SA_R1_D020_I010]]></branchTo>
+	<to><![CDATA[]]></to>
+     <previousemailContent><![CDATA[]]></previousemailContent>
+</pageContent>
+
+
+
+
+
+
+
+

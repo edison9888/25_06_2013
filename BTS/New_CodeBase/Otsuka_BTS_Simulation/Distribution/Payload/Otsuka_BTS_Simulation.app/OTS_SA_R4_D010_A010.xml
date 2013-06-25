@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OTS_SA_R4_D010_A010]]></id>
+	<title><![CDATA[]]></title>
+    <descriptionText><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">On Shaky Ground</Introtext><welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">Okay, well that sounds like a pretty good solution. I just hope these strategies work when we need them to.</welcomeText>]]></descriptionText>
+    <character><![CDATA[Char_DrBennett]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>
+	<!-- <branchTo><![CDATA[On Shaky Ground]]></branchTo> -->
+	<branchTo><![CDATA[OTS_SA_R4_D010_D010]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

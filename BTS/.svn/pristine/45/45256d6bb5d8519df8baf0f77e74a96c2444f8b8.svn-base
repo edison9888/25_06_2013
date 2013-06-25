@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OTS_SA_R2_D070_D020]]></id>
+	<title><![CDATA[]]></title>
+    <descriptionText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">This is an Options question not an Execute Next Steps question. While it might be an interesting question, it will take you back several steps in the conversation and in a different direction.<BR><BR>The best question to ask at this point is, "If the administrative details can be overcome, what factors or criteria are most important to you when you consider trialing a product that you have never used before?"<BR><BR>This Execute Next Steps question moves you toward taking action and helps you to better understand the current situation.<BR><BR><B>Here is how Dr. Hayes would have answered that question:</B><BR><BR>"It must be efficacious and it must be safe.  Those are the givens.  After that, it should have good insurance coverage, be available at a reasonable cost, and shouldn’t be a hassle for my office to prescribe.  Also, it must be significantly different from products I’m already prescribing – I won’t begin a new product just to have a new product."</welcomeText>]]></descriptionText>
+    <character><![CDATA[Char_Mack]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>
+	<branchTo><![CDATA[OTS_SA_R2_D080]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

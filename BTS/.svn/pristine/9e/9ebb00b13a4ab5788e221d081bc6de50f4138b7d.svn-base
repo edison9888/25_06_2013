@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OC_SA_R1_D060_C010]]></id>
+	<title><![CDATA[Broaden Your Strategy]]></title>
+    <descriptionText><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Broaden Your Strategy</Introtext><welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">“I’d be happy to discuss price with you, but it sounds like you need to develop a broader strategy for the meeting. Let’s regroup when you’ve had some time to think about what you’d like to accomplish, and then we can refine your strategy together."</welcomeText>]]></descriptionText>
+    <character><![CDATA[Annie]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>
+	<branchTo><![CDATA[OC_SA_R1_D060_E010]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

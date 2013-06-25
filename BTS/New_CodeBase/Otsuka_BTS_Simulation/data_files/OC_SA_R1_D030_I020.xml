@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OC_SA_R1_D030_I020]]></id>
+	<title><![CDATA[Anticipating Outcomes]]></title>
+    <descriptionText><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Anticipating Outcomes</Introtext><welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">The speaker program was well attended. Dr. Gomez, Dr. Chu, and Dr. Rivers from Maycomb attend the event.  You are able to spend some time speaking with Dr. Gomez, and she is able to learn about the patient types consistent with approved indication who would be candidates for your product, some of which she had never considered before.  When you chat with Dr. Gomez after the program, she seems inclined to prescribe Samsca for her next appropriate patient, but she wants more information on insurance coverage for those patients requiring continued therapy after discharge.</welcomeText>]]></descriptionText>
+    <continueBtn><![CDATA[]]></continueBtn>
+	<branchTo><![CDATA[OC_SA_R1_D030]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

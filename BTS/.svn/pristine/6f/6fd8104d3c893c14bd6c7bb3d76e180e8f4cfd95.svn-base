@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OC_SA_R1_D030]]></id>
+	<title><![CDATA[<Introtext style="font-family:Helvetica; font-size:14pt; font-weight:bold; color:#cc0033; margin:10px -5px 10px 5px; padding:5px 0 5px 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Anticipating Outcomes</Introtext>]]></title>
+	<title2><![CDATA[]]></title2>
+	<instructions><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:11pt; line-height:18pt; text-align:justify; font-weight:bold; color:#333; display:block; margin:0 10px 10px">What is your next step?</welcomeText>]]></instructions>
+	<choices>
+		<choice>
+			<id><![CDATA[1]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>A</b>. Provide Dr. Bennett with information on Medicare and Medicaid coverage, as well as some of the major insurance carriers in the area.  Also, provide him with approved resources that have more information on your product’s co-pay status.</welcomeText>]]></choiceText>
+			<KPIs totalScore="0">
+				<KPI marks="5"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="-5"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OC_SA_R1_D030_A010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[2]]></id>
+			<isCorrect><![CDATA[YES]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>B</b>. Probe Dr. Bennett further about all the factors he is taking into consideration. It’s important that you fully understand the criteria that Dr. Bennett is using to evaluate whether he will consider expanding his prescribing.   Assist by using any of your approved resources to help him.</welcomeText>]]></choiceText>
+			<KPIs totalScore="25">
+				<KPI marks="10"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="5"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="10"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OC_SA_R1_D030_B010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[3]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>C</b>. Find out what concerns Dr. Bennett has about expanding his prescribing. It’s important to anticipate the objections that he may have. Gather the data within your approved resources for Dr. Bennett that will address all of his concerns.</welcomeText>]]></choiceText>
+			<KPIs totalScore="10">
+				<KPI marks="5"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="0"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="5"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OC_SA_R1_D030_C010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[4]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>D</b>. Tell Dr. Bennett that you’ll put together a presentation that takes into consideration all of his concerns about expanding his prescribing of your product. Use approved resources, including patient success stories, as well as information on insurance coverage and co-pay cards.</welcomeText>]]></choiceText>
+			<KPIs totalScore="5">
+				<KPI marks="0"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="0"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="5"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OC_SA_R1_D030_C010]]></branchTo>
+		</choice>
+	</choices>
+    <summary><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">Because Dr. Bennett is still in the evaluating options phase of the prescribing cycle, jumping ahead to deciding to trial is premature. In Choices A and D, you are attempting to help him decide which medication to trial by using marketing materials but you aren’t even sure yet what criteria Dr. Bennett is using to evaluate his options. If you chose Choice C, you are also jumping ahead to handle objections before finding out more information on what is driving those concerns. You should first make sure you fully understand all of the factors that Dr. Bennett is taking into consideration as he evaluates his options. This will help to ensure that you don’t become misaligned and run into problems later in the prescribing cycle. Choice B is the best choice.</welcomeText>]]></summary>
+</pageContent>

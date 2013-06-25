@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OC_SA_R1_D030_B010]]></id>
+	<title><![CDATA[On Target]]></title>
+    <descriptionText><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">On Target</Introtext><welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">“This has been great. I really appreciate you taking the time to help me explore my options and look at all the factors we need to consider when prescribing the product for appropriate patient types with hyponatremia. I feel as if I have all the information I need now.” </welcomeText>]]></descriptionText>
+    <character><![CDATA[Liz_happy]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>
+	<branchTo><![CDATA[OC_SA_R1_D030_E010]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

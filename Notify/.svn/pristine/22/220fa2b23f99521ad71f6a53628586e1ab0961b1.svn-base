@@ -1,0 +1,1137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"/>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/my_practice.css" />
+    <!--[if lte IE 7]>
+        <link rel="stylesheet" href="../css/ie7.css" />
+    <![endif]-->
+    <!--[if IE 8]>
+        <link rel="stylesheet" href="../css/ie8.css" />
+    <![endif]-->
+    <!--[if IE 9]>
+        <link rel="stylesheet" href="../css/ie9.css" />
+    <![endif]-->
+    <title>Notifyi</title>
+</head>
+<body>
+    <div id="header-holder">
+        <div id="header">
+            <div id="faq-holder">
+                <span>&nbsp;</span>
+                <!--<img id="faq" src="../images/faq.png" />-->
+                <div class="clear"></div>
+            </div>
+            <div id="middle-header">
+                <img id="logo" src ="../images/notifyi_logo.png" />
+                <div id="description">
+                    <img src="../images/physician_header.png" />
+                </div>
+                <div id="user">
+                    <span>Welcome Nidhi Shah</span>
+                    <span> &nbsp;| &nbsp;</span>
+                    <span>Help</span>
+                    <span> &nbsp;| &nbsp;</span>
+                    <span>Log Out</span>
+                </div>
+                <div class="clear"></div>
+                <!--[if lte IE 7]>
+                    <div class="clear">&nbsp;</div>
+                <![endif]-->
+            </div>
+            <div id="personal">
+                <!--<a href="my_account.html"><span id="account" class="personal-options">My Account</span></a>-->
+                <a href="my_practice.html"><span id="practice" class="personal-options">My Practice</span></a>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div id="menu">
+        <div id="main-menu">
+            <a href="profile.html"><div id="profile" class="menu-options profile-menu-option"><img class="menu-images" src="../images/menu_my_profile.png" />My Profile</div></a>
+            <a href="inbox.html"><div id="inbox" class="menu-options inbox-menu-option"><img class="menu-images" src="../images/menu_inbox.png" />Inbox <span class="indicators">(12)</span></div></a>
+            <a href="your_take.html"><div id="yourtake" class="menu-options your-take-menu-option"><img class="menu-images" src="../images/menu_your_take.png" />Touch Base <span class="indicators">(15)</span></div></a>
+            <a href="directory.html"><div id="directory" class="menu-options directory-menu-option"><img class="menu-images" src="../images/menu_directory.png" />Directory</div></a>
+            <a href="bulletin_board.html"><div id="board" class="menu-options bulletin-board-menu-option"><img class="menu-images" src="../images/menu_bulletin_board.png" />Bulletin Board</div></a>
+            <div id="send-message" class="menu-options"><a href="compose_message.html"><img id="send-message-button" class="menu-images" src="../images/send_message.png" /></a></div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="clear">&nbsp;</div>
+    <!--[if lte IE 7]>
+        <div class="clear-visible">&nbsp;</div>
+    <![endif]-->
+    
+    <div id="content">
+        <!-- Practice Info section -->
+        <div id="info-box">
+            <!-- Form is submitted to a dummy page for expected processing -->
+            <form action="dummy.html" method="post" id="my-practice-profile-form">
+                <div id="info-box-left">
+                    <div id="info-box-title-holder">
+                        <span class="info-text" id="info-box-title">Hospitalists Service, Yale New Haven Hospital</span>
+                        <input class="profile-input header-input" name="actual-practice" type="text" value="Hospitalists Service, Yale New Haven Hospital" />
+                    </div>
+                    <!-- User Specialties, spans initially visible and select boxes hidden -->
+                    <div id="info-box-left-left">
+                        <span id="specialty-header" class="info-header">Specialty</span>
+                        <span class="info-text">Internal Medicine</span>
+                        <select class="profile-input specialty-select" id="specialty1" name="specialty1">
+                            <option>Internal Medicine</option>
+                            <option>Ambulatory Medicine</option>
+                            <option>Emergency Medicine</option>
+                        </select>
+                        <span class="info-text">Ambulatory Medicine</span>
+                        <select class="profile-input specialty-select" id="specialty2" name="specialty2">
+                            <option>Internal Medicine</option>
+                            <option selected="selected">Ambulatory Medicine</option>
+                            <option>Emergency Medicine</option>
+                        </select>
+                        <span class="info-text">Emergency Medicine</span>
+                        <select class="profile-input specialty-select" id="specialty3" name="specialty3">
+                            <option>Internal Medicine</option>
+                            <option>Ambulatory Medicine</option>
+                            <option selected="selected">Emergency Medicine</option>
+                        </select>
+                        <span class="info-text">Internal Medicine</span>
+                        <select class="profile-input specialty-select" id="specialty4" name="specialty4">
+                            <option>Internal Medicine</option>
+                            <option>Ambulatory Medicine</option>
+                            <option>Emergency Medicine</option>
+                        </select>
+                    </div>
+                    <!-- User Hospital/s and Practice/s -->
+                    <div id="info-box-right-right">
+                        <span id="hospitals-header" class="info-header">Hospitals</span>
+                        <!-- Spans visible when not editing, add appropriate spans depending on the form submitted -->
+                        <span class="info-text">Yale-New Haven Hospital</span>
+                        <!-- Will turn to input fields when editing -->
+                        <input class="profile-input col2-input" name="hospital1" type="text" value="Yale-New Haven Hospital" />
+                        <input class="profile-input col2-input" name="hospital2" type="text" />
+                        <input class="profile-input col2-input" name="hospital3" type="text" />
+                        <br />
+                        <span id="practice-header" class="info-header">Practice</span>
+                        <!-- Spans visible when not editing, add appropriate spans depending on the form submitted -->
+                        <span class="info-text">Hospitalists Service, Yale-New Haven Hospital</span>
+                        <!-- Will turn to input fields when editing -->
+                        <input class="profile-input col2-input" name="practice1" type="text" value="Hospitalists Service, Yale-New Haven Hospital" />
+                        <input class="profile-input col2-input" name="practice2" type="text" />
+                        <input class="profile-input col2-input" name="practice3" type="text" />
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div id="info-box-right">
+                    <!-- Location Map -->
+                    <div id="map-wrapper">
+                        <img src="../images/map.png" />
+                    </div>
+                    <!-- Contact Info -->
+                    <div id="contact-info">
+                        <!-- All spans visible when not editing, add appropriate spans depending on the form submitted -->
+                        <span id="contact-header" class="info-header">Contact Info</span>
+                        <span class="info-text">20 York Street, CB 2041</span>
+                        <span class="info-text">New Haven, CT 6510</span>
+                        <span class="info-text">(P) 203-688-4748</span>
+                        <span class="info-text">(F) 203-688-4740</span>
+                        <span class="info-text" id="external-link">www.externallink.com</span>
+                        <!-- Will turn to input fields when editing -->
+                        <input class="profile-input col3-input" name="address1" type="text" value="20 York Street, CB 2041" placeholder="Address 1" />
+                        <input class="profile-input col3-input" name="address2" type="text" value="New Haven, CT 6510" placeholder="Address 2" />
+                        <input class="profile-input col3-input" name="city" type="text" placeholder="City" />
+                        <select name="state" class="profile-input state-select" id="state-select">
+                            <option>CT1</option>
+                            <option>CT2</option>
+                            <option>CT3</option>
+                        </select>
+                        <input class="profile-input col3-input" name="zip" type="text" placeholder="Zip" />
+                        <div class="clear"></div>
+                        <input class="profile-input col3-input" name="phone1" type="text" value="(P) 203-688-4748" placeholder="Phone 1" />
+                        <input class="profile-input col3-input" name="fax1" type="text" value="(F) 203-688-4740" placeholder="Fax 1" />
+                        <div class="clear"></div>
+                        <input class="profile-input col3-input" name="phone2" type="text" placeholder="Phone 2" />
+                        <input class="profile-input col3-input" name="fax2" type="text" placeholder="Fax 2" />
+                        <div class="clear"></div>
+                        <input class="profile-input col3-input" name="link" type="text" value="www.externallink.com" placeholder="Website" />
+                    </div>
+                    <!-- Initially hidden action buttons for editing profile -->
+                    <div id="action-buttons2">
+                        <input type="image" name="save-button2" class="save" id="save-button2" src="../images/save_button_default.png" />
+                        <img class="cancel" id="cancel-button2" src="../images/cancel_button_default.png" />
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <!-- Edit the profile -->
+                <span id="edit-wrapper"><img id="profile-info-edit" src="../images/edit_button_gray.png" /></span>
+            </form>
+        </div>
+        
+        <div class="clear"></div>
+        
+        <div id="info-sub-box">
+            <!-- Status guide -->
+            <div id="status" class="info-sub">
+                <span>Status</span>
+            </div>
+            <div id="fax" class="info-sub left-border">
+                <span class="type-wrapper"><img src="../images/profile_fax_icon.png" /></span>
+                <span class="status-type">Fax: </span>
+                <span class="active-status">Active</span>
+            </div>
+            <div id="inner-inbox" class="info-sub left-border">
+                <span class="type-wrapper"><img src="../images/profile_inbox_icon.png" /></span>
+                <span class="status-type">Inbox: </span>
+                <span class="active-status">Active</span>
+            </div>
+            <div id="coverage" class="info-sub left-border">
+                <span class="type-wrapper"><img src="../images/profile_coverage_icon.png" /></span>
+                <span class="status-type">Coverage: </span>
+                <span class="inactive-status">Inactive</span>
+            </div>
+            <div class="clear"></div>
+        </div>
+        
+        <div id="left-panel-container">
+            <div class="content-panel">
+                <!-- Communication Preferences section -->
+                <div id="communication-preferences">
+                    <!-- Form is submitted to a dummy page for expected processing -->
+                    <form action="dummy.html" method="post">
+                        <img id="communication-preferences-icon" src="../images/communication_preferences.png" />
+                        <div id="communication-preferences-header">Communication Preferences</div>
+                        <img class="edit-icon" src="../images/edit_button_gray.png" />
+                        <div id="preferences-content">
+                            <hr class="divider" />
+                            <div id="general-comments-header">
+                                <span>General Comments</span>
+                            </div>
+                            <!-- Initially readonly general comment -->
+                            <div id="general-comment">
+                                <p id="general-comment-content">I will not be able to contact anybody directly the rest of this dummy copy to explain any additional comments for this area. Doctors can write anything they want pertaining to their schedule.</p>
+                                <!-- This textarea appears when Edit is clicked -->
+                                <textarea id="general-comment-input" name="general_comment">I will not be able to contact anybody directly the rest of this dummy copy to explain any additional comments for this area. Doctors can write anything they want pertaining to their schedule.</textarea>
+                            </div>
+                        </div>
+                        <!-- The schedule table is initially readonly with only the spans being visible -->
+                        <table id="schedule-table" class="hidden">
+                            <tr>
+                                <td></td>
+                                <td class="with-left-border"><img src="../images/day_time_icon.png" /><span id="daytime-label">Daytime</span></td>
+                                <td class="with-left-border"></td>
+                                <td class="nightime-special with-left-border"><img src="../images/night_time_icon.png" /><span id="nightime-label">Nightime</span></td>
+                                <td class="nightime-special with-left-border with-right-border"></td>
+                            </tr>
+                            <tr>
+                                <td class="weekday-data"></td>
+                                <td class="day-week with-left-border"><span>Weekday</span></td>
+                                <td class="day-week with-left-border"><span>Weekend</span></td>
+                                <td class="nightime-special night-week with-left-border"><span>Weekday</span></td>
+                                <td class="nightime-special night-week with-left-border with-right-border"><span>Weekend</span></td>
+                            </tr>
+                            <!-- Dummy data -->
+                            <tr class="white-background">
+                                <td class="entry-type">Admission</td>
+                                <td class="day-week with-left-border">
+                                    <span class="schedule-entry">Yes</span>
+                                    <select class="schedule-select" id="admission-weekday" name="admission-weekday">
+                                        <option>Yes</option>
+                                        <option>No</option>
+                                        <option>?</option>
+                                    </select>
+                                </td>
+                                <td class="day-week with-left-border">
+                                    <span class="schedule-entry">Yes</span>
+                                    <select class="schedule-select" id="admission-weekend" name="admission-weekend">
+                                        <option>Yes</option>
+                                        <option>No</option>
+                                        <option>?</option>
+                                    </select>
+                                </td>
+                                <td class="day-week with-left-border">
+                                    <span class="schedule-entry">Yes</span>
+                                    <select class="schedule-select" id="admission-weekdaynight" name="admission-weekdaynight">
+                                        <option>Yes</option>
+                                        <option>No</option>
+                                        <option>?</option>
+                                    </select>
+                                </td>
+                                <td class="nightime day-week with-left-border with-right-border">
+                                    <span class="schedule-entry">Yes</span>
+                                    <select class="schedule-select" id="admission-weekendnight" name="admission-weekendnight">
+                                        <option>Yes</option>
+                                        <option>No</option>
+                                        <option>?</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="entry-type">Discharge</td>
+                                <td class="day-week with-left-border">
+                                    <span class="schedule-entry">No</span>
+                                    <select class="schedule-select" id="discharge-weekday" name="discharge-weekday">
+                                        <option>Yes</option>
+                                        <option selected="selected">No</option>
+                                        <option>?</option>
+                                    </select></td>
+                                <td class="day-week with-left-border">
+                                    <span class="schedule-entry">No</span>
+                                    <select class="schedule-select" id="discharge-weekend" name="discharge-weekend">
+                                        <option>Yes</option>
+                                        <option selected="selected">No</option>
+                                        <option>?</option>
+                                    </select>
+                                </td>
+                                <td class="nightime-special day-week with-left-border">
+                                    <span class="schedule-entry">No</span>
+                                    <select class="schedule-select" id="discharge-weekdaynight" name="discharge-weekdaynight">
+                                        <option>Yes</option>
+                                        <option selected="selected">No</option>
+                                        <option>?</option>
+                                    </select>
+                                </td>
+                                <td class="nightime-special day-week with-left-border with-right-border">
+                                    <span class="schedule-entry">No</span>
+                                    <select class="schedule-select" id="discharge-weekendnight" name="discharge-weekendnight">
+                                        <option>Yes</option>
+                                        <option selected="selected">No</option>
+                                        <option>?</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr class="white-background">
+                                <td class="entry-type">Daily Update</td>
+                                <td class="day-week with-left-border">
+                                    <span class="schedule-entry">?</span>
+                                    <select class="schedule-select" id="daily-weekday" name="daily-weekday">
+                                        <option>Yes</option>
+                                        <option>No</option>
+                                        <option selected="selected">?</option>
+                                    </select>
+                                </td>
+                                <td class="day-week with-left-border">
+                                    <span class="schedule-entry">?</span>
+                                    <select class="schedule-select" id="daily-weekend" name="daily-weekend">
+                                        <option>Yes</option>
+                                        <option>No</option>
+                                        <option selected="selected">?</option>
+                                    </select>
+                                </td>
+                                <td class="day-week with-left-border">
+                                    <span class="schedule-entry">?</span>
+                                    <select class="schedule-select" id="daily-weekdaynight" name="daily-weekdaynight">
+                                        <option>Yes</option>
+                                        <option>No</option>
+                                        <option selected="selected">?</option>
+                                    </select>
+                                </td>
+                                <td class="nightime day-week with-left-border with-right-border">
+                                    <span class="schedule-entry">?</span>
+                                    <select class="schedule-select" id="daily-weekendnight" name="daily-weekendnight">
+                                        <option>Yes</option>
+                                        <option>No</option>
+                                        <option selected="selected">?</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="entry-type">Change in Level of Care</td>
+                                <td class="day-week with-left-border">
+                                    <span class="schedule-entry">No</span>
+                                    <select class="schedule-select" id="change-weekday" name="change-weekday">
+                                        <option>Yes</option>
+                                        <option selected="selected">No</option>
+                                        <option>?</option>
+                                    </select>
+                                </td>
+                                <td class="day-week with-left-border">
+                                    <span class="schedule-entry">No</span>
+                                    <select class="schedule-select" id="change-weekend" name="change-weekend">
+                                        <option>Yes</option>
+                                        <option selected="selected">No</option>
+                                        <option>?</option>
+                                    </select>
+                                </td>
+                                <td class="nightime-special day-week with-left-border">
+                                    <span class="schedule-entry">No</span>
+                                    <select class="schedule-select" id="change-weekdaynight" name="change-weekdaynight">
+                                        <option>Yes</option>
+                                        <option selected="selected">No</option>
+                                        <option>?</option>
+                                    </select>
+                                </td>
+                                <td class="nightime-special nightime day-week with-left-border with-right-border">
+                                    <span class="schedule-entry">No</span>
+                                    <select class="schedule-select" id="change-weekendnight" name="change-weekendnight">
+                                        <option>Yes</option>
+                                        <option selected="selected">No</option>
+                                        <option>?</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr class="white-background">
+                                <td class="entry-type">Code Status</td>
+                                <td class="day-week with-left-border">
+                                    <span class="schedule-entry">Yes</span>
+                                    <select class="schedule-select" id="code-weekday" name="code-weekday">
+                                        <option selected="selected">Yes</option>
+                                        <option>No</option>
+                                        <option>?</option>
+                                    </select>
+                                </td>
+                                <td class="day-week with-left-border">
+                                    <span class="schedule-entry">Yes</span>
+                                    <select class="schedule-select" id="code-weekend" name="code-weekend">
+                                        <option selected="selected">Yes</option>
+                                        <option>No</option>
+                                        <option>?</option>
+                                    </select>
+                                </td>
+                                <td class="day-week with-left-border">
+                                    <span class="schedule-entry">Yes</span>
+                                    <select class="schedule-select" id="code-weekdaynight" name="code-weekdaynight">
+                                        <option selected="selected">Yes</option>
+                                        <option>No</option>
+                                        <option>?</option>
+                                    </select>
+                                </td>
+                                <td class="nightime day-week with-left-border with-right-border">
+                                    <span class="schedule-entry">Yes</span>
+                                    <select class="schedule-select" id="code-weekendnight" name="code-weekendnight">
+                                        <option selected="selected">Yes</option>
+                                        <option>No</option>
+                                        <option>?</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                        <!-- Action buttons for this section are also initially hidden -->
+                        <div id="action-buttons">
+                            <img class="cancel" id="cancel-button" src="../images/cancel_button_default.png" />
+                            <input type="image" name="save-button" class="save" id="save-button" src="../images/save_button_default.png" />
+                        </div>
+                    </form>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="content-panel">
+                <!-- My Practice Message Board section -->
+                <div id="my-practice-message-board">
+                    <img id="my-practice-message-board-icon" src="../images/my_practice_message_board.png" />
+                    <div id="practice-board-header">My Practice Message Board</div>
+                    <div id="practice-board-content">
+                        <hr class="divider divider-selected" />
+                        <!-- Form is submitted to a dummy page for expected processing -->
+                        <form method="post" action="dummy.html">
+                            <input type="text" id="post-message" name="post-message" placeholder="Post a message" />
+                            <div id="post-icon-holder">
+                                <input type="image" name="post-message-button" id="post-message-button" src="../images/post_mypractice.png" />
+                            </div>
+                        </form>
+                        <div class="clear"></div>
+                        <!-- Dummy Data -->
+                        <div class="practice-board-entry">
+                            <div class="practice-board-entry-header"><span>02/08 2:24 PM</span></div>
+                            <div class="practice-board-entry-content">
+                                <img src="../images/profile_pic_small.png" /><span class="entry-user-name">Nidhi Shah</span><span class="entry-content">&nbsp;&nbsp;Dummy copy for practice postings. This is just dummy copy for a practice post on the message board.</span>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="inner-triangle"></div>
+                            <div class="outer-triangle"></div>
+                        </div>
+                        <div class="practice-board-entry">
+                            <div class="practice-board-entry-header"><span>02/08 2:24 PM</span></div>
+                            <div class="practice-board-entry-content">
+                                <img src="../images/profile_pic_small.png" /><span class="entry-user-name">Nidhi Shah</span><span class="entry-content">&nbsp;&nbsp;Dummy copy for practice postings. This is just dummy copy for a practice post on the message board.</span>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="inner-triangle"></div>
+                            <div class="outer-triangle"></div>
+                        </div>
+                        <hr id="last-divider" />
+                        <!-- Change this section to a link or however it should behave -->
+                        <div id="practice-view-more"><span>&raquo; View More</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Practice Members section -->
+        <div id="right-panel-container">
+            <div id="right-panel">
+                <div id="black-bar"></div>
+                <div id="right-panel-header">
+                    <span class="right-pro-header">Practice Members</span>
+                </div>
+                <div id="right-panel-triangle"></div>
+                <div id="right-panel-content">
+                    <!-- Go to New Account page to add new account -->
+                    <a href="new_account.html"><img src="../images/add_account_button.png" /></a>
+                    <br />
+                    <br />
+                    <!-- Dummy data, may want to add id's here -->
+                    <span class="added-accounts">Senai Asefaw</span>
+                    <span class="added-accounts">Nidhi Shah</span>
+                    <span class="added-accounts">Kristine Olson</span>
+                    <span class="added-accounts">Leo Calo</span>
+                    <span class="added-accounts">Tracy Clarke</span>
+                    <span class="added-accounts">Senai Asefaw</span>
+                    <span class="added-accounts">Nidhi Shah</span>
+                    <span class="added-accounts">Kristine Olson</span>
+                    <span class="added-accounts">Leo Calo</span>
+                    <span class="added-accounts">Tracy Clarke</span>
+                    <span class="added-accounts">Senai Asefaw</span>
+                    <span class="added-accounts">Nidhi Shah</span>
+                    <span class="added-accounts">Kristine Olson</span>
+                    <span class="added-accounts">Leo Calo</span>
+                    <span class="added-accounts">Tracy Clarke</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="clear"></div>
+        <!-- Calendar section -->
+        <div id ="calendar">
+            <div id="calendar-header">Current Coverage</div>
+            <div id="calendar-content">
+                <div id="date-selector">
+                    <img id="prev-calendar" src="../images/prev_calendar.png" />
+                    <img id="next-calendar" src="../images/next_calendar.png" />
+                    <span id="calendar-date">March 2012</span>
+                </div>
+                <div id="img-shift-holder">
+                    <img id="shift-button" src="../images/add_edit_shift_times_button.png" />
+                </div>
+               
+                <div class="clear"></div>
+                <br/>
+                <table id="calendar-table">
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <!-- Dummy data, may want to add id's here -->
+                    <td>
+                        <p class="calendar-day-header">Day</p>
+                        <p class="calendar-day-text">Doctor Name</p>
+                        <p class="calendar-day-text">7:00-9:00</p>
+                        <p></p>
+                        <p class="calendar-night-header">Night</p>
+                        <p class="calendar-night-text">Doctor Name</p>
+                        <p class="calendar-night-text">7:00-9:00</p>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                </table>
+                
+            </div>
+        </div>
+    </div>
+    
+    
+    <div id="footer">
+        <img id="footer-logo" src="../images/notifyi_logo_footer.png" />
+        <span id="copyright">Copyright &copy;2012 Notifyi. All Rights Reserved.</span>
+        <span id="links">
+            <span>Terms of Use</span>
+            <span> &nbsp;| &nbsp;</span>
+            <span>Privacy Policy</span>
+            <span> &nbsp;| &nbsp;</span>
+            <span>Contact Us</span>
+        </span>
+        <div class="clear"></div>
+    </div>
+    
+    <!-- Pre-loading images for rollover effects -->
+    <div id="preload">
+        <img src="../images/rollovers/send_message_rollover.png" />
+        <img src="../images/rollovers/post_rollover.png" />
+        <img id="post-rollover" src="../images/rollovers/save_button_rollover.png" />
+        <img id="post-rollover" src="../images/rollovers/cancel_button_rollover.png" />
+    </div>
+    
+    <!-- This dialog box will appear when the Add Shift button is clicked -->
+    <div id="shift-dialog">
+    	<img id="shift-clock-icon" src="../images/clock_icon.png" />
+		<div class="popup-header">Add Shift</div>
+    	<div id="shift-add">
+			<div class="popup-header">Add New Shift</div>
+			<br/>
+			<form>
+			<br/>
+			<div id="shift-start">
+			<label class="popup-label">Start</label>
+			<br/>
+			<span id="shift-end-background">
+				<select id="shift-start-select" name="shift-start-select">
+					<option>Start 1</option>
+					<option>Start 2</option>
+					<option>Start 3</option>
+				</select>
+			</span>
+			</div>
+			
+			<div id="shift-end">
+			<label class="popup-label">End</label>
+			<br/>
+			<span id="shift-end-background">
+				<select id="shift-end-select" name="shift-end-select">
+					<option>End 1</option>
+					<option>End 2</option>
+					<option>End 3</option>
+				</select>
+			</span>
+			</div>
+			<div class="clear"></div>
+			<label class="popup-label">Name</label>
+			<br/>
+			<input type="text" id="shift-name" />
+        </div>
+        <div id="shift-edit">
+        	<div class="popup-header">Edit Shift</div>
+        	<div class="shift-item">
+        		<span class="shift-name">Custom Shift Name 1</span>
+        		<div class="shift-edit-options">
+        			<a href="#" class="edit-shift-button">Edit</a>
+        			<a href="#" class="delete-shift-button">Delete</a>
+        		</div>
+        	</div>
+        	<div class="shift-item">
+        		<span class="shift-name">Custom Shift Name 2</span>
+        		<div class="shift-edit-options">
+        			<a href="#" class="edit-shift-button">Edit</a>
+        			<a href="#" class="delete-shift-button">Delete</a>
+        		</div>
+        	</div>
+        	<div class="shift-item">
+        		<span class="shift-name">Custom Shift Name 3</span>
+        		<div class="shift-edit-options">
+        			<a href="#" class="edit-shift-button">Edit</a>
+        			<a href="#" class="delete-shift-button">Delete</a>
+        		</div>
+        	</div>
+        	<div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+        <br/><br/>
+        <!-- Add effects on this buttons -->
+        <img id="shift-add-icon" class="add-button" src="../images/add_icon.png" />
+        <img id="shift-clear-icon" class="clear-button" src="../images/clear_button.png" />
+        
+        </form>
+    </div>
+    
+    <!-- This dialog box will appear when a date in the calendar is clicked -->
+    <div id="coverage-dialog">
+        <img id="coverage-clock-icon" src="../images/clock_icon.png" />
+        <div class="popup-header">Add Coverage</div>
+        <br/>
+        <form>
+        <div class="coverage-block-left">	
+			<label class="popup-label">Choose Shift</label>
+			<br/>
+			<span id="coverage-shift-select-background">
+				<select id="coverage-shift-select" name="coverage-shift-select">
+					<option>Shift 1</option>
+					<option>Shift 2</option>
+					<option>Shift 3</option>
+				</select>
+			</span>
+			<br/>
+		</div>	
+		<div class="coverage-block-left">	
+			<label class="popup-label">Who</label>
+			<br/>
+			<span id="coverage-person-background">
+				<select id="coverage-person-select" name="coverage-person-select">
+					<option>Who 1</option>
+					<option>Who 2</option>
+					<option>Who 3</option>
+				</select>
+			</span>
+			<br/>
+		</div>	
+		<div class="timed-details-holder">
+			<div class="timed-detail">
+				<input type="checkbox" id="all-day-event"> All-day
+			</div>
+			<div class="timed-detail">
+				<input type="checkbox" id="repeating-event"> Repeat
+			</div>
+		</div>
+		<div id="repeating-event-options">
+			<label class="popup-label">Repeat</label>
+			<span id="repeat-background">
+				<select id="repeat-select" name="repeat-select">
+					<option value="daily">Daily</option>
+					<option value="weekday1">Every weekday (Mon - Fri)</option>
+					<option value="weekday2">Every Mon, Wed, Fri</option>
+					<option value="weekday3">Every Tues, Thurs</option>
+					<option value="weekly" selected="selected">Weekly</option>
+					<option value="monthly">Monthly</option>
+					<option value="yearly">Yearly</option>
+				</select>
+			</span>
+			<div id="weekly-events" class="repeating-events">
+				<label class="popup-label">Repeats Every</label>
+				<span id="repeats-every-background">
+					<select id="weekly-repeats-every-select" name="weekly-repeats-every-select">
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+						<option>6</option>
+						<option>7</option>
+						<option>8</option>
+						<option>9</option>
+						<option>10</option>
+						<option>11</option>
+						<option>12</option>
+						<option>13</option>
+						<option>14</option>
+						<option>15</option>
+						<option>16</option>
+						<option>17</option>
+						<option>18</option>
+						<option>19</option>
+						<option>20</option>
+						<option>21</option>
+						<option>22</option>
+						<option>23</option>
+						<option>24</option>
+						<option>25</option>
+						<option>26</option>
+						<option>27</option>
+						<option>28</option>
+						<option>29</option>
+						<option>30</option>
+					</select>
+				</span>
+				<span class="term">week/s</span>
+				<br/>
+				<label id="repeat-on-label" class="popup-label">Repeat On</label>
+				<div class="inline-block">
+					<div class="checkbox-option">
+						<input type="checkbox" id="S"> S
+					</div>
+					<div class="checkbox-option">
+						<input type="checkbox" id="M"> M
+					</div>
+					<div class="checkbox-option">
+						<input type="checkbox" id="T"> T
+					</div>
+					<div class="checkbox-option">
+						<input type="checkbox" id="W"> W
+					</div>
+					<div class="checkbox-option">
+						<input type="checkbox" id="T"> T
+					</div>
+					<div class="checkbox-option">
+						<input type="checkbox" id="F"> F
+					</div>
+					<div class="checkbox-option">
+						<input type="checkbox" id="S"> S
+					</div>
+				</div>
+				<label id="starts-on-label" class="popup-label">Starts On</label>
+				<div id="starts-on-value-holder" class="inline-block">
+					<input type="text" id="starts-on">
+				</div>
+				<label id="ends-on-label" class="popup-label">Ends</label>
+				<div id="ends-on-value-holder" class="inline-block">
+					<div class="ends-on-option">
+						<input type="checkbox" id="never"> Never
+					</div>
+					<div class="ends-on-option">
+						<div class="checkbox-holder"><input type="checkbox" id="after"> After</div>
+						<input type="text" class="occurences-input" id="after-occurences"> occurences
+					</div>
+					<div class="ends-on-option">
+						<div class="checkbox-holder"><input type="checkbox" id="on"> On</div>
+						<input type="text" class="occurences-input" id="on-occurences">
+					</div>
+				</div>
+			</div>
+			<div id="daily-events" class="repeating-events">
+				<label class="popup-label">Repeats Every</label>
+				<span id="repeats-every-background">
+					<select id="daily-repeats-every-select" name="daily-repeats-every-select">
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+						<option>6</option>
+						<option>7</option>
+						<option>8</option>
+						<option>9</option>
+						<option>10</option>
+						<option>11</option>
+						<option>12</option>
+						<option>13</option>
+						<option>14</option>
+						<option>15</option>
+						<option>16</option>
+						<option>17</option>
+						<option>18</option>
+						<option>19</option>
+						<option>20</option>
+						<option>21</option>
+						<option>22</option>
+						<option>23</option>
+						<option>24</option>
+						<option>25</option>
+						<option>26</option>
+						<option>27</option>
+						<option>28</option>
+						<option>29</option>
+						<option>30</option>
+					</select>
+				</span>
+				<span class="term">day/s</span>
+				<br/>
+				<label id="starts-on-label" class="popup-label">Starts On</label>
+				<div id="starts-on-value-holder" class="inline-block">
+					<input type="text" id="starts-on">
+				</div>
+				<label id="ends-on-label" class="popup-label">Ends</label>
+				<div id="ends-on-value-holder" class="inline-block">
+					<div class="ends-on-option">
+						<input type="checkbox" id="never"> Never
+					</div>
+					<div class="ends-on-option">
+						<div class="checkbox-holder"><input type="checkbox" id="after"> After</div>
+						<input type="text" class="occurences-input" id="after-occurences"> occurences
+					</div>
+					<div class="ends-on-option">
+						<div class="checkbox-holder"><input type="checkbox" id="on"> On</div>
+						<input type="text" class="occurences-input" id="on-occurences">
+					</div>
+				</div>
+			</div>
+			<div id="monthly-events" class="repeating-events">
+				<label class="popup-label">Repeats Every</label>
+				<span id="repeats-every-background">
+					<select id="monthly-repeats-every-select" name="monthly-repeats-every-select">
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+						<option>6</option>
+						<option>7</option>
+						<option>8</option>
+						<option>9</option>
+						<option>10</option>
+						<option>11</option>
+						<option>12</option>
+						<option>13</option>
+						<option>14</option>
+						<option>15</option>
+						<option>16</option>
+						<option>17</option>
+						<option>18</option>
+						<option>19</option>
+						<option>20</option>
+						<option>21</option>
+						<option>22</option>
+						<option>23</option>
+						<option>24</option>
+						<option>25</option>
+						<option>26</option>
+						<option>27</option>
+						<option>28</option>
+						<option>29</option>
+						<option>30</option>
+					</select>
+				</span>
+				<span class="term">month/s</span>
+				<br/>
+				<label id="repeat-by-label" class="popup-label">Repeat by</label>
+				<div class="inline-block">
+					<input type="radio" name="repeat-by" value="month" /> day of the month
+					<input type="radio" name="repeat-by" value="week" /> day of the week
+				</div>
+				<br/>
+				<label id="starts-on-label" class="popup-label">Starts On</label>
+				<div id="starts-on-value-holder" class="inline-block">
+					<input type="text" id="starts-on">
+				</div>
+				<label id="ends-on-label" class="popup-label">Ends</label>
+				<div id="ends-on-value-holder" class="inline-block">
+					<div class="ends-on-option">
+						<input type="checkbox" id="never"> Never
+					</div>
+					<div class="ends-on-option">
+						<div class="checkbox-holder"><input type="checkbox" id="after"> After</div>
+						<input type="text" class="occurences-input" id="after-occurences"> occurences
+					</div>
+					<div class="ends-on-option">
+						<div class="checkbox-holder"><input type="checkbox" id="on"> On</div>
+						<input type="text" class="occurences-input" id="on-occurences">
+					</div>
+				</div>
+			</div>
+			<div id="yearly-events" class="repeating-events">
+				<label class="popup-label">Repeats Every</label>
+				<span id="repeats-every-background">
+					<select id="yearly-repeats-every-select" name="yearly-repeats-every-select">
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+						<option>6</option>
+						<option>7</option>
+						<option>8</option>
+						<option>9</option>
+						<option>10</option>
+					</select>
+				</span>
+				<span class="term">year/s</span>
+				<br/>
+				<label id="starts-on-label" class="popup-label">Starts On</label>
+				<div id="starts-on-value-holder" class="inline-block">
+					<input type="text" id="starts-on">
+				</div>
+				<label id="ends-on-label" class="popup-label">Ends</label>
+				<div id="ends-on-value-holder" class="inline-block">
+					<div class="ends-on-option">
+						<input type="checkbox" id="never"> Never
+					</div>
+					<div class="ends-on-option">
+						<div class="checkbox-holder"><input type="checkbox" id="after"> After</div>
+						<input type="text" class="occurences-input" id="after-occurences"> occurences
+					</div>
+					<div class="ends-on-option">
+						<div class="checkbox-holder"><input type="checkbox" id="on"> On</div>
+						<input type="text" class="occurences-input" id="on-occurences">
+					</div>
+				</div>
+			</div>
+			<div id="weekday1-events" class="repeating-events">
+				<div class="hidden">
+					<label id="repeat-on-label" class="popup-label">Repeat On</label>
+					<div class="inline-block">
+						<div class="checkbox-option">
+							<input type="checkbox" checked="checked" id="S"> S
+						</div>
+						<div class="checkbox-option">
+							<input type="checkbox" checked="checked" id="M"> M
+						</div>
+						<div class="checkbox-option">
+							<input type="checkbox" checked="checked" id="T"> T
+						</div>
+						<div class="checkbox-option">
+							<input type="checkbox" checked="checked" id="W"> W
+						</div>
+						<div class="checkbox-option">
+							<input type="checkbox" checked="checked" id="T"> T
+						</div>
+						<div class="checkbox-option">
+							<input type="checkbox" checked="checked" id="F"> F
+						</div>
+						<div class="checkbox-option">
+							<input type="checkbox" checked="checked" id="S"> S
+						</div>
+					</div>
+				</div>
+				<label id="starts-on-label" class="popup-label">Starts On</label>
+				<div id="starts-on-value-holder" class="inline-block">
+					<input type="text" id="starts-on">
+				</div>
+				<label id="ends-on-label" class="popup-label">Ends</label>
+				<div id="ends-on-value-holder" class="inline-block">
+					<div class="ends-on-option">
+						<input type="checkbox" id="never"> Never
+					</div>
+					<div class="ends-on-option">
+						<div class="checkbox-holder"><input type="checkbox" id="after"> After</div>
+						<input type="text" class="occurences-input" id="after-occurences"> occurences
+					</div>
+					<div class="ends-on-option">
+						<div class="checkbox-holder"><input type="checkbox" id="on"> On</div>
+						<input type="text" class="occurences-input" id="on-occurences">
+					</div>
+				</div>
+			</div>
+			<div id="weekday2-events" class="repeating-events">
+				<div class="hidden">
+					<label id="repeat-on-label" class="popup-label">Repeat On</label>
+					<div class="inline-block">
+						<div class="checkbox-option">
+							<input type="checkbox" id="S"> S
+						</div>
+						<div class="checkbox-option">
+							<input type="checkbox" checked="checked" id="M"> M
+						</div>
+						<div class="checkbox-option">
+							<input type="checkbox" id="T"> T
+						</div>
+						<div class="checkbox-option">
+							<input type="checkbox" checked="checked" id="W"> W
+						</div>
+						<div class="checkbox-option">
+							<input type="checkbox" id="T"> T
+						</div>
+						<div class="checkbox-option">
+							<input type="checkbox" checked="checked" id="F"> F
+						</div>
+						<div class="checkbox-option">
+							<input type="checkbox" id="S"> S
+						</div>
+					</div>
+				</div>
+				<label id="starts-on-label" class="popup-label">Starts On</label>
+				<div id="starts-on-value-holder" class="inline-block">
+					<input type="text" id="starts-on">
+				</div>
+				<label id="ends-on-label" class="popup-label">Ends</label>
+				<div id="ends-on-value-holder" class="inline-block">
+					<div class="ends-on-option">
+						<input type="checkbox" id="never"> Never
+					</div>
+					<div class="ends-on-option">
+						<div class="checkbox-holder"><input type="checkbox" id="after"> After</div>
+						<input type="text" class="occurences-input" id="after-occurences"> occurences
+					</div>
+					<div class="ends-on-option">
+						<div class="checkbox-holder"><input type="checkbox" id="on"> On</div>
+						<input type="text" class="occurences-input" id="on-occurences">
+					</div>
+				</div>
+			</div>
+			<div id="weekday3-events" class="repeating-events">
+				<div class="hidden">
+					<label id="repeat-on-label" class="popup-label">Repeat On</label>
+					<div class="inline-block">
+						<div class="checkbox-option">
+							<input type="checkbox" id="S"> S
+						</div>
+						<div class="checkbox-option">
+							<input type="checkbox" id="M"> M
+						</div>
+						<div class="checkbox-option">
+							<input type="checkbox" checked="checked" id="T"> T
+						</div>
+						<div class="checkbox-option">
+							<input type="checkbox" id="W"> W
+						</div>
+						<div class="checkbox-option">
+							<input type="checkbox" checked="checked" id="T"> T
+						</div>
+						<div class="checkbox-option">
+							<input type="checkbox" id="F"> F
+						</div>
+						<div class="checkbox-option">
+							<input type="checkbox" id="S"> S
+						</div>
+					</div>
+				</div>
+				<label id="starts-on-label" class="popup-label">Starts On</label>
+				<div id="starts-on-value-holder" class="inline-block">
+					<input type="text" id="starts-on">
+				</div>
+				<label id="ends-on-label" class="popup-label">Ends</label>
+				<div id="ends-on-value-holder" class="inline-block">
+					<div class="ends-on-option">
+						<input type="checkbox" id="never"> Never
+					</div>
+					<div class="ends-on-option">
+						<div class="checkbox-holder"><input type="checkbox" id="after"> After</div>
+						<input type="text" class="occurences-input" id="after-occurences"> occurences
+					</div>
+					<div class="ends-on-option">
+						<div class="checkbox-holder"><input type="checkbox" id="on"> On</div>
+						<input type="text" class="occurences-input" id="on-occurences">
+					</div>
+				</div>
+			</div>
+		</div>
+        <!--<div id="coverage-start">
+        <label class="popup-label">Start</label>
+        <br/>
+        <span id="coverage-start-background">
+            <select id="coverage-start-select" name="coverage-start-select">
+                <option>Start 1</option>
+                <option>Start 2</option>
+                <option>Start 3</option>
+            </select>
+        </span>
+        </div>
+        
+        <div id="coverage-end">
+        <label class="popup-label">End</label>
+        <br/>
+        <span id="coverage-end-background">
+            <span id="coverage-end-icon">
+                <select id="coverage-end-select" name="coverage-end-select">
+                    <option>End 1</option>
+                    <option>End 2</option>
+                    <option>End 3</option>
+                </select>
+            </span>
+        </span>
+        </div>-->
+        <br/>
+        <div class="clear"></div>
+        <br/>
+        <!-- Add effects on this buttons -->
+        <img id="coverage-add-icon" class="add-button" src="../images/add_icon.png" />
+        <img id="coverage-clear-icon" class="clear-button" src="../images/clear_button.png" />
+    </div>
+    
+    <script type="text/javascript" src="../js/change_select.js"></script>
+    <script type="text/javascript" src="../js/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.simulate.js"></script>
+    <script type="text/javascript" src="../js/jquery.autoresize.js"></script>
+    <script type="text/javascript" src="../js/my_practice.js"></script>
+    <script type="text/javascript" src="../js/jquery-ui-1.8.18.custom.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.placeholder.js"></script>
+    <script type="text/javascript" src="../js/base.js"></script>
+    <!--[if IE 8]>
+        <script type="text/javascript" src="../js/my_practice-ie8.js"></script>
+    <![endif]-->
+    <!--[if lte IE 7]>
+        <script type="text/javascript" src="../js/ie7.js"></script>
+    <![endif]-->
+    </body>
+</html>

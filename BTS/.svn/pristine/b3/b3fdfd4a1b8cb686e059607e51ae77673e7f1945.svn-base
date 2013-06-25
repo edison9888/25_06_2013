@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OTS_SA_R2_D060_D020]]></id>
+	<title><![CDATA[]]></title>
+    <descriptionText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">This is an Execute Next Steps question, not a Problems question. It focuses too narrowly on the implementation of the strategy instead of on potential areas for improvement.<BR><BR>The best question to ask at this point is, "What other obstacles do you face as you drive toward your goals for patient outcomes?"<BR><BR>This is a Problems question that probes deeper into the issues Dr. Hayes faces in his practice.<BR><BR><B>Here is how Dr. Hayes would have answered that question:</B>
+	<BR><BR>"A lot of times, it’s the administrative details that bog us down.  For instance, we write a prescription, the patient goes to fill it, and then the patient calls us back, saying the co-pay is $50 and he or she can’t afford it. Or perhaps we have to go through a long prior-authorization process to even get a product approved for a patient.  In order to keep patients satisfied and to run an efficient practice, we need to minimize those episodes."</welcomeText>]]></descriptionText>
+    <character><![CDATA[Char_Mack]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>
+	<branchTo><![CDATA[OTS_SA_R2_D070]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OTS_SA_R5_D020_C020]]></id>
+	<title><![CDATA[]]></title>
+    <descriptionText><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Further Aligning</Introtext><welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">This is an Execute Next Steps question, not a Results question.  It focuses too much on the implementation of the strategy instead of the outcomes it may support.<BR><BR>
+        The best question is, “How do you see your goals for patient safety and their experience in the hospital fitting in with Maycomb’s larger goals, such as maintaining quality standards and improving cost-effectiveness?”<BR><BR>
+        This Results question probes Dr. Chu’s answer to the previous question while staying focused on results.<BR><BR>
+        <b>It will help you to know the answer to this question to continue.  Here is how Dr. Chu would have answered:</b><BR><BR>
+        
+        “For the most part, I see them going hand in hand.  If we focus on patient safety and patient experience, most of the other metrics you mentioned will be positively impacted.  Improving in those areas will naturally bring improvement in the other areas. <BR><BR>
+        
+        The one area I think we need to be careful is our focus on efficiency.  It is important that we are efficient and keep costs low, but in the process we can’t lose the personal touch.”</welcomeText>]]></descriptionText>
+    <character><![CDATA[Mac_skeptical]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>	
+	<branchTo><![CDATA[OTS_SA_R5_D030]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

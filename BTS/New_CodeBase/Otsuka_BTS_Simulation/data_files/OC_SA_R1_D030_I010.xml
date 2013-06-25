@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OC_SA_R1_D030_I010]]></id>
+    <emailHeader><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; border-bottom:1px solid #333; display:block;">E-mail</Introtext>]]></emailHeader>
+    <emailTypeImage><![CDATA[mail]]></emailTypeImage>    
+	<title><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:14pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>I’ll Be There</b></welcomeText>]]></title>
+    <emailContent><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">"Hi, just confirming that I will be at the speaker program tomorrow. I’m looking forward to learning more about the patient types best suited for Samsca.  See you then…"</welcomeText>]]></emailContent>
+    <from><![CDATA[Dr. Gomez]]></from>
+    <character><![CDATA[Liz_happy]]></character>
+	<branchTo><![CDATA[OC_SA_R1_D030_I020]]></branchTo>
+    <to><![CDATA[]]></to>
+</pageContent>
+
+
+
+
+
+
+
+

@@ -1,0 +1,54 @@
+//
+//  MaintenanceLogCell.m
+//  GreenVolts
+//
+//  Created by Rapidvalue on 8/22/12.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//
+
+#import "MaintenanceLogCell.h"
+
+@interface MaintenanceLogCell ()
+
+
+@end
+
+@implementation MaintenanceLogCell
+@synthesize titleLabel;
+@synthesize savebtn;
+@synthesize forwordArrowButton;
+
+
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) 
+    {
+        // Initialization code
+    }
+    return self;
+}
+
+#pragma mark- Display Methods
+- (void)displayDetails:(MaintenanceLog *)result rowValue:(int)row
+{
+    if(row ==0)
+    { 
+    [self.forwordArrowButton removeFromSuperview];
+    [ self.savebtn addTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
+       
+    }
+    else if(row==1)
+    {
+        [self.savebtn removeFromSuperview];
+        [self.forwordArrowButton removeFromSuperview];
+       self.titleLabel.text  =@"task";  
+    }
+    else {
+        [self.savebtn removeFromSuperview];
+        self.titleLabel.text  =result.componentType; 
+    }
+   
+}
+
+@end

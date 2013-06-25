@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OTS_SA_R5_D010_I010]]></id>
+    <emailHeader><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; border-bottom:1px solid #333; display:block;">E-mail</Introtext>]]></emailHeader>
+    <emailTypeImage><![CDATA[mail]]></emailTypeImage>    
+	<title><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:13pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>E-mail from Matt Chu to you</b></welcomeText>]]></title>
+    <emailContent><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">I think the next step is a follow-up meeting to go into more detail about what we discussed. I look forward to seeing you soon.<br><br>Be Well,<br>Dr. Chu</welcomeText>]]></emailContent>
+    <from><![CDATA[Matt Chu]]></from>
+    <character><![CDATA[Dr-Chu_happy_email]]></character>
+	<branchTo><![CDATA[OTS_SA_R5_D010]]></branchTo>
+	<to><![CDATA[You]]></to>
+	<previousemailContent><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><B>-----Original Message-----</B><BR>It was a pleasure speaking with you last week and learning more about your goals and priorities as a hospitalist at Maycomb. Is next Monday still a good time to meet with you to discuss these topics further?</welcomeText>]]></previousemailContent>
+
+</pageContent>
+
+
+
+
+
+
+

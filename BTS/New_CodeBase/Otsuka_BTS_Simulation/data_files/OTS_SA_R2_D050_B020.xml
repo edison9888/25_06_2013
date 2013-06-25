@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OTS_SA_R2_D050_B020]]></id>
+	<title><![CDATA[Not Quite]]></title>
+    <descriptionText><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Not Quite</Introtext><welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">“This is an Execute Next Steps question, but it doesn’t probe Dr. Cardonza’s response to the previous question.<BR><BR>The best question to ask is, “It sounds like your department is focused on two main objectives – achieving your patient treatment goals and maintaining your status as a top hospital. Both are big goals; do you anticipate any challenges from focusing on both at the same time?” <BR><BR>This is a Problems question that probes Dr. Cardonza’s response to the previous question. It also helps you align strategically with Dr. Cardonza’s priorities.<BR><BR><B>Note how Dr. Cardonza would have answered that question:</B><BR><BR>“Both are big, both are important, and thankfully – they’re complementary. The focus around patient treatment goals is primary, because if our patients do well, then everything else follows. However, I do have concerns about patient satisfaction, mainly because it’s a softer metric and less objectively measured. Sometimes, patients don’t want to do what’s in their own best interest – like getting up and walking around a safe time after heart surgery, or being compliant when on fluid restriction. Providing the right care for patients could sometimes end up hurting satisfaction scores.””</welcomeText>]]></descriptionText>
+    <character><![CDATA[Mac_skeptical]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>
+	<branchTo><![CDATA[OTS_SA_R2_D060]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

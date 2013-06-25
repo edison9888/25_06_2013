@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OC_SA_R1_D020_B010]]></id>
+	<title><![CDATA[That’s it]]></title>
+    <descriptionText><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">That's it</Introtext><welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">“I’d say there is an increasing focus on managing costs and showing results.  The hospital wants to see less expensive prescriptions and shorter lengths of stay, coupled with very low readmission rates.  That’s a difficult balancing act.  Oftentimes, we want to start with a less expensive treatment to see how the patient will respond.  That’s a great practice, but we also need to know when we should jump straight to a more expensive therapy.  In other words, we shouldn’t attempt every low-cost treatment option when the patient needs more expensive therapy right from the start.  As a prescriber, I’d like to know where Samsca falls into the treatment continuum.”</welcomeText>]]></descriptionText>
+    <character><![CDATA[Liz_happy]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>
+	<branchTo><![CDATA[OC_SA_R1_D020_E010]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

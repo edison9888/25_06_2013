@@ -1,0 +1,240 @@
+//
+//  MaintenanceLogView.m
+//  GreenVolts
+//
+//  Created by Shinu Mohan on 21/08/12.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//
+
+#import "MaintenanceLogView.h"
+#import "MaintenanceLog.h"
+#import "MaintenanceLogDetailView.h"
+#import "MaintenanceLogDetailPickerView.h"
+#import "MaintenanceLogDetailNotesView.h"
+@interface MaintenanceLogView()
+
+- (void)logDetailViewButtonTouched;
+- (void)loadMaintenanceViewBarcodeView;
+-(void)loadMaintenanceViewTableview;
+-(void)loadMaintenanceViewPickerview;
+-(void)loadMaintenanceViewUpdateNotesview;
+- (void)animateView:(UIView*)currentView;
+@end
+
+MaintenanceLogDetailView *maintenanceLogDetailView;
+MaintenanceLogBarCodeView *maintenanceLogBarCodeView;
+MaintenanceLogDetailPickerView *maintenanceLogDetailPickerView;
+MaintenanceLogDetailNotesView *maintenanceLogDetailNotesView;
+
+
+@implementation MaintenanceLogView
+
+@synthesize maintenanceLogArray;
+@synthesize maintenanceLogCell;
+
+#pragma mark-initialization
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) 
+    {
+        [self loadview];
+        // Initialization code
+    }
+    return self;
+}
+
+#pragma mark-load views
+
+-(void) loadview
+{
+    NSLog(@"log loading");
+    maintenacelogTable = [[UITableView alloc] initWithFrame: CGRectMake(0,0,320,330) style:UITableViewStylePlain];
+     maintenacelogTable.separatorStyle=UITableViewCellSeparatorStyleNone;
+   // maintenacelogTable.backgroundColor = [UIColor grayColor];
+    maintenacelogTable.backgroundColor=[UIColor colorWithRed:31/255.0f green:41/255.0f blue:58/255.0f alpha:1];
+	maintenacelogTable.delegate = self;
+	maintenacelogTable.dataSource = self;
+	[self addSubview:maintenacelogTable]; 
+    
+    maintenanceLogArray = [[NSMutableArray alloc]init];
+    
+    //dummy values
+    
+    for (int i = 0; i < 10; i++)
+    {
+        MaintenanceLog *maintenancelog = [[MaintenanceLog alloc]init];
+        maintenancelog.componentType    = [NSString stringWithFormat:@"Maintenance %d",i];
+        [maintenanceLogArray addObject:maintenancelog];
+    }
+}
+
+#pragma tableviewdelegate methods
+
+- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    NSLog(@"Array Count ::: %d",[maintenanceLogArray count]);
+    return [maintenanceLogArray count];
+    
+    
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+	return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{	
+     static NSString *CellIdentifier = @"Cell";
+    
+    
+    MaintenanceLogCell *maintenanceCell = (MaintenanceLogCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    
+    if (maintenanceCell == nil) 
+    {
+        [[NSBundle mainBundle] loadNibNamed:@"MaintenanceLogCell" owner:self options:nil];
+        maintenanceCell = maintenanceLogCell;
+        self.maintenanceLogCell = nil;
+    }
+
+    if (maintenanceLogArray && [maintenanceLogArray count] > indexPath.row) 
+    {
+        [maintenanceCell displayDetails:[maintenanceLogArray objectAtIndex:indexPath.row] rowValue:indexPath.row]; 
+    }
+    if((indexPath.row==8)||(indexPath.row==9))
+    {
+        maintenanceCell.accessoryType = UITableViewCellAccessoryNone;
+    }
+    
+    return maintenanceCell;
+
+   
+    
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
+{
+   
+    switch (indexPath.row)
+    {
+        case 0:
+            break;
+        case 1:
+            break;
+        case 2:
+            [self loadMaintenanceViewTableview];
+            break;
+        case 3:
+            [self loadMaintenanceViewTableview];
+            break;
+        case 4:
+           [self loadMaintenanceViewBarcodeView];
+            break;
+        case 5:
+            [self loadMaintenanceViewBarcodeView];
+            break;
+        case 6:   
+            [self loadMaintenanceViewPickerview];
+            break;
+        case 7:
+            [self loadMaintenanceViewUpdateNotesview];
+            break;
+            
+        default:
+            
+            break;
+            
+    }
+    
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    cell.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"navpopover_cell_backround (2)"]];
+    cell.textLabel.textColor=[UIColor whiteColor];
+}
+
+
+#pragma mark- table load view methods
+
+-(void)loadMaintenanceViewTableview;
+{
+    
+        
+    maintenanceLogDetailView=[[MaintenanceLogDetailView alloc]init];
+    maintenanceLogDetailView.frame = CGRectMake(0, 0, 320, 460);
+    maintenanceLogDetailView.frame = self.frame;
+    [self animateView:maintenanceLogDetailView];
+}
+
+- (void)loadMaintenanceViewBarcodeView
+{
+
+    maintenanceLogBarCodeView=[[MaintenanceLogBarCodeView alloc]init];
+    maintenanceLogBarCodeView.delegate = self;
+    maintenanceLogBarCodeView.frame = CGRectMake(0, 0, 320, 460);
+    [self animateView:maintenanceLogBarCodeView];
+}
+
+-(void)loadMaintenanceViewPickerview;
+{
+    
+        
+    maintenanceLogDetailPickerView=[[MaintenanceLogDetailPickerView alloc]init];
+    maintenanceLogDetailPickerView.frame = CGRectMake(0, 0, 320, 460);
+    maintenanceLogDetailPickerView.frame = self.frame;
+    [self animateView:maintenanceLogDetailPickerView];
+}
+
+
+-(void)loadMaintenanceViewUpdateNotesview;
+{
+    
+    maintenanceLogDetailNotesView=[[MaintenanceLogDetailNotesView alloc]init];
+    maintenanceLogDetailNotesView.frame = CGRectMake(0, 0, 320, 460);
+    maintenanceLogDetailNotesView.frame = self.frame;
+    [self animateView:maintenanceLogDetailNotesView];
+}
+
+
+#pragma mark-animations
+
+- (void)animateView:(UIView*)currentView
+{
+    NSLog(@"FRAME %@",NSStringFromCGRect(currentView.frame));
+    [self addSubview: currentView];
+    // Animate the push
+    CGRect oldRect = currentView.frame;
+    oldRect.origin.x = oldRect.origin.x + currentView.frame.size.width;
+    oldRect.origin.y = maintenacelogTable.frame.origin.y;
+    currentView.frame = oldRect;
+    
+    [UIView animateWithDuration:.35 delay:0.0 options:UIViewAnimationCurveEaseOut animations:
+     ^{
+         CGRect newRect = currentView.frame;
+         newRect.origin.x = newRect.origin.x - currentView.frame.size.width;
+         currentView.frame = newRect;
+         
+     } completion:^(BOOL finished) {
+         
+     }];
+}
+
+#pragma mark- button action
+
+- (IBAction)saveButtonTouched:(id)sender
+{
+    
+}
+
+
+#pragma mark- BackButtonDelegates
+
+- (void)backButtonTouched:(id)currentobject
+{
+    [currentobject removeFromSuperview];
+     currentobject = nil;
+}
+
+@end

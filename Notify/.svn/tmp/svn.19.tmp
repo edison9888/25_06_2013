@@ -1,0 +1,125 @@
+//
+//  ListMenuViewController.m
+//  NotiyiiPhoneApplicationProject
+//
+//  Created by Veena on 20/09/12.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//
+
+#import "ListMenuViewController.h"
+#import "InboxViewController.h"
+#import <QuartzCore/CoreAnimation.h>
+
+@interface ListMenuViewController ()
+{
+    
+}
+@property (strong, nonatomic) IBOutlet UITableView *listMenuTableView;
+@property (strong, nonatomic) NSMutableArray *listArray;
+@end
+
+@implementation ListMenuViewController
+@synthesize listMenuTableView;
+@synthesize listArray;
+@synthesize currentObj;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    if(listArray)
+        listArray = nil;
+    listArray = [[NSMutableArray alloc]init];
+    
+    [listArray addObject:@"Everything"];
+    [listArray addObject:@"Inbox"];
+    [listArray addObject:@"Send mail"];
+    [listArray addObject:@"Draft"];
+    [listArray addObject:@"Trash"];
+    
+    /*
+     UIView *backView = [[UIView alloc] initWithFrame:self.view.frame];
+     backView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background_image.png"]];//background_image.png
+     self.listMenuTableView.backgroundView = backView;
+     */
+    
+    // Do any additional setup after loading the view from its nib.
+}
+
+#pragma mark - Table view data source
+- (CGFloat) tableView:(UITableView *)tableView1 heightForRowAtIndexPath:(NSIndexPath *)indexPath 
+{
+    return 50;	
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [listArray count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"Cell";
+	
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        UIView *backView = [[UIView alloc] initWithFrame:cell.frame];
+        backView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"mobileSettings_bg_Secnd.png"]];
+        cell.backgroundView = backView;
+        cell.textLabel.backgroundColor = [UIColor clearColor];
+        cell.textLabel.font = [UIFont fontWithName:@"Eurostile LT" size:14.0];
+        cell.textLabel.textColor = [UIColor colorWithRed:.0078431372 green:0.48627450980392 blue:0.68627450980392 alpha:1];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator; 
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    
+    NSString *cellValue = [listArray objectAtIndex:indexPath.row];
+    cell.textLabel.text = cellValue;
+    
+	return cell;
+    
+}
+
+#pragma mark - Table view delegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{        
+    [currentObj beginWithMsgSelectd:indexPath.row];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)viewDidUnload
+{
+    //    [self setListMenuTableView:nil];
+    [super viewDidUnload];
+    // Release any retained subviews of the main view.
+    // e.g. self.myOutlet = nil;
+}
+
+-(void)dealloc
+{
+    [self setListArray:nil];
+    [self setListMenuTableView:nil];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+@end

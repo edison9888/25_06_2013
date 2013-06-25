@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OTS_SA_R3_D050_E010]]></id>
+	<title><![CDATA[Use the Value Map]]></title>
+    <descriptionText><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Use the Value Map</Introtext><welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">“Your understanding of the Value Map is a powerful tool to remind Dr. Gomez of her priorities and to link them to the potential solution that you can offer. Keep your focus on what you included earlier in the Value Map. Remind Dr. Gomez of the cardiology department’s priorities, and show how being aware of all the treatment options for hyponatremia will help the cardiologists make better treatment decisions, which may in turn help increase patient satisfaction.”</welcomeText>]]></descriptionText>
+    <character><![CDATA[Mac_skeptical]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>
+	<branchTo><![CDATA[OTS_SA_R3_D060]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

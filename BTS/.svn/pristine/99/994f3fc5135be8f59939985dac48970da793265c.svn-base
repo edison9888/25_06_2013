@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OC_SA_R1_D050_B010]]></id>
+	<title><![CDATA[Not on Target]]></title>
+    <descriptionText><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Not on Target</Introtext><welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">“You should have already researched the department and the hospital thoroughly by now, and identified their priorities with Dr. Gomez. Because this will be your first conversation with Dr. Cardonza, it would be better to confirm the information you have received from Dr. Gomez, and ask Dr. Cardonza about the patient treatment goals he hopes to achieve.”</welcomeText>]]></descriptionText>
+    <character><![CDATA[Mac_skeptical]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>
+	<branchTo><![CDATA[OC_SA_R1_D060_I010]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

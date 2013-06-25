@@ -1,0 +1,15 @@
+//
+//  MaintenancePlanDetailView.h
+//  GreenVolts
+//
+//  Created by Rapidvalue on 8/22/12.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface MaintenancePlanDetailView : UIView<UITableViewDelegate,UITableViewDataSource>
+{
+    UITableView   *maintenaceDetailTable;
+}
+@end

@@ -1,0 +1,92 @@
+//
+//  MaintenancePlanDetailCell.m
+//  GreenVolts
+//
+//  Created by Rapidvalue on 8/22/12.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//
+
+#import "MaintenancePlanDetailCell.h"
+
+@interface MaintenancePlanDetailCell ()
+@property (strong, nonatomic) IBOutlet UIButton *backButton;
+@property (strong, nonatomic) IBOutlet UIButton *logButton;
+@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
+- (IBAction)logButtonTouched:(id)sender;
+
+@end
+
+@implementation MaintenancePlanDetailCell
+@synthesize backButton;
+@synthesize logButton;
+@synthesize titleLabel;
+
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        // Initialization code
+    }
+    return self;
+}
+
+- (void)displayDetails:(int)rowValue
+{
+    UIImageView *backButtonImage=[[UIImageView alloc]initWithFrame:CGRectMake(5,10, 25, 25)];
+    self.titleLabel.text = @"Maintenance Detail";
+    self.titleLabel.textColor=[UIColor whiteColor];
+    self.contentView.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"navpopover_cell_backround (2)"]];
+    UILabel *planLabel=[[UILabel alloc]initWithFrame:CGRectMake(20, 10, 220, 25)];
+    planLabel.backgroundColor=[UIColor clearColor];
+    planLabel.textColor=[UIColor whiteColor];
+    planLabel.font=[UIFont systemFontOfSize:14];
+    [self.contentView addSubview:planLabel]; 
+    if (rowValue == 0) 
+    {
+        planLabel.frame=CGRectMake(45, 10, 200, 25);
+        planLabel.text=@"Plan Item Number:123456";
+        backButtonImage.image = [UIImage imageNamed:@"arrow-left.png"];
+        [self.contentView addSubview:backButtonImage];
+        
+    }
+    else 
+    {
+        switch (rowValue) 
+        {
+            case 1:
+                planLabel.text=@"Location:MissionFalls:PhaseThree:A1";
+                break;
+            case 2:
+                planLabel.text=@"Date-Time:2012-06-25 10:00";
+                break;
+            case 3:
+                planLabel.text=@"Task:Replace";
+                break;
+            case 4:
+                planLabel.text=@"Component:Linear Actuator";
+                break;
+            case 5:
+                planLabel.text=@"Created by:jvandevelde";
+                break;
+            case 6:
+                planLabel.text=@"Notes";
+                break;
+            default:
+                break;
+        }
+        
+        [self.backButton removeFromSuperview];
+        [self.logButton removeFromSuperview];
+//        CGRect newLabelRect = CGRectMake(20, 5, 200, 30);
+//        self.titleLabel.frame = newLabelRect;
+
+    }
+    
+
+}
+
+#pragma mark- Display Methods
+
+- (IBAction)logButtonTouched:(id)sender {
+}
+@end

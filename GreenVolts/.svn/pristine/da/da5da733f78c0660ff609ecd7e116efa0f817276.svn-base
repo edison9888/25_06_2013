@@ -1,0 +1,48 @@
+//
+//  MaintenanceLogDetailCell.m
+//  GreenVolts
+//
+//  Created by Shinu Mohan on 23/08/12.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//
+
+#import "MaintenanceLogDetailCell.h"
+@interface MaintenanceLogDetailCell ()
+@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
+- (IBAction)saveButtonTouched:(id)sender;
+
+@end
+
+@implementation MaintenanceLogDetailCell
+@synthesize titleLabel;
+
+#pragma mark-initial method
+
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) 
+    {
+        // Initialization code
+    }
+    return self;
+}
+
+#pragma mark-display methods
+- (void)displayDetails:(int)rowValue:(NSString*)taskName
+
+{    
+    self.contentView.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"navpopover_cell_backround (2)"]];
+   self.titleLabel.textColor=[UIColor whiteColor];
+    UILabel *planLabel=[[UILabel alloc]initWithFrame:CGRectMake(20, 10, 220, 25)];
+    planLabel.backgroundColor=[UIColor clearColor];
+    planLabel.textColor=[UIColor whiteColor];
+    planLabel.font=[UIFont systemFontOfSize:14];
+    [self.contentView addSubview:planLabel];
+    planLabel.text=taskName;
+
+}
+
+
+
+@end

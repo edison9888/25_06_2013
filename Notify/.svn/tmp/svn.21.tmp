@@ -1,0 +1,170 @@
+//
+//  LoginViewController.m
+//  NotiyiiPhoneApplicationProject
+//
+//  Created by Veena on 10/09/12.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//
+
+#import "LoginViewController.h"
+#import "AppDelegate.h"
+#import "NotifyiConstants.h"
+
+@interface LoginViewController ()
+
+-(void) setFontForControlls;
+-(BOOL) isLoginSuccess;
+@property(strong,nonatomic)IBOutlet UITextField *userNameTextField;
+@property(strong,nonatomic)IBOutlet UITextField *passwordTextField;
+
+@end
+
+@implementation LoginViewController
+@synthesize userNameTextField;
+@synthesize passwordTextField;
+
+#pragma mark- init Load
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        
+        
+    }
+    return self;
+}
+- (void)viewDidLoad
+{
+    passwordTextField.secureTextEntry = YES;
+    userNameTextField.delegate = self;
+    passwordTextField.delegate = self;
+
+    [self setFontForControlls];
+    
+    userNameTextField.text = @"test@notifyi.com";
+    passwordTextField.text = @"notifyi123";
+    
+    [super viewDidLoad];
+    
+}
+#pragma mark- Button Actions
+- (IBAction)contactUsButtonTouched:(id)sender
+{
+    /*UIButton *btn = (UIButton *)sender;
+    [btn setHighlighted:NO];*/
+    [self clickableLinkMethod:@"http://www.google.com"];
+}
+- (IBAction)forgotPasswordButtonTouched:(id)sender
+{
+    /*UIButton *btn = (UIButton *)sender;
+    [btn setHighlighted:NO];*/
+    [self clickableLinkMethod:@"http://www.google.com"];
+}
+
+
+- (IBAction)loginButtonTouched:(id)sender
+{
+    BOOL isValidLogin = [self isLoginSuccess];
+    if (isValidLogin)
+    {
+        AppDelegate *app= (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        [app addTabBarToDisplay];
+        [userNameTextField resignFirstResponder];
+        [passwordTextField resignFirstResponder];
+    }else
+    {
+        [userNameTextField resignFirstResponder];
+        [passwordTextField resignFirstResponder];
+
+    }
+    
+}
+
+#pragma mark- Methods
+-(BOOL)isLoginSuccess
+{
+    BOOL result;
+    if([passwordTextField.text length] == 0||[userNameTextField.text length] == 0)
+    {
+        NSLog(@"Invalid Login");
+        //Alert for Invalid Username or Password
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Please Check Your Details?" message:NSLocalizedString(@"INVALID USERNAME AND PASSWORD MESSAGE", nil) delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil,nil];
+        [alert show];
+        result=NO;
+    }else
+    {
+        BOOL isValidEmailId = [NotifyiConstants emailValidation:userNameTextField.text];
+        if(isValidEmailId)
+        {
+            result=YES;            
+        }else
+        {
+            result=NO;
+        }
+    }
+    return result;
+}
+-(void) setFontForControlls
+{
+    userNameTextField.font = [UIFont fontWithName:@"Eurostile" size:15];
+    passwordTextField.font = [UIFont fontWithName:@"Eurostile" size:15];
+    loginButton.titleLabel.font = [UIFont fontWithName:@"Eurostile LT" size:15];
+    forgotPasswordButton.titleLabel.font = [UIFont fontWithName:@"Eurostile LT" size:13];
+    contactUsButton.titleLabel.font = [UIFont fontWithName:@"Eurostile LT" size:13];
+}
+
+- (void) touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event 
+{
+	NSLog(@"Background touched ");
+	[userNameTextField resignFirstResponder];
+	[passwordTextField resignFirstResponder];
+    
+}
+-(void)clickableLinkMethod:(NSString*)link
+{
+    
+    if (link)
+    {
+        NSURL *url = [ [ NSURL alloc ] initWithString:link];
+        [[UIApplication sharedApplication] openURL:url];
+    }
+
+
+}
+#pragma mark- Memory
+- (void)viewDidUnload
+{
+    [self setUserNameTextField:nil];
+    [self setPasswordTextField:nil];
+    [super viewDidUnload];
+    // Release any retained subviews of the main view.
+    // e.g. self.myOutlet = nil;
+}
+- (void)dealloc
+{
+    [self setPasswordTextField:nil];
+    [self setUserNameTextField:nil];
+}
+#pragma mark- TextField delegate
+-(BOOL)textFieldShouldReturn:(UITextField*)textField
+{
+    NSLog(@"textFieldShouldReturn:");
+    if (textField.tag == 1) {
+        // Found next responder, so set it.
+        UITextField *nextTextField = (UITextField *)[self.view viewWithTag:2];
+        [nextTextField becomeFirstResponder];
+    }
+    else {
+        // Not found, so remove keyboard.
+        [textField resignFirstResponder];
+        
+    }
+    return NO; // We do not want UITextField to insert line-breaks.
+}
+#pragma mark- Orientation
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+@end

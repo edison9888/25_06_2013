@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OC_SA_R1_D040]]></id>
+	<title><![CDATA[<Introtext style="font-family:Helvetica; font-size:14pt; font-weight:bold; color:#cc0033; margin:10px -5px 10px 5px; padding:5px 0 5px 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Mistaken Identity</Introtext>]]></title>
+	<title2><![CDATA[Mistaken Identity]]></title2>
+	<instructions><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:11pt; line-height:18pt; text-align:justify; font-weight:bold; color:#333; display:block; margin:0 10px 10px">How do you respond to the information that Dr. Gomez is not the decision maker?</welcomeText>]]></instructions>
+	<choices>
+		<choice>
+			<id><![CDATA[1]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>A</b>. Agree to have Dr. Gomez talk to Dr. Cardonza. You really haven’t dealt much with Dr. Cardonza, and now that Dr. Gomez has been educated on your product and the many appropriate patient types with hyponatremia it could impact, she will be the best person to relay the information to Dr. Cardonza. </welcomeText>]]></choiceText>
+			<KPIs totalScore="5">
+				<KPI marks="5"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="0"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OC_SA_R1_D040_A010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[2]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>B</b>. Tell Dr. Gomez that you are planning another speaker program Dr. Cardonza could attend.  That way, Dr. Cardonza could see the benefits and side effects of products like yours for himself. </welcomeText>]]></choiceText>
+			<KPIs totalScore="0">
+				<KPI marks="0"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="-5"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="5"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OC_SA_R1_D040_B010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[3]]></id>
+			<isCorrect><![CDATA[YES]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>C</b>. Ask Dr. Gomez to set up a time when the three of you can get together so that you can better understand Dr. Cardonza’s priorities.</welcomeText>]]></choiceText>
+			<KPIs totalScore="25">
+				<KPI marks="5"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="10"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OC_SA_R1_D040_C010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[4]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>D</b>. Tell Dr. Gomez that you will call on Dr. Cardonza next week. Plan to present a strong case for him to begin trialing Samsca, and separately show Dr. Cardonza how you can support him in achieving positive patient goals.</welcomeText>]]></choiceText>
+			<KPIs totalScore="10">
+				<KPI marks="5"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="5"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OC_SA_R1_D040_D010]]></branchTo>
+		</choice>
+	</choices>
+    <summary><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">When you learn that Dr. Gomez is not actually the decision maker, the best thing to do is to get Dr. Cardonza involved right away.  You want to make sure that you include Dr. Gomez, since she is the person you have built the relationship with and she trusts you already (Choice C).  Having Dr. Gomez speak with Dr. Cardonza is not ideal, since you won’t be there to establish trust with Dr. Cardonza and show the value both you and the product can bring (Choice A). Choice B doesn’t give you the chance to connect with Dr. Cardonza about his priorities, and you don’t even know if he will agree to come to the speaker program. Choice D is an okay option, but it would be more effective to have Dr. Gomez set up the meeting, since you already have a good relationship with Dr. Gomez. The correct answer is Choice C.</welcomeText>]]></summary>
+</pageContent>

@@ -1,0 +1,256 @@
+//
+//  ControlView.m
+//  GreenVolts
+//
+//  Created by Shinu Mohan on 21/08/12.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//
+
+#import "ControlView.h"
+
+UIScrollView *controlScrollView;
+UISlider *customRollSlider;
+UISlider *customTiltSlider;
+
+UILabel *rollValueDisplayLabel;
+UILabel *tiltValueDisplayLabel;
+
+int oldRollValue;
+
+@implementation ControlView
+
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) 
+    {
+        [self loadView];
+        // Initialization code
+    }
+    return self;
+}
+
+
+-(void)loadView
+
+{ 
+    
+//if([self.navigationController.viewControllers objectAtIndex:0]!=self)
+//{
+//  UIButton *m_Backbutton=[UIButton buttonWithType:UIButtonTypeCustom];
+//    m_Backbutton.frame=CGRectMake(5, 8, 72, 30);
+//    [m_Backbutton setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:[[NSUserDefaults standardUserDefaults]objectForKey:@"BACK_BUTTON"] ofType:@"png"]] forState:UIControlStateNormal];
+//    [m_Backbutton addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
+//    
+//}
+
+    NSLog(@"loading control page");
+    UILabel *pPasswordLabel=[[UILabel alloc]initWithFrame:CGRectMake(5, 10, 310, 20)]; 
+    pPasswordLabel.text=@"Reason for Change";
+    pPasswordLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:12];
+    pPasswordLabel.textColor = [UIColor whiteColor];
+    pPasswordLabel.backgroundColor=[UIColor clearColor];
+    pPasswordLabel.textAlignment=UITextAlignmentLeft;
+    [self addSubview:pPasswordLabel];
+
+    UITextField *m_PasswordTextField=[[UITextField alloc]initWithFrame:CGRectMake(5, 30, 310, 30)];
+    m_PasswordTextField.borderStyle=UITextBorderStyleRoundedRect;
+    m_PasswordTextField.returnKeyType=UIReturnKeyDone;
+    m_PasswordTextField.clearButtonMode = UITextFieldViewModeAlways;
+    m_PasswordTextField.delegate=self;
+    [self addSubview:m_PasswordTextField];  
+
+    //allocating the scrollview
+    controlScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(5, 65, 310, 460)];
+    controlScrollView.contentSize = CGSizeMake(310, 720);
+    //controlScrollView.showsVerticalScrollIndicator = NO;
+    controlScrollView.backgroundColor = [UIColor  blackColor];
+    
+    UIButton *pResumeTrackingButton=[UIButton buttonWithType:UIButtonTypeCustom];
+    pResumeTrackingButton.frame=CGRectMake(10,5, 90, 30);
+    pResumeTrackingButton.backgroundColor=[UIColor clearColor];
+    pResumeTrackingButton.tag=7;
+    [pResumeTrackingButton setImage:[UIImage imageNamed:@"Track.png"] forState:UIControlStateNormal];
+    [pResumeTrackingButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [pResumeTrackingButton setTitle:@"Resume Tracking" forState:UIControlStateNormal];
+    [controlScrollView addSubview:pResumeTrackingButton];
+    
+    UIButton *pLockButton=[UIButton buttonWithType:UIButtonTypeCustom];
+    pLockButton.frame=CGRectMake(110,5, 90, 30);
+    pLockButton.backgroundColor=[UIColor clearColor];
+    pLockButton.tag=5;
+    [pLockButton setImage:[UIImage imageNamed:@"Lock.png"] forState:UIControlStateNormal];
+    [pLockButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [controlScrollView addSubview:pLockButton];
+
+    UIButton *pUnLockButton=[UIButton buttonWithType:UIButtonTypeCustom];
+    pUnLockButton.frame=CGRectMake(210,5, 90, 30);
+    pUnLockButton.backgroundColor=[UIColor clearColor];
+    pUnLockButton.tag=6;
+    [pUnLockButton setImage:[UIImage imageNamed:@"unlock.png"] forState:UIControlStateNormal];
+    [pUnLockButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [controlScrollView addSubview:pUnLockButton];
+
+    UILabel *movePresetPositionLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 45, 310, 20)];
+    movePresetPositionLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:12];
+    movePresetPositionLabel.backgroundColor = [UIColor clearColor];
+    movePresetPositionLabel.textColor = [UIColor yellowColor];
+    movePresetPositionLabel.text = @"Move to Preset Position";
+    [controlScrollView addSubview:movePresetPositionLabel];
+    
+    UIButton *pFaceWestButton=[UIButton buttonWithType:UIButtonTypeCustom];
+    pFaceWestButton.frame=CGRectMake(25,120, 90, 30);
+    pFaceWestButton.backgroundColor=[UIColor clearColor];
+    pFaceWestButton.tag=2;
+    [pFaceWestButton setImage:[UIImage imageNamed:@"FaceWest.png"] forState:UIControlStateNormal];
+    [pFaceWestButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [controlScrollView addSubview:pFaceWestButton];  
+
+    UIButton *pFaceEastButton=[UIButton buttonWithType:UIButtonTypeCustom];
+    pFaceEastButton.frame=CGRectMake(150, 120, 90, 30);
+    pFaceEastButton.backgroundColor=[UIColor clearColor];
+    pFaceEastButton.tag=3;
+    [pFaceEastButton setImage:[UIImage imageNamed:@"FaceEast.png"] forState:UIControlStateNormal];
+    [pFaceEastButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [controlScrollView addSubview:pFaceEastButton];
+
+    UIButton *pFaceUpButton=[UIButton buttonWithType:UIButtonTypeCustom];
+    pFaceUpButton.frame=CGRectMake(100, 70, 90, 30);
+    pFaceUpButton.backgroundColor=[UIColor clearColor];
+    pFaceUpButton.tag=1;
+    [pFaceUpButton setImage:[UIImage imageNamed:@"FaceUp.png"] forState:UIControlStateNormal];
+    [pFaceUpButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [controlScrollView addSubview:pFaceUpButton];
+
+    UIButton *pFaceDownButton=[UIButton buttonWithType:UIButtonTypeCustom];
+    pFaceDownButton.frame=CGRectMake(100, 170, 90, 30);
+    pFaceDownButton.backgroundColor=[UIColor clearColor];
+    pFaceDownButton.tag=4;
+    [pFaceDownButton setImage:[UIImage imageNamed:@"FaceDown.png"] forState:UIControlStateNormal];
+    [pFaceDownButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [controlScrollView addSubview:pFaceDownButton];
+
+    UILabel *moveCustomPositionLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 240, 310, 20)];
+    moveCustomPositionLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:12];
+    moveCustomPositionLabel.backgroundColor = [UIColor clearColor];
+    moveCustomPositionLabel.textColor = [UIColor yellowColor];
+    moveCustomPositionLabel.text = @"Move to Custom Position";
+    [controlScrollView addSubview:moveCustomPositionLabel];
+    
+    UILabel *customPositionLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 270, 310, 20)];
+    customPositionLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:12];
+    customPositionLabel.backgroundColor = [UIColor clearColor];
+    customPositionLabel.textColor = [UIColor yellowColor];
+    customPositionLabel.text = @"Custom Position";
+    [controlScrollView addSubview:customPositionLabel];
+    
+    UILabel *rollLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 340, 30, 20)];
+    rollLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:12];
+    rollLabel.backgroundColor = [UIColor clearColor];
+    rollLabel.textColor = [UIColor yellowColor];
+    rollLabel.text = @"Roll";
+    [controlScrollView addSubview:rollLabel];
+    
+    //Roll Custom Slider
+    CGRect customRollSliderframe = CGRectMake(50, 330, 250, 40);
+    customRollSlider = [[UISlider alloc] initWithFrame:customRollSliderframe];
+    [customRollSlider addTarget:self action:@selector(rollSliderAction:) forControlEvents:UIControlEventValueChanged];
+    // in case the parent view draws with a custom color or gradient, use a transparent color
+    customRollSlider.backgroundColor = [UIColor clearColor];    
+    UIImage *stetchLeftTrack = [[UIImage imageNamed:@"zoomslider_gray_slice.png"]
+                                stretchableImageWithLeftCapWidth:10.0 topCapHeight:0.0];
+    UIImage *stetchRightTrack = [[UIImage imageNamed:@"zoomslider_gray_slice.png"]
+                                 stretchableImageWithLeftCapWidth:10.0 topCapHeight:0.0];
+    [customRollSlider setThumbImage: [UIImage imageNamed:@"zoomslider_button.png"] forState:UIControlStateNormal];
+    [customRollSlider setMinimumTrackImage:stetchLeftTrack forState:UIControlStateNormal];
+    [customRollSlider setMaximumTrackImage:stetchRightTrack forState:UIControlStateNormal];
+    customRollSlider.minimumValue = 0.0;
+    customRollSlider.maximumValue = 100.0;
+    customRollSlider.continuous = YES;
+    customRollSlider.value = 0.0;
+    [controlScrollView addSubview:customRollSlider];
+    
+
+    UILabel *tiltLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 420, 30, 20)];
+    tiltLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:12];
+    tiltLabel.backgroundColor = [UIColor clearColor];
+    tiltLabel.textColor = [UIColor yellowColor];
+    tiltLabel.text = @"Tilt";
+    [controlScrollView addSubview:tiltLabel];
+
+    
+    //Tilt Custom Slider
+    CGRect customTiltSliderframe = CGRectMake(50, 410, 250, 40);
+    customTiltSlider = [[UISlider alloc] initWithFrame:customTiltSliderframe];
+    [customTiltSlider addTarget:self action:@selector(tiltSliderAction:) forControlEvents:UIControlEventValueChanged];
+    customTiltSlider.backgroundColor = [UIColor clearColor];    
+
+    [customTiltSlider setThumbImage: [UIImage imageNamed:@"zoomslider_button.png"] forState:UIControlStateNormal];
+    [customTiltSlider setMinimumTrackImage:stetchLeftTrack forState:UIControlStateNormal];
+    [customTiltSlider setMaximumTrackImage:stetchRightTrack forState:UIControlStateNormal];
+    customTiltSlider.minimumValue = 0.0;
+    customTiltSlider.maximumValue = 100.0;
+    customTiltSlider.continuous = YES;
+    customTiltSlider.value = 20.0;
+    [controlScrollView addSubview:customTiltSlider];
+    
+    //rollValueDisplay Label
+    rollValueDisplayLabel = [[UILabel alloc]initWithFrame:CGRectMake(150, 310, 30, 20)];
+    rollValueDisplayLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:12];
+    rollValueDisplayLabel.backgroundColor = [UIColor grayColor];
+    rollValueDisplayLabel.textColor = [UIColor yellowColor];
+    rollValueDisplayLabel.textAlignment = UITextAlignmentCenter;
+    rollValueDisplayLabel.text = [NSString stringWithFormat:@"%d",ceilf(customRollSlider.value)];
+    [controlScrollView addSubview:rollValueDisplayLabel];
+    
+    //tiltValueDisplay Label
+    tiltValueDisplayLabel = [[UILabel alloc]initWithFrame:CGRectMake(150, 390, 30, 20)];
+    tiltValueDisplayLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:12];
+    tiltValueDisplayLabel.backgroundColor = [UIColor grayColor];
+    tiltValueDisplayLabel.textColor = [UIColor yellowColor];
+    tiltValueDisplayLabel.textAlignment = UITextAlignmentCenter;
+    tiltValueDisplayLabel.text = [NSString stringWithFormat:@"%d",ceilf(customTiltSlider.value)];
+    [controlScrollView addSubview:tiltValueDisplayLabel];
+    
+    
+    UIButton *applyButton=[UIButton buttonWithType:UIButtonTypeCustom];
+    applyButton.frame=CGRectMake(100, 480, 90, 30);
+    applyButton.backgroundColor=[UIColor clearColor];
+    applyButton.tag=9;
+    [applyButton  setTitle:@"Apply" forState:UIButtonTypeCustom];
+    //[applyButton setImage:[UIImage imageNamed:@"FaceDown.png"] forState:UIControlStateNormal];
+    [applyButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [controlScrollView addSubview:applyButton];
+    
+    [self addSubview:controlScrollView];
+
+}
+
+#pragma mark- button Actions
+- (void)buttonAction:(id)sender
+{
+    
+}
+
+-(void)rollSliderAction:(id)sender
+{
+    NSLog(@"SCROLLVALUE customRollSlider::: %f",customRollSlider.value);
+    NSMutableString *result;
+    int value  =ceilf(customRollSlider.value);
+    if (oldRollValue >= value)
+        result = [NSString stringWithFormat:@"+"];
+    else
+        result = [NSString stringWithFormat:@"+"];
+    
+    oldRollValue = value;
+    rollValueDisplayLabel.text = [NSString stringWithFormat:@"%@ %d",result,value];
+}
+-(void)tiltSliderAction:(id)sender
+{
+    NSLog(@"SCROLLVALUE tiltSliderAction ::: %f",customTiltSlider.value);
+    int value  =ceilf(customTiltSlider.value);
+    tiltValueDisplayLabel.text = [NSString stringWithFormat:@"%d",value];
+}
+
+
+@end

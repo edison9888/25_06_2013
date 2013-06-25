@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OC_SA_R1_D040_C010]]></id>
+	<title><![CDATA[Good Call]]></title>
+    <descriptionText><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Good Call</Introtext><welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">"Sure, I’ll find out when he’s available. I think it’s a good idea for the three of us to sit down and talk this through."</welcomeText>]]></descriptionText>
+    <character><![CDATA[Liz_happy]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>
+	<branchTo><![CDATA[OC_SA_R1_D040_F010]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

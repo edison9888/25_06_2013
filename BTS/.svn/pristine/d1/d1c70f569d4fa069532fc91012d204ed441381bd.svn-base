@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OTS_SA_R4_D020_D010]]></id>
+	<title><![CDATA[Making Progress]]></title>
+    <descriptionText><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Making Progress</Introtext><welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">“As you know, patient satisfaction is a big part of who we are.  We need satisfied patients in order increase our referrals, build our reputation, and remain a top 100 hospital for cardiac care.  If we can write prescriptions for the right patients, and still keep costs low, it will be a big first step in that direction.”</welcomeText>]]></descriptionText>
+    <character><![CDATA[Anton_2]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>
+	<branchTo><![CDATA[OTS_SA_R4_D020_F010]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

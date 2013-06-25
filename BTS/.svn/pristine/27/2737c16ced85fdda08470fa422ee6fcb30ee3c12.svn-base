@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OTS_SA_R4_D010_I010]]></id>
+	<title><![CDATA[Not So Sure]]></title>
+    <descriptionText><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Not So Sure</Introtext><welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">When you arrive at the cardiology department, Dr. Gomez greets you with a handshake. As you engage her in a conversation about her patients, Dr. Gomez seems a bit distant.  When you probe a little further to uncover what is bothering her, she finally says, “Dr. Cardonza supported my decision to prescribe Samsca for the clinically significant dilutional hyponatremia patient I had previously told you about.  However, as soon as I ordered the prescription, I got a call from Pharmacy.  They pushed back because of the cost, because of perceived safety risks, and because it hasn’t been prescribed previously by cardiology.  Michelle Hinley, the pharmacist, told me she was working on finalizing an institutional protocol that would restrict Samsca to nephrology.  I am still interested in using Samsca, but it sounds like pharmacy will make prescribing it a frustrating and time consuming process.  I can’t go through that each time I make a decision to prescribe Samsca.” </welcomeText>]]></descriptionText>
+    <character><![CDATA[Liz_skeptical]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>
+	<branchTo><![CDATA[OTS_SA_R4_D010]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

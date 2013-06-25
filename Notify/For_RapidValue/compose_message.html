@@ -1,0 +1,356 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"/>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/compose_message.css" />
+    <!--[if lte IE 7]>
+        <link rel="stylesheet" href="../css/ie7.css" />
+    <![endif]-->
+    <!--[if IE 8]>
+        <link rel="stylesheet" href="../css/ie8.css" />
+    <![endif]-->
+    <!--[if IE 9]>
+        <link rel="stylesheet" href="../css/ie9.css" />
+    <![endif]-->
+    <title>Notifyi</title>
+</head>
+<body>
+    <div id="header-holder">
+        <div id="header">
+            <div id="faq-holder">
+                <span>&nbsp;</span>
+                <!--<img id="faq" src="../images/faq.png" />-->
+                <div class="clear"></div>
+            </div>
+            <div id="middle-header">
+                <img id="logo" src ="../images/notifyi_logo.png" />
+                <div id="description">
+                    <img src="../images/physician_header.png" />
+                </div>
+                <div id="user">
+                    <span>Welcome Nidhi Shah</span>
+                    <span> &nbsp;| &nbsp;</span>
+                    <span>Help</span>
+                    <span> &nbsp;| &nbsp;</span>
+                    <span>Log Out</span>
+                </div>
+                <div class="clear"></div>
+                <!--[if lte IE 7]>
+                    <div class="clear">&nbsp;</div>
+                <![endif]-->
+            </div>
+            <div id="personal">
+                <!--<a href="my_account.html"><span id="account" class="personal-options">My Account</span></a>-->
+                <a href="my_practice.html"><span id="practice" class="personal-options">My Practice</span></a>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div id="menu">
+        <div id="main-menu">
+            <a href="profile.html"><div id="profile" class="menu-options profile-menu-option"><img class="menu-images" src="../images/menu_my_profile.png" />My Profile</div></a>
+            <a href="inbox.html"><div id="inbox" class="menu-options inbox-menu-option"><img class="menu-images" src="../images/menu_inbox.png" />Inbox <span class="indicators">(12)</span></div></a>
+            <a href="your_take.html"><div id="yourtake" class="menu-options your-take-menu-option"><img class="menu-images" src="../images/menu_your_take.png" />Touch Base <span class="indicators">(15)</span></div></a>
+            <a href="directory.html"><div id="directory" class="menu-options directory-menu-option"><img class="menu-images" src="../images/menu_directory.png" />Directory</div></a>
+            <a href="bulletin_board.html"><div id="board" class="menu-options bulletin-board-menu-option"><img class="menu-images" src="../images/menu_bulletin_board.png" />Bulletin Board</div></a>
+            <div id="send-message" class="menu-options"><a href="compose_message.html"><img id="send-message-button" class="menu-images" src="../images/send_message.png" /></a></div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="clear">&nbsp;</div>
+    <!--[if lte IE 7]>
+        <div class="clear-visible">&nbsp;</div>
+    <![endif]-->
+    
+    <div id="content">
+        <div id="title">
+            <img id="compose_message_icon" src ="../images/compose_message.png" /> Compose Message
+            <hr />
+        </div>
+        <!-- Form is submitted to dummy page for expected processing -->
+        <form action="dummy.html" method="post">
+            <div id="lookup-header">
+                <div id="lookup-header-label">
+                    <div id="quick-physician"><span>Quick physician lookup (start typing a name and click to select)</span></div>
+                    <input type="text" name='quick-lookup' id="quick-lookup" />
+                    <div id="or"><span>or use</span></div>
+                    <!-- Click this image to bring up a popup for choosing a contact from directory -->
+                    <img id="directory-button" src ="../images/directory_button.png" />
+                    <div class="clear"></div>
+                </div>
+                <div id="orig-down-arrow"></div>
+            </div>
+            <div id="lookup">
+                <div id="lookup-body">
+                    <div id="send-holder">
+                        <span id="sending-to-label">Sending To:
+                            <input id="sending_to" type="text" name="doctor-name" />
+                        </span>
+                    </div>
+                    <div class="clear"></div>
+                    <br />
+                    
+                    <table id="lookup-form-table">
+                        <tr>
+                            <td class="input-label">Also send to coverage</td>
+                            <td>
+                                <table>
+                                    <!-- Send to coverage radio button choices -->
+                                    <tr>
+                                        <td class="choice-td"><label class="label-radio" for="radio-yes"><input class="radio-button" id="radio-yes" type="radio" name="send_to_coverage" value="1"/>Yes</label></td>
+                                        <td class="choice-td"><label class="label-radio" for="radio-no"><input class="radio-button" id="radio-no" type="radio" name="send_to_coverage" value="0"/>No</label></td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="input-label">Message is</td>
+                            <td>
+                                <table>
+                                    <!-- Message priority/routine choices -->
+                                    <tr>
+                                        <td class="choice-td"><label class="label-radio" for="radio-routine"><input class="radio-button" id="radio-routine" type="radio" name="message_is" value="1" />Routine</label></td>
+                                        <td class="choice-td"><label class="label-radio" for="radio-priority"><input class="radio-button" id="radio-priority" type="radio" name="message_is" value="0" />Priority</label></td>
+                                    </tr>
+                                </table>
+                             </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <!-- Patient info input fields -->
+                            <td class="input-label">Patient Information</td>
+                            <td><input name="first-name" class="text-input lookup-form" type="text" placeholder="First Name" /></td>
+                            <td><input name="last-name" class="text-input lookup-form" type="text" placeholder="Last Name" /></td>
+                            <td><input name="dob" class="text-input lookup-form" type="text" placeholder="DOB (mm/dd/yyyy)" /></td>
+                        </tr>
+                        <tr>
+                            <!-- Hospital/Office input field -->
+                            <td class="input-label">Hospital/Office <br />(if applicable)</td>
+                            <td><input name="hospital-name" class="text-input lookup-form" type="text" placeholder="Hospital / Office Name" /></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <!-- Message Type select box -->
+                            <td class="input-label">Message Type</td>
+                            <td>
+                                <select name="message-type" id="message-type">
+                                    <option selected="selected">Admission</option>
+                                    <option>Discharge</option>
+                                    <option>Free Form</option>
+                                    <option>Status Update</option>
+                                </select>
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <!-- Subject input field -->
+                            <td class="input-label">Subject</td>
+                            <td><input name="subject" class="text-input lookup-form" type="text" /></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="clearfix"></div>
+            
+            <!-- Admission Letter section -->
+            <div id="admission-letter">
+                <div id="admission-letter-header">Admission Letter</div>
+                <div id="admission-letter-body">
+                    <span class="input-label">Please enter these fields to fill your template automatically.</span>
+                    <br />
+                    <br />
+                    
+                    Admission Date:
+                    <br />
+                    <input name="admission-date" id="admission-date-input" class="text-input" type="text" />
+                    <br />
+                    
+                    Working Diagnosis:
+                    <br />
+                    <textarea name="working-diagnosis" class="textarea-input"></textarea>
+                    <br />
+                    
+                    Additional Free text:
+                    <br />
+                    <input name="additional-text" id="additional-text-input" class="text-input" type="text" />
+                    <br />
+                    
+                    Signature:
+                    <br />
+                    <textarea name="signature" class="textarea-input"></textarea>
+                    <br />
+                </div>
+            </div>
+            
+            <!-- This section is updated automatically through js -->
+            <div id="final-message">
+                <div id="final-message-header">Preview of Final Message Body</div>
+                <div id="final-message-body">
+                    Dear Dr. <span id="doctor-name-span"></span>
+                    <br /><br /><br /><br />
+                    <p id="final-message-body-contents">
+                    I wanted to inform you that your patient, <span id="patient-info">Patient Info - <span class="blue">Fill in above</span></span>, has been admitted to <span id="hospital-name">Hospital Name - <span class="blue">Fill in above</span></span> on <span id="admission-date">Admission Date - <span class="blue">Fill in to the left</span></span> Admission diagnosis is <span id="working-diagnosis">Working Diagnosis - <span class="blue">Fill in to the left</span></span>
+                    <br />
+                    <span id="additional-text"><span class="blue">Additional Free Text</span> - will be blank by default</span>
+                    </p>
+                    <br /><br /><br />
+                    Please feel free to contact me with any questions.
+                </div>
+            </div>
+            
+            <div class="clearfix"></div>
+            
+            <!-- Various button actions -->
+            <div id="buttons-div">
+                <input class="first-image" type="image" name="send-button" id="send-button" src="../images/send_button.png" />
+                <!-- Change the effect when clicking this image through js -->
+                <img class="centre-images" id="edit-button" src="../images/edit_button.png" />
+                <input class="centre-images" type="image" name="draft-button" id="save-draft-button" src="../images/save_as_draft_button.png" />
+                <input class="centre-images" type="image" name="discard-button" id="discard-message-button" src="../images/discard_message_button.png" />
+            </div>
+            
+            <div class="clearfix"></div>
+        </form>
+    </div>
+    
+    
+    <div id="footer">
+        <img id="footer-logo" src="../images/notifyi_logo_footer.png" />
+        <span id="copyright">Copyright &copy;2012 Notifyi. All Rights Reserved.</span>
+        <span id="links">
+            <span>Terms of Use</span>
+            <span> &nbsp;| &nbsp;</span>
+            <span>Privacy Policy</span>
+            <span> &nbsp;| &nbsp;</span>
+            <span>Contact Us</span>
+        </span>
+        <div class="clear"></div>
+    </div>
+    
+    <!-- Pre-loading images for rollover effects -->
+    <div id="preload">
+        <img src="../images/radio_button_active.png" />
+        <img src="../images/rollovers/send_message_rollover.png" />
+        <img src="../images/rollovers/directory_rollover.png" />
+        <img src="../images/rollovers/send_rollover.png" />
+        <img src="../images/rollovers/edit_rollover.png" />
+        <img src="../images/rollovers/save_draft_rollover.png" />
+        <img src="../images/rollovers/discard_rollover.png" />
+    </div>
+    
+    <!-- This section contains the directory dialog box -->
+    <div id="directory-dialog">
+        <div id="bulletin-board-body">
+            <div id="header1">
+                <span>Status:</span>
+                <span class="legend" id="legend_fax"><img id="fax_icon" src="../images/fax_icon.png" />Fax</span>
+                <span class="legend" id="legend_inbox"><img id="inbox_icon" src="../images/inbox_blue_icon.png" />Inbox</span>
+                <span class="legend" id="legend_coverage"><img id="coverage_icon" src="../images/coverage_icon_coloured.png" />Coverage</span>
+            </div>
+            <div id="down-arrow"></div>
+        </div>
+        
+        <div id="body1">
+            <!-- Submit to dummy page when page buttons are clicked -->
+            <form action="dummy.html" method="get">
+                <table id="body1-table">
+                    <tr id="filter-by">
+                        <td></td>
+                        <td>Filter By <span id="white-clear">(clear)</span></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <!-- Apply proper ajax (in the js) for looking up through the database using these filters -->
+                    <tr id="filter">
+                        <td><img src="../images/input_arrow.png" /></td>
+                        <td><input id="name-input" type="text" name="name" placeholder="Name" /></td>
+                        <td><input id="practice-input" type="text" name="practice" placeholder="Practice" /></td>
+                        <td><input id="specialty-input" type="text" name="specialty" placeholder="Specialty" /></td>
+                        <td><input id="city-input" type="text" name="city" placeholder="City" /></td>
+                        <td><input id="state-input" type="text" name="state" placeholder="State" /></td>
+                        <td><input id="phone-input" type="text" name="phone" placeholder="Phone" /></td>
+                    </tr>
+                    <!-- Dummy data, add 'odd' or 'even' classes to tr entries for IE and assign different id's to each tr data -->
+                    <tr id="headers">
+                        <td class="col1">Status</td>
+                        <td class="col2">Name</td>
+                        <td class="col3">Practice</td>
+                        <td class="col4">Specialty</td>
+                        <td class="col5">City</td>
+                        <td class="col6">State</td>
+                        <td class="col7">Phone</td>
+                    </tr>
+                    <tr class="entry odd">
+                        <td class="col1"><img id="fax_icon" src="../images/fax_icon.png" /><img id="inbox_icon" src="../images/inbox_blue_icon.png" /><img id="coverage_icon" src="../images/coverage_icon_coloured.png" /></td>
+                        <td class="col2">Adelsberg, Michael P.A.</td>
+                        <td class="col3">Connecticut Medical Group</td>
+                        <td class="col4">Internal Medicine</td>
+                        <td class="col5">Guilford</td>
+                        <td class="col6">CT</td>
+                        <td class="col7">212-683-8993</td>
+                    </tr>
+                    <tr class="entry even">
+                        <td class="col1"><img id="inbox_icon" src="../images/inbox_blue_icon.png" /><img id="coverage_icon" src="../images/coverage_icon_coloured.png" /></td>
+                        <td class="col2" id="clickable-profile">Anderson, Catherine M.D.</td>
+                        <td class="col3">Guliford Internal Medicine Group</td>
+                        <td class="col4">Dermatology, Critical Care Medicine</td>
+                        <td class="col5">Guilford</td>
+                        <td class="col6">CT</td>
+                        <td class="col7">212-683-8993</td>
+                    </tr>
+                    <tr class="entry odd">
+                        <td class="col1"><img id="coverage_icon" src="../images/coverage_icon_coloured.png" /></td>
+                        <td class="col2">Apgar, Marina M.D.</td>
+                        <td class="col3">Hostpitalist Service, Yale-New Haven Hospital</td>
+                        <td class="col4">Specialty</td>
+                        <td class="col5">New Haven</td>
+                        <td class="col6">CT</td>
+                        <td class="col7">212-683-8993</td>
+                    </tr>
+                    <tr class="entry even">
+                        <td class="col1"></td>
+                        <td class="col2">Arnold, Steven J. M.D.</td>
+                        <td class="col3">Fair Haven Community Health Centre</td>
+                        <td class="col4">Specialty</td>
+                        <td class="col5">Hamden</td>
+                        <td class="col6">CT</td>
+                        <td class="col7">212-683-8992</td>
+                    </tr>
+                </table>
+                <div id="directory-footer">
+                    <!-- Update this hidden field depending on the clicked page button -->
+                    <input type="hidden" name="page" value="1" />
+                    <div id="footer-description">Showing 1 to 25 of 250 entries</div>
+                    <div id="right-arrow">
+                        <input type="image" title="previous" name="previous" src="../images/right_arrow.png" />
+                    </div>
+                    <div id="left-arrow">
+                        <input type="image" title="next" name="next" src="../images/left_arrow.png" />
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+        
+    <script type="text/javascript" src="../js/change_select.js"></script>
+    <script type="text/javascript" src="../js/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.placeholder.js"></script>
+    <script type="text/javascript" src="../js/jquery-ui-1.8.18.custom.min.js"></script>
+    <script type="text/javascript" src="../js/base.js"></script>
+    <script type="text/javascript" src="../js/compose_message.js"></script>
+    <!--[if lte IE 7]>
+        <script type="text/javascript" src="../js/ie7.js"></script>
+    <![endif]-->
+</body>
+</html>

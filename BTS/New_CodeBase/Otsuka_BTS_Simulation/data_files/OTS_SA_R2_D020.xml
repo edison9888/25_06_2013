@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OTS_SA_R2_D020]]></id>
+	<title><![CDATA[<Introtext style="font-family:Helvetica; font-size:14pt; font-weight:bold; color:#cc0033; margin:10px -5px 10px 5px; padding:5px 0 5px 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Meeting with Dr. Cardonza – Further Aligning with the Customer’s Needs</Introtext>]]></title>
+	<title2><![CDATA[Meeting with Dr. Cardonza – Further Aligning with the Customer’s Needs]]></title2>
+	<instructions><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:11pt; line-height:18pt; text-align:justify; font-weight:bold; color:#333; display:block; margin:0 10px 10px">What do you ask Dr. Cardonza at this point?</welcomeText >]]></instructions>
+	<choices>
+		<choice>
+			<id><![CDATA[1]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>A</b>. It sounds like remaining one of the “top 100” hospitals is one of your goals.  What challenges do you think you will face in achieving that goal?  </welcomeText>]]></choiceText>
+			<KPIs totalScore="10">
+				<KPI marks="0"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R2_D020_A010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[2]]></id>
+			<isCorrect><![CDATA[YES]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>B</b>. Clearly, achieving patient treatment goals is key to maintain your standing as one of the “top 100” hospitals for cardiac care.  How will you know if you are on track to maintain that standard? </welcomeText>]]></choiceText>
+			<KPIs totalScore="50">
+				<KPI marks="20"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="20"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="10"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R2_D020_B010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[3]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>C</b>. You mentioned the importance of patient satisfaction as part of the overall patient treatment goals you want to see.  What opportunities do you see to positively impact patient satisfaction?</welcomeText>]]></choiceText>
+			<KPIs totalScore="-20">
+				<KPI marks="-10"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="-10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R2_D020_C010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[4]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>D</b>. What is your timeline for assessing patient satisfaction?</welcomeText>]]></choiceText>
+			<KPIs totalScore="-10">
+				<KPI marks="-20"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R2_D020_D010]]></branchTo>
+		</choice>
+		<!--<feedbackText><![CDATA[]]></feedbackText>-->
+	</choices>
+    <summary><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">You are doing great. This is the best question to ask at this point.This Results question probes Dr. Cardonza’s answer to the previous question while staying focused on results. To the extent that you are able to clearly define the department’s patient treatment goals and the strategies for achieving those goals, you will have a stronger grasp on how to advance the prescribing cycle. This Results question also shows that you were listening to Dr. Cardonza and heard a strategic direction he is focusing on. </welcomeText>]]></summary>
+</pageContent>

@@ -1,0 +1,20 @@
+//
+//  MaintenanceLogDetailView.h
+//  GreenVolts
+//
+//  Created by Shinu Mohan on 23/08/12.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "MaintenanceLogDetailCell.h"
+
+@interface MaintenanceLogDetailView : UIView<UITableViewDelegate,UITableViewDataSource>
+                                            
+{
+    UITableView   *maintenacelogDetailTable;
+}
+
+@property(nonatomic,strong) IBOutlet MaintenanceLogDetailCell *maintenanceLogDetailCell;
+@end
+

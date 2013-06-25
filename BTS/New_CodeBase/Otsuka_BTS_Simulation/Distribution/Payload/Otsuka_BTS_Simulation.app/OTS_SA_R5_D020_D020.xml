@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OTS_SA_R5_D020_D020]]></id>
+	<title><![CDATA[]]></title>
+    <descriptionText><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Further Aligning</Introtext><welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">This is an Execute Next Steps question, not a Results question, and it moves too quickly to an end result before you fully understand all the areas where you might support the goals of the practice.<BR><BR>The best question is, "You’ve spoken before about how patient satisfaction will be a driver of the growth for Sunnydale Psychiatry.  How do you see the focus on efficiency impacting your patient satisfaction goals?"<BR><BR>This Results question probes Rachel’s answer to the previous question while staying focused on results.<BR><BR><B>It will help you to know the answer to this question to continue.  Here is how Rachel would have answered:</B><BR><BR>"I really see it all as positive – and in fact I see the efficiency driving some of the patient satisfaction.  If we are able to schedule appointments sooner, reduce patient wait times in the office, and reduce call-backs by checking insurance coverage prior to prescribing treatments, patients are going to be more satisfied.  Of course, we could take it the wrong way by becoming so focused on process that we lose the personal touch, or by cutting back on the time the physicians spend with patients.   But we’ve thought this out carefully, and know what we want to accomplish."</welcomeText>]]></descriptionText>
+    <character><![CDATA[Char_Mack]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>	
+	<branchTo><![CDATA[OTS_SA_R5_D030]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

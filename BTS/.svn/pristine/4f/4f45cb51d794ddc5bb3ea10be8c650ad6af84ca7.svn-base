@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+  <id><![CDATA[OTS_SA_R2_INTRO2]]></id>
+  <title><![CDATA[You and Your Customer]]></title>
+  <descriptionText><![CDATA[<font face="helvetica" size="3"><Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">You and Your Customer</Introtext><welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">Dr. Gomez has arranged a meeting at Maycomb with you, her, and Dr. Cardonza.  You are looking forward to this opportunity to speak with Dr. Cardonza.</welcomeText><br><lasttext style="font-family:Helvetica; font-size:11pt; color:#000; background-color:#c0c0c0; margin:10px; padding:2px 0 2px 5px; display:block;"><i>Please tap <b>Continue</b> or swipe to begin the simulation.</i></lasttext>]]></descriptionText>
+  <character><![CDATA[Q01_Opt03]]></character>
+  <continueBtn><![CDATA[]]></continueBtn>
+  <branchTo><![CDATA[OTS_SA_R2_D010]]></branchTo>
+</pageContent>

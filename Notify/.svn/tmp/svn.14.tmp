@@ -1,0 +1,361 @@
+
+//
+//  InboxViewController.m
+//  NotiyiiPhoneApplicationProject
+//
+//  Created by Veena on 10/09/12.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//
+
+#import "InboxViewController.h"
+#import "GeneralClass.h"
+#import "SendMessageViewController.h"
+#import "DataManager.h"
+#import "InboxDetailsViewController.h"
+#import "MsgRecipient.h"
+#import "ListMenuViewController.h"
+#import <QuartzCore/CoreAnimation.h>
+
+@interface InboxViewController ()
+{
+    NSArray *inboxDataManagerArray;
+    DataManager *dataManager;
+    messageType currentMsgtype;
+}
+
+@end
+
+@implementation InboxViewController
+
+@synthesize inboxLabel;
+@synthesize inboxTableView;
+@synthesize inboxSearchBar;
+@synthesize inbox;
+@synthesize inboxTableViewCell;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        self.title = @"Inbox";
+        self.tabBarItem.image = [UIImage imageNamed:@"tabBar_Inbox"];
+        inboxSearchBar.delegate = self;   
+    }
+    return self;
+}
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    NSLog(@"Donebutton");
+    [searchBar resignFirstResponder];
+}
+
+-(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
+    
+    [searchBar resignFirstResponder];
+    searchBar.text = nil;
+    [searchBar setShowsCancelButton:NO animated:NO];
+    NSLog(@"Cancelbutton");
+}
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
+{
+	//Showing Done key on Keyboard
+    for (UIView *searchBarSubview in [searchBar subviews]) {
+        
+        if ([searchBarSubview conformsToProtocol:@protocol(UITextInputTraits)]) {
+            
+            @try {
+                
+                [(UITextField *)searchBarSubview setReturnKeyType:UIReturnKeyDone];
+                [(UITextField *)searchBarSubview setKeyboardAppearance:UIKeyboardAppearanceAlert];
+            }
+            @catch (NSException * e) {
+                
+                // ignore exception
+            }
+        }
+    }
+    [searchBar setShowsCancelButton:YES animated:YES];
+}
+
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
+{
+    [searchBar setShowsCancelButton:NO animated:NO];
+}
+
+#pragma mark- TextField Delegate
+
+- (BOOL)textFieldShouldClear:(UITextField *)textField {
+    
+    [self performSelector:@selector(searchBarCancelButtonClicked:) withObject:self.inboxSearchBar afterDelay: 0.0];
+    
+    return YES;
+    
+}
+#pragma mark- Methods
+-(void)searchBarXbuttonTextFieldDelegate{
+    for (UIView *view in inboxSearchBar.subviews){
+        
+        if ([view isKindOfClass: [UITextField class]]) {
+            
+            UITextField *tf = (UITextField *)view;
+            
+            tf.delegate = self;
+            
+            break;
+        }
+        
+    }
+}
+
+#pragma mark- ViewDidLoad
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    if(!currentMsgtype)
+    {
+        currentMsgtype = 0;
+        [self dummyDataBaseInsertion];
+    }
+    
+    
+    inboxSearchBar.delegate = self;
+    [self searchBarXbuttonTextFieldDelegate];
+    [self getInboxInformation];
+    
+    
+    //background color setting for UISearchBar
+    GeneralClass *generalClass = [[GeneralClass alloc]init];
+    [generalClass searchBarBackGroundColorSetting:self.inboxSearchBar];
+    generalClass = nil;
+    self.inboxLabel.font = [UIFont fontWithName:@"Eurostile LT" size:17.0 ];
+}
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    self.navigationController.navigationBarHidden = YES;
+    [self getInboxInformation];
+    
+    NSLog(@"ARRAY COUNT ======== %d",[inboxDataManagerArray count]);
+}
+
+- (void)beginWithMsgSelectd:(int)msgType
+{
+    currentMsgtype = msgType;
+    [self getInboxInformation];
+}
+
+#pragma mark- dummy DataBase Insertion
+-(void)dummyDataBaseInsertion
+{
+    NSArray *msgIdArray = [NSArray arrayWithObjects:@"1",@"2",@"37",@"4",@"5",@"6",@"7",@"8",@"9",@"10",nil]; 
+    
+    NSArray *msgTypeArray = [NSArray arrayWithObjects:@"1",@"2",@"3",@"4",@"1",@"2",@"3",@"4",@"1",@"2",nil]; 
+    
+    NSArray *readStatusArray = [NSArray arrayWithObjects:@"1",@"0",@"0",@"1",@"1",@"0",@"0",@"1",@"0",@"1",nil];
+    
+    NSArray *dateArray = [NSArray arrayWithObjects:@"10/12/2012",@"15/02/2011",@"12/10/2009",@"15/11/2008",@"11/2/2010",@"10/12/2012",@"15/02/2001",@"12/10/2012",@"15/11/2000",@"11/2/2012",nil]; 
+    
+    NSArray *fNameArray = [NSArray arrayWithObjects:@"Michael",@"Rodney",@"Douglas",@"Edie",@"Lauren",@"Michael",@"Rodney",@"Douglas",@"Edie",@"Lauren",nil];    
+    
+    NSArray *lNameArray = [NSArray arrayWithObjects:@"Caine",@"Dangerfield",@"Fairbanks",@"Adams",@"Bacall",@"Caine",@"Dangerfield",@"Fairbanks",@"Adams",@"Bacall",nil]; 
+    
+    NSArray *DOBArray = [NSArray arrayWithObjects:@"10/12/1987",@"15/02/1977",@"12/10/1997",@"15/11/1987",@"11/2/1970",@"10/12/1987",@"15/02/1977",@"12/10/1997",@"15/11/1987",@"11/2/1970",nil]; 
+    
+    NSArray *sendernameArray = [NSArray arrayWithObjects:@"Issur Danielovitch",@"Seth Ward",@"Lincoln Perry",@"Raymond Cramton",@"Douglas Ullman",@"Barbara Huffman",@"William Franklin",@"Ehrich Weiss",@"Krishna Banji",@"Sidney Leibowitz",nil]; 
+    
+    NSArray *subjectArray = [NSArray arrayWithObjects:@"Important patient info",@"Narrow Your Audience",@"Name Quality",@"List Licensing",@"specifications",@"Data-provider companies",@"Grabbing Physicians’ Attention",@"Be Sincere",@"Personalization",@"Visual Appeal",nil]; 
+    
+    NSArray *msgBodyArray = [NSArray arrayWithObjects:@"Physicians spend a short time reading marketing emails,",@"so it’sessential to prepare carefully and make every word count. The length of an emailshould not exceed 300 words or",@" a screen’s-worth of text. Make the email easier to scan over by including bullets",@"With the cultivation of email came scammers and hackers",@" who abuseit by sending junk and virus messages.",@"The public has caught on to this, whichhas damaged email marketing’s credibility.",@"This is why it’s important to impartan authentic message to readers.",@"Maintain the truth about your product",@"serviceand empathize",@"with readers by using straightforward language",nil]; 
+    
+    for (int i =0; i < 10 ; i++)
+    {        
+        self.inbox = [DataManager createEntityObject:@"Inbox"];
+        NSNumberFormatter * formatter = [[NSNumberFormatter alloc] init];
+        [formatter setNumberStyle:NSNumberFormatterNoStyle];
+        self.inbox.messageId=[formatter numberFromString:[msgIdArray objectAtIndex:i]];
+        self.inbox.messageType=[formatter numberFromString:[msgTypeArray objectAtIndex:i]];
+        self.inbox.readStatus=[formatter numberFromString:[readStatusArray objectAtIndex:i]];
+        formatter = nil;
+        self.inbox.patientFirstName = [fNameArray objectAtIndex:i];
+        self.inbox. patientLastName = [lNameArray objectAtIndex:i];
+        self.inbox. subject = [subjectArray objectAtIndex:i];
+        self.inbox.textMessageBody = [msgBodyArray objectAtIndex:i];
+        
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"MM-dd-yyyy"];
+        NSDate *dateFromString = [[NSDate alloc] init];
+        dateFromString = [dateFormatter dateFromString:[dateArray objectAtIndex:i]];
+        dateFormatter = nil;
+        
+        self.inbox.date = dateFromString;
+        
+        for (int j =0; j < 2 ; j++)
+        {
+            NSNumber *p = [NSNumber numberWithInt:j];
+            MsgRecipient *msgRecipient = [DataManager createEntityObject:@"MsgRecipient"];
+            msgRecipient.recipientName = @"Veena";
+            msgRecipient.recipientId = p; 
+            [self.inbox addRecipientmessageIDObject:msgRecipient];
+        }
+    }
+    BOOL isSaved = [DataManager saveContext];
+}
+
+#pragma mark- Initialization and reload
+-(void)getInboxInformation
+{
+    /*
+     //DataBase insertion
+     
+     for (int i =0; i < 3 ; i++)
+     {
+     self.inbox = [DataManager createEntityObject:@"Inbox"];
+     self.inbox.patientFirstName = @"John";
+     self.inbox. patientLastName = @"Von";
+     self.inbox. subject = @"Sub 1";
+     self.inbox.textMessageBody = @"hgd hg ghd dw";
+     
+     for (int j =0; j < 3 ; j++)
+     {
+     NSNumber *p = [NSNumber numberWithInt:j];
+     MsgRecipient *msgRecipient = [DataManager createEntityObject:@"MsgRecipient"];
+     msgRecipient.recipientName = @"Veena";
+     msgRecipient.recipientId = p; 
+     [self.inbox addRecipientmessageIDObject:msgRecipient];
+     }
+     }
+     BOOL isSaved = [DataManager saveContext];
+     */
+    
+    if(dataManager)
+    {
+        dataManager = nil;
+    }
+    dataManager=[[DataManager alloc]init];
+    
+    if(inboxDataManagerArray)
+    {
+        inboxDataManagerArray = nil;
+    }
+    
+    inboxDataManagerArray = [dataManager getWholeInboxDetails:currentMsgtype];
+    
+    [self.inboxTableView reloadData];
+    
+}
+
+#pragma mark- Button Actions
+- (IBAction)composeButtonClicked:(id)sender 
+{
+    [inboxSearchBar resignFirstResponder];
+    SendMessageViewController *detailViewController=[[SendMessageViewController alloc] initWithNibName:@"SendMessageViewController" bundle:nil];
+    [self.navigationController pushViewController:detailViewController animated:YES];
+    detailViewController = nil;
+}
+
+- (IBAction)listButtonTouched:(id)sender 
+{
+    ListMenuViewController *listMenuViewController=[[ListMenuViewController alloc] initWithNibName:@"ListMenuViewController" bundle:nil];   
+    listMenuViewController.currentObj = self;
+    CATransition* transition = [CATransition animation];
+    transition.duration = 0.5;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionMoveIn; //, kCATransitionPush, kCATransitionReveal, kCATransitionFade
+    //transition.subtype = kCATransitionFromTop; //kCATransitionFromLeft, kCATransitionFromRight, kCATransitionFromTop, kCATransitionFromBottom  kCATransitionFade; //
+    [self.navigationController.view.layer addAnimation:transition forKey:nil];
+    [self.navigationController pushViewController:listMenuViewController animated:YES];
+    listMenuViewController = nil;
+}
+
+- (IBAction)refreshButtonClicked:(id)sender 
+{
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:.75];
+    [UIView setAnimationTransition:(UIViewAnimationTransitionFlipFromLeft)forView:self.view cache:YES];
+    [UIView commitAnimations];    
+    //    [self getInboxInformation];
+}
+
+
+
+#pragma mark- BackGroundTouch Actions
+- (void) touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event 
+{
+	NSLog(@"Background touched");
+	[inboxSearchBar resignFirstResponder];
+}
+
+#pragma mark - Table view data source
+- (CGFloat) tableView:(UITableView *)tableView1 heightForRowAtIndexPath:(NSIndexPath *)indexPath 
+{
+    return 82.5;	
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [inboxDataManagerArray count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"Cell";
+    
+    InboxTableViewCell *inboxCell = (InboxTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    if (inboxCell == nil) 
+    {
+        [[NSBundle mainBundle] loadNibNamed:@"InboxTableViewCell" owner:self options:nil];
+        inboxCell = inboxTableViewCell;
+        self.inboxTableViewCell = nil;
+    }
+    if([inboxDataManagerArray count] > 0)
+    {  
+        [inboxCell displayDetails:[inboxDataManagerArray objectAtIndex:indexPath.row]];  
+    }
+    inboxCell.selectionStyle = UITableViewCellSelectionStyleNone; 
+    return inboxCell;
+    
+}
+
+
+#pragma mark - Table view delegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [inboxSearchBar resignFirstResponder];
+    InboxDetailsViewController *inboxDetailsViewController=[[InboxDetailsViewController alloc] initWithNibName:@"InboxDetailsViewController" bundle:nil];
+    inboxDetailsViewController.inbox = [inboxDataManagerArray objectAtIndex:indexPath.row];
+    [self.navigationController pushViewController:inboxDetailsViewController animated:YES];
+    inboxDetailsViewController = nil;
+}
+
+
+#pragma mark - viewDidUnload
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
+    // Release any retained subviews of the main view.
+    // e.g. self.myOutlet = nil;
+}
+
+#pragma mark - dealloc
+-(void)dealloc
+{
+    NSLog(@"Inside Inbox dealloc");
+    inboxTableView = nil;
+    inboxSearchBar = nil;
+    inbox = nil;
+    inboxTableViewCell = nil;
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+@end
+

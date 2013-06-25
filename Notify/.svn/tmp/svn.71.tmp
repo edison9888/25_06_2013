@@ -1,0 +1,269 @@
+//
+//  TouchBaseViewController.m
+//  NotiyiiPhoneApplicationProject
+//
+//  Created by Veena on 10/09/12.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//
+
+#import "TouchBaseViewController.h"
+#import "StartDiscussionViewController.h"
+#import "DataManager.h"
+#import "DiscussionParticipants.h"
+#import "Comments.h"
+#import "GeneralClass.h"
+#import "SBJSON.h"
+#import "JSON.h"
+
+JsonParser *objParser;
+
+@interface TouchBaseViewController ()
+{
+    IBOutlet UILabel *touchBaseLabel;
+    DataManager *dataManager;
+    NSArray *touchBaseDataManagerArray;
+    UIActivityIndicatorView *refreshActivityIndicator;
+}
+
+@property(strong, nonatomic) IBOutlet UITableView *touchBaseTableView;
+@property (weak, nonatomic) IBOutlet UIButton *refreshButton;
+
+- (void)touchBaseDataRefreshing;
+-(void)getTouchBaseInformation;
+-(void)getDataFromServer;
+-(void)fetchTouchBaseDataFromServer;
+-(IBAction)startDiscussionBtnTouched:(id)sender;
+-(IBAction)touchBaseRefreshBtnTouched:(id)sender;
+
+
+@end
+
+BOOL istouchBaseRefreshButtonTouched;
+
+@implementation TouchBaseViewController
+@synthesize touchBaseTableView;
+@synthesize refreshButton;
+@synthesize customTouchBaseTableViewCell;
+@synthesize touchBase;
+
+#pragma mark- Init Load
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        self.title = @"Touch Base";
+        self.tabBarItem.image = [UIImage imageNamed:@"tabBar_TouchBase"];
+    }
+    return self;
+}
+
+#pragma mark - viewDidLoad
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    istouchBaseRefreshButtonTouched = NO;
+    self.navigationController.navigationBarHidden = YES;
+    
+    touchBaseLabel.font = [GeneralClass getFont:titleFont and:boldFont];
+    
+    
+}
+
+-(void) viewWillAppear:(BOOL)animated
+{
+    [self getTouchBaseInformation];
+}
+
+#pragma mark- GetTouchBaseInfo
+/*******************************************************************************
+ *  Function Name: getTouchBaseInformation.
+ *  Purpose: To get Touchbase information from Database.
+ *  Parametrs:nil.
+ *  Return Values:nil.
+ ********************************************************************************/
+-(void)getTouchBaseInformation
+{
+    
+    if(touchBaseDataManagerArray)
+    {
+        touchBaseDataManagerArray = nil;
+    }
+    
+    NSArray *touchBaseArr = [DataManager getWholeEntityDetails:@"TouchBase" sortBy:@"discussionDate"];
+    NSLog(@"COUNT %d",[touchBaseArr count]);
+    touchBaseDataManagerArray = [[touchBaseArr reverseObjectEnumerator] allObjects];
+    NSLog(@"COUNT %d",[touchBaseDataManagerArray count]);
+    
+    if ([touchBaseDataManagerArray count] > 0 && istouchBaseRefreshButtonTouched)
+    {
+        [refreshActivityIndicator stopAnimating];
+        [refreshActivityIndicator removeFromSuperview];
+        
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:.75];
+        [UIView setAnimationTransition:(UIViewAnimationTransitionFlipFromRight)forView:self.view cache:YES];
+        [UIView commitAnimations];
+        
+        istouchBaseRefreshButtonTouched = NO;
+    }
+    else {
+        
+        [refreshActivityIndicator stopAnimating];
+        [refreshActivityIndicator removeFromSuperview];
+    }
+
+    [self.touchBaseTableView reloadData];
+    
+}
+
+
+- (void)touchBaseDataRefreshing 
+{
+    NSString *string=@"";//No need of inputs right now.
+    objParser = nil;
+    if (!objParser) 
+    {
+        objParser=[[JsonParser alloc] init];
+        objParser.delegate=self;
+    }
+    [objParser parseJson:TouchBaseParse :string];  
+}
+
+#pragma mark- Button Actions
+/*******************************************************************************
+ *  To start Discussion View.
+ ********************************************************************************/
+- (IBAction)startDiscussionBtnTouched:(id)sender
+{
+    StartDiscussionViewController *detailViewController = [[StartDiscussionViewController alloc] initWithNibName:@"StartDiscussionViewController"
+                                                                                                          bundle:nil];
+    [self.navigationController pushViewController:detailViewController animated:YES];
+    detailViewController = nil;
+}
+
+/*******************************************************************************
+ *  Refresh button touch action.
+ ********************************************************************************/
+- (IBAction)touchBaseRefreshBtnTouched:(id)sender
+{
+    [self.refreshButton setUserInteractionEnabled:NO];
+    
+    if(!refreshActivityIndicator)
+    {
+        refreshActivityIndicator = [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(150, 180, 30, 50)];
+        refreshActivityIndicator.backgroundColor = [UIColor clearColor];
+        refreshActivityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+    }
+    [refreshActivityIndicator startAnimating];
+    [self.view addSubview:refreshActivityIndicator];
+    
+    istouchBaseRefreshButtonTouched = YES;
+    
+    [self touchBaseDataRefreshing];
+}
+
+#pragma mark - Table view data source
+/*******************************************************************************
+ *  UITable view data source.
+ ********************************************************************************/
+- (CGFloat) tableView:(UITableView *)tableView1 heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 80;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [touchBaseDataManagerArray count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"Cell";
+    
+    CustomTouchBaseTableViewCell *touchBaseCell = (CustomTouchBaseTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    if (touchBaseCell == nil)
+    {
+        
+        [[NSBundle mainBundle] loadNibNamed:@"CustomTouchBaseTableViewCell" owner:self options:nil];
+        touchBaseCell = customTouchBaseTableViewCell;
+        self.customTouchBaseTableViewCell = nil;
+    }
+    
+    if([touchBaseDataManagerArray count] > 0)
+    {
+        [touchBaseCell displayDetails:[touchBaseDataManagerArray objectAtIndex:indexPath.row]];
+    }
+    touchBaseCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    touchBaseCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    return touchBaseCell;
+}
+#pragma mark - Table view delegate
+/*******************************************************************************
+ *  UITable view delegate.
+ ********************************************************************************/
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    TouchBaseDetailsViewController *touchBaseDetailsViewController=[[TouchBaseDetailsViewController alloc] initWithNibName:@"TouchBaseDetailsViewController" bundle:nil];
+    touchBaseDetailsViewController.touchBaseManagerArr = touchBaseDataManagerArray;
+    touchBaseDetailsViewController.swipeCount = indexPath.row;
+    [self.navigationController pushViewController:touchBaseDetailsViewController animated:YES];
+    touchBaseDetailsViewController = nil;
+}
+
+#pragma mark- Parser Delegates
+/*******************************************************************************
+ *  Function Name: parseCompleteSuccessfully,parseFailedWithError.
+ *  Purpose: To delegate the json parser.
+ *  Parametrs:Array of resulted parserObject.
+ *  Return Values:nil.
+ ********************************************************************************/
+-(void)parseCompleteSuccessfully:(ParseServiseType) eparseType:(NSArray *)result
+{
+    [self.refreshButton setUserInteractionEnabled:YES];
+    if( eparseType == TouchBaseParse)
+    {
+        //Inbox finish
+        objParser.delegate = nil;
+        objParser = nil;
+        [self getTouchBaseInformation];
+    }
+    
+}
+-(void)parseFailedWithError:(ParseServiseType) eparseType:(NSError *)error:(int)errorCode
+{
+    [self.refreshButton setUserInteractionEnabled:YES];
+    NSLog(@"Parse Error in TouchBase");
+}
+
+
+#pragma mark- Memory
+- (void)viewDidUnload
+{
+    [self setRefreshButton:nil];
+    [super viewDidUnload];
+}
+
+#pragma mark- dealloc
+-(void) dealloc
+{
+    [self setTouchBaseTableView:nil];
+    [self setCustomTouchBaseTableViewCell:nil];
+    [self setTouchBase:nil];
+    refreshActivityIndicator = nil;
+    
+}
+
+#pragma mark- Orientation
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+@end

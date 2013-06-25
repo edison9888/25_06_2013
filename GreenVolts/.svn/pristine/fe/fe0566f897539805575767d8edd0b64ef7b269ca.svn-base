@@ -1,0 +1,15 @@
+//
+//  GVConstants.h
+//  GreenVolts
+//
+//  Created by Rapidvalue on 8/31/12.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+@interface GVConstants : NSObject
+
+#define EnteredPortfolioLevel @"PortfolioLevel"
+#define ExitedPortfolioLevel @"ExitFromPortfolioLevel"
+@end

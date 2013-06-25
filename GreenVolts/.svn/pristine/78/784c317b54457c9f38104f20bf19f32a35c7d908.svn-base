@@ -1,0 +1,122 @@
+//
+//  ControlView.m
+//  GreenVolts
+//
+//  Created by Shinu Mohan on 21/08/12.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//
+
+#import "ControlView.h"
+
+@implementation ControlView
+
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) 
+    {
+        [self loadView];
+        // Initialization code
+    }
+    return self;
+}
+
+
+-(void)loadView
+
+{ 
+    
+//if([self.navigationController.viewControllers objectAtIndex:0]!=self)
+//{
+//  UIButton *m_Backbutton=[UIButton buttonWithType:UIButtonTypeCustom];
+//    m_Backbutton.frame=CGRectMake(5, 8, 72, 30);
+//    [m_Backbutton setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:[[NSUserDefaults standardUserDefaults]objectForKey:@"BACK_BUTTON"] ofType:@"png"]] forState:UIControlStateNormal];
+//    [m_Backbutton addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
+//    
+//}
+
+NSLog(@"loading control page");
+UILabel *pPasswordLabel=[[UILabel alloc]initWithFrame:CGRectMake(5, 10, 310, 20)]; 
+pPasswordLabel.text=@"Reason for Change";
+pPasswordLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:12];
+pPasswordLabel.textColor = [UIColor whiteColor];
+pPasswordLabel.backgroundColor=[UIColor clearColor];
+pPasswordLabel.textAlignment=UITextAlignmentLeft;
+[self addSubview:pPasswordLabel];
+
+UITextField *m_PasswordTextField=[[UITextField alloc]initWithFrame:CGRectMake(5, 30, 310, 30)];
+m_PasswordTextField.borderStyle=UITextBorderStyleRoundedRect;
+m_PasswordTextField.returnKeyType=UIReturnKeyDone;
+m_PasswordTextField.clearButtonMode = UITextFieldViewModeAlways;
+m_PasswordTextField.delegate=self;
+[self addSubview:m_PasswordTextField];  
+
+UIButton *pFaceWestButton=[UIButton buttonWithType:UIButtonTypeCustom];
+pFaceWestButton.frame=CGRectMake(25, 120, 123, 40);
+pFaceWestButton.backgroundColor=[UIColor clearColor];
+pFaceWestButton.tag=2;
+[pFaceWestButton setImage:[UIImage imageNamed:@"FaceWest.png"] forState:UIControlStateNormal];
+[pFaceWestButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+[self addSubview:pFaceWestButton];  
+
+UIButton *pFaceEastButton=[UIButton buttonWithType:UIButtonTypeCustom];
+pFaceEastButton.frame=CGRectMake(174,120, 123, 40);
+pFaceEastButton.backgroundColor=[UIColor clearColor];
+pFaceEastButton.tag=3;
+[pFaceEastButton setImage:[UIImage imageNamed:@"FaceEast.png"] forState:UIControlStateNormal];
+[pFaceEastButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+[self addSubview:pFaceEastButton];
+
+UIButton *pFaceUpButton=[UIButton buttonWithType:UIButtonTypeCustom];
+pFaceUpButton.frame=CGRectMake(100, 65, 123, 40);
+pFaceUpButton.backgroundColor=[UIColor clearColor];
+pFaceUpButton.tag=1;
+[pFaceUpButton setImage:[UIImage imageNamed:@"FaceUp.png"] forState:UIControlStateNormal];
+[pFaceUpButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+[self addSubview:pFaceUpButton];
+
+UIButton *pFaceDownButton=[UIButton buttonWithType:UIButtonTypeCustom];
+pFaceDownButton.frame=CGRectMake(100, 180, 123, 40);
+pFaceDownButton.backgroundColor=[UIColor clearColor];
+pFaceDownButton.tag=4;
+[pFaceDownButton setImage:[UIImage imageNamed:@"FaceDown.png"] forState:UIControlStateNormal];
+[pFaceDownButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+[self addSubview:pFaceDownButton];
+
+UIButton *pLockButton=[UIButton buttonWithType:UIButtonTypeCustom];
+pLockButton.frame=CGRectMake(25,240, 123, 41);
+pLockButton.backgroundColor=[UIColor clearColor];
+pLockButton.tag=5;
+[pLockButton setImage:[UIImage imageNamed:@"Lock.png"] forState:UIControlStateNormal];
+[pLockButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+[self addSubview:pLockButton];
+
+UIButton *pUnLockButton=[UIButton buttonWithType:UIButtonTypeCustom];
+pUnLockButton.frame=CGRectMake(174,240, 123, 41);
+pUnLockButton.backgroundColor=[UIColor clearColor];
+pUnLockButton.tag=6;
+[pUnLockButton setImage:[UIImage imageNamed:@"unlock.png"] forState:UIControlStateNormal];
+[pUnLockButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+[self addSubview:pUnLockButton];
+
+UIButton *pResumeTrackingButton=[UIButton buttonWithType:UIButtonTypeCustom];
+pResumeTrackingButton.frame=CGRectMake(100,296, 123, 42);
+pResumeTrackingButton.backgroundColor=[UIColor clearColor];
+pResumeTrackingButton.tag=7;
+[pResumeTrackingButton setImage:[UIImage imageNamed:@"Track.png"] forState:UIControlStateNormal];
+[pResumeTrackingButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+[pResumeTrackingButton setTitle:@"Resume Tracking" forState:UIControlStateNormal];
+[self addSubview:pResumeTrackingButton];
+
+}
+
+/*
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+- (void)drawRect:(CGRect)rect
+{
+    // Drawing code
+}
+*/
+
+@end

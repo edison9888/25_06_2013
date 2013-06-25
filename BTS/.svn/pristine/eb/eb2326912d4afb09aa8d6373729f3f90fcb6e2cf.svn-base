@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OC_SA_R1_D050_C010]]></id>
+	<title><![CDATA[]]></title>
+    <descriptionText><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Making a Connection</Introtext><welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">Great work. During your first conversation with Dr. Hayes, you should confirm the information you have already received and ask Dr. Hayes about his vision for patient outcomes.  Doing so is the most effective approach at the evaluating options phase of the prescribing cycle.</welcomeText>]]></descriptionText>
+    <character><![CDATA[Char_Mack01]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>
+	<branchTo><![CDATA[OC_SA_R1_D060_I010]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

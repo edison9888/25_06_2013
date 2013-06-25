@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OC_SA_R1_D010_I010]]></id>
+	<title><![CDATA[]]></title>
+    <descriptionText><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Good Potential</Introtext><welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">I think it’s smart for us to focus on Sunnydale Psychiatry as a key business driver. There has been a slow but steady increase in their prescribing volume in the last several months. The only thing is that I just had a conversation with Dr. Bennett yesterday, and even though they are looking to grow the practice and see more patients, he said that Dr. Hayes remains hesitant to try any new products. Dr. Hayes just isn’t willing to risk his reputation with his patients in order to try something new.</welcomeText>]]></descriptionText>
+    <character><![CDATA[Char_Dennis]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>
+	<branchTo><![CDATA[OC_SA_R1_D010_I030]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

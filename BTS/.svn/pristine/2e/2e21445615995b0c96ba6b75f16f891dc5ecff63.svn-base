@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OTS_SA_R5_D080_A020]]></id>
+	<title><![CDATA[]]></title>
+    <descriptionText><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Collecting Information and Determining Next Steps</Introtext><welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">Great choice.<BR><BR>
+        This Execute Next Steps question makes a clear advance, while framing the question in a way that demonstrates your understanding of Dr. Chu’s key priorities. You have earned the right to come back and meet with Dr. Chu again.  
+</welcomeText>]]></descriptionText>
+    <character><![CDATA[Mac_happy]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>	
+	<branchTo><![CDATA[OTS_SA_R5_SIMEND]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

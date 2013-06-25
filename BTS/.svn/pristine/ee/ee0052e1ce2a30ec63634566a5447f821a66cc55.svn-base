@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OTS_SA_R2_SIMEND]]></id>
+	<title><![CDATA[Thank You]]></title>
+    <descriptionText><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#3333; margin:25px 10px 10px 10px; padding:0 0 0 5px;  display:block; text-align:center">Congratulations!</Introtext><contentText style="font-family:Helvetica; font-size:14pt; font-weight:normal; color:#3333; margin:10px; padding:10px 0;  display:block; text-align:center">You have completed the <b>OAPI Sales Accelerator ROPE Questioning Challenge.</b></contentText><contentText style="font-family:Helvetica; font-size:13pt; font-weight:normal; color:#3333; margin:10px; padding:10px 0;  display:block; text-align:center"><I>Please click the <b>Feedback</b> button below to review your Feedback.<BR><BR>After exploring the Feedback, you can close the browser when you are ready to exit.</I><BR><BR><BR><BR><BR><BR><BR><BR><BR><I>Simulation Version: January 2012   0711T-3576B</I></contentText>]]></descriptionText>
+    <continueBtn><![CDATA[NO]]></continueBtn>
+	<branchTo><![CDATA[]]></branchTo>
+</pageContent>

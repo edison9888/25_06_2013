@@ -1,0 +1,878 @@
+//
+//  StringViewController.m
+//  GreenVolts
+//
+//  Created by YML on 8/27/11.
+//  Copyright 2011 YML. All rights reserved.
+//
+
+#import "StringViewController.h"
+#import "TopTileView.h"
+#import "EntityDetails.h"
+#import <QuartzCore/QuartzCore.h>
+#import <CoreGraphics/CoreGraphics.h>
+#import "LoginManager.h"
+#import "SBJson.h"
+#import "DateTimeConverter.h"
+#import "SliderManager.h"
+#import "GreenVoltsAppDelegate.h"
+@interface StringViewController(PVT)<TotalEnergyViewDelegate,LoginManagerDelegate,ConnectionDelegate>
+-(void)loadNextView;
+-(void)loadPreviousView;
+-(void)foundSwipeLeft;
+-(void)foundSwipeRight;
+-(void)addTopTileView;
+-(void)updateGraphValuesFromServer;
+-(void)jsonParser_ParseStringDetails:(NSData*)responseData;
+-(void)jsonParser_parseToatlEnergy:(NSData*)responseData;
+-(void)jsonParser_parseTopViewData:(NSData*)responseData;
+-(void)handleSlider:(id)sender;
+-(void)updateSlider;
+-(BOOL)isViewPresent:(UIView*)view;
+@end
+
+@implementation StringViewController
+-(id)initWithString:(String *)pString
+{
+  if((self = [super init]))
+  {
+    m_String=pString;
+    
+    m_TopTileView=nil;
+    m_PowerVsDNIView=nil;
+    m_TotalEnergyView=nil;
+    m_TitleLabel=nil;
+    m_Slider=nil;
+    
+    mConnection=[[Connection alloc]init];    
+    m_ActivityIndicatorView=nil;    
+    
+    m_webserviceProcessor = nil;
+    m_parseStringListURL = nil;
+    m_parseArrayDetailsURL = nil;
+    m_parseTotalEnergyURL = nil;
+    m_parseTopViewDataURL = nil;
+    
+    isPowerView=YES;
+    
+    m_bTapped = NO;
+    lastSelectedDay=-1;
+    //printf("\nStringVC init with String:\n%s\n",[[pString description]UTF8String]);
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloaddata) name:@"RELOAD_DATA" object:nil];
+  }
+  return self;
+}
+
+- (void)dealloc 
+{
+  if(m_webserviceProcessor)
+  {
+    [m_webserviceProcessor cancel];
+    m_webserviceProcessor = nil;
+  }
+  
+  if(m_TotalEnergyView){m_TotalEnergyView.m_delegate=nil;m_TotalEnergyView=nil;}
+  
+  if(m_Slider){m_Slider=nil;}
+  if(m_TitleLabel){m_TitleLabel=nil;}
+  
+  if(m_Backbutton){[m_Backbutton removeFromSuperview];}
+  if(mConnection){mConnection.m_delegate=nil;mConnection=nil;}
+}
+
+-(void)loadView
+{
+  self.view=[[UIView alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
+  self.view.backgroundColor=[UIColor colorWithRed:(10.2/100.0) green:(13.3/100.0) blue:(13.7/100.0) alpha:1.0];
+  
+  if([self.navigationController.viewControllers objectAtIndex:0]!=self)
+  {
+    m_Backbutton=[UIButton buttonWithType:UIButtonTypeCustom];
+    m_Backbutton.frame=CGRectMake(5, 8, 72, 30);
+    [m_Backbutton setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:[[NSUserDefaults standardUserDefaults]objectForKey:@"BACK_BUTTON"] ofType:@"png"]] forState:UIControlStateNormal];
+    [m_Backbutton addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
+  }
+  
+  [self addTopTileView];
+  
+  [self.navigationItem setHidesBackButton:YES animated:NO];
+  
+  UIImageView *m_BackgroundImageView=[[UIImageView alloc]initWithFrame:CGRectMake(8, 110, 304, 247)];
+  m_BackgroundImageView.image=[UIImage imageNamed:@"SecondViewBG.png"];
+  [self.view addSubview:m_BackgroundImageView];
+  
+  m_PowerVsDNIView=[[PowerVsDNIScrollView alloc]initWithFrame:CGRectMake(2,2,298,250)];
+  
+  m_TotalEnergyView=[[TotalEnergyView alloc]initWithFrame:CGRectMake(0,0,304,250)];
+  
+  mPagingView=[[PagingView alloc]initWithFrame:CGRectMake(8,110,304,255)];
+  mPagingView.delegate=self;
+  mPagingView.dataSource=self;
+  mPagingView.isEnabled=NO;
+  [self.view addSubview:mPagingView];
+  
+  UIImageView *pTitleImageView=[[UIImageView alloc]initWithFrame:CGRectMake(114.5, 98, 91, 22)];
+  pTitleImageView.image=[UIImage imageNamed:@"TitleBox.png"];
+  [self.view addSubview:pTitleImageView];
+  
+  m_TitleLabel=[[UILabel alloc]initWithFrame:CGRectMake(0,0, 91, 22)];
+  [m_TitleLabel setFont:[UIFont fontWithName:@"Arial" size:12]];
+  m_TitleLabel.textColor=[UIColor colorWithRed:(87.1/100.0) green:(89.0/100.0) blue:(0.0/100.0) alpha:1.0];
+  m_TitleLabel.backgroundColor=[UIColor clearColor];
+  m_TitleLabel.textAlignment=UITextAlignmentCenter;
+  m_TitleLabel.text=@"Power vs. DNI";
+  [pTitleImageView addSubview:m_TitleLabel];
+  
+  m_Slider=[[UISlider alloc]initWithFrame:CGRectMake(12, 332, 296, 20)];
+  m_Slider.continuous=NO;
+  UIImage *maxImage=[UIImage imageNamed:@"Bar.png"];
+  UIImage *minImage=[UIImage imageNamed:@"Bar.png"];
+  UIImage *tumbImage= [UIImage imageNamed:@"Thumb.png"];
+  
+  minImage=[minImage stretchableImageWithLeftCapWidth:10.0 topCapHeight:0.0];
+  maxImage=[maxImage stretchableImageWithLeftCapWidth:10.0 topCapHeight:0.0];
+  
+  // Setup the FX slider
+  [m_Slider setMinimumTrackImage:minImage forState:UIControlStateNormal];
+  [m_Slider setMaximumTrackImage:maxImage forState:UIControlStateNormal];
+  [m_Slider setThumbImage:tumbImage forState:UIControlStateNormal];
+  
+  UITapGestureRecognizer *m_TapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sliderTapped:)];
+  [m_Slider addGestureRecognizer:m_TapGestureRecognizer];
+  
+  [m_Slider addTarget:self action:@selector(handleSlider:) forControlEvents:UIControlEventValueChanged];     
+  [self.view addSubview:m_Slider];
+  
+  isReloading=NO;
+  [self updateSlider];
+  [self updateGraphValuesFromServer];
+}
+-(void)didReceiveMemoryWarning
+{
+}
+- (NSString*)getFormatedStringForDate:(NSDate*)date
+{
+  NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+  [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+	[dateFormatter setDateFormat:@"MM-dd-yyyy"];
+  
+  NSString *dateString = [dateFormatter stringFromDate:date];  
+  return dateString;
+}
+
+- (void)updateSlider
+{
+  /// Find current date is weekly or daily
+  BOOL bGraphTypeDaily = ([m_TitleLabel.text compare:totalEnergyTitle] == NSOrderedSame) ? NO : YES;
+  [[SliderManager SharedSliderManager] updateSlider:m_Slider andIsDailyGraph:bGraphTypeDaily];
+  mPreviousValue=m_Slider.value;
+}
+
+- (void)updateGraphValuesFromServer
+{
+  /// Get current selected Date
+  NSDate* currentSelectedDate = (NSDate*)[[NSUserDefaults standardUserDefaults] objectForKey:kCurrentSelectedDateKey];
+  NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+  [dateFormatter setDateFormat:@"dd"];
+  NSString *dayInMonthStr = [dateFormatter stringFromDate:currentSelectedDate];
+  int currentDay = [dayInMonthStr intValue];
+  
+  if(lastSelectedDay!=-1)
+  {
+    if(lastSelectedDay==currentDay&&!isReloading)
+      return;
+    else
+      lastSelectedDay=currentDay;
+  }
+  else
+  {
+    lastSelectedDay=currentDay;
+  }
+  
+  if(isReloading)
+    isReloading=NO;
+  mPagingView.isEnabled=NO;
+  NSDate* dailyGraphStartDate = currentSelectedDate;
+  NSDate* dailyGraphEndDate = [currentSelectedDate dateByAddingTimeInterval:(24*60*60)*1];
+  
+  NSDate* weeklyGraphStartDate = [currentSelectedDate dateByAddingTimeInterval:-(24*60*60)*6];
+  NSDate* weeklyGraphEndDate = currentSelectedDate;
+  
+  /// Call webservice api to get new values.
+  if(m_webserviceProcessor)
+  {
+    [m_webserviceProcessor cancel];
+    m_webserviceProcessor = nil;
+  }
+  
+  if(m_parseStringListURL)
+  {
+    m_parseStringListURL = nil;
+  }
+  if(m_parseArrayDetailsURL)
+  {
+    m_parseArrayDetailsURL = nil;
+  }
+  if(m_parseTotalEnergyURL)
+  {
+    m_parseTotalEnergyURL = nil;
+  }
+  if(m_parseTopViewDataURL)
+  {
+    m_parseTopViewDataURL = nil;
+  }
+  
+  [[NSUserDefaults standardUserDefaults]setBool:NO forKey:@"ERROR"];
+  
+  if(m_ActivityIndicatorView){[m_ActivityIndicatorView removeFromSuperview];m_ActivityIndicatorView=nil;}
+  
+  [[NSUserDefaults standardUserDefaults]setBool:NO forKey:@"CONNECTION"];
+  
+  m_ActivityIndicatorView=[[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(145, 200, 30, 30)];
+  [m_ActivityIndicatorView startAnimating];
+  m_ActivityIndicatorView.activityIndicatorViewStyle=UIActivityIndicatorViewStyleWhite;
+  [self.view addSubview:m_ActivityIndicatorView];  
+  
+  NSString *pSessionToken=[[NSUserDefaults standardUserDefaults]objectForKey:@"SESSION_TOKEN"];
+  
+  NSMutableArray* urls = [[NSMutableArray alloc] init];
+  
+  m_parseArrayDetailsURL = [NSString stringWithFormat:@"%@/GreenVolts-ISIS-BL-Web-Models-iPhone-iPhone_DS.svc/JSON/GetDetailedStringInfo?sessionToken=%@&arraystringID=%@&startDate=%@&endDate=%@",kserverAddress,pSessionToken,m_String.m_StringId, [self getFormatedStringForDate:dailyGraphStartDate], [self getFormatedStringForDate:dailyGraphEndDate]];
+  [urls addObject:m_parseArrayDetailsURL];
+  
+  m_parseTotalEnergyURL = [NSString stringWithFormat:@"%@/GreenVolts-ISIS-BL-Web-Models-iPhone-iPhone_DS.svc/JSON/GetDailyStringInfo?sessionToken=%@&arraystringID=%@&startDate=%@&endDate=%@",kserverAddress,pSessionToken,m_String.m_StringId, [self getFormatedStringForDate:weeklyGraphStartDate], [self getFormatedStringForDate:weeklyGraphEndDate]];
+  [urls addObject:m_parseTotalEnergyURL];
+  
+  m_parseTopViewDataURL = [NSString stringWithFormat:@"%@/GreenVolts-ISIS-BL-Web-Models-iPhone-iPhone_DS.svc/JSON/GetCurrentStringInfo?sessionToken=%@&arraystringID=%@",kserverAddress,pSessionToken,m_String.m_StringId];
+  [urls addObject:m_parseTopViewDataURL];
+  
+  //NSLog(@"m_parseStringListURL = %@", m_parseStringListURL);
+  //NSLog(@"m_parseArrayDetailsURL = %@", m_parseArrayDetailsURL);
+  //NSLog(@"m_parseTotalEnergyURL = %@", m_parseTotalEnergyURL);
+  //NSLog(@"m_parseTopViewDataURL = %@", m_parseTopViewDataURL);
+  
+  m_webserviceProcessor = [[WebserviceProcessor alloc] initWithURLs:urls delegate:self];
+  mPreviousValue=m_Slider.value;
+}
+
+- (void)onWebserviceProcessorSuccess:(WebserviceProcessor*)processor
+{
+  if(m_ActivityIndicatorView){[m_ActivityIndicatorView removeFromSuperview];m_ActivityIndicatorView=nil;}
+  if(m_parseArrayDetailsURL)
+    [self jsonParser_ParseStringDetails:[processor dataForURL:m_parseArrayDetailsURL]];
+  if(m_parseTotalEnergyURL)
+    [self jsonParser_parseToatlEnergy:[processor dataForURL:m_parseTotalEnergyURL]];
+  if(m_parseTopViewDataURL)
+    [self jsonParser_parseTopViewData:[processor dataForURL:m_parseTopViewDataURL]];
+  
+  [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"CONNECTION"];
+  mPagingView.isEnabled=YES;
+}
+
+- (void)onWebserviceProcessorError:(WebserviceProcessor*)processor
+{
+  mPagingView.isEnabled=YES;
+  //  Error Codes: 
+  //  10001 – cannot connect to backend systems
+  //  10002 – invalid username or password (displays an error message on top of the screen)
+  if(m_ActivityIndicatorView){[m_ActivityIndicatorView removeFromSuperview];m_ActivityIndicatorView=nil;}
+  
+  UIAlertView *pAlert=[[UIAlertView alloc]initWithTitle:@"" message:@"Make sure your device has an active network connection and try again" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:NULL];
+  [pAlert show];
+  pAlert=nil;        
+}
+
+- (void) sliderTapped: (UITapGestureRecognizer*) g 
+{
+  //printf("************************************************** sliderTapped\n");
+  UISlider* s = (UISlider*)g.view;
+  if(s.isTracking)
+  {
+    m_bTapped=NO;
+    [self handleSlider:s];
+    return;
+  }
+  if (s.highlighted)
+  {
+    if(mPreviousValue != s.value)
+    {
+      m_bTapped = YES;
+      [self handleSlider:s];
+    }
+    else 
+      return;
+  }
+  CGPoint pt = [g locationInView: s];
+  CGFloat percentage = pt.x / s.bounds.size.width;
+  CGFloat delta = percentage * (s.maximumValue - s.minimumValue);
+  CGFloat value = s.minimumValue + delta;
+  if(value<s.value)
+  {
+    m_bTapped = YES;
+    if([m_TitleLabel.text compare:totalEnergyTitle] == NSOrderedSame)
+      [s setValue:s.value-7 animated:YES];
+    else
+      [s setValue:s.value-1 animated:YES];
+    [self handleSlider:s];
+    return;
+  }
+  if(value>s.value)
+  {
+    m_bTapped = YES;
+    if([m_TitleLabel.text compare:totalEnergyTitle] == NSOrderedSame)
+      [s setValue:s.value+7 animated:YES];
+    else
+      [s setValue:s.value+1 animated:YES];
+    [self handleSlider:s];  
+    return;
+  }
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    
+    GreenVoltsAppDelegate *appDelegate = (GreenVoltsAppDelegate *)[[UIApplication sharedApplication] delegate];
+    [appDelegate creatingThreeTabBarControllers];
+    
+  for(int i=0;i<[self.navigationController.navigationBar.subviews count];i++)
+  {
+    UIView *pView=[[self.navigationController.navigationBar subviews]objectAtIndex:i];
+    if([pView isKindOfClass:[UILabel class]])
+    {
+      UILabel *pLabel=(UILabel *)pView;
+      [pLabel setFrame:CGRectMake(80, 8, 237, 30)];
+      [pLabel setText:m_String.m_Name];
+    }
+  }
+  //  self.navigationItem.title=m_String.m_Name;
+  [self.navigationController.navigationBar addSubview:m_Backbutton];
+  
+  [[NSUserDefaults standardUserDefaults]setBool:NO forKey:@"ControlEnabled"];
+  [[NSUserDefaults standardUserDefaults]setBool:NO forKey:@"AlertEnabled"];
+  
+  [[NSUserDefaults standardUserDefaults]setObject:@"5" forKey:@"ENTITY_TYPE"];
+  [[NSUserDefaults standardUserDefaults]setBool:NO forKey:@"ERROR"];
+}
+
+-(void)fetchSessionToken
+{
+  if(m_ActivityIndicatorView){[m_ActivityIndicatorView removeFromSuperview];m_ActivityIndicatorView=nil;}
+  m_ActivityIndicatorView=[[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(145, 200, 30, 30)];
+  [m_ActivityIndicatorView startAnimating];
+  m_ActivityIndicatorView.activityIndicatorViewStyle=UIActivityIndicatorViewStyleWhite;
+  [self.view addSubview:m_ActivityIndicatorView];  
+  
+  if(!mConnection)
+  {
+    mConnection=[[Connection alloc]init];
+  }
+  mConnection.m_delegate=self;
+  [mConnection connectToServer];
+  mPagingView.isEnabled=NO;
+}
+
+#pragma mark ConnectionDelegate Methods
+
+-(void)ConnectionFailed
+{
+  UIAlertView *pAlert=[[UIAlertView alloc]initWithTitle:@"" message:@"Make sure your device has an active network connection and try again"  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:NULL];
+  [pAlert show];
+  pAlert=nil;      
+  mPagingView.isEnabled=YES;
+}
+
+-(void)InvalidUserNameError:(int)errorIndex
+{
+  if(errorIndex==0)
+  {
+    UIAlertView *pAlert=[[UIAlertView alloc]initWithTitle:@"" message:@"Cannot connect to backend systems" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:NULL];
+    [pAlert show];
+    pAlert=nil;              
+  }
+  else if(errorIndex==1)
+  {
+    [[LoginManager sharedLoginManagerWithDelegate:self] ShowLoginPage];
+  }
+  mPagingView.isEnabled=YES;
+}
+
+-(void)Success
+{
+  mPagingView.isEnabled=YES;
+  isReloading=YES;
+  [self updateGraphValuesFromServer];
+}
+
+-(void)reloaddata
+{
+  if(self.navigationController.topViewController==self)
+  {
+    isDateChanged=YES;
+    isReloading=YES;
+    [self updateGraphValuesFromServer];
+  }
+}
+
+#pragma mark parser methods
+
+-(void)jsonParser_ParseStringDetails:(NSData*)responseData
+{  
+  NSMutableArray *resultArray=[[NSMutableArray alloc]init];
+  NSString *responseString=[[NSString alloc]initWithData:responseData encoding:NSUTF8StringEncoding];
+  
+  //printf("\nResponse String for GetDetailedStringInfoResult:\n%s\n",[responseString UTF8String]);
+  
+  NSDictionary *data=[responseString JSONValue];
+  
+  NSDictionary *userResult= [data objectForKey:@"GetDetailedStringInfoResult"]; 
+  
+  NSArray *rootResult = [userResult objectForKey:@"RootResults"];
+  
+  if([rootResult count])
+  {
+    NSDictionary *rootResultDict=[rootResult objectAtIndex:0];
+    
+    NSObject *error=[rootResultDict objectForKey:@"Err"];
+    
+    if([error isKindOfClass:[NSNull class]])
+    {      
+      for(int i=0;i<[rootResult count];i++)
+      {
+        NSDictionary *siteDictinary=[rootResult objectAtIndex:i];
+        EntityDetails *pEntityDetails=[[EntityDetails alloc]init];
+        
+        NSObject *pDNI=[siteDictinary objectForKey:@"DNI"];
+        if(![pDNI isKindOfClass:[NSNull class]])
+          pEntityDetails.m_DNI=[siteDictinary objectForKey:@"DNI"];
+        
+        NSObject *pLocalDateTime=[siteDictinary objectForKey:@"DateTimeLocal"];
+        if(![pLocalDateTime isKindOfClass:[NSNull class]])
+          pEntityDetails.m_DateTimeLocal=[siteDictinary objectForKey:@"DateTimeLocal"];
+        
+        NSObject *pEnergy=[siteDictinary objectForKey:@"Energy"];
+        if(![pEnergy isKindOfClass:[NSNull class]])
+          pEntityDetails.m_Energy=[siteDictinary objectForKey:@"Energy"];
+        
+        NSObject *pPower=[siteDictinary objectForKey:@"Power"];
+        if(![pPower isKindOfClass:[NSNull class]])
+          pEntityDetails.m_Power=[siteDictinary objectForKey:@"Power"];
+        
+        NSObject *pWindDirection=[siteDictinary objectForKey:@"WindDirection"];
+        if(![pWindDirection isKindOfClass:[NSNull class]])
+          pEntityDetails.m_WindDirection=[siteDictinary objectForKey:@"WindDirection"];
+        
+        NSObject *pWindSpeed=[siteDictinary objectForKey:@"WindSpeed"];
+        if(![pWindSpeed isKindOfClass:[NSNull class]])
+          pEntityDetails.m_WindSpeed=[siteDictinary objectForKey:@"WindSpeed"];
+        
+        [resultArray addObject:pEntityDetails];
+
+        pEntityDetails=nil;
+      }
+      [m_PowerVsDNIView fillValuesFrom:resultArray andArrayCount:m_String.ArrayCount];
+    }
+    else 
+    {
+      NSNumber *errorId=[rootResultDict objectForKey:@"ErrID"];
+      if([errorId intValue]==10002 || [errorId intValue]==10026 || [errorId intValue]==10028 || [errorId intValue]==10029)
+      {
+        [[LoginManager sharedLoginManagerWithDelegate:self] ShowLoginPage];
+      }
+      if(![[NSUserDefaults standardUserDefaults]boolForKey:@"ERROR"])
+      {
+        if([errorId intValue]!=10003)
+        {
+          UIAlertView *pAlert=[[UIAlertView alloc]initWithTitle:@"" message:[rootResultDict objectForKey:@"Err"] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:NULL];
+          [pAlert show];
+          pAlert=nil;    
+        }
+      }
+      if([errorId intValue]==10003)
+      {
+        [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"ERROR"];
+        {
+          [self fetchSessionToken];
+        }
+      }            
+    }
+  }
+  else 
+  {
+    if([rootResult count]==0)
+    {
+    }
+  }
+}
+
+-(void)jsonParser_parseToatlEnergy:(NSData*)responseData
+{
+  NSMutableArray *energyInfoArray=[[NSMutableArray alloc]init];
+  NSString *responseString=[[NSString alloc]initWithData:responseData encoding:NSUTF8StringEncoding];
+  
+  //printf("\nResponse String for GetDailyStringInfoResult:\n%s\n",[responseString UTF8String]);
+  
+  NSDictionary *data=[responseString JSONValue];
+  
+  NSDictionary *userResult= [data objectForKey:@"GetDailyStringInfoResult"]; 
+  
+  NSArray *rootResult = [userResult objectForKey:@"RootResults"];
+  
+  if([rootResult count])
+  {
+    NSDictionary *rootResultDict=[rootResult objectAtIndex:0];
+    
+    NSObject *error=[rootResultDict objectForKey:@"Err"];
+    
+    if([error isKindOfClass:[NSNull class]])
+    {      
+      for(int i=0;i<[rootResult count];i++)
+      {
+        NSDictionary *siteDictinary=[rootResult objectAtIndex:i];
+        EntityDetails *pEntityDetails=[[EntityDetails alloc]init];
+        
+        NSObject *pDNI=[siteDictinary objectForKey:@"DNI"];
+        if(![pDNI isKindOfClass:[NSNull class]])
+          pEntityDetails.m_DNI=[siteDictinary objectForKey:@"DNI"];
+        
+        NSObject *pLocalDateTime=[siteDictinary objectForKey:@"DateTimeLocal"];
+        if(![pLocalDateTime isKindOfClass:[NSNull class]])
+          pEntityDetails.m_DateTimeLocal=[siteDictinary objectForKey:@"DateTimeLocal"];
+        
+        NSObject *pEnergy=[siteDictinary objectForKey:@"Energy"];
+        if(![pEnergy isKindOfClass:[NSNull class]])
+          pEntityDetails.m_Energy=[siteDictinary objectForKey:@"Energy"];
+        
+        NSObject *pPower=[siteDictinary objectForKey:@"Power"];
+        if(![pPower isKindOfClass:[NSNull class]])
+          pEntityDetails.m_Power=[siteDictinary objectForKey:@"Power"];
+        
+        NSObject *pWindDirection=[siteDictinary objectForKey:@"WindDirection"];
+        if(![pWindDirection isKindOfClass:[NSNull class]])
+          pEntityDetails.m_WindDirection=[siteDictinary objectForKey:@"WindDirection"];
+        
+        NSObject *pWindSpeed=[siteDictinary objectForKey:@"WindSpeed"];
+        if(![pWindSpeed isKindOfClass:[NSNull class]])
+          pEntityDetails.m_WindSpeed=[siteDictinary objectForKey:@"WindSpeed"];
+        
+        [energyInfoArray addObject:pEntityDetails];
+        pEntityDetails=nil;
+      }
+      [m_TotalEnergyView drawGraphFromValues:energyInfoArray];
+    }
+    else 
+    {
+      NSNumber *errorId=[rootResultDict objectForKey:@"ErrID"];
+      if([errorId intValue]==10002 || [errorId intValue]==10026 || [errorId intValue]==10028 || [errorId intValue]==10029)
+        [[LoginManager sharedLoginManagerWithDelegate:self] ShowLoginPage];
+      if(![[NSUserDefaults standardUserDefaults]boolForKey:@"ERROR"])
+      {
+        if([errorId intValue]!=10003)
+        {
+          UIAlertView *pAlert=[[UIAlertView alloc]initWithTitle:@"" message:[rootResultDict objectForKey:@"Err"] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:NULL];
+          [pAlert show];
+          pAlert=nil;    
+        }
+      }
+      if([errorId intValue]==10003)
+      {
+        [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"ERROR"];
+        
+        {
+          [self fetchSessionToken];
+        }
+      }            
+    }
+  }
+}
+-(void)jsonParser_parseTopViewData:(NSData*)responseData
+{  
+  NSString *responseString=[[NSString alloc]initWithData:responseData encoding:NSUTF8StringEncoding];
+  
+  //printf("\nResponse String for GetCurrentStringInfoResult:\n%s\n",[responseString UTF8String]);
+  
+  NSDictionary *data=[responseString JSONValue];
+  
+  NSDictionary *userResult= [data objectForKey:@"GetCurrentStringInfoResult"]; 
+  
+  NSArray *rootResult = [userResult objectForKey:@"RootResults"];
+  
+  if([rootResult count])
+  {
+    NSDictionary *siteDictinary=[rootResult objectAtIndex:0];
+    
+    NSObject *error=[siteDictinary objectForKey:@"Err"];
+    
+    if([error isKindOfClass:[NSNull class]])
+    {      
+      NSObject *pAlarmCount=[siteDictinary objectForKey:@"AlarmCount"];
+      if(![pAlarmCount isKindOfClass:[NSNull class]])
+        m_String.AlarmCount=[[siteDictinary objectForKey:@"AlarmCount"] intValue];
+      
+      NSObject *pArrayCount=[siteDictinary objectForKey:@"ArrayCount"];
+      if(![pArrayCount isKindOfClass:[NSNull class]])
+        m_String.ArrayCount=[[siteDictinary objectForKey:@"ArrayCount"] intValue];
+      
+      NSObject *pSiteId=[siteDictinary objectForKey:@"ID"];
+      if(![pSiteId isKindOfClass:[NSNull class]])
+        m_String.m_StringId=[siteDictinary objectForKey:@"ID"];      
+      
+      NSObject *pCurrentDNI=[siteDictinary objectForKey:@"CurrentDNI"];
+      if(![pCurrentDNI isKindOfClass:[NSNull class]])
+        m_String.m_CurrentDNI=[siteDictinary objectForKey:@"CurrentDNI"];
+      
+      NSObject *pCurrentPower=[siteDictinary objectForKey:@"CurrentPower"];
+      if(![pCurrentPower isKindOfClass:[NSNull class]])
+        m_String.m_CurrentPower=[siteDictinary objectForKey:@"CurrentPower"];
+      
+      NSObject *pLocalDateTime=[siteDictinary objectForKey:@"LocalDateTime"];
+      if(![pLocalDateTime isKindOfClass:[NSNull class]])
+        m_String.m_LocalDateTime=[siteDictinary objectForKey:@"LocalDateTime"];
+      
+      NSObject *pLocation=[siteDictinary objectForKey:@"Location"];
+      if(![pLocation isKindOfClass:[NSNull class]])
+        m_String.m_Location=[siteDictinary objectForKey:@"Location"];
+      
+      NSObject *pName=[siteDictinary objectForKey:@"Name"];
+      if(![pName isKindOfClass:[NSNull class]])
+        m_String.m_Name=[siteDictinary objectForKey:@"Name"];
+      
+      NSObject *pTemperature=[siteDictinary objectForKey:@"Temperature"];
+      if(![pTemperature isKindOfClass:[NSNull class]])
+        m_String.m_Temperature=[[siteDictinary objectForKey:@"Temperature"] stringValue];
+      
+      NSString *pWindDirection=(NSString *)[siteDictinary objectForKey:@"WindDirection"];
+      if(![pWindDirection isEqualToString:@""])
+        m_String.m_WindDirection=[siteDictinary objectForKey:@"WindDirection"];
+      
+      NSObject *pWindSpeed=[siteDictinary objectForKey:@"WindSpeed"];
+      if(![pWindSpeed isKindOfClass:[NSNull class]])
+        m_String.m_WindSpeed=[siteDictinary objectForKey:@"WindSpeed"];
+      
+      NSObject *pTodayEnergy=[siteDictinary objectForKey:@"TodayEnergy"];
+      if(![pTodayEnergy isKindOfClass:[NSNull class]])
+        m_String.m_TodayEnergy=[siteDictinary objectForKey:@"TodayEnergy"];
+      
+      NSObject *pUTCDateTime=[siteDictinary objectForKey:@"UTCDateTime"];
+      if(![pUTCDateTime isKindOfClass:[NSNull class]])
+        m_String.m_UTCDateTime=[siteDictinary objectForKey:@"UTCDateTime"];
+      
+      NSObject *pUTCOffset=[siteDictinary objectForKey:@"UTCOffset"];
+      if(![pUTCOffset isKindOfClass:[NSNull class]])
+        m_String.m_UTCOffset=[siteDictinary objectForKey:@"UTCOffset"];
+      
+      NSObject *pWeatherStatus=[siteDictinary objectForKey:@"WeatherStatus"];
+      if(![pWeatherStatus isKindOfClass:[NSNull class]])
+        m_String.m_WeatherStatus=[siteDictinary objectForKey:@"WeatherStatus"];
+      
+      NSObject *pWeatherIcon=[siteDictinary objectForKey:@"WeatherIcon"];
+      if(![pWeatherIcon isKindOfClass:[NSNull class]])
+        m_String.m_WeatherIcon=[siteDictinary objectForKey:@"WeatherIcon"];
+      
+      NSObject *pYTDEnergy=[siteDictinary objectForKey:@"YTDEnergy"];
+      if(![pYTDEnergy isKindOfClass:[NSNull class]])
+        m_String.m_YTDEnergy=[siteDictinary objectForKey:@"YTDEnergy"];
+      
+      [self addTopTileView];
+    }
+    else 
+    {
+      NSNumber *errorId=[siteDictinary objectForKey:@"ErrID"];
+      if(![[NSUserDefaults standardUserDefaults]boolForKey:@"ERROR"])
+      {
+        if([errorId intValue]!=10003)
+        {
+          UIAlertView *pAlert=[[UIAlertView alloc]initWithTitle:@"" message:[siteDictinary objectForKey:@"Err"] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:NULL];
+          [pAlert show];
+          pAlert=nil;    
+        }
+      }
+      
+      if([errorId intValue]==10003)
+      {
+        [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"ERROR"];
+        {
+          [self fetchSessionToken];
+        }
+      }
+    }
+  }
+}
+#pragma mark LoginManagerDelegate methods
+-(void)loginManager:(LoginManager*)manager loggedInSuccesfullyWithSessionToken:(NSString*)sessionToken
+{
+  [self.navigationController popToRootViewControllerAnimated:YES]; 
+}
+
+-(void)backAction
+{
+   
+//    NSArray *pushControllers = [self.navigationController viewControllers];
+//    NSLog(@"Push... Arry...Count :::: %d",[pushControllers count]);
+//    if ([pushControllers count] == 2) 
+//    {
+//        
+//        GreenVoltsAppDelegate *appDelegate = (GreenVoltsAppDelegate *)[[UIApplication sharedApplication] delegate];
+//        [appDelegate creatingTwoTabBarControllers];
+//    }
+
+    
+  if(mConnection){mConnection.m_delegate=nil;mConnection=nil;}
+  if(m_webserviceProcessor){[m_webserviceProcessor cancel];m_webserviceProcessor=nil;}
+  if(m_Backbutton){[m_Backbutton removeFromSuperview];}
+  [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"DATECHANGED"];
+  
+  m_TotalEnergyView.m_delegate=nil;
+  
+  [m_TopTileView removeFromSuperview];
+  [m_PowerVsDNIView removeFromSuperview];
+  [m_TotalEnergyView removeFromSuperview];
+  mPagingView.delegate=nil;
+  mPagingView.dataSource=nil;
+  [mPagingView removeFromSuperview];
+  mPagingView=nil;
+  
+  m_TopTileView=nil;
+  m_PowerVsDNIView=nil;
+  m_TotalEnergyView=nil;
+
+  [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)addTopTileView
+{
+  if(!m_TopTileView)
+  {
+    m_TopTileView=[[TopTileView alloc]initWithFrame:CGRectMake(8, 10, 304, 120)];
+    [self.view addSubview:m_TopTileView];
+  }
+  if(m_String.AlarmCount==0)
+    [m_TopTileView setTopTileAlertImageName:@"Alert-Green.png"];
+  else 
+    [m_TopTileView setTopTileAlertImageName:@"Alert-red.png"];
+  
+  NSNumberFormatter *frmtr = [[NSNumberFormatter alloc] init];
+  [frmtr setGroupingSize:3];
+  [frmtr setGroupingSeparator:@","];
+  [frmtr setUsesGroupingSeparator:YES];
+  
+  [m_TopTileView setTopTileDNI:[frmtr stringFromNumber:m_String.m_CurrentDNI]];
+  [m_TopTileView setTopTileTodayKWH:[frmtr stringFromNumber:m_String.m_TodayEnergy]];
+  [m_TopTileView setCurrentKWValue:m_String.m_CurrentPower];
+  
+  NSString *temp=@"";
+  if(m_String.m_Temperature != NULL)
+  {
+    float tempVal=[m_String.m_Temperature floatValue];
+    temp=[NSString stringWithFormat:@"%2.0f°C",tempVal];
+  }
+  else 
+    temp=@"";
+  
+  if(m_String.m_WeatherStatus != NULL)
+  {
+    NSString *pIconName=[NSString stringWithFormat:@"%@.png",m_String.m_WeatherIcon];
+    [m_TopTileView setTopTileWeatherImageName:pIconName];
+    
+    [m_TopTileView setTopTileWeatherDescription:[NSString stringWithFormat:@"   %@ %@",m_String.m_WeatherStatus,temp]];
+  }
+  else 
+    [m_TopTileView setTopTileWeatherDescription:@""];
+  
+  if(m_String.m_WindDirection == NULL && m_String.m_WindSpeed == NULL)
+    [m_TopTileView setTopTileWindInfo:@""];
+  else 
+  {
+    float windspeed=[m_String.m_WindSpeed floatValue];
+    [m_TopTileView setTopTileWindInfo:[NSString stringWithFormat:@"   %@ %2.1f m/s",m_String.m_WindDirection,windspeed]];
+  }  
+  
+  [m_TopTileView setTopTileTime:[NSString stringWithFormat:@"%@",[DateTimeConverter getActualTimeStringFrom:m_String.m_LocalDateTime]]];
+  
+  float scale=16/m_String.StringCount;
+  int range=ceil(scale/4.0);
+  
+  
+  [m_TopTileView setTopTileValue1:[NSString stringWithFormat:@"%d",range*0]];
+  [m_TopTileView setTopTileValue2:[NSString stringWithFormat:@"%d",range*1]];
+  [m_TopTileView setTopTileValue3:[NSString stringWithFormat:@"%d",range*2]];
+  [m_TopTileView setTopTileValue4:[NSString stringWithFormat:@"%d",range*3]];
+  [m_TopTileView setTopTileValue5:[NSString stringWithFormat:@"%d",range*4]];
+  
+  if([m_String.m_CurrentPower floatValue]<=scale/2)
+  {
+    float angle=((110.0)*([m_String.m_CurrentPower floatValue]))/(scale/2);
+    float rotationAngle=250.0+angle;
+    [m_TopTileView setTopTilePowerProductionNeedleRotationAngle:((rotationAngle*0.0174532925))];      
+  }
+  else 
+  {
+    float angle=((110.0)*([m_String.m_CurrentPower floatValue]-(scale/2)))/(scale/2);
+    [m_TopTileView setTopTilePowerProductionNeedleRotationAngle:((angle*0.0174532925))];            
+  }
+  
+  if([m_String.m_CurrentDNI floatValue]<=600)
+  {
+    float angle=((110.0)*([m_String.m_CurrentDNI floatValue]))/600.0;
+    float rotationAngle=250.0+angle;
+    
+    [m_TopTileView setTopTilePowerVsDNINeedleRotationAngle:(rotationAngle*0.0174532925)];      
+  }
+  else 
+  {
+    float angle=((110.0)*([m_String.m_CurrentDNI floatValue]-600.0))/600.0;
+    [m_TopTileView setTopTilePowerVsDNINeedleRotationAngle:(angle*0.0174532925)];            
+  }
+    
+  [m_TopTileView hideOperationMode:YES];
+}
+
+-(void)handleSlider:(id)sender
+{  
+  if(!m_bTapped)
+  {
+    if(m_bTapped)
+      m_bTapped=NO;
+    if((int)m_Slider.value==mPreviousValue)
+    {
+      return;
+    }
+  }
+  /// Find current date is weekly or daily
+  BOOL bGraphTypeDaily = ([m_TitleLabel.text compare:totalEnergyTitle] == NSOrderedSame) ? NO : YES;
+  
+  [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"DATECHANGED"];
+  isDateChanged=YES;
+  
+  [[SliderManager SharedSliderManager] handleSlider:m_Slider andIsDailyGraph:bGraphTypeDaily withRespectToObject:m_String];
+  
+  [self updateGraphValuesFromServer];
+}
+
+#pragma mark -- PagingViewDataSource
+-(NSInteger)pagingViewNoOfPages:(PagingView*)pagingView
+{
+  return 2;
+}
+-(UIView*)pagingView:(PagingView*)pagingView viewForPage:(NSInteger)page
+{
+  UIView *view=nil;
+  if(page==0)
+    view=m_PowerVsDNIView;
+  else if(page==1)
+    view=m_TotalEnergyView;
+  return view;
+}
+#pragma mark -- PagingViewDelegate
+-(void)pagingView:(PagingView*)pagingView didDisplayPage:(NSInteger)page
+{
+  if(page==0)
+  {
+    m_TitleLabel.text=@"Power vs. DNI";    
+  }
+  else if(page==1)
+  {
+    m_TitleLabel.text=totalEnergyTitle;    
+  }
+  [self updateSlider];
+}
+@end

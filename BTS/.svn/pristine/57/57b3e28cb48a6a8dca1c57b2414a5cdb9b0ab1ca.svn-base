@@ -1,0 +1,729 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<decisions>
+     
+ <decision template="SingleSelectMCQ">
+<pageContent>
+    <id><![CDATA[OTS_SA_R5_D010]]></id>
+	<title><![CDATA[<Introtext style="font-family:Helvetica; font-size:14pt; font-weight:bold; color:#cc0033; margin:10px -5px 10px 5px; width:738px; padding:5px 0 5px 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Meeting with Dr. Chu – Aligning with the Customer’s Needs</Introtext>]]></title>
+	<title2><![CDATA[]]></title2>
+	<instructions><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:11pt; line-height:18pt; text-align:justify; font-weight:bold; color:#333; display:block; margin:0 10px 10px">You are at your meeting with Dr. Matt Chu at Maycomb Community Hospital. After establishing rapport, you reviewed the agenda for the meeting.  Now it is time to kick off your discussion with a question. Which question will you ask Dr. Chu first?</welcomeText >]]></instructions>
+	<choices>
+		<choice>
+			<id><![CDATA[1]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>A</b>.From previous discussions with you, I know that you are focused on improving the patient experience.  What steps will you take to make your desired improvements?</welcomeText>]]></choiceText>
+			<KPIs totalScore="20">
+				<KPI marks="10"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="-10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="10"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R5_D010_A010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[2]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>B</b>.When you consider all the changes you’d like to see take place at Maycomb, what obstacles do you anticipate facing?  </welcomeText>]]></choiceText>
+			<KPIs totalScore="-10">
+				<KPI marks="0"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="-10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R5_D010_B010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[3]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>C</b>.I’m very pleased we’re talking.  Is there anyone else you’re working with to improve the patient experience, or are you spearheading the effort? </span></welcomeText>]]></choiceText>
+			<KPIs totalScore="-20">
+				<KPI marks="0"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="-10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="-10"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R5_D010_C010]]></branchTo>
+		</choice>
+        
+		<choice>
+			<id><![CDATA[4]]></id>
+			<isCorrect><![CDATA[YES]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>D</b>.From our previous conversations, I know that you are focused on improving the patient experience.  What specific aspects of the patient experience do you want to see improved?</span></welcomeText>]]></choiceText>
+			<KPIs totalScore="50">
+				<KPI marks="30"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="10"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R5_D010_D010]]></branchTo>
+		</choice>
+	</choices>
+    <summary><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">This is an Options question, not a Results question.  It focuses too narrowly on a single issue and misses the opportunity to uncover Dr. Chu’s goals.  The first question you ask Dr. Chu should be one that opens the conversation around his priorities and the goals he is trying to achieve.<BR><BR>The best question is, “From our previous conversations, I know that you are focused on improving the patient experience.  What specific aspects of the patient experience do you want to see improved?”<BR><BR>This results question begins to create a foundation for aligning with his goals and priorities, which is the best beginning point for becoming a trusted advisor.  Whenever you begin the prescribing process with a consideration of the prescriber’s goals, it enhances your ability to advance the prescribing cycle.<BR><BR><B>You need to know the answer to this question to continue.  Here is how Dr. Chu would have answered that question:</B><BR><BR>“The two areas I’m most focused on are patient safety and their experience in the hospital.  To me, the patient experience is about much more than being appropriately treated – it is the overall care, compassion, and respect with which they are treated. It’s also about making sure they aren’t exposed to unnecessary safety risks.  I often like to think of what the patient will say about the hospital after they are discharged.  Did they truly feel that Maycomb provided them with the best possible care?”</welcomeText>]]></summary>
+    
+    <summary><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">This is a Problems question, not a Results question.  It focuses too widely on problems that may be encountered rather than on the opportunity to uncover Dr. Chu’s goals.  The first question you ask Dr. Chu should be one that opens the conversation around his priorities and the goals he is trying to achieve.<BR><BR>The best question is, “From our previous conversations, I know that you are focused on improving the patient experience.  What specific aspects of the patient experience do you want to see improved?”<BR><BR>This results question begins to create a foundation for aligning with his goals and priorities, which is the best beginning point for becoming a trusted advisor.  Whenever you begin the prescribing process with a consideration of the prescriber’s goals, it enhances your ability to advance the prescribing cycle.<BR><BR>
+        
+        <B> You need to know the answer to this question to continue.  Here is how Dr. Chu would have answered that question:</B> <BR><BR>
+        
+        “The two areas I’m most focused on are patient safety and their experience in the hospital.  To me, the patient experience is about much more than being appropriately treated – it is the overall care, compassion, and respect with which they are treated. It’s also about making sure they aren’t exposed to unnecessary safety risks.  I often like to think of what the patient will say about the hospital after they are discharged.  Did they truly feel that Maycomb provided them with the best possible care?”
+</welcomeText>]]></summary>
+    <summary><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">This is an Execute Next Steps question, not a Results question.  At this point in the conversation, it is important to understand Dr. Chu’s goals, not the specific details around who will be executing the strategy.  The first question you ask Dr. Chu should be one that opens the conversation around his priorities and the goals he is trying to achieve.<BR><BR>
+        
+        The best question is, “From our previous conversations, I know that you are focused on improving the patient experience.  What specific aspects of the patient experience do you want to see improved?”<BR><BR>
+        
+        This results question begins to create a foundation for aligning with his goals and priorities, which is the best beginning point for becoming a trusted advisor.  Whenever you begin the prescribing process with a consideration of the prescriber’s goals, it enhances your ability to advance the prescribing cycle.<BR><BR>
+        
+        <B>You need to know the answer to this question to continue.  Here is how Dr. Chu would have answered that question:</B><BR><BR>
+        
+        “The two areas I’m most focused on are patient safety and their experience in the hospital.  To me, the patient experience is about much more than being appropriately treated – it is the overall care, compassion, and respect with which they are treated. It’s also about making sure they aren’t exposed to unnecessary safety risks.  I often like to think of what the patient will say about the hospital after they are discharged.  Did they truly feel that Maycomb provided them with the best possible care?”</welcomeText>]]></summary>
+    <summary><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">You are on the right track.  The first question you ask Dr. Chu should be one that opens the conversation around his goals and priorities.  This results question begins to create a foundation for aligning with his goals and priorities, which is the best beginning point for becoming a trusted advisor. <BR><BR> 
+        
+        Whenever you begin the prescribing process with a consideration of the prescriber’s goals, it enhances your ability to advance the prescribing cycle.</welcomeText>]]></summary>
+
+</pageContent>
+	
+
+
+</decision>
+
+
+<decision template="SingleSelectMCQ">
+
+<pageContent>
+    <id><![CDATA[OTS_SA_R5_D020]]></id>
+	<title><![CDATA[<Introtext style="font-family:Helvetica; font-size:14pt; font-weight:bold; color:#cc0033; margin:10px -5px 10px 5px; width:738px; padding:5px 0 5px 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Meeting with Dr. Chu – Further Aligning with the Customer’s Needs</Introtext>]]></title>
+	<title2><![CDATA[]]></title2>
+	<instructions><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:11pt; line-height:18pt; text-align:justify; font-weight:bold; color:#333; display:block; margin:0 10px 10px">What do you ask Dr. Chu at this point?</welcomeText >]]></instructions>
+	<choices>
+		<choice>
+			<id><![CDATA[1]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>A</b>.What concerns do you have about focusing on patient safety and patient experience, when most of the hospital is more concerned about cost and efficiency?</welcomeText>]]></choiceText>
+			<KPIs totalScore="10">
+				<KPI marks="0"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R5_D020_A010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[2]]></id>
+			<isCorrect><![CDATA[YES]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>B</b>.How do you see your goals for patient safety and their experience in the hospital fitting in with Maycomb’s larger goals, such as maintaining quality standards and improving cost-effectiveness?</welcomeText>]]></choiceText>
+			<KPIs totalScore="50">
+				<KPI marks="20"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="20"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="10"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R5_D020_B010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[3]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>C</b>.As you move forward with your goals, will you be seeking assistance from anyone else within Maycomb?</span></welcomeText>]]></choiceText>
+			<KPIs totalScore="-20">
+				<KPI marks="-10"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="-10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R5_D020_C010]]></branchTo>
+		</choice>
+        
+		<choice>
+			<id><![CDATA[4]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>D</b>.From previous conversations with you, I know that patient safety has been a long-time priority for you.  Is there a specific timeline you’re driving toward to begin making the changes to improve patient safety? </span></welcomeText>]]></choiceText>
+			<KPIs totalScore="-10">
+				<KPI marks="-20"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R5_D020_D010]]></branchTo>
+		</choice>
+		
+		
+	</choices>
+    <summary><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">This is a Problem question, not a Results question.  It’s too early in the conversation to get into problems. <BR><BR>
+        
+        The best question is, “How do you see your goals for patient safety and their experience in the hospital fitting in with Maycomb’s larger goals, such as maintaining quality standards and improving cost-effectiveness?”<BR><BR>
+        This Results question probes Dr. Chu’s answer to the previous question while staying focused on results.<BR><BR>
+        <B> It will help you to know the answer to this question to continue.  Here is how Dr. Chu would have answered:</B> <BR><BR>
+        
+        “For the most part, I see them going hand in hand.  If we focus on patient safety and patient experience, most of the other metrics you mentioned will be positively impacted.  Improving in those areas will naturally bring improvement in the other areas.<BR><BR>  
+        
+        The one area I think we need to be careful is our focus on efficiency.  It is important that we are efficient and keep costs low, but in the process we can’t lose the personal touch.”</welcomeText>]]></summary>
+    <summary><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">You are doing great. This is the best question to ask at this point. 
+        This Results question probes Dr. Chu’s answer to the previous question while staying focused on results. To the extent that you are able to clearly define Dr. Chu’s goals and priorities, and the strategies driving them, you will have a stronger grasp on how to advance the prescribing cycle. This Results question also shows that you were listening to Dr. Chu and heard a strategic direction he is focusing on.
+        </welcomeText>]]></summary>
+    <summary><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">This is an Execute Next Steps question, not a Results question.  It focuses too much on the implementation of the strategy instead of the outcomes it may support.<BR><BR>
+        The best question is, “How do you see your goals for patient safety and their experience in the hospital fitting in with Maycomb’s larger goals, such as maintaining quality standards and improving cost-effectiveness?”<BR><BR>
+        This Results question probes Dr. Chu’s answer to the previous question while staying focused on results.<BR><BR>
+        <B> It will help you to know the answer to this question to continue.  Here is how Dr. Chu would have answered:</B> <BR><BR>
+        
+        “For the most part, I see them going hand in hand.  If we focus on patient safety and patient experience, most of the other metrics you mentioned will be positively impacted.  Improving in those areas will naturally bring improvement in the other areas. <BR><BR>
+        
+        The one area I think we need to be careful is our focus on efficiency.  It is important that we are efficient and keep costs low, but in the process we can’t lose the personal touch.”</welcomeText>]]></summary>
+    <summary><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">This is an Execute Next Steps question, not a Results question, and it moves too quickly to an end result before you fully understand Dr. Chu’s situation.<BR><BR>
+        The best question is, “How do you see your goals for patient safety and their experience in the hospital fitting in with Maycomb’s larger goals, such as maintaining quality standards and improving cost-effectiveness?”<BR><BR>
+        This Results question probes Dr. Chu’s answer to the previous question while staying focused on results.<BR><BR>
+        <B> It will help you to know the answer to this question to continue.  Here is how Dr. Chu would have answered:</B> <BR><BR>
+        
+        “For the most part, I see them going hand in hand.  If we focus on patient safety and patient experience, most of the other metrics you mentioned will be positively impacted.  Improving in those areas will naturally bring improvement in the other areas.<BR><BR>  
+        
+        The one area I think we need to be careful is our focus on efficiency.  It is important that we are efficient and keep costs low, but in the process we can’t lose the personal touch.”
+</welcomeText>]]></summary>
+</pageContent>
+	
+
+
+</decision>
+
+<decision template="SingleSelectMCQ">
+
+<pageContent>
+    <id><![CDATA[OTS_SA_R5_D030]]></id>
+	<title><![CDATA[<Introtext style="font-family:Helvetica; font-size:14pt; font-weight:bold; color:#cc0033; margin:10px -5px 10px 5px; width:738px; padding:5px 0 5px 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Meeting with Dr. Chu – Beginning to Identify Areas of Value Creation</Introtext>]]></title>
+	<title2><![CDATA[]]></title2>
+	<instructions><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:11pt; line-height:18pt; text-align:justify; font-weight:bold; color:#333; display:block; margin:0 10px 10px">What do you ask Dr. Chu next?</welcomeText >]]></instructions>
+	<choices>
+		<choice>
+			<id><![CDATA[1]]></id>
+			<isCorrect><![CDATA[YES]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>A</b>.You’ve raised an interesting point about the ‘personal touch,’ which, if lacking, would hurt patient experience.  What are some ways you see to help ensure the personal touch remains, considering Maycomb’s focus on cost-effective, efficient care?</welcomeText>]]></choiceText>
+			<KPIs totalScore="50">
+				<KPI marks="20"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="20"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R5_D030_A010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[2]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>B</b>.At what point do you think you may encourage other hospitalists to adopt some of your strategies to improve patient safety and patient experience?</welcomeText>]]></choiceText>
+			<KPIs totalScore="-20">
+				<KPI marks="-10"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="-10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R5_D030_B010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[3]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>C</b>.From your perspective, what role does the non-physician staff have in impacting patient experience?</span></welcomeText>]]></choiceText>
+			<KPIs totalScore="-10">
+				<KPI marks="0"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="-10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R5_D030_C010]]></branchTo>
+		</choice>
+        
+		<choice>
+			<id><![CDATA[4]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>D</b>.Does Maycomb have any structures or policies in place that may restrict your ability to make the changes you’ve described?</span></welcomeText>]]></choiceText>
+			<KPIs totalScore="-10">
+				<KPI marks="0"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="-10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R5_D030_D010]]></branchTo>
+		</choice>
+	</choices>
+    <summary><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">Great question.<BR><BR>
+        This is an Options question that moves from the previous answer to discussing options. In letting Dr. Chu describe the value instead of you telling him what you can offer, you engage him in a conversation around creating value.
+</welcomeText>]]></summary>
+    <summary><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><p>
+        This is an Execute Next Steps question, not an Options question. By going directly to execution issues, you are losing the opportunity to build up the value of your product by connecting it to Dr. Chu’s desired outcomes.
+        The best question is, “You’ve raised an interesting point about the ‘personal touch,’ which, if lacking, would hurt patient experience.  What are some ways you see to help ensure the personal touch remains, considering Maycomb’s focus on cost-effective, efficient care?”
+        This is an Options question that moves from the previous answer to discussing options.
+        
+        <B>It will help you to know the answer to this question to continue.  Here is how Dr. Chu would have answered:</B>
+        
+        “I think there are a couple of things I can do.  Patient education is key.  The hospital experience can be overwhelming for many patients, so I need to spend sufficient time with them to ensure they understand their condition and how to continue care after discharge.  With so many patients, it can be a challenge to spend adequate time with each one, but this is critical.  
+        
+        Another aspect to consider is prompt discharge.  Keeping patients longer than necessary makes them feel unimportant and forgotten.  Since discharge is their last memory of the hospital, we want to ensure it’s a smooth process in order to keep our satisfaction rates up.”
+        </p></welcomeText>]]></summary>
+    <summary><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><p>
+        This is an Execute Next Steps question, not an Options question.  It focuses too narrowly on the implementation of the strategy instead of exploring ways you and your product can create value for Dr. Chu.
+        
+        The best question is, “You’ve raised an interesting point about the ‘personal touch,’ which, if lacking, would hurt patient experience.  What are some ways you see to help ensure the personal touch remains, considering Maycomb’s focus on cost-effective, efficient care?”
+        This is an Options question that moves from the previous answer to discussing options.
+        
+        <B>It will help you to know the answer to this question to continue.  Here is how Dr. Chu would have answered:</B>
+        
+        “I think there are a couple of things I can do.  Patient education is key.  The hospital experience can be overwhelming for many patients, so I need to spend sufficient time with them to ensure they understand their condition and how to continue care after discharge.  With so many patients, it can be a challenge to spend adequate time with each one, but this is critical.  
+        
+        Another aspect to consider is prompt discharge.  Keeping patients longer than necessary makes them feel unimportant and forgotten.  Since discharge is their last memory of the hospital, we want to ensure it’s a smooth process in order to keep our satisfaction rates up.”
+        </p></welcomeText>]]></summary>
+    <summary><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><p>
+        This is a Problems question and it puts the conversation on a different track.  In addition, it will be difficult to raise the topic of options.
+        
+        The best question is, “You’ve raised an interesting point about the ‘personal touch,’ which, if lacking, would hurt patient experience.  What are some ways you see to help ensure the personal touch remains, considering Maycomb’s focus on cost-effective, efficient care?”
+        This is an Options question that moves from the previous answer to discussing options.
+        
+        <B>It will help you to know the answer to this question to continue.  Here is how Dr. Chu would have answered:</B>
+        
+        “I think there are a couple of things I can do.  Patient education is key.  The hospital experience can be overwhelming for many patients, so I need to spend sufficient time with them to ensure they understand their condition and how to continue care after discharge.  With so many patients, it can be a challenge to spend adequate time with each one, but this is critical.  
+        
+        Another aspect to consider is prompt discharge.  Keeping patients longer than necessary makes them feel unimportant and forgotten.  Since discharge is their last memory of the hospital, we want to ensure it’s a smooth process in order to keep our satisfaction rates up.”
+        </p></welcomeText>]]></summary>
+</pageContent>
+
+</decision>
+
+<decision template="SingleSelectMCQ">
+
+<pageContent>
+    <id><![CDATA[OTS_SA_R5_D040]]></id>
+	<title><![CDATA[<Introtext style="font-family:Helvetica; font-size:14pt; font-weight:bold; color:#cc0033; margin:10px -5px 10px 5px; width:738px; padding:5px 0 5px 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Meeting with Dr. Chu – Exploring Areas of Value Creation</Introtext>]]></title>
+	<title2><![CDATA[]]></title2>
+	<instructions><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:11pt; line-height:18pt; text-align:justify; font-weight:bold; color:#333; display:block; margin:0 10px 10px">Which question will you ask Dr. Chu to move the conversation forward?</welcomeText >]]></instructions>
+	<choices>
+		<choice>
+			<id><![CDATA[1]]></id>
+			<isCorrect><![CDATA[YES]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>A</b>.What strategies can you use to help ensure patient safety, which is the other priority you indicated?</welcomeText>]]></choiceText>
+			<KPIs totalScore="50">
+				<KPI marks="20"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="20"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R5_D040_A010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[2]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>B</b>.Ensuring high levels of patient satisfaction can be very hard.  What challenges do you foresee?  </welcomeText>]]></choiceText>
+			<KPIs totalScore="0">
+				<KPI marks="0"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="-10"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R5_D040_B010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[3]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>C</b>.What administrative challenges might you face with these changes, especially around prompt discharge?</span></welcomeText>]]></choiceText>
+			<KPIs totalScore="-10">
+				<KPI marks="0"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="-10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R5_D040_C010]]></branchTo>
+		</choice>
+        
+		<choice>
+			<id><![CDATA[4]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>D</b>.Would you be interested in learning about upcoming speaker programs? </span></welcomeText>]]></choiceText>
+			<KPIs totalScore="-20">
+				<KPI marks="0"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="-10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="-10"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R5_D040_D010]]></branchTo>
+		</choice>
+	</choices>
+    <summary><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">This is the right question.<BR><BR>
+        This is an Options question that continues to explore Dr. Chu’s focus on patient safety. He sees specialist consults and collaboration with Pharmacy as ways to improve patient safety. As a representative of Samsca, this is important information for you to know.    
+</welcomeText>]]></summary>
+    <summary><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><p>
+        This is a Problem question, and it could lead to a discussion of ways you could help address some challenges.  As a trusted advisor, however, you need to fully explore Dr. Chu’s goals and priorities.
+        
+        The best question is, “What strategies can you use to help ensure patient safety, which is the other priority you indicated?”
+        
+        This is an Options question that continues to explore Dr. Chu’s focus on patient safety.
+        
+        <B>It will help you to know the answer to this question to continue.  Here is how Dr. Chu would have answered:</B>
+        
+        “I see two big opportunities here.  The first is to engage in more specialist consults.  As you might guess, as a hospitalist I know a little bit about everything, but not enough to handle very specific or complicated cases.  Bringing in a specialist would help increase my peace of mind and also improve patient safety.  Second, I could collaborate more closely with Pharmacy.  Pharmacy frequently calls me with suggestions or concerns; if I did the same and proactively contacted Pharmacy, I’m sure our results would improve even more.”
+        
+        </p></welcomeText>]]></summary>
+    <summary><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><p>
+        This is a Problems question, not an Options question. If you get into problems at this stage, it will be harder to identify options and present the full potential value of your solution.
+        
+        The best question is, “What strategies can you use to help ensure patient safety, which is the other priority you indicated?”
+        
+        This is an Options question that continues to explore Dr. Chu’s focus on patient safety.
+        
+        <B>It will help you to know the answer to this question to continue.  Here is how Dr. Chu would have answered:</B>
+        
+        “I see two big opportunities here.  The first is to engage in more specialist consults.  As you might guess, as a hospitalist I know a little bit about everything, but not enough to handle very specific or complicated cases.  Bringing in a specialist would help increase my peace of mind and also improve patient safety.  Second, I could collaborate more closely with Pharmacy.  Pharmacy frequently calls me with suggestions or concerns; if I did the same and proactively contacted Pharmacy, I’m sure our results would improve even more.”
+        </p></welcomeText>]]></summary>
+    <summary><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><p>
+        This is an Execute Next Steps question, not an Options question. This question could get Dr. Chu at your next speaker program, but it takes your current conversation down a different path.
+        
+        The best question is, “What strategies can you use to help ensure patient safety, which is the other priority you indicated?”
+        
+        This is an Options question that continues to explore Dr. Chu’s focus on patient safety.
+        
+        <B>It will help you to know the answer to this question to continue.  Here is how Dr. Chu would have answered:</B>
+        
+        “I see two big opportunities here.  The first is to engage in more specialist consults.  As you might guess, as a hospitalist I know a little bit about everything, but not enough to handle very specific or complicated cases.  Bringing in a specialist would help increase my peace of mind and also improve patient safety.  Second, I could collaborate more closely with Pharmacy.  Pharmacy frequently calls me with suggestions or concerns; if I did the same and proactively contacted Pharmacy, I’m sure our results would improve even more.”
+        </p></welcomeText>]]></summary>
+</pageContent>
+	
+
+
+</decision>
+
+
+<decision template="SingleSelectMCQ">
+
+	<pageContent>
+    <id><![CDATA[OTS_SA_R5_D050]]></id>
+		<title><![CDATA[<Introtext style="font-family:Helvetica; font-size:14pt; font-weight:bold; color:#cc0033; margin:10px -5px 10px 5px; width:738px; padding:5px 0 5px 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Context for the Solution</Introtext>]]></title>
+        <title2><![CDATA[]]></title2>
+        <instructions><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:11pt; line-height:18pt; text-align:justify; font-weight:bold; color:#333; display:block; margin:0 10px 10px">What do you ask Dr. Chu at this point?</welcomeText >]]></instructions>
+        <choices>
+            <choice>
+                <id><![CDATA[1]]></id>
+                <isCorrect><![CDATA[NO]]></isCorrect>
+                <choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>A</b>.If you are successful in making improvements in patient safety and their experience in the hospital, what other opportunities do you think that may provide for Maycomb?</welcomeText>]]></choiceText>
+                <KPIs totalScore="10">
+                    <KPI marks="10"><![CDATA[Customer Results Score]]></KPI>
+                    <KPI marks="-10"><![CDATA[Sales Progress Score]]></KPI>
+                    <KPI marks="10"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+                </KPIs>
+                <branchTo><![CDATA[OTS_SA_R5_D050_A010]]></branchTo>
+            </choice>
+            <choice>
+                <id><![CDATA[2]]></id>
+                <isCorrect><![CDATA[NO]]></isCorrect>
+                <choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>B</b>.You’ve talked about a number of changes, some of which will take time to fully implement. What is your timeline for starting more specialist consults and collaboration with Pharmacy?</welcomeText>]]></choiceText>
+                <KPIs totalScore="20">
+                    <KPI marks="10"><![CDATA[Customer Results Score]]></KPI>
+                    <KPI marks="20"><![CDATA[Sales Progress Score]]></KPI>
+                    <KPI marks="-10"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+                </KPIs>
+                <branchTo><![CDATA[OTS_SA_R5_D050_B010]]></branchTo>
+            </choice>
+            <choice>
+                <id><![CDATA[3]]></id>
+                <isCorrect><![CDATA[NO]]></isCorrect>
+                <choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>C</b>.It sounds like you have clearly defined goals around patient safety and their experience in the hospital.  How have your goals in these areas changed from last year?</span></welcomeText>]]></choiceText>
+                <KPIs totalScore="10">
+                    <KPI marks="20"><![CDATA[Customer Results Score]]></KPI>
+                    <KPI marks="-10"><![CDATA[Sales Progress Score]]></KPI>
+                    <KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+                </KPIs>
+                <branchTo><![CDATA[OTS_SA_R5_D050_C010]]></branchTo>
+            </choice>
+            
+            <choice>
+                <id><![CDATA[4]]></id>
+                <isCorrect><![CDATA[YES]]></isCorrect>
+                <choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>D</b>.What challenges do you anticipate in meeting the options you’ve described, such as shorter wait times and more structured processes?</span></welcomeText>]]></choiceText>
+                <KPIs totalScore="50">
+                    <KPI marks="20"><![CDATA[Customer Results Score]]></KPI>
+                    <KPI marks="10"><![CDATA[Sales Progress Score]]></KPI>
+                    <KPI marks="20"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+                </KPIs>
+                <branchTo><![CDATA[OTS_SA_R5_D050_D010]]></branchTo>
+            </choice>		
+	</choices>
+        <summary><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><p>
+            This is an Options question, not a Problems question.  It doesn’t advance the conversation to the point where you can discuss Samsca as an option for the priorities that Dr. Chu has already identified.
+            The best question is, “As you focus on these key goals of patient safety and patient experience, do you anticipate any conflicts in meeting Maycomb’s other goals, especially those around cost and efficiency?”
+            This Problems question helps you by getting Dr. Chu to focus on the barriers he may encounter when implementing the changes.<BR><BR><B>It will help you to know the answer to this question to continue.  Here is how Dr. Chu would have answered:</B><BR><BR>“Ah…that’s a good question.  I think there will be some conflicts, especially at first.  As you can imagine, increasing the number of specialist consults will increase costs.  However, as my own experience increases and my knowledge of treatment options grows, the need for specialist consults should decrease.”
+            </p></welcomeText>]]></summary>
+        <summary><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><p>
+            This is an Execute Next Steps question, not a Problems question.  By going directly to Execute Next Steps, you miss the opportunity to fully understand the challenges Dr. Chu sees in meeting his goals.
+            The best question is, “As you focus on these key goals of patient safety and patient experience, do you anticipate any conflicts in meeting Maycomb’s other goals, especially those around cost and efficiency?”
+            This Problems question helps you by getting Dr. Chu to focus on the barriers he may encounter when implementing the changes.<BR><BR><B>It will help you to know the answer to this question to continue.  Here is how Dr. Chu would have answered:</B><BR><BR>“Ah…that’s a good question.  I think there will be some conflicts, especially at first.  As you can imagine, increasing the number of specialist consults will increase costs.  However, as my own experience increases and my knowledge of treatment options grows, the need for specialist consults should decrease.”
+            </p></welcomeText>]]></summary>
+        <summary><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><p>
+            This is a Results question, not a Problems question. It puts you back in the results conversation rather than advancing the conversation by probing about problems.  
+            The best question is, “As you focus on these key goals of patient safety and patient experience, do you anticipate any conflicts in meeting Maycomb’s other goals, especially those around cost and efficiency?”
+            This Problems question helps you by getting Dr. Chu to focus on the barriers he may encounter when implementing the changes.<BR><BR><B>It will help you to know the answer to this question to continue.  Here is how Dr. Chu would have answered:</B><BR><BR>“Ah…that’s a good question.  I think there will be some conflicts, especially at first.  As you can imagine, increasing the number of specialist consults will increase costs.  However, as my own experience increases and my knowledge of treatment options grows, the need for specialist consults should decrease.”
+            </p></welcomeText>]]></summary>
+        <summary><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">Great job. <BR><BR>
+            This Problems question helps you by getting Dr. Chu to focus on the barriers he may encounter when implementing the changes.  The question appropriately links to the previous discussion, and it lets Dr. Chu tell you about his concerns instead of you potentially trying to solve a problem he has not yet articulated.
+</welcomeText>]]></summary>
+</pageContent>
+
+
+</decision>
+
+
+<decision template="SingleSelectMCQ">
+
+	<pageContent>
+    <id><![CDATA[OTS_SA_R5_D060]]></id>
+		<title><![CDATA[<Introtext style="font-family:Helvetica; font-size:14pt; font-weight:bold; color:#cc0033; margin:10px -5px 10px 5px; width:738px; padding:5px 0 5px 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Context for the Solution </Introtext>]]></title>
+        <title2><![CDATA[]]></title2>
+        <instructions><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:11pt; line-height:18pt; text-align:justify; font-weight:bold; color:#333; display:block; margin:0 10px 10px">Which follow-up question do you ask Dr. Chu?</welcomeText >]]></instructions>
+        <choices>
+            <choice>
+                <id><![CDATA[1]]></id>
+                <isCorrect><![CDATA[NO]]></isCorrect>
+                <choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>A</b>.How do you see currently available therapies and treatments fitting into how you treat your patients with hyponatremia?</welcomeText>]]></choiceText>
+                <KPIs totalScore="-10">
+                    <KPI marks="10"><![CDATA[Customer Results Score]]></KPI>
+                    <KPI marks="-10"><![CDATA[Sales Progress Score]]></KPI>
+                    <KPI marks="-10"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+                </KPIs>
+                <branchTo><![CDATA[OTS_SA_R5_D060_A010]]></branchTo>
+            </choice>
+            <choice>
+                <id><![CDATA[2]]></id>
+                <isCorrect><![CDATA[NO]]></isCorrect>
+                <choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>B</b>.As a prescriber, I’m sure you sometimes encounter roadblocks with different insurance plans, Medicare, and Medicaid.  What strategies do you have in place to overcome those roadblocks?</welcomeText>]]></choiceText>
+                <KPIs totalScore="-10">
+                    <KPI marks="0"><![CDATA[Customer Results Score]]></KPI>
+                    <KPI marks="-10"><![CDATA[Sales Progress Score]]></KPI>
+                    <KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+                </KPIs>
+                <branchTo><![CDATA[OTS_SA_R5_D060_B010]]></branchTo>
+            </choice>
+            <choice>
+                <id><![CDATA[3]]></id>
+                <isCorrect><![CDATA[YES]]></isCorrect>
+                <choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>C</b>.Do you foresee any other barriers in achieving your goals for patient safety and patient experience?</span></welcomeText>]]></choiceText>
+                <KPIs totalScore="50">
+                    <KPI marks="10"><![CDATA[Customer Results Score]]></KPI>
+                    <KPI marks="10"><![CDATA[Sales Progress Score]]></KPI>
+                    <KPI marks="30"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+                </KPIs>
+                <branchTo><![CDATA[OTS_SA_R5_D060_C010]]></branchTo>
+            </choice>
+            
+            <choice>
+                <id><![CDATA[4]]></id>
+                <isCorrect><![CDATA[NO]]></isCorrect>
+                <choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>D</b>.Is there a specific patient metric that you want to reach?</span></welcomeText>]]></choiceText>
+                <KPIs totalScore="0">
+                    <KPI marks="0"><![CDATA[Customer Results Score]]></KPI>
+                    <KPI marks="0"><![CDATA[Sales Progress Score]]></KPI>
+                    <KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+                </KPIs>
+                <branchTo><![CDATA[OTS_SA_R5_D060_D010]]></branchTo>
+            </choice>
+	</choices>
+        <summary><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><p>
+            This is an Options question, not a Problems question.  It doesn’t advance the conversation to the point where you fully explore how Samsca can create value for the top priorities that Dr. Chu has already identified.
+            
+            The best question is, “Do you foresee any other barriers in achieving your goals for patient safety and patient experience?”
+            This Problems question helps probe deeper into issues faced by Dr. Chu without jumping prematurely to solutions.<BR><BR>
+            <B>It will help you to know the answer to this question to continue.  Here is how Dr. Chu would have answered:</B><BR><BR>“Let’s face it, time is always a challenge.  As much as I would like to collaborate more with Pharmacy, bring in specialist consults, and spend more time with patients, that won’t always be possible.  I’m already stretched thin, and I know every hospitalist at Maycomb feels the same time pressures that I do.  However, once I start implementing some of these ideas, I could very well see some improvement.  For instance, if I can bring in a consult for my more difficult cases, that will free me up to spend more time with the other patients, which should increase their satisfaction.”
+            </p></welcomeText>]]></summary>
+        <summary><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><p>
+            This is an Options question, not a Problems question. It will take you backward in the conversation and make it difficult to reconnect to the value creation discussion you are already building.
+            
+            The best question is, “Do you foresee any other barriers in achieving your goals for patient safety and patient experience?”
+            This Problems question helps probe deeper into issues faced by Dr. Chu without jumping prematurely to solutions.<BR><BR>
+            <BR><BR><B>It will help you to know the answer to this question to continue.  Here is how Dr. Chu would have answered:</B><BR><BR>“Let’s face it, time is always a challenge.  As much as I would like to collaborate more with Pharmacy, bring in specialist consults, and spend more time with patients, that won’t always be possible.  I’m already stretched thin, and I know every hospitalist at Maycomb feels the same time pressures that I do.  However, once I start implementing some of these ideas, I could very well see some improvement.  For instance, if I can bring in a consult for my more difficult cases, that will free me up to spend more time with the other patients, which should increase their satisfaction.”
+            
+            </p></welcomeText>]]></summary>
+        <summary><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">Right on target.<BR><BR>
+            This Problems question helps probe deeper into issues faced by Dr. Chu without jumping prematurely to solutions. Now you know Dr. Chu’s strategic goals and the key pressures against achieving them. 
+</welcomeText>]]></summary>
+        <summary><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><p>
+            This is a Results question, not a Problems question. Asking this question now will move the conversation backwards, and take you in a different direction.
+            The best question is, “Do you foresee any other barriers in achieving your goals for patient safety and patient experience?”
+            This Problems question helps probe deeper into issues faced by Dr. Chu without jumping prematurely to solutions.<BR><BR><B>It will help you to know the answer to this question to continue.  Here is how Dr. Chu would have answered:</B><BR><BR>“Let’s face it, time is always a challenge.  As much as I would like to collaborate more with Pharmacy, bring in specialist consults, and spend more time with patients, that won’t always be possible.  I’m already stretched thin, and I know every hospitalist at Maycomb feels the same time pressures that I do.  However, once I start implementing some of these ideas, I could very well see some improvement.  For instance, if I can bring in a consult for my more difficult cases, that will free me up to spend more time with the other patients, which should increase their satisfaction.”
+            
+            </p></welcomeText>]]></summary>
+</pageContent>
+
+
+</decision>
+
+
+<decision template="SingleSelectMCQ">
+
+	<pageContent>
+    <id><![CDATA[OTS_SA_R5_D070]]></id>
+		<title><![CDATA[<Introtext style="font-family:Helvetica; font-size:14pt; font-weight:bold; color:#cc0033; margin:10px -5px 10px 5px; width:738px; padding:5px 0 5px 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Meeting with Dr. Chu – Collecting Information and Determining Next Steps</Introtext>]]></title>
+        <title2><![CDATA[]]></title2>
+        <instructions><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:11pt; line-height:18pt; text-align:justify; font-weight:bold; color:#333; display:block; margin:0 10px 10px">Which question will you ask Dr. Chu now to move the conversation to the next stage?</welcomeText >]]></instructions>
+        <choices>
+            <choice>
+                <id><![CDATA[1]]></id>
+                <isCorrect><![CDATA[NO]]></isCorrect>
+                <choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>A</b>.I’ll leave behind information on the insurance coverage for Samsca® (tolvaptan).  Would that be helpful to you?</welcomeText>]]></choiceText>
+                <KPIs totalScore="10">
+                    <KPI marks="0"><![CDATA[Customer Results Score]]></KPI>
+                    <KPI marks="20"><![CDATA[Sales Progress Score]]></KPI>
+                    <KPI marks="-10"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+                </KPIs>
+                <branchTo><![CDATA[OTS_SA_R5_D070_A010]]></branchTo>
+            </choice>
+            <choice>
+                <id><![CDATA[2]]></id>
+                <isCorrect><![CDATA[NO]]></isCorrect>
+                <choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>B</b>.What are your overall goals around patient safety?</welcomeText>]]></choiceText>
+                <KPIs totalScore="-20">
+                    <KPI marks="10"><![CDATA[Customer Results Score]]></KPI>
+                    <KPI marks="-30"><![CDATA[Sales Progress Score]]></KPI>
+                    <KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+                </KPIs>
+                <branchTo><![CDATA[OTS_SA_R5_D070_B010]]></branchTo>
+            </choice>
+            <choice>
+                <id><![CDATA[3]]></id>
+                <isCorrect><![CDATA[YES]]></isCorrect>
+                <choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>C</b>.You’ve mentioned consulting more with Pharmacy, and I understand your desire to be familiar with the safety profile of what you prescribe.  When you consider trying a product you have never used before, such as Samsca, what factors are important to you?</span></welcomeText>]]></choiceText>
+                <KPIs totalScore="50">
+                    <KPI marks="10"><![CDATA[Customer Results Score]]></KPI>
+                    <KPI marks="20"><![CDATA[Sales Progress Score]]></KPI>
+                    <KPI marks="20"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+                </KPIs>
+                <branchTo><![CDATA[OTS_SA_R5_D070_C010]]></branchTo>
+            </choice>
+            
+            <choice>
+                <id><![CDATA[4]]></id>
+                <isCorrect><![CDATA[NO]]></isCorrect>
+                <choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>D</b>.You’ve mentioned the importance of specialist consults.  Have you considered how the specialist consults could contribute to patient education, which may then have a positive impact on patient satisfaction?</span></welcomeText>]]></choiceText>
+                <KPIs totalScore="-10">
+                    <KPI marks="10"><![CDATA[Customer Results Score]]></KPI>
+                    <KPI marks="-30"><![CDATA[Sales Progress Score]]></KPI>
+                    <KPI marks="10"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+                </KPIs>
+                <branchTo><![CDATA[OTS_SA_R5_D070_D010]]></branchTo>
+            </choice>
+	</choices>
+        <summary><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><p>
+            This is an Execute Next Steps question, but it doesn’t build on the previous conversation. It might advance the conversation to this specific topic, but it’s closed-ended, and it doesn’t engage Dr. Chu in partnering to create value.
+            
+            The best question is, “You’ve mentioned consulting more with Pharmacy, and I understand your desire to be familiar with the safety profile of what you prescribe.  When you consider trying a product you have never used before, such as Samsca, what factors are important to you?”
+            This Execute Next Steps question moves you toward taking action and helps you to better understand how to position yourself as an advisor to decision makers.
+            
+            <BR><BR><B>It will help you to know the answer to this question to continue.  Here is how Dr. Chu would have answered:</B><BR><BR>
+            
+            “I’ll begin by saying that I would very rarely be one of the first people in a hospital to try a product.  As you know, I’m cautious and safety-focused, so I wouldn’t begin a new product unless Pharmacy supported it or I had peers with experience prescribing it.  In my position as a hospitalist, I see such a wide variety of patients that I can’t be fully up to speed on the specialized therapies they might need.  That’s why the specialist consults are important.
+            
+            However, if the product was already adopted and supported by the hospital and Pharmacy, then I must be comfortable with the drug’s safety and efficacy profile, and it must be available at a reasonable cost.”
+            
+            </p></welcomeText>]]></summary>
+        <summary><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><p>
+            This is a Results question, not an Execute Next Steps question. Asking this now will likely send Dr. Chu in a different direction and risk making any progress with this conversation.
+            
+            The best question is, “You’ve mentioned consulting more with Pharmacy, and I understand your desire to be familiar with the safety profile of what you prescribe.  When you consider trying a product you have never used before, such as Samsca, what factors are important to you?”
+            This Execute Next Steps question moves you toward taking action and helps you to better understand how to position yourself as an advisor to decision makers.
+            
+            <BR><BR><B>It will help you to know the answer to this question to continue.  Here is how Dr. Chu would have answered:</B><BR><BR>
+            
+            “I’ll begin by saying that I would very rarely be one of the first people in a hospital to try a product.  As you know, I’m cautious and safety-focused, so I wouldn’t begin a new product unless Pharmacy supported it or I had peers with experience prescribing it.  In my position as a hospitalist, I see such a wide variety of patients that I can’t be fully up to speed on the specialized therapies they might need.  That’s why the specialist consults are important.
+            
+            However, if the product was already adopted and supported by the hospital and Pharmacy, then I must be comfortable with the drug’s safety and efficacy profile, and it must be available at a reasonable cost.”
+            </p></welcomeText>]]></summary>
+        <summary><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">Great question.<BR><BR>
+            This Execute Next Steps question moves you toward taking action and helps you to better understand how to position yourself as an advisor to decision makers.
+</welcomeText>]]></summary>
+        <summary><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><p>
+            This is an Options question, not an Execute Next Steps question. While it might be an interesting question, it will take you back several steps in the conversation and in a different direction.
+            
+            The best question is, “You’ve mentioned consulting more with Pharmacy, and I understand your desire to be familiar with the safety profile of what you prescribe.  When you consider trying a product you have never used before, such as Samsca, what factors are important to you?”
+            This Execute Next Steps question moves you toward taking action and helps you to better understand how to position yourself as an advisor to decision makers.
+            
+            <BR><BR><B>It will help you to know the answer to this question to continue.  Here is how Dr. Chu would have answered:</B><BR><BR>
+            
+            “I’ll begin by saying that I would very rarely be one of the first people in a hospital to try a product.  As you know, I’m cautious and safety-focused, so I wouldn’t begin a new product unless Pharmacy supported it or I had peers with experience prescribing it.  In my position as a hospitalist, I see such a wide variety of patients that I can’t be fully up to speed on the specialized therapies they might need.  That’s why the specialist consults are important.
+            
+            However, if the product was already adopted and supported by the hospital and Pharmacy, then I must be comfortable with the drug’s safety and efficacy profile, and it must be available at a reasonable cost.”
+            </p></welcomeText>]]></summary>
+</pageContent>
+
+
+</decision>
+
+
+<decision template="SingleSelectMCQ">
+
+	<pageContent>
+    <id><![CDATA[OTS_SA_R5_D080]]></id>
+		<title><![CDATA[<Introtext style="font-family:Helvetica; font-size:14pt; font-weight:bold; color:#cc0033; margin:10px -5px 10px 5px; width:738px; padding:5px 0 5px 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Meeting with Dr. Chu – Collecting Information and Determining Next Steps</Introtext>]]></title>
+        <title2><![CDATA[]]></title2>
+        <instructions><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:11pt; line-height:18pt; text-align:justify; font-weight:bold; color:#333; display:block; margin:0 10px 10px">Which question will you ask Dr. Chu next?</welcomeText >]]></instructions>
+        <choices>
+            <choice>
+                <id><![CDATA[1]]></id>
+                <isCorrect><![CDATA[YES]]></isCorrect>
+                <choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>A</b>.As a hospitalist, I know you see SIADH, cirrhosis, and heart failure patients who present with hyponatremia.  I’d like to set a time to share more specifically with you about Samsca, and potentially also arrange a time to continue that conversation with Pharmacy or Dr. Rivers, a nephrologist who regularly prescribes Samsca.  When would be a good time to meet again?</welcomeText>]]></choiceText>
+                <KPIs totalScore="50">
+                    <KPI marks="10"><![CDATA[Customer Results Score]]></KPI>
+                    <KPI marks="30"><![CDATA[Sales Progress Score]]></KPI>
+                    <KPI marks="10"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+                </KPIs>
+                <branchTo><![CDATA[OTS_SA_R5_D080_A010]]></branchTo>
+            </choice>
+            <choice>
+                <id><![CDATA[2]]></id>
+                <isCorrect><![CDATA[NO]]></isCorrect>
+                <choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>B</b>.It’s clear that both patient safety and patient experience are the critical areas you’re focusing on to improve.  Are there particular metrics you’re targeting that will help you know if you’re on track to meeting your goals?</welcomeText>]]></choiceText>
+                <KPIs totalScore="-20">
+                    <KPI marks="10"><![CDATA[Customer Results Score]]></KPI>
+                    <KPI marks="-30"><![CDATA[Sales Progress Score]]></KPI>
+                    <KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+                </KPIs>
+                <branchTo><![CDATA[OTS_SA_R5_D080_B010]]></branchTo>
+            </choice>
+            <choice>
+                <id><![CDATA[3]]></id>
+                <isCorrect><![CDATA[NO]]></isCorrect>
+                <choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>C</b>.Safely and appropriately treating your patients seems to be the foundation for your patient treatment goals.  What are your thoughts on how expanding the base of products you prescribe could help achieve your goals?</span></welcomeText>]]></choiceText>
+                <KPIs totalScore="-10">
+                    <KPI marks="10"><![CDATA[Customer Results Score]]></KPI>
+                    <KPI marks="-20"><![CDATA[Sales Progress Score]]></KPI>
+                    <KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+                </KPIs>
+                <branchTo><![CDATA[OTS_SA_R5_D080_C010]]></branchTo>
+            </choice>
+            
+            <choice>
+                <id><![CDATA[4]]></id>
+                <isCorrect><![CDATA[NO]]></isCorrect>
+                <choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>D</b>.Will you prescribe Samsca for the next patient you see with hyponatremia?</span></welcomeText>]]></choiceText>
+                <KPIs totalScore="10">
+                    <KPI marks="0"><![CDATA[Customer Results Score]]></KPI>
+                    <KPI marks="10"><![CDATA[Sales Progress Score]]></KPI>
+                    <KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+                </KPIs>
+                <branchTo><![CDATA[OTS_SA_R5_D080_D010]]></branchTo>
+            </choice>
+	</choices>
+        <summary><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">Great choice.<BR><BR>
+            This Execute Next Steps question makes a clear advance, while framing the question in a way that demonstrates your understanding of Dr. Chu’s key priorities. You have earned the right to come back and meet with Dr. Chu again.  
+</welcomeText>]]></summary>
+        <summary><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><p>
+            This is a Results question, not an Execute Next Steps question. It is far too broad to bring up at this stage in the conversation.
+            
+            The best question is, “As a hospitalist, I know you see SIADH, cirrhosis, and heart failure patients who present with hyponatremia.  I’d like to set a time to share more specifically with you about Samsca, and potentially also arrange a time to continue that conversation with Pharmacy or Dr. Rivers, a nephrologist who regularly prescribes Samsca.  When would be a good time to meet again?”
+            
+            This Execute Next Steps question makes a clear advance, while framing the question in a way that demonstrates your understanding of Dr. Chu’s key priorities.
+            
+            <B>It will help you to know the answer to this question to continue.  Here is how Dr. Chu would have answered:</B>
+            
+            “That sounds like a good next step.  Come back a couple weeks from now, and I’ll be happy to talk again.”
+            </p></welcomeText>]]></summary>
+        <summary><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><p>
+            This is an Options question, not an Execute Next Steps question. It is too general at this point in the discussion and moves the conversation backwards.
+            
+            The best question is, “As a hospitalist, I know you see SIADH, cirrhosis, and heart failure patients who present with hyponatremia.  I’d like to set a time to share more specifically with you about Samsca, and potentially also arrange a time to continue that conversation with Pharmacy or Dr. Rivers, a nephrologist who regularly prescribes Samsca.  When would be a good time to meet again?”
+            
+            This Execute Next Steps question makes a clear advance, while framing the question in a way that demonstrates your understanding of Dr. Chu’s key priorities.
+            
+            <B>It will help you to know the answer to this question to continue.  Here is how Dr. Chu would have answered:</B>
+            
+            “That sounds like a good next step.  Come back a couple weeks from now, and I’ll be happy to talk again.”
+            
+            </p></welcomeText>]]></summary>
+        <summary><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><p>
+            This is an Execute Next Steps question, but it is closed-ended and not directly linked to the previous conversation. 
+            
+            The best question is, “As a hospitalist, I know you see SIADH, cirrhosis, and heart failure patients who present with hyponatremia.  I’d like to set a time to share more specifically with you about Samsca, and potentially also arrange a time to continue that conversation with Pharmacy or Dr. Rivers, a nephrologist who regularly prescribes Samsca.  When would be a good time to meet again?”
+            
+            This Execute Next Steps question makes a clear advance, while framing the question in a way that demonstrates your understanding of Dr. Chu’s key priorities.
+            
+            <B>It will help you to know the answer to this question to continue.  Here is how Dr. Chu would have answered:</B>
+            
+            “That sounds like a good next step.  Come back a couple weeks from now, and I’ll be happy to talk again.”
+            
+            </p></welcomeText>]]></summary>
+</pageContent>
+
+
+</decision>
+
+</decisions>

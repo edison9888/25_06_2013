@@ -1,0 +1,29 @@
+//
+//  MaintenancePlanView.h
+//  GreenVolts
+//
+//  Created by Shinu Mohan on 21/08/12.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "MaintenancePlanCell.h"
+#import "MaintenancePlanDetailView.h"
+
+@protocol LoginButtonTouchedDelegate<NSObject>
+-(void)planViewlogButtonTouched;
+@end
+
+@interface MaintenancePlanView : UIView<UITableViewDelegate,UITableViewDataSource,MaintenaceDetailLogButtonTouchedDelegate>
+{
+    UITableView   *maintenaceTable;
+
+}
+
+-(void)maintenanceplanlogbuttontouched;
+- (IBAction)cellFrontArrowButtonTouched:(id)sender;
+
+@property(nonatomic,strong)NSMutableArray *maintenancePlanArray;
+@property(nonatomic,strong) IBOutlet MaintenancePlanCell *maintenancePlanCell;
+@property(nonatomic,strong)id<LoginButtonTouchedDelegate>delegate;
+@end

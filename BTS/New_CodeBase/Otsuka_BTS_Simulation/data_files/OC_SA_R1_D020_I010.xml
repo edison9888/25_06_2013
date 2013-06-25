@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OC_SA_R1_D020_I010]]></id>
+	<title><![CDATA[Opportunity Knocks]]></title>
+    <descriptionText><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Opportunity Knocks</Introtext><welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">You have just scheduled a speaker program involving a nationally recognized speaker, and you think Dr. Gomez and other prescribers at Maycomb might be interested in attending.  This would be a perfect opportunity to get a conversation started about patient types who may benefit from your product.  Since it’s time for your regular visit to Maycomb anyway, you plan to speak to Dr. Gomez about trends that are affecting the cardiology department and the hospital, so that you can better position yourself as a partner.</welcomeText>]]></descriptionText>
+    <continueBtn><![CDATA[]]></continueBtn>
+	<branchTo><![CDATA[OC_SA_R1_D020]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

@@ -1,0 +1,131 @@
+//
+//  ListMenuViewController.m
+//  NotiyiiPhoneApplicationProject
+//
+//  Created by Veena on 20/09/12.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//
+
+#import "ListMenuViewController.h"
+#import "InboxViewController.h"
+#import <QuartzCore/CoreAnimation.h>
+
+#define SORT_MAIL_ARRAY [NSArray arrayWithObjects: @"Inbox",@"Send Mail",@"Draft",@"Trash",nil]
+
+@interface ListMenuViewController ()
+{
+    
+    __weak IBOutlet UILabel *notifyiLabel;
+}
+@property (strong, nonatomic) IBOutlet UITableView *listMenuTableView;
+@end
+
+@implementation ListMenuViewController
+@synthesize listMenuTableView;
+@synthesize delegate;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    notifyiLabel.font = [UIFont fontWithName:@"Eurostile LT" size:17.0 ];
+    
+    /*
+     UIView *backView = [[UIView alloc] initWithFrame:self.view.frame];
+     backView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background_image.png"]];//background_image.png
+     self.listMenuTableView.backgroundView = backView;
+     */
+    
+    // Do any additional setup after loading the view from its nib.
+}
+
+#pragma mark - Table view data source
+- (CGFloat) tableView:(UITableView *)tableView1 heightForRowAtIndexPath:(NSIndexPath *)indexPath 
+{
+    return 50;	
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [SORT_MAIL_ARRAY count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"Cell";
+	
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        UIView *backView = [[UIView alloc] initWithFrame:cell.frame];
+        backView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"mobileSettings_bg_Secnd.png"]];
+        cell.backgroundView = backView;
+        cell.textLabel.backgroundColor = [UIColor clearColor];
+        cell.textLabel.font = [UIFont fontWithName:@"Eurostile LT" size:14.0];
+        cell.textLabel.textColor = [UIColor colorWithRed:.0078431372 green:0.48627450980392 blue:0.68627450980392 alpha:1];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator; 
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    
+    NSString *cellValue = [SORT_MAIL_ARRAY objectAtIndex:indexPath.row];
+    cell.textLabel.text = cellValue;
+    
+	return cell;
+    
+}
+
+#pragma mark - Table view delegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+<<<<<<< .mine
+{    
+    if(delegate && [delegate respondsToSelector:@selector(sortItemSelected:)])
+    [delegate sortItemSelected:indexPath.row + 1];// + 1 for fetching the currect title from the Array
+=======
+{        
+    ListMenuViewController *listMenuViewController=[[ListMenuViewController alloc] initWithNibName:@"ListMenuViewController" bundle:nil];   
+    listMenuViewController.currentObj = self;
+    CATransition* transition = [CATransition animation];
+    transition.duration = 0.5;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionFade;//kCATransitionPush;// kCATransitionMoveIn; //, kCATransitionPush, kCATransitionReveal, kCATransitionFade
+    //transition.subtype = kCATransitionFromTop; //kCATransitionFromLeft, kCATransitionFromRight, kCATransitionFromTop, kCATransitionFromBottom  kCATransitionFade; //
+    [self.navigationController.view.layer addAnimation:transition forKey:nil];
+    
+    [currentObj beginWithMsgSelectd:indexPath.row];
+>>>>>>> .r100
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)viewDidUnload
+{
+    notifyiLabel = nil;
+    [super viewDidUnload];
+}
+
+-(void)dealloc
+{
+    [self setListMenuTableView:nil];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+@end

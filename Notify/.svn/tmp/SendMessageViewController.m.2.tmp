@@ -1,0 +1,692 @@
+
+//
+//  SendMessageViewController.m
+//  SendMessage
+//
+//  Created by Amal T on 12/09/12.
+//  Copyright (c) 2012 RapidValue. All rights reserved.
+//
+
+#import "SendMessageViewController.h"
+#import "MsgRecipient.h"
+#import "DataManager.h"
+#import <QuartzCore/Quartzcore.h>
+#import "GeneralClass.h"
+#import "NotifyiConstants.h"
+@interface SendMessageViewController ()
+{
+    BOOL shouldMoveCursor;
+    MsgRecipient *msgRecipient;
+    int noteFieldup;
+    int movFlag;
+    CGPoint scrlvos;
+    int globalReplyFag;
+    int moveTxtViewToWriteFlag;
+    NSMutableArray *recipientIdArray;
+    NSMutableArray *recipientNameArray;
+    DataManager *dataManager;
+    UIView *patientView;
+    
+    IBOutlet UIScrollView *sendMsgScrlview;
+    IBOutlet UIButton *addPatentInfoBtn;
+    IBOutlet UIView *patientInfoView;    
+    IBOutlet UIImageView *updownImgView;
+    IBOutlet UIButton *backgroundBtn;
+    IBOutlet UILabel *sendMsg;
+    IBOutlet UIButton *sendButton;
+    IBOutlet UIButton *backButton;
+    
+    UIActionSheet * draftActionSheet;
+    UIToolbar *keyboardToolbar ;
+    
+}
+- (void)customizeFontSizes;
+- (void)setDelegates;
+- (BOOL)saveInboxMessageDetail:(Inbox *)inbox messageType:(int)messageID;
+- (void)registerForKeyboardNotifications;
+- (void)initializingKeyboardToolBar;
+- (void)keyboardWillShow:(NSNotification*)aNotification;
+- (void)dissmissKeyboard;
+- (void)beginWithReplyAction:(int)replyFalg inbox:(Inbox *)inbox;
+- (void)addRecipientList;
+- (void)fontCustomization;
+-(void)setDelegates;
+
+
+- (IBAction)addPatientBtnClicked:(id)sender;
+- (IBAction)searchParticipantsBtnTouched:(id)sender;
+- (IBAction)sendButtonTouched:(id)sender;
+- (IBAction)BackBtnClicked:(id)sender;
+@end
+
+@implementation SendMessageViewController
+
+@synthesize toText,subjectText;
+@synthesize inboxMsgObj;
+@synthesize sendMsgBodyTxtView;
+@synthesize addPatientTxtField;
+@synthesize patientFirstNameTxtField;
+@synthesize patientLastNameTxtField;
+@synthesize patientDOBTxtField;
+
+#pragma mark- viewDidLoad
+
+- (void)viewDidLoad
+
+{
+<<<<<<< .mine
+    [super viewDidLoad];
+    
+    [self customizeFontSizes];
+    [self setDelegates];
+    [self registerForKeyboardNotifications];
+    [self initializingKeyboardToolBar]; 
+    
+    sendMsgBodyTxtView.frame = CGRectMake(12.0,145.0, 296.0, 200.0);
+}
+
+#pragma mark- Methods 
+//setting the label ... font sizes
+- (void)customizeFontSizes
+{
+    sendMsg.font = [UIFont fontWithName:@"Eurostile LT" size:17.0 ];
+    sendButton.titleLabel.font =[UIFont fontWithName:@"Eurostile" size:12.0];
+    backButton.titleLabel.font =[UIFont fontWithName:@"Eurostile" size:12.0];
+    self.toText.font = [UIFont fontWithName:@"Eurostile" size:15.0];
+    self.subjectText.font = [UIFont fontWithName:@"Eurostile" size:15.0];
+    patientFirstNameTxtField.font = [UIFont fontWithName:@"Eurostile" size:15.0];
+    patientLastNameTxtField.font = [UIFont fontWithName:@"Eurostile" size:15.0];
+    patientDOBTxtField.font = [UIFont fontWithName:@"Eurostile" size:15.0];
+    sendMsgBodyTxtView.layer.cornerRadius = 6;
+    sendMsgBodyTxtView.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    sendMsgBodyTxtView.layer.borderWidth = 1.5f;
+    addPatientTxtField.font = [UIFont fontWithName:@"Eurostile" size:15.0]; 
+=======
+    [super viewDidLoad];
+    [self fontCustomization];
+>>>>>>> .r151
+    addPatentInfoBtn.tag = 0;
+    updownImgView.image = [UIImage imageNamed:@"rightArrow.png"];
+    noteFieldup = 0;
+<<<<<<< .mine
+}
+//setting delegates
+- (void)setDelegates
+{
+    toText.delegate = self;
+    patientFirstNameTxtField.delegate = self;
+    patientLastNameTxtField.delegate = self;
+    patientDOBTxtField.delegate = self;
+    subjectText.delegate = self;
+    sendMsgBodyTxtView.delegate = self;
+    draftActionSheet.delegate = self;
+=======
+    [self setDelegates];
+    
+    [self registerForKeyboardNotifications];
+    [self initializingKeyboardToolBar];    
+    
+>>>>>>> .r151
+}
+
+// this will invoke, only if it is came through reply/replyAll/forward Button Touched.
+-(void) beginWithReplyAction:(int)replyFalg inbox:(Inbox *)inbox
+{
+    inboxMsgObj = inbox;    
+    globalReplyFag = replyFalg;
+    NSLog(@"globalReplyFag === %d",globalReplyFag);
+    NSString *appendStr;
+    switch (globalReplyFag)
+    {
+        case 1:
+            appendStr = @"Re: ";
+            toText.text = inbox.senderName;
+            [sendMsgBodyTxtView becomeFirstResponder];
+            
+            break;
+            
+        case 2:
+            appendStr = @"Re: ";
+            toText.text = inbox.senderName;
+            [sendMsgBodyTxtView becomeFirstResponder];
+            [self addRecipientList];
+            break;
+            
+        case 3:
+            appendStr = @"Fwd: ";
+            toText.text = @"";
+            [toText becomeFirstResponder];
+            break;
+            
+        default:
+            break;
+    }
+    shouldMoveCursor = YES;
+    subjectText.text = [NSString stringWithFormat:@"%@%@",appendStr,inbox.subject];
+    sendMsgBodyTxtView.text = inbox.textMessageBody;
+    sendMsg.text = [NSString stringWithFormat:@"%@%@",appendStr,inbox.subject];
+}
+
+//This will add the list of recipients to the 'To' filed separated by commas.
+-(void)addRecipientList
+{
+    if(recipientIdArray)
+    {
+        recipientIdArray = nil;
+    }
+    recipientIdArray = [[NSMutableArray alloc]init];
+    
+    if(recipientNameArray)
+    {
+        recipientNameArray = nil;
+    }
+    recipientNameArray = [[NSMutableArray alloc]init];
+    
+    NSArray *temp = [inboxMsgObj.recipientmessageID allObjects];//+ seleted contacts
+    for (int i = 0; i < [temp count]; i++)
+    {
+        msgRecipient = (MsgRecipient *)[temp objectAtIndex:i];
+        [recipientIdArray addObject:msgRecipient.recipientId];
+        [recipientNameArray addObject:msgRecipient.recipientName];
+    }
+    
+    NSLog(@"recipientIdArray === %@",recipientIdArray);
+    NSLog(@"recipientNameArray === %@",recipientNameArray);
+    
+    NSString *recipeientString = [recipientNameArray componentsJoinedByString:@","];
+    NSLog(@"%@",recipeientString);
+    toText.text = recipeientString;
+}
+
+//setting values to the patient information field.
+-(void)setValueToThePatientField
+{
+    if(![patientFirstNameTxtField.text isEqualToString:@""] || ![patientLastNameTxtField.text isEqualToString:@""] || ![patientDOBTxtField.text isEqualToString:@""])
+    {
+        if(patientInfoView)
+        {
+            NSString *appendString;
+            if([patientDOBTxtField.text isEqualToString:@""])
+            {
+                appendString = [NSString stringWithFormat:@"%@ %@",patientFirstNameTxtField.text,patientLastNameTxtField.text];
+            }
+            else
+            {
+                appendString = [NSString stringWithFormat:@"%@ %@, %@",patientFirstNameTxtField.text,patientLastNameTxtField.text,patientDOBTxtField.text];
+            }
+            addPatientTxtField.text = appendString;
+            addPatientTxtField.textColor = [UIColor blackColor];
+        }
+        else
+        {
+            addPatientTxtField.text = @"Add Patient Info";
+            addPatientTxtField.textColor = [UIColor grayColor];
+        }
+    }
+    else
+    {
+        addPatientTxtField.text = @"Add Patient Info";
+        addPatientTxtField.textColor = [UIColor grayColor];
+    }
+    
+}
+<<<<<<< .mine
+
+=======
+-(void)fontCustomization
+{
+    sendMsg.font = [GeneralClass getFont:customBold and:fontName];
+    //sendMsg.font = [UIFont fontWithName:@"Eurostile LT" size:17.0 ];
+    sendButton.titleLabel.font =[UIFont fontWithName:@"Eurostile" size:12.0];
+    backButton.titleLabel.font =[UIFont fontWithName:@"Eurostile" size:12.0];
+    self.toText.font = [UIFont fontWithName:@"Eurostile" size:15.0];
+    self.subjectText.font = [UIFont fontWithName:@"Eurostile" size:15.0];
+    patientFirstNameTxtField.font = [UIFont fontWithName:@"Eurostile" size:15.0];
+    patientLastNameTxtField.font = [UIFont fontWithName:@"Eurostile" size:15.0];
+    patientDOBTxtField.font = [UIFont fontWithName:@"Eurostile" size:15.0];
+    sendMsgBodyTxtView.layer.cornerRadius = 6;
+    sendMsgBodyTxtView.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    sendMsgBodyTxtView.layer.borderWidth = 1.5f;
+    addPatientTxtField.font = [UIFont fontWithName:@"Eurostile" size:15.0];
+
+}
+-(void)setDelegates
+{
+    toText.delegate = self;
+    patientFirstNameTxtField.delegate = self;
+    patientLastNameTxtField.delegate = self;
+    patientDOBTxtField.delegate = self;
+    subjectText.delegate = self;
+    sendMsgBodyTxtView.delegate = self;
+    draftActionSheet.delegate = self;
+    sendMsgBodyTxtView.frame = CGRectMake(12.0,145.0, 296.0, 200.0);
+}
+//Recipient name separation with commas.
+-(void)setValuetoTheToField
+{
+    NSString *recipeientString = [recipientNameArray componentsJoinedByString:@","];
+    NSLog(@"%@",recipeientString);
+    toText.text = recipeientString;
+}
+>>>>>>> .r151
+
+- (BOOL)saveInboxMessageDetail:(Inbox *)inbox messageType:(int)messageID
+{
+    if(dataManager)
+    {
+        dataManager = nil;
+    }
+    dataManager=[[DataManager alloc]init];
+    
+    
+    inbox.patientFirstName = patientFirstNameTxtField.text;
+    inbox. patientLastName = patientLastNameTxtField.text;
+    
+    NSDateFormatter *dateFormatter  =   [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"dd-MM-yyyy"];
+    NSDate *datefromString = [dateFormatter dateFromString:patientDOBTxtField.text];
+    
+    inbox.patientDOB = datefromString;
+    inbox. subject = @"Bla bla bla bla...";//subjectText.text;
+    inbox.textMessageBody = sendMsgBodyTxtView.text;
+    inbox.date = [NSDate date];
+    //changing the message status
+    inbox.messageType = [NSNumber numberWithInt:messageID];
+    
+    BOOL isSaved = [DataManager saveContext];
+    
+    if(isSaved)
+    {
+        NSLog(@"INSERTION SUCCESS");
+        isSaved = YES;
+    }
+    else 
+    {
+        NSLog(@"INSERTION FAILED");
+        isSaved = NO;
+    }
+    
+    return isSaved;
+    
+}
+
+#pragma mark- Button Actions
+//To add PatientInformation
+- (IBAction)addPatientBtnClicked:(id)sender
+{
+    if(addPatentInfoBtn.tag) // without patient onfo
+    {
+        addPatentInfoBtn.tag = 0;
+        
+        [self setValueToThePatientField];   
+        
+        updownImgView.image = [UIImage imageNamed:@"rightArrow.png"];
+        [patientInfoView removeFromSuperview];
+        subjectText.frame = CGRectMake(subjectText.frame.origin.x, addPatentInfoBtn.frame.origin.y + addPatentInfoBtn.frame.size.height+10, subjectText.frame.size.width, subjectText.frame.size.height);
+        sendMsgBodyTxtView.frame = CGRectMake(sendMsgBodyTxtView.frame.origin.x, subjectText.frame.origin.y+subjectText.frame.size.height+10, sendMsgBodyTxtView.frame.size.width, sendMsgBodyTxtView.frame.size.height);
+        sendMsgScrlview.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height - 150);
+        backgroundBtn.frame = CGRectMake(0, 0, sendMsgScrlview.contentSize.width,sendMsgScrlview.contentSize.height);
+    }
+    else  // with patient info
+    {
+        
+        addPatentInfoBtn.tag = 1;
+        addPatientTxtField.text = @"Patient";
+        updownImgView.image = [UIImage imageNamed:@"downArrow.png"];        
+        [sendMsgScrlview addSubview:patientInfoView];        
+        [sendMsgScrlview bringSubviewToFront:backButton];        
+        patientInfoView.frame = CGRectMake(0, 92, self.view.frame.size.width,147);        
+        subjectText.frame = CGRectMake(subjectText.frame.origin.x, patientInfoView.frame.origin.y+patientInfoView.frame.size.height, subjectText.frame.size.width, subjectText.frame.size.height);        
+        sendMsgBodyTxtView.frame = CGRectMake(sendMsgBodyTxtView.frame.origin.x, subjectText.frame.origin.y+subjectText.frame.size.height+10, sendMsgBodyTxtView.frame.size.width, sendMsgBodyTxtView.frame.size.height);        
+        sendMsgScrlview.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height *1.5);  
+        addPatientTxtField.textColor = [UIColor grayColor];
+    }    
+    
+    backgroundBtn.frame = CGRectMake(0, 0, sendMsgScrlview.contentSize.width,sendMsgScrlview.contentSize.height);
+}
+
+
+
+//will move to the directory view to select people
+- (IBAction)searchParticipantsBtnTouched:(id)sender 
+{
+    DirectoryViewController *detailViewController=[[DirectoryViewController alloc] initWithNibName:@"DirectoryViewController" bundle:nil];
+    [detailViewController beginWithAddParticipants:1];
+    detailViewController.delegate = self;
+    [self.navigationController pushViewController:detailViewController animated:YES];
+    detailViewController = nil;
+}
+
+//Will Store it into the DataBase.
+- (IBAction)sendButtonTouched:(id)sender 
+{    
+
+//    if(globalReplyFag == 1)//replay
+//    {
+//        Inbox *newInboxObj = [DataManager createEntityObject:@"Inbox"];
+//        isSaved = [self saveInboxMessageDetail:self.inboxMsgObj messageType:sentMsgID];
+//        
+//    }
+//    else//new message
+//    {
+//        Inbox *newInboxObj = [DataManager createEntityObject:@"Inbox"];
+//        isSaved = [self saveInboxMessageDetail:newInboxObj messageType:sentMsgID];
+//    }
+    
+    //DataBase insertion
+    Inbox *newInboxObj = [DataManager createEntityObject:@"Inbox"];
+    BOOL sendBool = [self saveInboxMessageDetail:newInboxObj messageType:sentMsgID];;
+    
+    if(sendBool)
+    {
+        NSLog(@"SEND SUCCESS");
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Message" 
+                                                        message:@"Reply Successfull"
+                                                       delegate:self 
+                                              cancelButtonTitle:nil
+                                              otherButtonTitles:@"OK",nil];
+        [alert show];
+        
+    }
+    else 
+    {        
+        NSLog(@"SEND FAILED");
+    }
+    
+
+}
+
+
+- (IBAction)BackBtnClicked:(id)sender 
+{
+    draftActionSheet = [[UIActionSheet alloc]
+                        initWithTitle:nil delegate:self
+                        cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Delete Draft" 
+                        otherButtonTitles:@"Save Draft",nil];
+    
+    [draftActionSheet showInView:self.view];
+    draftActionSheet = nil;
+    
+    NSLog(@"globalReplyFag == %d",globalReplyFag);
+    NSLog(@"MSG TYPE === %@",inboxMsgObj.messageType);
+}
+
+#pragma mark- TextView delegates
+- (void)textViewDidBeginEditing:(UITextView *)textView 
+{   
+    if(globalReplyFag)
+    {
+        if(addPatentInfoBtn.tag)//came from reply option with patient info
+        {
+            [self makeScrollviewUp:textView];
+            textView.frame = CGRectMake(12.0, subjectText.frame.origin.y + subjectText.frame.size.height + 20 , 296.0, 160);
+            shouldMoveCursor = NO;
+        }
+        else 
+        {
+            shouldMoveCursor = YES;
+        }
+    }
+    else 
+    {
+        NSLog(@"NORMAL CASE");
+        [self makeScrollviewUp:textView];
+        keyboardToolbar.hidden=NO;
+    }
+    textView.frame = CGRectMake(textView.frame.origin.x, textView.frame.origin.y, 296.0, 160);
+}
+
+-(BOOL)textViewShouldEndEditing:(UITextView *)textView
+{
+    textView.frame = CGRectMake(textView.frame.origin.x, textView.frame.origin.y, 296.0, 200);
+    return YES;
+}
+
+- (void)textViewDidChangeSelection:(UITextView *)textView 
+{
+    // Moving the cursor to the beginning of UITextView with new line character
+    if(shouldMoveCursor && globalReplyFag)
+    {
+        NSRange beginningRange = NSMakeRange(0, 0);
+        NSRange currentRange = [textView selectedRange];
+        if(!NSEqualRanges(beginningRange, currentRange))
+        {
+            textView.text = [textView.text stringByReplacingCharactersInRange:beginningRange withString:@"\n"];
+            [textView setSelectedRange:beginningRange];
+        }
+        shouldMoveCursor = NO;
+        moveTxtViewToWriteFlag = 1;
+    }
+}
+
+-(void)textViewDidChange:(UITextView *)textView
+{
+    if(moveTxtViewToWriteFlag)
+    {
+        keyboardToolbar.hidden = NO;
+        [self makeScrollviewUp:textView];
+        moveTxtViewToWriteFlag = 0;
+    }
+}
+
+#pragma mark- UITextField delegate
+- (void)textFieldDidBeginEditing:(UITextField *)textField 
+{
+    if(![textField isEqual:toText])
+    {
+        scrlvos = sendMsgScrlview.contentOffset;
+        CGPoint pt;
+        CGRect rc = [textField bounds];
+        rc = [textField convertRect:rc toView:sendMsgScrlview];
+        pt = rc.origin;
+        pt.x = 0;
+        pt.y -= 60;
+        [sendMsgScrlview setContentOffset:pt animated:YES];    
+    }
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{   
+    if ([textField isEqual:toText] && addPatentInfoBtn.tag)
+    {
+        [toText resignFirstResponder];
+        [patientFirstNameTxtField becomeFirstResponder];
+    }
+    else if ([textField isEqual:toText] && !(addPatentInfoBtn.tag))
+    {
+        [toText resignFirstResponder];
+        [subjectText becomeFirstResponder];
+    }
+    else if ([textField isEqual:patientFirstNameTxtField])
+    {
+        [patientFirstNameTxtField resignFirstResponder];
+        [patientLastNameTxtField becomeFirstResponder];
+    }
+    else if([textField isEqual:patientLastNameTxtField])
+    {
+        [patientLastNameTxtField resignFirstResponder];
+        [patientDOBTxtField becomeFirstResponder];
+    }
+    
+    else if([textField isEqual:patientDOBTxtField])
+    {
+        [patientDOBTxtField resignFirstResponder];
+        [subjectText becomeFirstResponder];
+    }
+    else if([textField isEqual:subjectText])
+    {
+        [subjectText resignFirstResponder];
+        [sendMsgBodyTxtView becomeFirstResponder];
+    }
+    [sendMsgScrlview setContentOffset:scrlvos animated:YES];
+   	return TRUE;
+}
+
+-(UITextView *) makeScrollviewUp:(UITextView *)textView
+{
+    scrlvos = sendMsgScrlview.contentOffset;
+    CGPoint pt;
+    CGRect rc = [textView bounds];
+    rc = [textView convertRect:rc toView:sendMsgScrlview];
+    pt = rc.origin;
+    pt.x = 0;
+    pt.y += 0;
+    [sendMsgScrlview setContentOffset:pt animated:YES];
+    return textView;
+}
+
+#pragma mark- Alertview delegates
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex 
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+#pragma mark- Action Delegates
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    BOOL isSaved;
+    switch (buttonIndex) {
+        case 0: 
+        {
+            Inbox *newInboxObj;
+            if (self.inboxMsgObj) 
+            {
+                newInboxObj = [DataManager createEntityObject:@"Inbox"];
+            }
+            else
+            {
+                newInboxObj = self.inboxMsgObj;
+            }
+         
+            isSaved = [self saveInboxMessageDetail:newInboxObj messageType:trashMsgID];
+        }
+            break;
+        case 1:
+        {
+            Inbox *newInboxObj = [DataManager createEntityObject:@"Inbox"];
+            
+            isSaved = [self saveInboxMessageDetail:newInboxObj messageType:draftMsgId];
+       }
+            break;
+        default:
+            break;
+    }
+    
+    if (isSaved) 
+    {
+        [self.navigationController  popToRootViewControllerAnimated:YES];
+    }
+   
+}
+
+#pragma mark- Contact Address Select Delegate
+- (void)selectedContacts:(NSArray *)contacts
+{
+    NSLog(@"contacts count === %d",[contacts count]);
+    
+}
+
+#pragma mark- keybord animation handling methods
+//Registering key board notification for initializing Custom keyboard ToolBar
+- (void)registerForKeyboardNotifications
+{
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(keyboardWillShow:)
+												 name:UIKeyboardWillShowNotification object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(keyboardWillHide:)
+												 name:UIKeyboardWillHideNotification object:nil];
+}
+
+//Adding a Toolbar on top of Keyboard
+-(void)initializingKeyboardToolBar
+{
+    if(keyboardToolbar == nil) 
+    {
+		keyboardToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0,416,320,40)];
+		keyboardToolbar.barStyle = UIBarStyleDefault;
+        keyboardToolbar.hidden = YES;
+        UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(dissmissKeyboard)];
+        UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+        NSArray *items = [[NSArray alloc] initWithObjects:flexibleSpace,done, nil];
+        [keyboardToolbar setItems:items];
+	}
+}
+
+//Method for Showing Custom keyboard ToolBar 
+- (void)keyboardWillShow:(NSNotification*)aNotification
+{
+	[UIView beginAnimations:nil context:nil];
+	[UIView setAnimationDuration:0.3];
+	CGRect rect = keyboardToolbar.frame;
+	rect.origin.y = 204;
+	keyboardToolbar.frame = rect;
+	[self.view addSubview:keyboardToolbar];
+	[UIView commitAnimations];
+}
+
+//Method for Hiding Custom keyboard ToolBar 
+- (void)keyboardWillHide:(NSNotification*)aNotification
+{
+	[UIView beginAnimations:nil context:nil];
+	[UIView setAnimationDuration:0.3];
+	CGRect rect = keyboardToolbar.frame;
+	rect.origin.y = 416;
+	keyboardToolbar.frame = rect;
+    [keyboardToolbar removeFromSuperview];
+	[UIView commitAnimations];
+}
+
+//Hiding Keyboard
+-(void)dissmissKeyboard
+{
+    [self backGroundBtnClicked:nil];    
+}
+
+
+#pragma mark- BackGroundTouch Actions
+- (IBAction)backGroundBtnClicked:(id)sender 
+{
+    NSLog(@"Background touched ");
+	[toText resignFirstResponder];
+	[subjectText resignFirstResponder];
+    [patientFirstNameTxtField resignFirstResponder];
+	[patientLastNameTxtField resignFirstResponder];
+    [patientDOBTxtField resignFirstResponder];
+	[sendMsgBodyTxtView resignFirstResponder];
+    [sendMsgScrlview setContentOffset:CGPointMake(self.view.frame.origin.x,self.view.frame.origin.y) animated:YES];
+}
+
+- (void) touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event 
+{
+	NSLog(@"Background touched");
+	[sendMsgBodyTxtView resignFirstResponder];
+}
+
+
+#pragma mark viewDidUnload
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
+}
+
+-(void)dealloc
+{
+    NSLog(@"dealloc in sendMsg");
+    [self setSubjectText:nil];
+    [self setToText:nil];
+    [self setInboxMsgObj:nil];
+    [self setSendMsgBodyTxtView:nil];
+    [self setAddPatientTxtField:nil];
+    [self setPatientFirstNameTxtField:nil];
+    [self setPatientLastNameTxtField:nil];
+    [self setPatientDOBTxtField:nil];
+    
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+}
+
+@end

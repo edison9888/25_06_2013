@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+    <pageContent>
+      <id><![CDATA[OTS_SA_R2_INTRO1]]></id>
+      <title><![CDATA[Introduction]]></title>
+      <descriptionText><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Introduction</Introtext><welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">Welcome to the <b>OAPI Sales Accelerator Simulation</b>.<br>In this follow-up round of the simulation you will have a chance to practice the strategies you’ve learned for asking customers questions that help advance the prescribing cycle. <br><br>You will be applying the ROPE questioning model you learned:<li style="font-family:Helvetica; font-size:12pt; color:#333; list-style-type:disc;">Results</li><li style="font-family:Helvetica; font-size:12pt; color:#333; list-style-type:disc;">Options</li><li style="font-family:Helvetica; font-size:12pt; color:#333; list-style-type:disc;">Problems</li><li style="font-family:Helvetica; font-size:12pt; color:#333; list-style-type:disc;">Execute Next Steps</li><br>On each screen, you’ll choose from a set of possible questions and decide which is the best one to ask at that point in the conversation.<br><br>Each of the possible questions you consider has been rated according to the following individual metrics. Your score will reflect whether your decision making is in line with these characteristics.<br><br><B>Scoring Metrics</B>:<br><span style="color:#3366cc; font-size:12pt; font-weight:bold;padding-left:20px;">Customer’s Goals</span>
+          
+          <li style="font-family:Helvetica; font-size:12pt; color:#333; list-style-type:disc;padding-left:20px;">Decisions will help your customer better understand their desired patient treatment goals</li>
+          
+          <li style="font-family:Helvetica; font-size:12pt; color:#333; list-style-type:disc;padding-left:20px;">Decisions will capture new Options for the customer</li><br><span style="color:#3366cc; font-size:12pt; font-weight:bold;padding-left:20px;">Sales Progress</span>
+          
+          <li style="font-family:Helvetica; font-size:12pt; color:#333; list-style-type:disc;padding-left:20px;">Decisions build on previous discussions and align with where the customer is in their<span style="margin:0 0 0 15px;"> prescribing cycle</span></li>
+          
+          <li style="font-family:Helvetica; font-size:12pt; color:#333; list-style-type:disc;padding-left:20px;">Decisions advance the sale by "closing" at multiple points in the prescribing cycle</li>
+          
+          <br><span style="color:#3366cc; font-size:12pt; font-weight:bold;padding-left:20px;">Trusted Advisor Relationship</span><li style="font-family:Helvetica; font-size:12pt; color:#333; list-style-type:disc;padding-left:20px;">Decisions demonstrate a deep understanding of the customer's priorities and goals</li><li style="font-family:Helvetica; font-size:12pt; color:#333; list-style-type:disc;padding-left:20px;">Decisions genuinely engage the customer by partnering with the customer to create value</li>
+          
+          <br></welcomeText><lasttext style="font-family:Helvetica; font-size:11pt; color:#000; background-color:#c0c0c0; margin:10px; padding:2px 0 2px 5px; display:block;"><i>Please press or swipe the <b>Continue</b> button below to get started.</i></lasttext> <welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><br><br><I><B>Simulation Version: January 2012   0711T-3576B</B></I></welcomeText>]]></descriptionText>
+      <character><![CDATA[]]></character>
+      <continueBtn><![CDATA[]]></continueBtn>
+      <branchTo><![CDATA[OTS_SA_R2_INTRO2]]></branchTo>
+    </pageContent>
+	
+	

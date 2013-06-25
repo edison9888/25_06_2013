@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OTS_SA_R4_D050]]></id>
+	<title><![CDATA[<Introtext style="font-family:Helvetica; font-size:14pt; font-weight:bold; color:#cc0033; margin:10px -5px 10px 5px; width:738px; padding:5px 0 5px 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Creating Value</Introtext>]]></title>
+	<title2><![CDATA[]]></title2>
+	<instructions><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:11pt; line-height:18pt; text-align:justify; font-weight:bold; color:#333; display:block; margin:0 10px 10px">You have scheduled a meeting with Dr. Cardonza and Dr. Gomez to evaluate their initial results and to make sure that no issues have arisen since they began prescribing. How do you help Dr. Cardonza and Dr. Gomez to see the early value of their decision to prescribe Samsca?  </welcomeText >]]></instructions>
+	<choices>
+		<choice>
+			<id><![CDATA[1]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>A</b>. Plan for the meeting using your Value Map, and discuss with Dr. Gomez your ideas for evaluating their results. </welcomeText>]]></choiceText>
+			<KPIs totalScore="15">
+				<KPI marks="5"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="0"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="10"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R4_D050_A010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[2]]></id>
+			<isCorrect><![CDATA[YES]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>B</b>. Learn from Dr. Gomez and Dr. Cardonza their process for evaluating both short-term and long-term results, and then schedule time to follow up. </welcomeText>]]></choiceText>
+			<KPIs totalScore="30">
+				<KPI marks="10"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="10"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R4_D050_B010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[3]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>C</b>. There won’t be much information available yet, since the cardiologists just started prescribing Samsca, so use this meeting to talk through any issues that may have arisen. Set up another meeting with Dr. Gomez and Dr. Cardonza for six weeks out, when more information will be available, to ensure maximum impact. </span></welcomeText>]]></choiceText>
+			<KPIs totalScore="5">
+				<KPI marks="0"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="0"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="5"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R4_D050_C010]]></branchTo>
+		</choice>
+		<choice>
+			<id><![CDATA[4]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>D</b>. Discuss how adding Samsca to their therapeutic regimen helped other customers achieve goals that the Maycomb cardiology department wants to achieve. </welcomeText>]]></choiceText>
+			<KPIs totalScore="15">
+				<KPI marks="10"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="0"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="5"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+			<branchTo><![CDATA[OTS_SA_R4_D050_A010]]></branchTo>
+		</choice>
+		<!--<feedbackText><![CDATA[]]></feedbackText>-->
+	</choices>
+
+	 <summary><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">Working with Dr. Cardonza and Dr. Gomez to create a process for evaluating the impact of your product is a great way to show not only the value of Samsca but also the value you offer as an ongoing partner and advisor (Choice B). The Value Map that you created in your planning will be very useful here (Choice A), but it’s better to help them establish an ongoing process for evaluating the impact of prescribing Samsca, both now and in the future. Choice C does not fully utilize this time you have with Dr. Cardonza and Dr. Gomez to show the value you offer as a partner and advisor. Choice D would be appropriate earlier in the prescribing cycle, but this option is also inappropriate as we do not have any outcomes data for Samsca. Choice B is the best choice.</welcomeText>]]></summary>
+</pageContent>

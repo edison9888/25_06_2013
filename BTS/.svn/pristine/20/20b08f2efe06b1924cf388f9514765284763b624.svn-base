@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OTS_SA_R5_D060_D020]]></id>
+	<title><![CDATA[]]></title>
+    <descriptionText><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Understanding the Context</Introtext><welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">This is a Results question, not a Problems question. Asking this question now will move the conversation backwards, and take you in a different direction.<BR><BR>
+        The best question is, “Do you foresee any other barriers in achieving your goals for patient safety and patient experience?”<BR><BR>
+        This Problems question helps probe deeper into issues faced by Dr. Chu without jumping prematurely to solutions.<BR><BR>
+        <B>It will help you to know the answer to this question to continue.  Here is how Dr. Chu would have answered:</B><BR><BR>
+        
+        “Let’s face it, time is always a challenge.  As much as I would like to collaborate more with Pharmacy, bring in specialist consults, and spend more time with patients, that won’t always be possible.  I’m already stretched thin, and I know every hospitalist at Maycomb feels the same time pressures that I do.  However, once I start implementing some of these ideas, I could very well see some improvement.  For instance, if I can bring in a consult for my more difficult cases, that will free me up to spend more time with the other patients, which should increase their satisfaction.”</welcomeText>]]></descriptionText>
+    <character><![CDATA[Mack]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>	
+	<branchTo><![CDATA[OTS_SA_R5_D070]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OTS_SA_R4_D060_I010]]></id>
+    <emailHeader><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; border-bottom:1px solid #333; display:block;">Voicemail</Introtext>]]></emailHeader>
+    <emailTypeImage><![CDATA[voice]]></emailTypeImage>    
+	<title><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:14pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>Meet Friday?</b></welcomeText>]]></title>
+    <emailContent><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">"I had a meeting this morning with Dr. Peterson, the director of the three community mental health centers here in town.  I told him how impressed I was with your focus on patient outcomes, and I discussed with him the value that you have brought to us.  Dr. Peterson wants to meet with you. Can you meet us at Dr. Peterson’s office Friday afternoon?"</welcomeText>]]></emailContent>
+    <from><![CDATA[Dr. Bennett]]></from>
+    <character><![CDATA[Char_Bennett_emailHappy]]></character>
+	<branchTo><![CDATA[OTS_SA_R4_D060_I020]]></branchTo>
+	<to><![CDATA[]]></to>
+</pageContent>
+
+
+
+

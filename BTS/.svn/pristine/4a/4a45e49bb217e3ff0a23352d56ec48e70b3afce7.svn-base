@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OTS_SA_R2_D080_A010]]></id>
+	<title><![CDATA[]]></title>
+    <descriptionText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">Let’s plan an in-service program for the staff to educate them on your product and programs.  You can set up that appointment with the front office staff. Thanks.</welcomeText>]]></descriptionText>
+    <character><![CDATA[Char_DrHayes]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>
+	<branchTo><![CDATA[OTS_SA_R2_D080_A020]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

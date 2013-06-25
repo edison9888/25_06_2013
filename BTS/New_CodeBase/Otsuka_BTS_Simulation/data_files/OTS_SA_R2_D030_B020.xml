@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OTS_SA_R2_D030_B020]]></id>
+	<title><![CDATA[Not Quite]]></title>
+    <descriptionText><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Not Quite</Introtext><welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">"This is an Execute Next Steps question, not an Options question. By going directly to execution issues, you are losing the opportunity to build up the value of Samsca by connecting it to the department’s desired patient treatment goals.<br><br>The best question to ask at this point is, "You mentioned how your department was working on better understanding which treatment option(s) are better suited for particular patients, as that will affect your status as a "top hospital." What steps have you taken to work on this?"<br><br>This is an Options question that moves from the previous answer to beginning to establish the value of considering Samsca (i.e., approved promotional materials). In letting Dr. Cardonza describe the value instead of you telling him what you can offer, you engage him in a conversation around creating value.<br><br><b>Here is how Dr. Cardonza would have answered that question:</b><BR><BR>"We’ve been reviewing the surveys of patients that have presented with hyponatremia in heart failure. This is allowing us to review their response to the various therapies we employ; for example, fluid restriction. We have noticed that some patients complained about not being able to drink. Additionally, some of these patients did not respond well, as their serum sodium levels took several days to increase even slightly." <br>Our next step will be to take the information and apply the learning in our treatment to future patients.""</welcomeText>]]></descriptionText>
+    <character><![CDATA[Mac_skeptical]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>
+	<branchTo><![CDATA[OTS_SA_R2_D040]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

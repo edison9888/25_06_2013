@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OTS_SA_R5_D010_B010]]></id>
+	<title><![CDATA[]]></title>
+    <descriptionText><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Aligning with the Customer’s Needs</Introtext><welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">Problems will likely be part of any change.  As you know, Maycomb is putting increasing focus on efficiency and cost effectiveness, so I could experience pushback as a result of that.</welcomeText>]]></descriptionText>
+    <character><![CDATA[Dr-Chu_skeptical]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>	
+	<branchTo><![CDATA[OTS_SA_R5_D010_B020]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

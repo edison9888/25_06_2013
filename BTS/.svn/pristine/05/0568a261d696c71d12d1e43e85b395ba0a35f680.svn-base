@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OC_SA_R1_D060_B010]]></id>
+	<title><![CDATA[]]></title>
+    <descriptionText><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Sorry, Can’t Help You</Introtext><welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">Sorry, I really don’t know anything about the promotional messages this competitor might be offering to Dr. Hayes. I could make an educated guess, but it would just be a guess. I’d be happy to come along with you to the meeting, though.</welcomeText>]]></descriptionText>
+    <character><![CDATA[Char_Dennis]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>
+	<branchTo><![CDATA[OC_SA_R1_D060_E010]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+

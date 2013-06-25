@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OTS_SA_R3_D010]]></id>
+	<title><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Understanding Your Customer’s Priorities</Introtext>]]></title>
+	<title2><![CDATA[Understanding Your Customer’s Priorities]]></title2>
+	<instructions><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:11pt; line-height:18pt; text-align:justify; font-weight:bold; color:#333; display:block; margin:0 10px 10px">Involving Dr. Bennett in further discussions, you focus on Sunnydale Psychiatry's practice priorities. Based you previous use of ROPE in talking with Dr.Hayes, and all the other information you have gathered, what would you say are Sunnydale Psychiatry's top two priorities?</welcomeText>]]></instructions>
+	<choices>
+		<choice>
+			<id><![CDATA[A]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>A</b>. Protecting their Professional Reputation</span></welcomeText>]]></choiceText>
+		</choice>
+		<choice>
+			<id><![CDATA[B]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>B</b>. Taking Advantage of Medical Advances </welcomeText>]]></choiceText>
+		</choice>
+		<choice>
+			<id><![CDATA[C]]></id>
+			<isCorrect><![CDATA[YES]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>C</b>. Achieving Positive Patient Outcomes </welcomeText>]]></choiceText>
+		</choice>
+		<choice>
+			<id><![CDATA[D]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>D</b>. Addressing Healthcare Trends </welcomeText>]]></choiceText>
+		</choice>
+		<choice>
+			<id><![CDATA[E]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>E</b>. Improving Patient Management </welcomeText>]]></choiceText>
+		</choice>
+		<choice>
+			<id><![CDATA[F]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>F</b>. Solving Adherence Challenges</welcomeText>]]></choiceText>
+		</choice>
+		<choice>
+			<id><![CDATA[G]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>G</b>. Improving Administrative Execution and Business Processes </welcomeText>]]></choiceText>
+		</choice>
+		<choice>
+			<id><![CDATA[H]]></id>
+			<isCorrect><![CDATA[YES]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>H</b>. Addressing or Controlling Side Effects</welcomeText>]]></choiceText>
+		</choice>
+		<choice>
+			<id><![CDATA[I]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>I</b>. Understanding Formulary Status and Possible Restrictions  </welcomeText>]]></choiceText>
+		</choice>
+		<choice>
+			<id><![CDATA[J]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>J</b>. Leveraging Information Technology </welcomeText>]]></choiceText>
+		</choice>
+		<choice>
+			<id><![CDATA[K]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>K</b>. Making Staffing More Efficient </welcomeText>]]></choiceText>
+		</choice>
+		<choice>
+			<id><![CDATA[L]]></id>
+			<isCorrect><![CDATA[NO]]></isCorrect>
+			<choiceText><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px"><b>L</b> Handling Payer Interventions </welcomeText>]]></choiceText>
+		</choice>
+	</choices>
+	<scores>
+		<wrong>
+            <KPIs totalScore="0">
+				<KPI marks="0"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="0"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="0"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+            <branchTo><![CDATA[OTS_SA_R3_D010_C010]]></branchTo>
+		</wrong>
+		<partial>
+            <KPIs totalScore="15">
+				<KPI marks="5"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="5"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="5"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+            <branchTo><![CDATA[OTS_SA_R3_D010_B010]]></branchTo>
+        </partial>
+        <correct>
+            <KPIs totalScore="30">
+				<KPI marks="10"><![CDATA[Customer Results Score]]></KPI>
+				<KPI marks="10"><![CDATA[Sales Progress Score]]></KPI>
+				<KPI marks="10"><![CDATA[Trusted Advisor Relationship Score]]></KPI>
+			</KPIs>
+            <branchTo><![CDATA[OTS_SA_R3_D010_A010]]></branchTo>
+		</correct>
+    </scores>
+    <summary><![CDATA[<welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">Although all of these priorities are important to a practice on some level, you know from your ROPE questioning that Sunnydale Psychiatry is very focused on improving the outcomes of its patients, as well as increasing the speed for achieving those outcomes.  You also know that patients often experience side effects from their treatments, which leads to patients stopping their medication prior to receiving full treatment. Therefore, the two priorities which align the closest to Sunnydale Psychiatry’s practice goals are Achieving Positive Patient Outcomes (Choice C) and Addressing or Controlling Side Effects (Choice H).</welcomeText>]]></summary>
+</pageContent>

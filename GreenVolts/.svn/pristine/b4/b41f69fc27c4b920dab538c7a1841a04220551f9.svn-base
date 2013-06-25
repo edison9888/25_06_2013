@@ -1,0 +1,86 @@
+//
+//  MaintenanceLogCell.m
+//  GreenVolts
+//
+//  Created by Rapidvalue on 8/22/12.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//
+
+#import "MaintenanceLogCell.h"
+
+@interface MaintenanceLogCell ()
+
+
+@end
+
+@implementation MaintenanceLogCell
+@synthesize titleLabel;
+@synthesize savebtn;
+
+
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) 
+    {
+        // Initialization code
+    }
+    return self;
+}
+
+#pragma mark- Display Methods
+- (void)displayDetails:(MaintenanceLog *)result rowValue:(int)row
+{
+    UILabel *planLabel=[[UILabel alloc]initWithFrame:CGRectMake(20, 10, 220, 25)];
+    planLabel.backgroundColor=[UIColor clearColor];
+    planLabel.textColor=[UIColor whiteColor];
+    planLabel.font=[UIFont systemFontOfSize:14];
+    [self.contentView addSubview:planLabel]; 
+    if(row ==0)
+    { 
+        planLabel.frame=CGRectMake(45, 10, 200, 25);
+        planLabel.text=@"Plan Item Number:123456";
+        self.accessoryType = UITableViewCellAccessoryNone;
+        
+    }
+    else if(row==1)
+    {
+        planLabel.text=@"Location:MissionFalls:PhaseThree:A1";
+        self.accessoryType = UITableViewCellAccessoryNone;
+        [self.savebtn removeFromSuperview];
+        self.titleLabel.textColor=[UIColor whiteColor];
+    }
+    else 
+    {
+        switch (row) 
+        {
+           
+            case 2:
+                planLabel.text=@"Task:Replace";
+                break;
+            case 3:
+                planLabel.text=@"Component:Linear Actuator";
+                break;
+
+            case 4:
+                planLabel.text=@"OLD Serial Number:";
+                break;
+            case 5:
+                planLabel.text=@"NEW Serial Number:";
+                break;
+            case 6:
+                planLabel.text=@"Task Duration:";
+                break;
+            case 7:
+                planLabel.text=@"Notes:";
+                break;
+                            
+            default:
+                break;
+        }
+        [self.savebtn removeFromSuperview];
+    }
+   
+}
+
+@end

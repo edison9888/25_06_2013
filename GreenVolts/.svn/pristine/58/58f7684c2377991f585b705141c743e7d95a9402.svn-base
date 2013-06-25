@@ -1,0 +1,832 @@
+    //
+//  ControlViewController.m
+//  GreenVolts
+//
+//  Created by YML on 8/26/11.
+//  Copyright 2011 YML. All rights reserved.
+//
+
+#import "ControlViewController.h"
+#import "LoginManager.h"
+#import "SBJson.h"
+#import "GreenVoltsAppDelegate.h"
+@interface ControlViewController()<LoginManagerDelegate>
+
+@property(nonatomic, strong) NSString *operationPerformed;
+
+-(void)connectToServer:(NSString *)pURLString;
+-(void)jsonParser;
+-(void)fetchSessionToken;
+-(void)handleAction;
+-(void)checkArrayLockStatus;
+-(void)handleException:(int)errorCode andAdditionalMessage:(NSString*)message;
+-(void)changeAccessToken;
+@end
+
+
+@implementation ControlViewController
+
+@synthesize operationPerformed;
+
+-(id)init 
+{
+  if((self = [super init]))
+  {
+    m_PasswordTextField=nil;
+    pTitleLabel=nil;
+    
+    mURLConnection=nil;
+    mResponseData=nil;
+    m_ActivityIndicatorView=nil;        
+    actionState=UNAVAILABLE;
+    moveDirection=NO_DIRECTION;
+    isArrayLockStatusCheck=NO;
+  }
+  return self;
+}
+
+- (void)dealloc 
+{
+  if(m_PasswordTextField){m_PasswordTextField=nil;}
+  if(pTitleLabel){pTitleLabel=nil;}
+  
+  if(mURLConnection) 
+	{
+		[mURLConnection cancel];
+		mURLConnection=nil;
+	}
+  if(mResponseData)
+	{
+		mResponseData=nil;
+	}  
+  if(m_ActivityIndicatorView){[m_ActivityIndicatorView removeFromSuperview];m_ActivityIndicatorView=nil;}    
+  if(urlString)
+  {
+    urlString=nil;
+  }
+}
+
+-(void)loadView
+{
+  self.view=[[UIView alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
+  self.view.backgroundColor=[UIColor colorWithRed:(10.6/100.0) green:(13.3/100.0) blue:(13.7/100.0) alpha:1.0];
+  self.navigationController.navigationBar.tintColor=[UIColor blackColor];
+  
+  pTitleLabel=[[UILabel alloc]initWithFrame:CGRectMake(10, 8, 300, 30)];
+  pTitleLabel.backgroundColor=[UIColor clearColor];
+  pTitleLabel.font=[UIFont fontWithName:@"HelveticaNeue-Bold" size:18];
+  pTitleLabel.textColor=[UIColor whiteColor];
+  pTitleLabel.textAlignment=UITextAlignmentCenter;
+  pTitleLabel.text=@"Control";
+  [self.navigationController.navigationBar addSubview:pTitleLabel];              
+  
+  UILabel *pPasswordLabel=[[UILabel alloc]initWithFrame:CGRectMake(5, 3, 310, 20)]; 
+  pPasswordLabel.text=@"Reason for Change";
+  pPasswordLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:12];
+  pPasswordLabel.textColor = [UIColor whiteColor];
+  pPasswordLabel.backgroundColor=[UIColor clearColor];
+	pPasswordLabel.textAlignment=UITextAlignmentLeft;
+	[self.view addSubview:pPasswordLabel];
+  
+  m_PasswordTextField=[[UITextField alloc]initWithFrame:CGRectMake(5, 25, 310, 30)];
+  m_PasswordTextField.borderStyle=UITextBorderStyleRoundedRect;
+  m_PasswordTextField.returnKeyType=UIReturnKeyDone;
+  m_PasswordTextField.clearButtonMode = UITextFieldViewModeAlways;
+  m_PasswordTextField.delegate=self;
+  [self.view addSubview:m_PasswordTextField];  
+    
+  UIButton *pFaceWestButton=[UIButton buttonWithType:UIButtonTypeCustom];
+  pFaceWestButton.frame=CGRectMake(25, 120, 123, 40);
+  pFaceWestButton.backgroundColor=[UIColor clearColor];
+  pFaceWestButton.tag=2;
+  [pFaceWestButton setImage:[UIImage imageNamed:@"FaceWest.png"] forState:UIControlStateNormal];
+  [pFaceWestButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+  [self.view addSubview:pFaceWestButton];  
+  
+  UIButton *pFaceEastButton=[UIButton buttonWithType:UIButtonTypeCustom];
+  pFaceEastButton.frame=CGRectMake(174,120, 123, 40);
+  pFaceEastButton.backgroundColor=[UIColor clearColor];
+  pFaceEastButton.tag=3;
+  [pFaceEastButton setImage:[UIImage imageNamed:@"FaceEast.png"] forState:UIControlStateNormal];
+  [pFaceEastButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+  [self.view addSubview:pFaceEastButton];
+  
+  UIButton *pFaceUpButton=[UIButton buttonWithType:UIButtonTypeCustom];
+  pFaceUpButton.frame=CGRectMake(100, 65, 123, 40);
+  pFaceUpButton.backgroundColor=[UIColor clearColor];
+  pFaceUpButton.tag=1;
+  [pFaceUpButton setImage:[UIImage imageNamed:@"FaceUp.png"] forState:UIControlStateNormal];
+  [pFaceUpButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+  [self.view addSubview:pFaceUpButton];
+  
+  UIButton *pFaceDownButton=[UIButton buttonWithType:UIButtonTypeCustom];
+  pFaceDownButton.frame=CGRectMake(100, 175, 123, 40);
+  pFaceDownButton.backgroundColor=[UIColor clearColor];
+  pFaceDownButton.tag=4;
+  [pFaceDownButton setImage:[UIImage imageNamed:@"FaceDown.png"] forState:UIControlStateNormal];
+  [pFaceDownButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+  [self.view addSubview:pFaceDownButton];
+
+  UIButton *pLockButton=[UIButton buttonWithType:UIButtonTypeCustom];
+  pLockButton.frame=CGRectMake(25,260, 123, 41);
+  pLockButton.backgroundColor=[UIColor clearColor];
+  pLockButton.tag=5;
+  [pLockButton setImage:[UIImage imageNamed:@"Lock.png"] forState:UIControlStateNormal];
+  [pLockButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+  [self.view addSubview:pLockButton];
+  
+  UIButton *pUnLockButton=[UIButton buttonWithType:UIButtonTypeCustom];
+  pUnLockButton.frame=CGRectMake(174,260, 123, 41);
+  pUnLockButton.backgroundColor=[UIColor clearColor];
+  pUnLockButton.tag=6;
+  [pUnLockButton setImage:[UIImage imageNamed:@"unlock.png"] forState:UIControlStateNormal];
+  [pUnLockButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+  [self.view addSubview:pUnLockButton];
+  
+  UIButton *pResumeTrackingButton=[UIButton buttonWithType:UIButtonTypeCustom];
+  pResumeTrackingButton.frame=CGRectMake(100,316, 123, 42);
+  pResumeTrackingButton.backgroundColor=[UIColor clearColor];
+  pResumeTrackingButton.tag=7;
+  [pResumeTrackingButton setImage:[UIImage imageNamed:@"Track.png"] forState:UIControlStateNormal];
+  [pResumeTrackingButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+  [pResumeTrackingButton setTitle:@"Resume Tracking" forState:UIControlStateNormal];
+  [self.view addSubview:pResumeTrackingButton];
+}
+
+-(void)buttonAction:(UIButton*)button
+{
+#ifdef DEMO_BUILD
+    
+    switch (button.tag)
+    {
+        case 1:
+            self.operationPerformed = @"Face Up";
+            break;
+        case 2:
+            self.operationPerformed = @"Face West";
+            break;
+        case 3:
+            self.operationPerformed = @"Face East";
+            break;
+        case 4:
+            self.operationPerformed = @"Face Down";
+            break;
+        case 5:
+            self.operationPerformed = @"Lock";
+            break;
+        case 6:
+            self.operationPerformed = @"Unlock";
+            break;
+        case 7:
+            self.operationPerformed = @"Resume Tracking";
+            break;
+        default:
+            self.operationPerformed = @"";
+            break;
+            
+    }
+    
+    UIAlertView *pAlert=[[UIAlertView alloc]initWithTitle:@"" message:@"Are you sure?" delegate:self cancelButtonTitle:@"Yes" otherButtonTitles:@"No",nil];
+    pAlert.tag=1;
+    [pAlert show];
+    //return;
+#else
+    
+    [m_PasswordTextField resignFirstResponder];
+    switch (button.tag)
+    {
+        case 1:
+            //Face Up
+            actionState=MOVE;
+            moveDirection=UP;
+            [self handleAction];
+            break;
+        case 2:
+            //Face West
+            actionState=MOVE;
+            moveDirection=WEST;
+            [self handleAction];
+            break;
+        case 3:
+            //Face East
+            actionState=MOVE;
+            moveDirection=EAST;
+            [self handleAction];
+            break;
+        case 4:
+            //Face Down
+            actionState=MOVE;
+            moveDirection=DOWN;
+            [self handleAction];
+            break;
+        case 5:
+            //Lock
+            actionState=LOCK;
+            [self handleAction];
+            break;
+        case 6:
+            //Unlock
+            actionState=UNLOCK;
+            [self handleAction];
+            break;
+        case 7:
+            //Resume Tracking
+            actionState=MOVE;
+            moveDirection=RESUME;
+            [self handleAction];
+            break;
+        default:
+            break;
+    }
+#endif
+}
+-(void)handleAction
+{
+  NSString *value = [m_PasswordTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+  if(value.length==0)
+  {
+    UIAlertView *pAlert=[[UIAlertView alloc]initWithTitle:@"" message:@"Reason for change is mandatory." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:NULL];
+    pAlert.tag=0;
+    [pAlert show];
+    moveDirection=NO_DIRECTION;
+    actionState=UNAVAILABLE;
+  }
+  else
+  {
+    UIAlertView *pAlert=[[UIAlertView alloc]initWithTitle:@"" message:@"Are you sure?" delegate:self cancelButtonTitle:@"Yes" otherButtonTitles:@"No",nil];
+    pAlert.tag=1;
+    [pAlert show];
+  }
+}
+
+#pragma mark UIAlertView delegate Methods
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+#ifdef DEMO_BUILD
+    if (alertView.tag==1) {
+        
+        if (buttonIndex==0) {
+            sleep(1);
+            
+            if(self.operationPerformed != @"")
+            {
+                UIAlertView *pAlert=[[UIAlertView alloc]initWithTitle:@"" message:[NSString stringWithFormat:@"%@ Success", self.operationPerformed] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:NULL];
+                [pAlert show];
+                pAlert=nil;  
+            }
+            
+        }    
+        
+        
+    }
+    return;
+#endif
+
+  if(alertView.tag==0)
+  {
+    m_PasswordTextField.text=@"";
+    [m_PasswordTextField becomeFirstResponder];
+    return; 
+  }
+  if(buttonIndex==1)
+    return;
+  NSString *pSessionToken=[[NSUserDefaults standardUserDefaults]objectForKey:@"SESSION_TOKEN"];
+  NSString *pEntityType=[[NSUserDefaults standardUserDefaults]objectForKey:@"ENTITY_TYPE"];
+  NSString *pEntityId=[[NSUserDefaults standardUserDefaults]objectForKey:@"ID"];
+  switch (actionState)
+  {
+    case MOVE:
+    {
+      NSArray *directionArray=[NSArray arrayWithObjects:@"UP",@"WEST",@"EAST",@"DOWN",@"RESUME",nil];
+      NSString *direction=nil;
+      if(moveDirection!=NO_DIRECTION)
+        direction=[directionArray objectAtIndex:moveDirection];
+      if(direction)
+      {
+        urlString=[NSString stringWithFormat:@"%@/GreenVolts-ISIS-BL-Web-Models-iPhone-iPhone_DS.svc/JSON/MoveTracker?sessionToken=%@&entityScope=%@&entityID=%@&action=%@&logReason=%@",kserverAddress,pSessionToken,pEntityType,pEntityId,direction,[m_PasswordTextField.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        
+        [self checkArrayLockStatus];
+      }
+    }
+      break;
+    case LOCK:
+    {
+      NSString *pString=[NSString stringWithFormat:@"%@/GreenVolts-ISIS-BL-Web-Models-iPhone-iPhone_DS.svc/JSON/LockArray?sessionToken=%@&arrayID=%@&logReason=%@",kserverAddress,pSessionToken,pEntityId,[m_PasswordTextField.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+      [self connectToServer:pString];
+    }
+      break;
+    case UNLOCK:
+    {
+      NSString *pString=[NSString stringWithFormat:@"%@/GreenVolts-ISIS-BL-Web-Models-iPhone-iPhone_DS.svc/JSON/UnLockArray?sessionToken=%@&arrayID=%@&logReason=%@",kserverAddress,pSessionToken,pEntityId,[m_PasswordTextField.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+      [self connectToServer:pString];
+    }
+      break;
+    default:
+      break;
+  }
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+  m_PasswordTextField.text=@"";
+  pTitleLabel.text=[[NSUserDefaults standardUserDefaults]objectForKey:@"ENTITY_NAME"];
+}
+
+#pragma mark URLConnectionManager Methods
+-(void)checkArrayLockStatus
+{
+  if(m_ActivityIndicatorView)
+  {
+    [m_ActivityIndicatorView removeFromSuperview];
+    m_ActivityIndicatorView=nil;
+  }
+  m_ActivityIndicatorView=[[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(150, 200, 30, 30)];
+  [m_ActivityIndicatorView startAnimating];
+  m_ActivityIndicatorView.activityIndicatorViewStyle=UIActivityIndicatorViewStyleWhite;
+  [self.view addSubview:m_ActivityIndicatorView];  
+  
+	if(mURLConnection) 
+	{
+		[mURLConnection cancel];
+		mURLConnection=nil;
+	}
+  if(mResponseData)
+	{
+		mResponseData=nil;
+	}
+  NSString *pSessionToken=[[NSUserDefaults standardUserDefaults]objectForKey:@"SESSION_TOKEN"];
+  NSString *pEntityId=[[NSUserDefaults standardUserDefaults]objectForKey:@"ID"];
+  NSString *pURLString=[NSString stringWithFormat:@"%@/GreenVolts-ISIS-BL-Web-Models-iPhone-iPhone_DS.svc/JSON/GetArrayLockStatus?sessionToken=%@&arrayID=%@",kserverAddress,pSessionToken,pEntityId];
+	mURLConnection = [NSURLConnection connectionWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:pURLString]] delegate:self];
+  isArrayLockStatusCheck=YES;
+}
+-(void)connectToServer:(NSString *)pURLString
+{
+  isArrayLockStatusCheck=NO;
+  urlString=nil;
+  urlString=[pURLString copy];
+  if(m_ActivityIndicatorView)
+  {
+    [m_ActivityIndicatorView removeFromSuperview];
+    m_ActivityIndicatorView=nil;
+  }
+  m_ActivityIndicatorView=[[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(150, 200, 30, 30)];
+  [m_ActivityIndicatorView startAnimating];
+  m_ActivityIndicatorView.activityIndicatorViewStyle=UIActivityIndicatorViewStyleWhite;
+  [self.view addSubview:m_ActivityIndicatorView];  
+  
+	if(mURLConnection) 
+	{
+		[mURLConnection cancel];
+		mURLConnection=nil;
+	}
+  if(mResponseData)
+	{
+		mResponseData=nil;
+	}
+  
+	mURLConnection = [NSURLConnection connectionWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:pURLString]] delegate:self];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response 
+{
+  if(!mResponseData)
+    mResponseData=[NSMutableData data];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+     
+		[mResponseData appendData:data];
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error 
+{
+  if(m_ActivityIndicatorView){[m_ActivityIndicatorView removeFromSuperview];m_ActivityIndicatorView=nil;}
+  
+  UIAlertView *pAlert=[[UIAlertView alloc]initWithTitle:@"" message:@"Make sure your device has an active network connection and try again" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:NULL];
+  [pAlert show];
+  pAlert=nil;        
+  
+  if(mURLConnection) 
+	{
+		[mURLConnection cancel];
+		mURLConnection=nil;
+	}
+	if(mResponseData)
+	{
+		mResponseData=nil;
+	}
+  
+}
+
+- (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace
+{
+  return [protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
+{
+  if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust])
+    [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+	if(mURLConnection) 
+	{
+		[mURLConnection cancel];
+		mURLConnection=nil;
+	}
+  if(m_ActivityIndicatorView){[m_ActivityIndicatorView removeFromSuperview];m_ActivityIndicatorView=nil;}
+  [self jsonParser];
+}	
+
+-(void)jsonParser
+{
+  NSString *responseString=[[NSString alloc]initWithData:mResponseData encoding:NSUTF8StringEncoding];
+  mResponseData=nil;
+  
+  NSDictionary *data=[responseString JSONValue];
+  if(isArrayLockStatusCheck)
+  {
+    NSDictionary *userResult= [data objectForKey:@"GetArrayLockStatusResult"]; 
+    
+    NSArray *rootResult = [userResult objectForKey:@"RootResults"];
+    
+    if([rootResult count])
+    {
+      NSDictionary *rootResultDict=[rootResult objectAtIndex:0];
+      
+      NSString *error=[rootResultDict objectForKey:@"Err"];
+      
+      NSDictionary *resultDict=[rootResult objectAtIndex:0];
+      BOOL isArrayLocked=[[resultDict valueForKey:@"IsLocked"] boolValue];
+      
+      if(isArrayLocked)
+      {
+        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Error" message:error delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+      }
+      else
+      {
+        isArrayLockStatusCheck=NO;
+        [self changeAccessToken];
+        [self connectToServer:urlString];
+      }
+      
+      NSNumber *errorId=[rootResultDict objectForKey:@"ErrID"];
+      if([errorId intValue]==10001)
+      {
+        NSString *exception=[rootResultDict objectForKey:@"Err"];
+        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Error" message:exception delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+      } 
+      if ([errorId intValue]==10003)
+      {
+        [self fetchSessionToken];
+      }
+    }
+  }
+  else
+  {
+    switch (actionState)
+    {
+      case MOVE:
+      {
+        NSDictionary *userResult= [data objectForKey:@"MoveTrackerResult"]; 
+        
+        NSArray *rootResult = [userResult objectForKey:@"RootResults"];
+        
+        if([rootResult count])
+        {
+          NSDictionary *rootResultDict=[rootResult objectAtIndex:0];
+          
+          NSObject *error=[rootResultDict objectForKey:@"Err"];
+          
+          if([error isKindOfClass:[NSNull class]])
+          {
+            urlString=nil;
+            NSDictionary *resultDict=[rootResult objectAtIndex:0];
+            
+            NSObject *presultStatus=[resultDict objectForKey:@"Result"];
+            if(![presultStatus isKindOfClass:[NSNull class]])
+            {
+              UIAlertView *pAlert=[[UIAlertView alloc]initWithTitle:@"" message:[rootResultDict objectForKey:@"Result"] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:NULL];
+              [pAlert show];
+              pAlert=nil;  
+              moveDirection=NO_DIRECTION;
+            }
+          }
+          else 
+          {
+            NSNumber *errorId=[rootResultDict objectForKey:@"ErrID"];
+            if ([errorId intValue]==10003)
+            {
+              [self handleException:10003 andAdditionalMessage:nil];
+            }
+            else if([errorId intValue]==10001)
+            {
+              [self handleException:10001 andAdditionalMessage:[rootResultDict objectForKey:@"Error"]];
+            }
+            else if([errorId intValue]==10014)
+            {
+              [self handleException:10014 andAdditionalMessage:nil];
+            }
+            else if([errorId intValue]==10015)
+            {
+              [self handleException:10015 andAdditionalMessage:[rootResultDict objectForKey:@"Error"]];
+            }
+            else if([errorId intValue]==10016)
+            {
+              [self handleException:10016 andAdditionalMessage:[rootResultDict objectForKey:@"Error"]];
+            }
+          }
+        }
+      }
+        break;
+      case LOCK:
+      {
+        NSDictionary *userResult= [data objectForKey:@"LockArrayResult"]; 
+        
+        NSArray *rootResult = [userResult objectForKey:@"RootResults"];
+        
+        if([rootResult count])
+        {
+          NSDictionary *rootResultDict=[rootResult objectAtIndex:0];
+          
+          NSObject *error=[rootResultDict objectForKey:@"Err"];
+          
+          if([error isKindOfClass:[NSNull class]])
+          {
+            urlString=nil;
+            NSDictionary *resultDict=[rootResult objectAtIndex:0];
+            
+            NSObject *presultStatus=[resultDict objectForKey:@"Result"];
+            if(![presultStatus isKindOfClass:[NSNull class]])
+            {
+              UIAlertView *pAlert=[[UIAlertView alloc]initWithTitle:@"" message:[rootResultDict objectForKey:@"Result"] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:NULL];
+              [pAlert show];
+              pAlert=nil;  
+              actionState=UNAVAILABLE;
+            }
+          }
+          else 
+          {
+            NSNumber *errorId=[rootResultDict objectForKey:@"ErrID"];
+            
+            if([errorId intValue]==10001)
+            {
+              [self handleException:10001 andAdditionalMessage:[rootResultDict objectForKey:@"Err"]];
+            }
+            else if([errorId intValue]==10003)
+            {
+              [self handleException:10003 andAdditionalMessage:nil];
+            }
+            else if([errorId intValue]==10017)
+            {
+              [self handleException:10017 andAdditionalMessage:nil];
+            }
+            else if([errorId intValue]==10018)
+            {
+              [self handleException:10018 andAdditionalMessage:nil];
+            }
+          }
+        }
+      }
+        break;
+      case UNLOCK:
+      {
+        NSDictionary *userResult= [data objectForKey:@"UnLockArrayResult"]; 
+        
+        NSArray *rootResult = [userResult objectForKey:@"RootResults"];
+        
+        if([rootResult count])
+        {
+          NSDictionary *rootResultDict=[rootResult objectAtIndex:0];
+          
+          NSObject *error=[rootResultDict objectForKey:@"Err"];
+          
+          if([error isKindOfClass:[NSNull class]])
+          {
+            urlString=nil;
+            NSDictionary *resultDict=[rootResult objectAtIndex:0];
+            
+            NSObject *presultStatus=[resultDict objectForKey:@"Result"];
+            if(![presultStatus isKindOfClass:[NSNull class]])
+            {
+              UIAlertView *pAlert=[[UIAlertView alloc]initWithTitle:@"" message:[rootResultDict objectForKey:@"Result"] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:NULL];
+              [pAlert show];
+              pAlert=nil;  
+              actionState=UNAVAILABLE;
+            }
+          }
+          else 
+          {        
+            NSNumber *errorId=[rootResultDict objectForKey:@"ErrID"];
+            if([errorId intValue]==10001)
+            {
+              [self handleException:10001 andAdditionalMessage:[rootResultDict objectForKey:@"Err"]];
+            }
+            else if([errorId intValue]==10003)
+            {
+              [self handleException:10003 andAdditionalMessage:nil];
+            }
+            else if([errorId intValue]==10019)
+            {
+              [self handleException:10019 andAdditionalMessage:nil];
+            }
+            else if([errorId intValue]==10020)
+            {
+              [self handleException:10020 andAdditionalMessage:nil];
+            }
+          }
+        }
+      }
+        break;
+      default:
+        break;
+    }    
+  }
+}
+
+#pragma mark LoginManagerDelegate methods
+-(void)loginManager:(LoginManager*)manager loggedInSuccesfullyWithSessionToken:(NSString*)sessionToken
+{
+  [[NSUserDefaults standardUserDefaults]setObject:sessionToken forKey:@"SESSION_TOKEN"];  
+  [self.navigationController dismissModalViewControllerAnimated:YES];
+  
+  GreenVoltsAppDelegate* appDelegate=(GreenVoltsAppDelegate*)[UIApplication sharedApplication].delegate;
+  UITabBarController *tabBar=(UITabBarController *)appDelegate.RootViewController;
+  tabBar.selectedIndex=0;
+  [appDelegate tabBarController:tabBar didSelectViewController:nil];
+  UINavigationController *navC=[tabBar.viewControllers objectAtIndex:0];
+  [navC popToRootViewControllerAnimated:YES];
+}
+
+-(void)fetchSessionToken
+{
+  if(!m_Connection)
+  {
+    m_Connection=[[Connection alloc]init];
+    m_Connection.m_delegate=self;
+  }
+  [m_Connection connectToServer];
+  if(m_ActivityIndicatorView)
+  {
+    [m_ActivityIndicatorView removeFromSuperview];
+    m_ActivityIndicatorView=nil;
+  }
+  m_ActivityIndicatorView=[[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(150, 200, 30, 30)];
+  [m_ActivityIndicatorView startAnimating];
+  m_ActivityIndicatorView.activityIndicatorViewStyle=UIActivityIndicatorViewStyleWhite;
+  [self.view addSubview:m_ActivityIndicatorView];  
+}
+#pragma mark -- ConnectionDelegate
+-(void)ConnectionFailed
+{
+  UIAlertView *pAlert=[[UIAlertView alloc]initWithTitle:@"" message:@"Make sure your device has an active network connection and try again"  
+    delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:NULL];
+  [pAlert show];
+  pAlert=nil;
+}
+-(void)InvalidUserNameError:(int)errorIndex
+{
+  if(errorIndex==0)
+  {
+    UIAlertView *pAlert=[[UIAlertView alloc]initWithTitle:@"" message:@"Cannot connect to backend systems" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:NULL];
+    [pAlert show];
+    pAlert=nil;              
+  }
+  else if(errorIndex==1)
+  {
+    [[LoginManager sharedLoginManagerWithDelegate:self] ShowLoginPage];
+  }  
+}
+-(void)Success
+{
+  if(isArrayLockStatusCheck)
+  {
+    [self checkArrayLockStatus];
+  }
+  else
+  {
+    [self changeAccessToken];
+    [self connectToServer:urlString];   
+  }
+  
+}
+#pragma mark UITextFieldDelegate methods
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+  [m_PasswordTextField resignFirstResponder];
+  return YES;
+}
+
+
+- (void)didReceiveMemoryWarning {
+}
+
+- (void)viewDidUnload {
+    [super viewDidUnload];
+    // Release any retained subviews of the main view.
+    // e.g. self.myOutlet = nil;
+}
+
+-(void)handleException:(int)errorCode andAdditionalMessage:(NSString*)message
+{
+  switch (errorCode)
+  {
+    case 10001:
+    {
+      NSString *pMessage=@"";
+      if(message)
+        pMessage=message;
+      UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Exception" message:pMessage delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+      [alert show];
+    }
+      break;
+    case 10003:
+    {
+      [self fetchSessionToken];
+    }
+      break;
+    case 10014:
+    {
+      NSString *pMessage=@"Cannot issue command to tracker.";
+      UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Error" message:pMessage delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+      [alert show];
+    }
+      break;
+    case 10015:
+    {
+      NSString *pMessage=@"Command failed with error: ";
+      if(message)
+        pMessage=[NSString stringWithFormat:@"%@%@",pMessage,message];
+      UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Error" message:pMessage delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+      [alert show];
+    }
+      break;
+    case 10016:
+    {
+      NSString *pMessage=@"";
+      if(message)
+        pMessage=message;
+      UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Error" message:pMessage delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+      [alert show];
+    }
+      break;
+    case 10017:
+    {
+      NSString *pMessage=@"Array already locked.";
+      UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Error" message:pMessage delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+      [alert show];
+    }
+      break;
+    case 10018:
+    {
+      NSString *pMessage=@"Array lock failed.";
+      UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Error" message:pMessage delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+      [alert show];
+    }
+      break;
+    case 10019:
+    {
+      NSString *pMessage=@"Array already unlocked.";
+      UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Error" message:pMessage delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+      [alert show];
+    }
+      break;
+    case 10020:
+    {
+      NSString *pMessage=@"Array unlock failed.";
+      UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Error" message:pMessage delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+      [alert show];
+    }
+      break;
+    default:
+      break;
+  }
+}
+-(void)changeAccessToken
+{
+  NSString *query=[[urlString componentsSeparatedByString:@"?"] objectAtIndex:1];
+  NSMutableArray *mutableQueryComponents=[NSMutableArray arrayWithArray:[query componentsSeparatedByString:@"&"]];
+  for (int i=0;i<[mutableQueryComponents count];i++)
+  {
+    NSString *component=[mutableQueryComponents objectAtIndex:i];
+    if([component hasPrefix:@"sessionToken="])
+    {
+      NSString *pSessionToken=[[NSUserDefaults standardUserDefaults]objectForKey:@"SESSION_TOKEN"];    
+      component=[NSString stringWithFormat:@"sessionToken=%@",pSessionToken];
+      [mutableQueryComponents replaceObjectAtIndex:i withObject:component];
+      break;
+    }
+  }
+  query=[mutableQueryComponents componentsJoinedByString:@"&"];
+  NSString *serverPath=[[urlString componentsSeparatedByString:@"?"] objectAtIndex:0];
+  urlString=[NSString stringWithFormat:@"%@?%@",serverPath,query];
+}
+@end

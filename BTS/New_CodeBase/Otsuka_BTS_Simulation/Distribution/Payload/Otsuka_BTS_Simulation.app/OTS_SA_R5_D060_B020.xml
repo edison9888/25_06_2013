@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pageContent>
+    <id><![CDATA[OTS_SA_R5_D060_B020]]></id>
+	<title><![CDATA[]]></title>
+    <descriptionText><![CDATA[<Introtext style="font-family:Helvetica; font-size:16pt; font-weight:bold; color:#cc0033; margin:10px; padding:0 0 0 5px; background:#e8e8e8; border-bottom:1px solid #333; display:block;">Understanding the Context</Introtext><welcomeText style=" font-family:Helvetica; font-size:12pt; line-height:18pt; text-align:justify; font-weight:normal; color:#333; display:block; margin:0 10px 10px">This is an Options question, not a Problems question. It will take you backward in the conversation and make it difficult to reconnect to the value creation discussion you are already building.<BR><BR>The best question to ask at this point is, "You mentioned earlier that the responsibility for understanding insurance plan coverage and formulary changes was shifting to the non-prescribing office staff.  What difficulties, if any, do you think will come out of that change?"<BR><BR>This is a Problems question that probes deeper into the issues faced by the practice as they implement desired changes.<BR><BR><B>Here is how Rachel would have answered that question:</B><BR><BR>"There will be some speed bumps.  Some of our office staff don’t have significant experience with this type of work, so there will be a learning curve.  Also, we’ll certainly confront the obstacle of some of the doctors still forging ahead without checking with their nurse or office staff on the coverage.  With time, however, and the proper training, most of these challenges will be overcome."</welcomeText>]]></descriptionText>
+    <character><![CDATA[Char_Mack]]></character>
+    <continueBtn><![CDATA[]]></continueBtn>	
+	<branchTo><![CDATA[OTS_SA_R5_D070]]></branchTo>
+</pageContent>
+
+
+
+
+
+
+
+
